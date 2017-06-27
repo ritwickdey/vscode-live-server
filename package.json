@@ -1,0 +1,45 @@
+{
+  "name": "LiveServer",
+  "displayName": "GoLive",
+  "description": "Open Live Server From Anywhere",
+  "version": "0.0.1",
+  "publisher": "ritwickdey",
+  "engines": {
+    "vscode": "^1.13.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./out/src/extension",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.liveServer.goOffline",
+        "title": "Go Offline Server"
+      },
+      {
+        "command": "extension.liveServer.goOnline",
+        "title": "Go Online Server"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "tsc -p ./",
+    "compile": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "node ./node_modules/vscode/bin/test"
+  },
+  "devDependencies": {
+    "typescript": "^2.0.3",
+    "vscode": "^1.0.0",
+    "mocha": "^2.3.3",
+    "@types/node": "^6.0.40",
+    "@types/mocha": "^2.2.32"
+  },
+  "dependencies": {
+    "live-server": "^1.2.0"
+  }
+}
