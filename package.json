@@ -2,7 +2,7 @@
     "name": "LiveServer",
     "displayName": "Live Server",
     "description": "Launch Local Server to browser directly from VSCode Editor by a single click.",
-    "version": "0.1.1",
+    "version": "0.2.0",
     "publisher": "ritwickdey",
     "engines": {
         "vscode": "^1.13.0"
