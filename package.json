@@ -1,15 +1,28 @@
 {
   "name": "LiveServer",
   "displayName": "GoLive",
-  "description": "Open Live Server From Anywhere",
-  "version": "0.0.1",
+  "description": "Launch a server directly from VS Code editor.",
+  "version": "0.0.2",
   "publisher": "ritwickdey",
   "engines": {
     "vscode": "^1.13.0"
   },
   "categories": [
-    "Other"
+    "Other",
+    "Extension Packs"
   ],
+  "keywords": [
+    "html",
+    "live",
+    "live preview",
+    "live server",
+    "live reload",
+    "preview"
+  ],
+  "galleryBanner": {
+    "color": "#04e869",
+    "theme": "dark"
+  },
   "activationEvents": [
     "*"
   ],
@@ -26,6 +39,17 @@
       }
     ]
   },
+  "license": "MIT",
+  "icon": "images/icon.png",
+  "bugs": {
+    "url": "https://github.com/ritwickdey/LiveServer-VScodeExtension/issues",
+    "email": "ritwickdey@outlook.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ritwickdey/LiveServer-VScodeExtension.git"
+  },
+  "homepage": "https://github.com/ritwickdey/LiveServer-VScodeExtension/blob/master/README.md",
   "scripts": {
     "vscode:prepublish": "tsc -p ./",
     "compile": "tsc -watch -p ./",
