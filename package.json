@@ -2,7 +2,7 @@
     "name": "LiveServer",
     "displayName": "Live Server",
     "description": "Launch Local Server to browser directly from VSCode Editor by a single click.",
-    "version": "0.2.0",
+    "version": "1.0.0",
     "publisher": "ritwickdey",
     "engines": {
         "vscode": "^1.13.0"
@@ -63,6 +63,7 @@
         "@types/mocha": "^2.2.32"
     },
     "dependencies": {
+        "http-shutdown": "^1.2.0",
         "live-server": "^1.2.0"
     }
 }

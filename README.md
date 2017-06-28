@@ -11,12 +11,10 @@ Launch a Localhost Server directly from VSCode to your browser.
 * press 'F1' or 'ctrl+shift+P' and type `Go Offline Server` to stop a server.
 
 ## Features
-* Live Server.
-* Live Reload to browser.
-* Click From StatusBar directly. 
+* A Quick Development Live Server.
+* Live Reload on change of files.
+* Run the live server from status bar. 
 
-## Dependency
-* `live-server`
 
 ## LICENSE
 [MIT License](./LICENSE)
