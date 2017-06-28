@@ -14,7 +14,7 @@ export function activate(context: vscode.ExtensionContext) {
     });
 
    context.subscriptions.push(appModel);
-    context.subscriptions.push(OnlineDisposable,OfflineDisposable);
+   context.subscriptions.push(OnlineDisposable,OfflineDisposable);
 }
 
 
