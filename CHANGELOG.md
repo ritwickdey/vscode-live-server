@@ -1,6 +1,6 @@
-# Change log
+# Changelog
 
-| Version | Date | Change log |
+| Version | Date | Changelog |
 |---|---|---|
 | 1.1.0 | 30.06.17 | Editor/Context Menu Shortcut & Keyboad Shortcut added, Changelog added and Readme updated. |
 | 1.0.0 | 29.06.17 | Fixed - issue in Server closing. |
