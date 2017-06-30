@@ -30,11 +30,11 @@
         "commands": [
             {
                 "command": "extension.liveServer.goOffline",
-                "title": "Go Offline Server"
+                "title": "Close Live Server"
             },
             {
                 "command": "extension.liveServer.goOnline",
-                "title": "Go Live Server"
+                "title": "Open Live Server"
             }
         ],
         "keybindings":[

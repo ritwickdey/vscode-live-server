@@ -17,7 +17,7 @@ Launch a Localhost Server directly from VSCode to your browser.<br><br>
 
 * Hit `(alt+L, O)` to Open the Server and `(alt+L, C)` to close the server. 
 
-* press `F1` or `ctrl+shift+P` and type `Go Live Server` to start a server or type `Go Offline Server` to stop a server.
+* press `F1` or `ctrl+shift+P` and type `Open Live Server` to start a server or type `Close Offline Server` to stop a server.
 
 ## Features
 * A Quick Development Live Server.

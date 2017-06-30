@@ -1,19 +1,15 @@
 'use strict';
 import * as vscode from 'vscode';
-import * as LiveServer from 'live-server';
-import * as httpShutdown from 'http-shutdown';
+import { LiveServerClass } from './LiveServer';
 
-export class AppModel
-{
-    private textEditor: vscode.TextEditor;
+export class AppModel{
+
     private statusBarItem: vscode.StatusBarItem;
     private IsServerRunning: boolean;
-    private runningServerPort : number;
     private LiveServerInstance;
 
     constructor() {
         this.IsServerRunning = false;
-        this.runningServerPort = null;
         this.Init();
     }
 
@@ -28,9 +24,10 @@ export class AppModel
         }
     }
 
-    ToggleStatusBar(){
+    ToggleStatusBar() {
         if(!this.IsServerRunning) {
-            this.statusBarItem.text = `Port : ${this.runningServerPort} - GoOffline`;
+            let port = this.LiveServerInstance.address().port
+            this.statusBarItem.text = `Port : ${port} - GoOffline`;
             this.statusBarItem.command = 'extension.liveServer.goOffline';
             this.statusBarItem.tooltip = "Click to close server";
         }
@@ -45,52 +42,42 @@ export class AppModel
 
     Golive() {
 
-        if(this.IsServerRunning)
-        {
+        if(this.IsServerRunning) {
             vscode.window.showInformationMessage(`Server is already running...`);
             return;
         }
 
-        let editor = vscode.window.activeTextEditor;
-        if (!editor) {
+        let file = this.ExtractFilePath();
+        if(!file) {
             vscode.window.showInformationMessage(`Open Document...`);
             return;
         }
-        this.textEditor = editor;
-
-        let WorkSpacePath = vscode.workspace.rootPath;
-        let FullFilePath = this.textEditor.document.fileName;
-        let documentPath = FullFilePath.substring(0, FullFilePath.lastIndexOf('\\'));
-        
-        let rootPath = WorkSpacePath ? WorkSpacePath : documentPath;
-        let fileName = FullFilePath.substring(FullFilePath.lastIndexOf('\\')+1,FullFilePath.length);
-        let fileExtension = fileName.substring(fileName.lastIndexOf("."), fileName.length).toLowerCase();
-
-        if(fileExtension != "html") fileName = null;
 
         let params = {
             port: 3500, 
             host: '127.0.0.1',
-            root: rootPath,
-            file : fileName,
+            root: file.rootPath,
+            file : file.fileName,
             open: true,
         }
 
-        this.LiveServerInstance = LiveServer.start(params);
-        
-        setTimeout(()=>{
-            let port = LiveServer.server.address().port;
-            if(!isNaN(port)){
-                vscode.window.showInformationMessage(`Server is Started at port : ${port}`);
-                this.runningServerPort = port;
+        LiveServerClass.StartServer(params,(ServerInstance) => {
+            if(ServerInstance != null)
+            {
+                this.LiveServerInstance = ServerInstance;
+                let port = ServerInstance.address().port;
                 this.ToggleStatusBar();
-                httpShutdown(this.LiveServerInstance)
+                vscode.window.showInformationMessage(`Server is Started at port : ${port}`);
             }
             else
             {
                 vscode.window.showErrorMessage(`Error to open server`);
             }
-        },500);
+
+        });
+
+        this.ShowProcessRunning();
+        
     }
 
     goOffline() {
@@ -100,10 +87,44 @@ export class AppModel
             return;
         }
         
-        this.LiveServerInstance.shutdown();
-        this.LiveServerInstance.close();
-        vscode.window.showInformationMessage("Server is now offline.");
-        this.ToggleStatusBar();
+        LiveServerClass.StopServer(this.LiveServerInstance, ()=>{
+            vscode.window.showInformationMessage("Server is now offline.");
+            this.ToggleStatusBar();
+            this.LiveServerInstance = null;
+        });
+
+        //LiveServerClass.callServer(this.LiveServerInstance);
+        this.ShowProcessRunning();
+
+    }
+
+
+    ExtractFilePath() {
+        let editor = vscode.window.activeTextEditor;
+        if (!editor) return null;
+        
+        let textEditor = editor;
+
+        let WorkSpacePath = vscode.workspace.rootPath;
+        let FullFilePath = textEditor.document.fileName;
+        let documentPath = FullFilePath.substring(0, FullFilePath.lastIndexOf('\\'));
+        
+        let rootPath = WorkSpacePath ? WorkSpacePath : documentPath;
+        let fileName = FullFilePath.substring(FullFilePath.lastIndexOf('\\')+1,FullFilePath.length);
+        let fileExtension = fileName.substring(fileName.lastIndexOf("."), fileName.length).toLowerCase();
+
+        if(fileExtension != "html") fileName = null;
+
+        return {
+            rootPath : rootPath,
+            fileName : fileName
+        };
+    }
+
+    ShowProcessRunning(){
+        this.statusBarItem.text = "Working...";
+        this.statusBarItem.tooltip = "In case if it takes long time, try to close all browser window.";
+        this.statusBarItem.command = null;
     }
 
     dispose() {
