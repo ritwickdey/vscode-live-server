@@ -53,8 +53,10 @@ export class AppModel{
             return;
         }
 
+        let portNo = vscode.workspace.getConfiguration("liveServer.settings").get("port") as Number;
+        
         let params = {
-            port: 3500, 
+            port: portNo, 
             host: '127.0.0.1',
             root: file.rootPath,
             file : file.fileName,

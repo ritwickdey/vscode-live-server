@@ -2,6 +2,7 @@
 
 | Version | Date | Changelog |
 |---|---|---|
+| 1.2.0 | 30.06.17 | Settings for Customizing Port No of Live Server. Small UX updated. |
 | 1.1.1 | 30.06.17 | Keyboad Shortcuts has been changed to `ALT+L, O` and `ALT+L, C` due to `Shift+ANY_CHARACTER` has different meaning - sorry for that.
 | 1.1.0 | 30.06.17 | Editor/Context Menu Shortcut & Keyboad Shortcut added, Changelog added and Readme updated. |
 | 1.0.0 | 29.06.17 | Fixed - issue in Server closing. |

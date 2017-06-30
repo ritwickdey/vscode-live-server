@@ -1,18 +1,18 @@
 {
     "name": "LiveServer",
     "displayName": "Live Server",
-    "description": "Launch Local Server to browser directly from VSCode Editor by a single click.",
-    "version": "1.1.1",
+    "description": "Launch a development Live Server to browser and watch live preview.",
+    "version": "1.2.0",
     "publisher": "ritwickdey",
     "engines": {
-        "vscode": "^1.13.0"
+        "vscode": "^1.0.0"
     },
     "categories": [
         "Other",
         "Extension Packs"
     ],
     "keywords": [
-        "live",
+        "HTML Preview",
         "live preview",
         "live server",
         "live reload"
@@ -53,15 +53,25 @@
            "editor/context": [
                {
                    "command": "extension.liveServer.goOnline",
-                    "group": "myGrp@"
+                    "group": "myGrp@liveServer"
 
                },
                {
                    "command": "extension.liveServer.goOffline",
-                    "group": "myGrp@"
+                    "group": "myGrp@liveServer"
                }
            ]
             
+        },
+        "configuration": {
+            "title": "Live Server Config",
+            "properties": {
+                "liveServer.settings.port":{
+                    "type": ["number"],
+                    "default": 5500,
+                    "description": "Set Custom Port Number of Live Server"
+                }
+            }
         }
     },
     "license": "MIT",

@@ -1,5 +1,5 @@
 # Live Server
-Launch a Localhost Server directly from VSCode to your browser.<br><br>
+Launch a Local Server directly from VSCode to your browser and watch live preview of HTML<br>
 ![App Preview](./images/Screenshot/AnimatedPreview.gif)
 
 
@@ -23,15 +23,24 @@ Launch a Localhost Server directly from VSCode to your browser.<br><br>
 * A Quick Development Live Server.
 * Live Reload on change of files.
 * Run the live server from status bar.
+* Fixable Port Number.
+
+## Settings
+* `liveServer.settings.port` : Customize Port Number of your Live Server. Default value is `5500`.  If you want random port number, set it as `0`.
 
 ## Installation
 Press `F1`, type `ext install LiveServer`.
 <br> 
 [Of course, first open VSCode editor... LOL!]
 
-## What's new in this version?
+## What's new ?
+
+#### Version 1.2.0 (30.06.17)
+* Settings for Customizing Port No of Live Server.
+* Small UX updated.
+
 #### Version 1.1.1 (30.06.17)
-* Keyboad Shortcuts has been changed to `ALT+L, O` and `ALT+L, C` due to `Shift+ANY_CHARACTER` has different meaning - sorry for that.
+* Keyboad Shortcuts has been changed to `(ALT+L, O)` and `(ALT+L, C)` due to `(Shift+ANY_CHARACTER)` has different meaning - sorry for that.
 
 #### Version 1.1.0 (30.06.17) 
 * Editor/Context Menu Shortcut added.
