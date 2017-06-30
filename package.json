@@ -2,7 +2,7 @@
     "name": "LiveServer",
     "displayName": "Live Server",
     "description": "Launch Local Server to browser directly from VSCode Editor by a single click.",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "publisher": "ritwickdey",
     "engines": {
         "vscode": "^1.13.0"
@@ -40,12 +40,12 @@
         "keybindings":[
             {
                 "command": "extension.liveServer.goOffline",
-                "key": "shift+L C",
+                "key": "alt+L C",
                 "when": "editorTextFocus"
             },
             {
                 "command": "extension.liveServer.goOnline",
-                "key": "shift+L O",
+                "key": "alt+L O",
                 "when": "editorTextFocus"
             }
         ],

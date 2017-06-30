@@ -15,7 +15,7 @@ Launch a Localhost Server directly from VSCode to your browser.<br><br>
 
 <br>
 
-* Hit `(shift+L, O)` to Open the Server and `(shift+L, C)` to close the server. 
+* Hit `(alt+L, O)` to Open the Server and `(alt+L, C)` to close the server. 
 
 * press `F1` or `ctrl+shift+P` and type `Go Live Server` to start a server or type `Go Offline Server` to stop a server.
 
@@ -30,6 +30,9 @@ Press `F1`, type `ext install LiveServer`.
 [Of course, first open VSCode editor... LOL!]
 
 ## What's new in this version?
+#### Version 1.1.1 (30.06.17)
+* Keyboad Shortcuts has been changed to `ALT+L, O` and `ALT+L, C` due to `Shift+ANY_CHARACTER` has different meaning - sorry for that.
+
 #### Version 1.1.0 (30.06.17) 
 * Editor/Context Menu Shortcut added.
 * Keyboad Shortcut added.
