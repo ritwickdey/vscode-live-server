@@ -7,19 +7,19 @@ Launch a Local Server directly from VSCode to your browser and watch live previe
 
 **_[In case if you don't have any `.html` file in your workspace then you have to follow method no 3 & 4 to start Live Server. I don't know why you want so?! :p But features is still there.]_**
 
-* 1. Open a HTML File/Project and directly Click to `Go Live` from StatusBar to turn off/on the server. 
+1. Open a HTML File/Project and directly Click to `Go Live` from StatusBar to turn off/on the server. 
 ![Go Live Control Preview](./images/Screenshot/statusbar2.jpg)
 
 <br>
 
-* 2. Open a HTML file and Right click on the editor and choose the options.
+2. Open a HTML file and Right click on the editor and choose the options.
 ![Go Live Control Preview](./images/Screenshot/editormenu.jpg)
 
 <br>
 
-* 3. Hit `(alt+L, O)` to Open the Server and `(alt+L, C)` to close the server. 
+3. Hit `(alt+L, O)` to Open the Server and `(alt+L, C)` to close the server. 
 
-* 4. press `F1` or `ctrl+shift+P` and type `Live Server: Open Live Server ` to start a server or type `Live Server: Close Live Server` to stop a server.
+4. press `F1` or `ctrl+shift+P` and type `Live Server: Open Live Server ` to start a server or type `Live Server: Close Live Server` to stop a server.
 
 ## Features
 * A Quick Development Live Server.

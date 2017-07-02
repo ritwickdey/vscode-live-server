@@ -43,7 +43,8 @@ export class AppModel{
     Golive() {
 
         if(this.IsServerRunning) {
-            vscode.window.showInformationMessage(`Server is already running...`);
+            let port = this.LiveServerInstance.address().port;
+            vscode.window.showInformationMessage(`Server is already running at port ${port} ...`);
             return;
         }
 
@@ -60,19 +61,17 @@ export class AppModel{
             host: '127.0.0.1',
             root: file.rootPath,
             file : file.fileName,
-            open: true,
+            open: true
         }
 
         LiveServerClass.StartServer(params,(ServerInstance) => {
-            if(ServerInstance != null)
-            {
+            if(ServerInstance != null) {
                 this.LiveServerInstance = ServerInstance;
                 let port = ServerInstance.address().port;
                 this.ToggleStatusBar();
                 vscode.window.showInformationMessage(`Server is Started at port : ${port}`);
             }
-            else
-            {
+            else {
                 vscode.window.showErrorMessage(`Error to open server`);
             }
 
@@ -95,18 +94,15 @@ export class AppModel{
             this.LiveServerInstance = null;
         });
 
-        //LiveServerClass.callServer(this.LiveServerInstance);
         this.ShowProcessRunning();
 
     }
 
 
     ExtractFilePath() {
-        let editor = vscode.window.activeTextEditor;
-        if (!editor) return null;
+        let textEditor = vscode.window.activeTextEditor;
+        if (!textEditor) return null;
         
-        let textEditor = editor;
-
         let WorkSpacePath = vscode.workspace.rootPath;
         let FullFilePath = textEditor.document.fileName;
         let documentPath = FullFilePath.substring(0, FullFilePath.lastIndexOf('\\'));
@@ -115,7 +111,7 @@ export class AppModel{
         let fileName = FullFilePath.substring(FullFilePath.lastIndexOf('\\')+1,FullFilePath.length);
         let fileExtension = fileName.substring(fileName.lastIndexOf("."), fileName.length).toLowerCase();
 
-        if(fileExtension != "html") fileName = null;
+        if(fileExtension != ".html") fileName = null;
 
         return {
             rootPath : rootPath,
