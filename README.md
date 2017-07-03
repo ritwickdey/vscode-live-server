@@ -31,11 +31,12 @@ Launch a Local Server directly from VSCode to your browser and watch live previe
 * `liveServer.settings.port` : Customize Port Number of your Live Server. Default value is `5500`.  If you want random port number, set it as `0`.
 
 ## Installation
-Press `F1`, type `ext install LiveServer`.
-<br> 
-[Of course, first open VSCode editor... LOL!]
+Open VSCode Editor and Press `F1`  or `ctrl+shift+P`, type `ext install LiveServer`.
 
 ## What's new ?
+
+#### Version 1.3.1 (03.06.17)
+* File Extension detection issue is fixed, `Live Server` will be activated if there have atleast one HTML except in your `node_modoules` directory and description of extension updated as git repo name of the extension is updated to conventional name
 
 #### Version 1.3.0 (02.06.17)
 * `Go Live` option on Statusbar will be appeared if HTML Project file is opened.(Thanks _[Yu Zhang](https://github.com/neilsustc)_)
@@ -43,9 +44,6 @@ Press `F1`, type `ext install LiveServer`.
 #### Version 1.2.0 (30.06.17)
 * Settings for Customizing Port No of Live Server.
 * Small UX updated.
-
-#### Version 1.1.1 (30.06.17)
-* Keyboad Shortcuts has been changed to `(ALT+L, O)` and `(ALT+L, C)` due to `(Shift+ANY_CHARACTER)` has different meaning - sorry for that.
 
 ## Changelog
 Read from here to read full [changelog](CHANGELOG.md).

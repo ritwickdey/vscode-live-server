@@ -13,8 +13,16 @@ export function activate(context: vscode.ExtensionContext) {
         appModel.goOffline();
     });
 
-   context.subscriptions.push(appModel);
-   context.subscriptions.push(OnlineDisposable,OfflineDisposable);
+    let ActiveTextEditorDisposable = vscode.window.onDidChangeActiveTextEditor(()=>{
+        if(vscode.window.activeTextEditor == undefined) return;
+        if(vscode.workspace.rootPath == undefined && vscode.window.activeTextEditor.document.languageId == 'html'){
+           appModel.Init();
+        }
+    });
+
+    context.subscriptions.push(ActiveTextEditorDisposable);
+    context.subscriptions.push(appModel);
+    context.subscriptions.push(OnlineDisposable,OfflineDisposable);
 }
 
 

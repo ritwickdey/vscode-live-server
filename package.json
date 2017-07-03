@@ -2,7 +2,7 @@
     "name": "LiveServer",
     "displayName": "Live Server",
     "description": "Launch a development Live Server to browser and watch live preview.",
-    "version": "1.3.0",
+    "version": "1.3.1",
     "publisher": "ritwickdey",
     "engines": {
         "vscode": "^1.0.0"
@@ -23,11 +23,7 @@
         "theme": "dark"
     },
     "activationEvents": [
-        "workspaceContains:**/*.html",
-        "workspaceContains:*.html",
-        "onLanguage:html",
-        "onCommand:extension.liveServer.goOnline",
-        "onCommand:extension.liveServer.goOffline"
+        "*"
     ],
     "main": "./out/src/extension",
     "contributes": {
@@ -84,14 +80,14 @@
     "license": "MIT",
     "icon": "images/icon.png",
     "bugs": {
-        "url": "https://github.com/ritwickdey/LiveServer-VScodeExtension/issues",
+        "url": "https://github.com/ritwickdey/vscode-live-server/issues",
         "email": "ritwickdey@outlook.com"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/ritwickdey/LiveServer-VScodeExtension.git"
+        "url": "https://github.com/ritwickdey/vscode-live-server.git"
     },
-    "homepage": "https://github.com/ritwickdey/LiveServer-VScodeExtension/blob/master/README.md",
+    "homepage": "https://github.com/ritwickdey/vscode-live-server/blob/master/README.md",
     "scripts": {
         "vscode:prepublish": "tsc -p ./",
         "compile": "tsc -watch -p ./",

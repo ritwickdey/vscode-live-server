@@ -2,6 +2,7 @@
 
 | Version | Date | Changelog |
 |---|---|---|
+| 1.3.1 | 03.07.17 | File Extension detection issue is fixed, `Live Server` will be activated if there have atleast one HTML except in your `node_modoules` directory and description of extension updated as git repo name of the extension is updated to conventional name | 
 | 1.3.0 | 02.07.17 |`Go Live` option on Statusbar will be appeared if HTML Project file is opened.(Thanks _[Yu Zhang](https://github.com/neilsustc)_)|
 | 1.2.0 | 30.06.17 | Settings for Customizing Port No of Live Server. Small UX updated. |
 | 1.1.1 | 30.06.17 | Keyboad Shortcuts has been changed to `ALT+L, O` and `ALT+L, C` due to `Shift+ANY_CHARACTER` has different meaning - sorry for that.
