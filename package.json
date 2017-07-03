@@ -2,7 +2,7 @@
     "name": "LiveServer",
     "displayName": "Live Server",
     "description": "Launch a development Live Server to browser and watch live preview.",
-    "version": "1.3.1",
+    "version": "1.3.2",
     "publisher": "ritwickdey",
     "engines": {
         "vscode": "^1.0.0"
@@ -73,6 +73,11 @@
                     "type": ["number"],
                     "default": 5500,
                     "description": "Set Custom Port Number of Live Server"
+                },
+                "liveServer.settings.root":{
+                    "type": ["string"],
+                    "default": "/",
+                    "description": "Set Custom root of Live Server. To change root the the server to sub folder of workspace, use '/' and relative path from workspace. Example: /subfolder1/subfolder2"
                 }
             }
         }

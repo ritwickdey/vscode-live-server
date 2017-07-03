@@ -1,5 +1,6 @@
 'use strict';
 import * as vscode from 'vscode';
+import * as fs from 'fs';
 import { LiveServerClass } from './LiveServer';
 
 export class AppModel {
@@ -41,6 +42,10 @@ export class AppModel {
         if (!file) {
             vscode.window.showInformationMessage(`Open Document...`);
             return;
+        }
+
+        if(file.IsVirtualRootHasError){
+            vscode.window.showErrorMessage("Invaild Path in liveServer.settings.root. live Server Starts from workspace root");
         }
 
         let portNo = vscode.workspace.getConfiguration("liveServer.settings").get("port") as Number;
@@ -112,11 +117,25 @@ export class AppModel {
 
         let rootPath = WorkSpacePath ? WorkSpacePath : documentPath;
         let fileName = FullFilePath.substring(FullFilePath.lastIndexOf('\\') + 1, FullFilePath.length);
-        let fileExtension = fileName.substring(fileName.lastIndexOf("."), fileName.length).toLowerCase();
 
-        if (fileExtension != ".html") fileName = null;
+        let IsVirtualRootHasError: boolean = false;
+        let virtualRoot = vscode.workspace.getConfiguration("liveServer.settings").get("root") as string;
+        if(!virtualRoot.startsWith("/")) virtualRoot = "/"+virtualRoot;
+        virtualRoot = virtualRoot.replace(/\//gi,"\\");
+        virtualRoot = rootPath+virtualRoot;
+        if(virtualRoot.endsWith("\\")) virtualRoot = virtualRoot.substring(0,virtualRoot.length-1);
+
+        if(fs.existsSync(virtualRoot)){
+            rootPath = virtualRoot;
+        }
+        else{
+            IsVirtualRootHasError = true;
+        }
+
+         if (!fileName.endsWith(".html") && !IsVirtualRootHasError) fileName = null;
 
         return {
+            IsVirtualRootHasError : IsVirtualRootHasError,
             rootPath: rootPath,
             fileName: fileName
         };

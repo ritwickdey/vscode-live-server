@@ -10,12 +10,9 @@ Launch a Local Server directly from VSCode to your browser and watch live previe
 1. Open a HTML File/Project and directly Click to `Go Live` from StatusBar to turn off/on the server. 
 ![Go Live Control Preview](./images/Screenshot/statusbar2.jpg)
 
-<br>
-
 2. Open a HTML file and Right click on the editor and choose the options.
 ![Go Live Control Preview](./images/Screenshot/editormenu.jpg)
 
-<br>
 
 3. Hit `(alt+L, O)` to Open the Server and `(alt+L, C)` to close the server. 
 
@@ -35,10 +32,10 @@ Open VSCode Editor and Press `F1`  or `ctrl+shift+P`, type `ext install LiveServ
 
 ## What's new ?
 
-#### Version 1.3.1 (03.06.17)
+#### Version 1.3.1 (03.07.17)
 * File Extension detection issue is fixed, `Live Server` will be activated if there have atleast one HTML except in your `node_modoules` directory and description of extension updated as git repo name of the extension is updated to conventional name
 
-#### Version 1.3.0 (02.06.17)
+#### Version 1.3.0 (02.07.17)
 * `Go Live` option on Statusbar will be appeared if HTML Project file is opened.(Thanks _[Yu Zhang](https://github.com/neilsustc)_)
 
 #### Version 1.2.0 (30.06.17)
