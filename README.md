@@ -1,4 +1,8 @@
 # Live Server
+![VSCode Marketplace Badge](https://vsmarketplacebadge.apphb.com/version/ritwickdey.LiveServer.svg)
+![Total Install Count Badge](https://vsmarketplacebadge.apphb.com/installs/ritwickdey.LiveServer.svg)
+![Avarage Rating Badge](https://vsmarketplacebadge.apphb.com/rating-short/ritwickdey.LiveServer.svg)
+<br>
 Launch a Local Server directly from VSCode to your browser and watch live preview of HTML<br>
 ![App Preview](./images/Screenshot/AnimatedPreview.gif)
 
@@ -13,7 +17,6 @@ Launch a Local Server directly from VSCode to your browser and watch live previe
 2. Open a HTML file and Right click on the editor and choose the options.
 ![Edit Menu Option Preview](./images/Screenshot/editormenu2.jpg)
 
-
 3. Hit `(alt+L, O)` to Open the Server and `(alt+L, C)` to close the server. 
 
 4. Press `F1` or `ctrl+shift+P` and type `Live Server: Open Live Server ` to start a server or type `Live Server: Close Live Server` to stop a server.
@@ -23,6 +26,8 @@ Launch a Local Server directly from VSCode to your browser and watch live previe
 * Live Reload on change of files.
 * Run the live server from status bar.
 * Fixable Port Number.
+* Fixable Server Root.
+* Fixable default browser.
 
 ## Settings
 * `liveServer.settings.port` : Customize Port Number of your Live Server. Default value is `5500`.  If you want random port number, set it as `0`.
