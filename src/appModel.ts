@@ -1,6 +1,7 @@
 'use strict';
 import * as vscode from 'vscode';
 import * as fs from 'fs';
+import * as opn from 'opn';
 import { LiveServerClass } from './LiveServer';
 
 export class AppModel {
@@ -54,8 +55,8 @@ export class AppModel {
             port: portNo,
             host: '127.0.0.1',
             root: file.rootPath,
-            file: file.fileName,
-            open: true
+            file: null,
+            open: false
         }
         this.Init();
         LiveServerClass.StartServer(params, (ServerInstance) => {
@@ -64,6 +65,7 @@ export class AppModel {
                 let port = ServerInstance.address().port;
                 this.ToggleStatusBar();
                 vscode.window.showInformationMessage(`Server is Started at port : ${port}`);
+                this.openBrowser('127.0.0.1',port,file.filePathFromRoot);
             }
             else {
                 vscode.window.showErrorMessage(`Error to open server`);
@@ -114,30 +116,39 @@ export class AppModel {
         let WorkSpacePath = vscode.workspace.rootPath;
         let FullFilePath = textEditor.document.fileName;
         let documentPath = FullFilePath.substring(0, FullFilePath.lastIndexOf('\\'));
-
         let rootPath = WorkSpacePath ? WorkSpacePath : documentPath;
-        let fileName = FullFilePath.substring(FullFilePath.lastIndexOf('\\') + 1, FullFilePath.length);
 
-        let IsVirtualRootHasError: boolean = false;
         let virtualRoot = vscode.workspace.getConfiguration("liveServer.settings").get("root") as string;
-        if(!virtualRoot.startsWith("/")) virtualRoot = "/"+virtualRoot;
+        if(!virtualRoot.startsWith("/")) {
+            virtualRoot = "/"+virtualRoot;
+        }
         virtualRoot = virtualRoot.replace(/\//gi,"\\");
         virtualRoot = rootPath+virtualRoot;
-        if(virtualRoot.endsWith("\\")) virtualRoot = virtualRoot.substring(0,virtualRoot.length-1);
+        if(virtualRoot.endsWith("\\")) {
+            virtualRoot = virtualRoot.substring(0,virtualRoot.length-1);
+        }
 
+        let IsVirtualRootHasError: boolean;
         if(fs.existsSync(virtualRoot)){
             rootPath = virtualRoot;
+            IsVirtualRootHasError = false;
         }
         else{
             IsVirtualRootHasError = true;
         }
 
-         if (!fileName.endsWith(".html") && !IsVirtualRootHasError) fileName = null;
-
+        let filePathFromRoot :string;
+        if (!FullFilePath.endsWith(".html") && IsVirtualRootHasError) {
+            filePathFromRoot = null;
+        }
+        else {
+            filePathFromRoot = FullFilePath.substring(rootPath.length,FullFilePath.length);
+        }
+        
         return {
             IsVirtualRootHasError : IsVirtualRootHasError,
             rootPath: rootPath,
-            fileName: fileName
+            filePathFromRoot: filePathFromRoot
         };
     }
 
@@ -158,6 +169,14 @@ export class AppModel {
                 callback();
             }
         });
+    }
+
+    private openBrowser(host: string, port : number, path: string){
+        if(path.startsWith('\\')){
+            path = path.substring(1,path.length);
+        }
+        path.replace(/\\/gi,"/");
+        opn(`http://${host}:${port}/${path}`,{app: null});
     }
 
 
