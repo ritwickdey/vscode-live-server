@@ -38,38 +38,40 @@ export class AppModel {
             vscode.window.showInformationMessage(`Server is already running at port ${port} ...`);
             return;
         }
-
-        let file = this.ExtractFilePath();
-        if (!file) {
-            vscode.window.showInformationMessage(`Open Document...`);
-            return;
-        }
-
-        if(file.IsVirtualRootHasError){
-            vscode.window.showErrorMessage("Invaild Path in liveServer.settings.root. live Server Starts from workspace root");
-        }
-
-        let portNo = vscode.workspace.getConfiguration("liveServer.settings").get("port") as Number;
-
-        let params = {
-            port: portNo,
-            host: '127.0.0.1',
-            root: file.rootPath,
-            file: null,
-            open: false
-        }
-        this.Init();
-        LiveServerClass.StartServer(params, (ServerInstance) => {
-            if (ServerInstance != null) {
-                this.LiveServerInstance = ServerInstance;
-                let port = ServerInstance.address().port;
-                this.ToggleStatusBar();
-                vscode.window.showInformationMessage(`Server is Started at port : ${port}`);
-                this.openBrowser('127.0.0.1',port,file.filePathFromRoot);
+        vscode.workspace.saveAll().then(()=>{
+            let file = this.ExtractFilePath();
+            if (!file) {
+                vscode.window.showInformationMessage(`Open Document...`);
+                return;
             }
-            else {
-                vscode.window.showErrorMessage(`Error to open server`);
+
+            if (file.IsVirtualRootHasError) {
+                vscode.window.showErrorMessage("Invaild Path in liveServer.settings.root. live Server Starts from workspace root");
             }
+
+            let portNo = vscode.workspace.getConfiguration("liveServer.settings").get("port") as Number;
+
+            let params = {
+                port: portNo,
+                host: '127.0.0.1',
+                root: file.rootPath,
+                file: null,
+                open: false
+            }
+            this.Init();
+            LiveServerClass.StartServer(params, (ServerInstance) => {
+                if (ServerInstance != null) {
+                    this.LiveServerInstance = ServerInstance;
+                    let port = ServerInstance.address().port;
+                    this.ToggleStatusBar();
+                    vscode.window.showInformationMessage(`Server is Started at port : ${port}`);
+                    this.openBrowser('127.0.0.1', port, file.filePathFromRoot);
+                }
+                else {
+                    vscode.window.showErrorMessage(`Error to open server`);
+                }
+
+            });
 
         });
 
@@ -119,34 +121,34 @@ export class AppModel {
         let rootPath = WorkSpacePath ? WorkSpacePath : documentPath;
 
         let virtualRoot = vscode.workspace.getConfiguration("liveServer.settings").get("root") as string;
-        if(!virtualRoot.startsWith("/")) {
-            virtualRoot = "/"+virtualRoot;
+        if (!virtualRoot.startsWith("/")) {
+            virtualRoot = "/" + virtualRoot;
         }
-        virtualRoot = virtualRoot.replace(/\//gi,"\\");
-        virtualRoot = rootPath+virtualRoot;
-        if(virtualRoot.endsWith("\\")) {
-            virtualRoot = virtualRoot.substring(0,virtualRoot.length-1);
+        virtualRoot = virtualRoot.replace(/\//gi, "\\");
+        virtualRoot = rootPath + virtualRoot;
+        if (virtualRoot.endsWith("\\")) {
+            virtualRoot = virtualRoot.substring(0, virtualRoot.length - 1);
         }
 
         let IsVirtualRootHasError: boolean;
-        if(fs.existsSync(virtualRoot)){
+        if (fs.existsSync(virtualRoot)) {
             rootPath = virtualRoot;
             IsVirtualRootHasError = false;
         }
-        else{
+        else {
             IsVirtualRootHasError = true;
         }
 
-        let filePathFromRoot :string;
+        let filePathFromRoot: string;
         if (!FullFilePath.endsWith(".html") && IsVirtualRootHasError) {
             filePathFromRoot = null;
         }
         else {
-            filePathFromRoot = FullFilePath.substring(rootPath.length,FullFilePath.length);
+            filePathFromRoot = FullFilePath.substring(rootPath.length, FullFilePath.length);
         }
-        
+
         return {
-            IsVirtualRootHasError : IsVirtualRootHasError,
+            IsVirtualRootHasError: IsVirtualRootHasError,
             rootPath: rootPath,
             filePathFromRoot: filePathFromRoot
         };
@@ -171,12 +173,33 @@ export class AppModel {
         });
     }
 
-    private openBrowser(host: string, port : number, path: string){
-        if(path.startsWith('\\')){
-            path = path.substring(1,path.length);
+    private openBrowser(host: string, port: number, path: string) {
+
+        let CustomBrowser = vscode.workspace.getConfiguration("liveServer.settings").get("CustomBrowser") as string;
+        if (path.startsWith('\\')) {
+            path = path.substring(1, path.length);
         }
-        path.replace(/\\/gi,"/");
-        opn(`http://${host}:${port}/${path}`,{app: null});
+        path.replace(/\\/gi, "/");
+
+        let appConfig: string[] = [];
+
+        if (CustomBrowser != "null") {
+            if (CustomBrowser == 'chorme') {
+                switch (process.platform) {
+                    case 'darwin':
+                        CustomBrowser = 'google chrome';
+                        break;
+                    case 'linux':
+                        CustomBrowser = 'google-chrome';
+                        break;
+                    case 'win32':
+                        CustomBrowser = 'chrome';
+                        break;
+                }
+            }
+            appConfig.push(CustomBrowser)
+        }
+        opn(`http://${host}:${port}/${path}`, { app: appConfig});
     }
 
 
