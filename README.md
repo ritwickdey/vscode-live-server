@@ -41,6 +41,9 @@ Open VSCode Editor and Press `F1`  or `ctrl+shift+P`, type `ext install LiveServ
 
 ## What's new ?
 
+#### Version 1.4.1 (07.07.2017)
+* Minor Fix Update
+
 #### Version 1.4.0 (04.07.17)
 * Two new settings are added. <ul><li>1. `liveServer.settings.root` to change root of server in between workspace folder structure. (Thanks _[zorgoz](https://github.com/zorgoz)_ for the suggestion)</li> <li>2. `liveServer.settings.CustomBrowser` to change default browser.</li></ul> 
 * Bug Fixed - `Cannot GET/ Error` when server starts with a html file located sub folder of root. (Thanks _[John Michael Robin](https://github.com/jmmrdev)_ for reporting the bug.)
@@ -48,9 +51,6 @@ Open VSCode Editor and Press `F1`  or `ctrl+shift+P`, type `ext install LiveServ
 
 #### Version 1.3.1 (03.07.17)
 * File Extension detection issue is fixed, `Live Server` will be activated if there have atleast one HTML except in your `node_modoules` directory and description of extension updated as git repo name of the extension is updated to conventional name
-
-#### Version 1.3.0 (02.07.17)
-* `Go Live` option on Statusbar will be appeared if HTML Project file is opened.(Thanks _[Yu Zhang](https://github.com/neilsustc)_)
 
 ## Changelog
 Read from here to read full [changelog](CHANGELOG.md).
