@@ -85,7 +85,7 @@
         "liveServer.settings.CustomBrowser": {
           "type": ["string","null"],
           "default": "null",
-          "description": "Specifie custom browser settings for Live Serve. \nBy Default it will open your default favorite browser.",
+          "description": "Specify custom browser settings for Live Server. \nBy Default it will open your default favorite browser.",
           "enum": [
             "chrome", "firefox", "null"
           ]
