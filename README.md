@@ -42,7 +42,7 @@ Open VSCode Editor and Press `F1`  or `ctrl+shift+P`, type `ext install LiveServ
 ## What's new ?
 
 #### Version 1.4.1 (07.07.2017)
-* Minor Fix Update
+* Minor Fix Update (Thanks [Adam](https://github.com/AdamLombard))
 
 #### Version 1.4.0 (04.07.17)
 * Two new settings are added. <ul><li>1. `liveServer.settings.root` to change root of server in between workspace folder structure. (Thanks _[zorgoz](https://github.com/zorgoz)_ for the suggestion)</li> <li>2. `liveServer.settings.CustomBrowser` to change default browser.</li></ul> 
