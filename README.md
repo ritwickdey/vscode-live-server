@@ -1,7 +1,5 @@
 # Live Server
-[![VSCode Marketplace Badge](https://vsmarketplacebadge.apphb.com/version/ritwickdey.LiveServer.svg)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
-[![Total Install Count Badge](https://vsmarketplacebadge.apphb.com/installs/ritwickdey.LiveServer.svg)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
-[![Avarage Rating Badge](https://vsmarketplacebadge.apphb.com/rating-short/ritwickdey.LiveServer.svg)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
+[![VSCode Marketplace Badge](https://vsmarketplacebadge.apphb.com/version/ritwickdey.LiveServer.svg)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) [![Total Install Count Badge](https://vsmarketplacebadge.apphb.com/installs/ritwickdey.LiveServer.svg)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) [![Avarage Rating Badge](https://vsmarketplacebadge.apphb.com/rating-short/ritwickdey.LiveServer.svg)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/ritwickdey/vscode-live-server/master/LICENSE)
 <br>
 Launch a Local Server directly from VSCode to your browser and watch live preview of HTML<br>
 ![App Preview](./images/Screenshot/AnimatedPreview.gif)
@@ -41,6 +39,9 @@ Open VSCode Editor and Press `F1`  or `ctrl+shift+P`, type `ext install LiveServ
 
 ## What's new ?
 
+#### Version 1.4.2 (08.07..2017)
+* Minor Fix Update on Custom Browser Setting.
+
 #### Version 1.4.1 (07.07.2017)
 * Minor Fix Update (Thanks [Adam](https://github.com/AdamLombard))
 
@@ -49,11 +50,8 @@ Open VSCode Editor and Press `F1`  or `ctrl+shift+P`, type `ext install LiveServ
 * Bug Fixed - `Cannot GET/ Error` when server starts with a html file located sub folder of root. (Thanks _[John Michael Robin](https://github.com/jmmrdev)_ for reporting the bug.)
 
 
-#### Version 1.3.1 (03.07.17)
-* File Extension detection issue is fixed, `Live Server` will be activated if there have atleast one HTML except in your `node_modoules` directory and description of extension updated as git repo name of the extension is updated to conventional name
-
 ## Changelog
-Read from here to read full [changelog](CHANGELOG.md).
+To check full changelog click here [changelog](CHANGELOG.md).
 
 ## LICENSE
 

@@ -45,7 +45,7 @@ export class AppModel {
                 return;
             }
 
-            if (file.IsVirtualRootHasError) {
+            if (file.HasVirtualRootError) {
                 vscode.window.showErrorMessage("Invaild Path in liveServer.settings.root. live Server Starts from workspace root");
             }
 
@@ -130,17 +130,17 @@ export class AppModel {
             virtualRoot = virtualRoot.substring(0, virtualRoot.length - 1);
         }
 
-        let IsVirtualRootHasError: boolean;
+        let HasVirtualRootError: boolean;
         if (fs.existsSync(virtualRoot)) {
             rootPath = virtualRoot;
-            IsVirtualRootHasError = false;
+            HasVirtualRootError = false;
         }
         else {
-            IsVirtualRootHasError = true;
+            HasVirtualRootError = true;
         }
 
         let filePathFromRoot: string;
-        if (!FullFilePath.endsWith(".html") && IsVirtualRootHasError) {
+        if (!FullFilePath.endsWith(".html") && HasVirtualRootError) {
             filePathFromRoot = null;
         }
         else {
@@ -148,7 +148,7 @@ export class AppModel {
         }
 
         return {
-            IsVirtualRootHasError: IsVirtualRootHasError,
+            HasVirtualRootError: HasVirtualRootError,
             rootPath: rootPath,
             filePathFromRoot: filePathFromRoot
         };
@@ -184,7 +184,7 @@ export class AppModel {
         let appConfig: string[] = [];
 
         if (CustomBrowser != "null") {
-            if (CustomBrowser == 'chorme') {
+            if (CustomBrowser == 'chrome') {
                 switch (process.platform) {
                     case 'darwin':
                         CustomBrowser = 'google chrome';

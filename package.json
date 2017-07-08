@@ -2,14 +2,13 @@
   "name": "LiveServer",
   "displayName": "Live Server",
   "description": "Launch a development Live Server to browser and watch live preview.",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "publisher": "ritwickdey",
   "engines": {
     "vscode": "^1.0.0"
   },
   "categories": [
-    "Other",
-    "Extension Packs"
+    "Other"
   ],
   "keywords": [
     "HTML Preview",
