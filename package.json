@@ -2,8 +2,13 @@
   "name": "LiveServer",
   "displayName": "Live Server",
   "description": "Launch a development Live Server to browser and watch live preview.",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "publisher": "ritwickdey",
+  "author": {
+    "name": "Ritwick Dey",
+    "email": "ritwickdey@outlook.com",
+    "url": "http://twitter.com/Dey_Ritwick"
+  },
   "engines": {
     "vscode": "^1.0.0"
   },

@@ -23,7 +23,7 @@ export class AppModel {
 
         if (!this.statusBarItem) {
             this.statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
-            this.statusBarItem.text = "Go Live";
+            this.statusBarItem.text = "$(broadcast) Go Live";
             this.statusBarItem.command = 'extension.liveServer.goOnline'
             this.statusBarItem.tooltip = "Click to run live server"
             this.statusBarItem.show();
@@ -38,12 +38,12 @@ export class AppModel {
             vscode.window.showInformationMessage(`Server is already running at port ${port} ...`);
             return;
         }
-        vscode.workspace.saveAll().then(()=>{
-            let file = this.ExtractFilePath();
-            if (!file) {
-                vscode.window.showInformationMessage(`Open Document...`);
-                return;
-            }
+        let file = this.ExtractFilePath();
+        if (!file) {
+            vscode.window.showInformationMessage(`Open Document...`);
+            return;
+        }
+        vscode.workspace.saveAll().then(() => {
 
             if (file.HasVirtualRootError) {
                 vscode.window.showErrorMessage("Invaild Path in liveServer.settings.root. live Server Starts from workspace root");
@@ -98,12 +98,12 @@ export class AppModel {
     private ToggleStatusBar() {
         if (!this.IsServerRunning) {
             let port = this.LiveServerInstance.address().port
-            this.statusBarItem.text = `Port : ${port} - GoOffline`;
+            this.statusBarItem.text = `$(circle-slash) Port : ${port} - GoOffline`;
             this.statusBarItem.command = 'extension.liveServer.goOffline';
             this.statusBarItem.tooltip = "Click to close server";
         }
         else {
-            this.statusBarItem.text = "Go Live";
+            this.statusBarItem.text = "$(broadcast) Go Live";
             this.statusBarItem.command = 'extension.liveServer.goOnline';
             this.statusBarItem.tooltip = "Click to run live server";
         }
@@ -155,7 +155,7 @@ export class AppModel {
     }
 
     private ShowProcessRunning() {
-        this.statusBarItem.text = "Working...";
+        this.statusBarItem.text = "$(pulse) Working on it...";
         this.statusBarItem.tooltip = "In case if it takes long time, try to close all browser window.";
         this.statusBarItem.command = null;
     }
@@ -199,7 +199,7 @@ export class AppModel {
             }
             appConfig.push(CustomBrowser)
         }
-        opn(`http://${host}:${port}/${path}`, { app: appConfig});
+        opn(`http://${host}:${port}/${path}`, { app: appConfig });
     }
 
 

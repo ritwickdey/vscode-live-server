@@ -1,13 +1,15 @@
 # Live Server
-[![VSCode Marketplace Badge](https://vsmarketplacebadge.apphb.com/version/ritwickdey.LiveServer.svg)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) [![Total Install Count Badge](https://vsmarketplacebadge.apphb.com/installs/ritwickdey.LiveServer.svg)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) [![Avarage Rating Badge](https://vsmarketplacebadge.apphb.com/rating-short/ritwickdey.LiveServer.svg)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/ritwickdey/vscode-live-server/master/LICENSE)
+**_[If you found any bug or if you have any suggetion, feel free to report or suggest me. If you like the extension, don't forgot to rate it.]_**
+
+[![VSCode Marketplace Badge](https://vsmarketplacebadge.apphb.com/version/ritwickdey.LiveServer.svg)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) [![Total Install Count Badge](https://vsmarketplacebadge.apphb.com/installs/ritwickdey.LiveServer.svg)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) [![Avarage Rating Badge](https://vsmarketplacebadge.apphb.com/rating-short/ritwickdey.LiveServer.svg)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ritwickdey/vscode-live-server/)
 <br>
-Launch a Local Server directly from VSCode to your browser and watch live preview of HTML<br>
+Launch a development local server directly from VSCode to your browser and watch live preview of HTML<br>
 ![App Preview](./images/Screenshot/AnimatedPreview.gif)
 
 
 ## Usage/Shortcuts
 
-**_[In case if you don't have any `.html` file in your workspace then you have to follow method no 3 & 4 to start Live Server. I don't know why you want so?! :p But features is still there.]_**
+**_[In case if you don't have any `.html` file in your workspace then you have to follow method no 3 & 4 to start Live Server. I don't know why you want so?! :p But feature is still there.]_**
 
 1. Open a HTML File/Project and directly Click to `Go Live` from StatusBar to turn off/on the server. 
 ![Go Live Control Preview](./images/Screenshot/statusbar2.jpg)
@@ -39,15 +41,14 @@ Open VSCode Editor and Press `F1`  or `ctrl+shift+P`, type `ext install LiveServ
 
 ## What's new ?
 
+#### Version 1.4.3 (10.07.2017)
+* Status-bar Icon added. Minor Fix update on Status bar control. 
+
 #### Version 1.4.2 (08.07..2017)
 * Minor Fix Update on Custom Browser Setting.
 
 #### Version 1.4.1 (07.07.2017)
 * Minor Fix Update (Thanks [Adam](https://github.com/AdamLombard))
-
-#### Version 1.4.0 (04.07.17)
-* Two new settings are added. <ul><li>1. `liveServer.settings.root` to change root of server in between workspace folder structure. (Thanks _[zorgoz](https://github.com/zorgoz)_ for the suggestion)</li> <li>2. `liveServer.settings.CustomBrowser` to change default browser.</li></ul> 
-* Bug Fixed - `Cannot GET/ Error` when server starts with a html file located sub folder of root. (Thanks _[John Michael Robin](https://github.com/jmmrdev)_ for reporting the bug.)
 
 
 ## Changelog
