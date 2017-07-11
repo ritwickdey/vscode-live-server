@@ -23,21 +23,21 @@ Launch a development local server directly from VSCode to your browser and watch
 
 ## Features
 * A Quick Development Live Server.
-* Live Reload on change of files.
+* Live Reload on change of HTML files.
 * Run the live server from status bar.
-* Fixable Port Number.
-* Fixable Server Root.
-* Fixable default browser.
+* Customizable Port Number.
+* Customizable Server Root.
+* Customizable default browser.
 
 ## Settings
 * `liveServer.settings.port` : Customize Port Number of your Live Server. Default value is `5500`.  If you want random port number, set it as `0`.
-* `liveServer.settings.root` : To change root of server in between workspace folder structure,  use `/` and relative path from workspace. _Default value is "`/`".(The Workspace Root)_.
+* `liveServer.settings.root` : To change root of server in between workspace folder structure,  use `/` and absolute path from workspace. _Default value is "`/`".(The Workspace Root)_.
     * _Example: `/sub_folder1/sub_folder2`_. Now `sub_folder2` will be root of the server.
 
 * `liveServer.settings.CustomBrowser` : To change your default browser. Default value is `Null`.
 
 ## Installation
-Open VSCode Editor and Press `F1`  or `ctrl+shift+P`, type `ext install LiveServer`.
+Open VSCode Editor and Press `ctrl+P`, type `ext install LiveServer`.
 
 ## What's new ?
 

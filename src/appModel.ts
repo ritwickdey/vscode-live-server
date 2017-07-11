@@ -23,9 +23,9 @@ export class AppModel {
 
         if (!this.statusBarItem) {
             this.statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
-            this.statusBarItem.text = "$(broadcast) Go Live";
+            this.statusBarItem.text = '$(broadcast) Go Live';
             this.statusBarItem.command = 'extension.liveServer.goOnline'
-            this.statusBarItem.tooltip = "Click to run live server"
+            this.statusBarItem.tooltip = 'Click to run live server'
             this.statusBarItem.show();
         }
     }
@@ -46,10 +46,10 @@ export class AppModel {
         vscode.workspace.saveAll().then(() => {
 
             if (file.HasVirtualRootError) {
-                vscode.window.showErrorMessage("Invaild Path in liveServer.settings.root. live Server Starts from workspace root");
+                vscode.window.showErrorMessage('Invaild Path in liveServer.settings.root. live Server Starts from workspace root');
             }
 
-            let portNo = vscode.workspace.getConfiguration("liveServer.settings").get("port") as Number;
+            let portNo = vscode.workspace.getConfiguration('liveServer.settings').get('port') as Number;
 
             let params = {
                 port: portNo,
@@ -86,7 +86,7 @@ export class AppModel {
         }
         this.Init();
         LiveServerClass.StopServer(this.LiveServerInstance, () => {
-            vscode.window.showInformationMessage("Server is now offline.");
+            vscode.window.showInformationMessage('Server is now offline.');
             this.ToggleStatusBar();
             this.LiveServerInstance = null;
         });
@@ -100,12 +100,12 @@ export class AppModel {
             let port = this.LiveServerInstance.address().port
             this.statusBarItem.text = `$(circle-slash) Port : ${port} - GoOffline`;
             this.statusBarItem.command = 'extension.liveServer.goOffline';
-            this.statusBarItem.tooltip = "Click to close server";
+            this.statusBarItem.tooltip = 'Click to close server';
         }
         else {
-            this.statusBarItem.text = "$(broadcast) Go Live";
+            this.statusBarItem.text = '$(broadcast) Go Live';
             this.statusBarItem.command = 'extension.liveServer.goOnline';
-            this.statusBarItem.tooltip = "Click to run live server";
+            this.statusBarItem.tooltip = 'Click to run live server';
         }
 
         this.IsServerRunning = !this.IsServerRunning;
@@ -120,13 +120,13 @@ export class AppModel {
         let documentPath = FullFilePath.substring(0, FullFilePath.lastIndexOf('\\'));
         let rootPath = WorkSpacePath ? WorkSpacePath : documentPath;
 
-        let virtualRoot = vscode.workspace.getConfiguration("liveServer.settings").get("root") as string;
-        if (!virtualRoot.startsWith("/")) {
-            virtualRoot = "/" + virtualRoot;
+        let virtualRoot = vscode.workspace.getConfiguration('liveServer.settings').get('root') as string;
+        if (!virtualRoot.startsWith('/')) {
+            virtualRoot = '/' + virtualRoot;
         }
-        virtualRoot = virtualRoot.replace(/\//gi, "\\");
+        virtualRoot = virtualRoot.replace(/\//gi, '\\');
         virtualRoot = rootPath + virtualRoot;
-        if (virtualRoot.endsWith("\\")) {
+        if (virtualRoot.endsWith('\\')) {
             virtualRoot = virtualRoot.substring(0, virtualRoot.length - 1);
         }
 
@@ -140,7 +140,7 @@ export class AppModel {
         }
 
         let filePathFromRoot: string;
-        if (!FullFilePath.endsWith(".html") && HasVirtualRootError) {
+        if (!FullFilePath.endsWith('.html') && HasVirtualRootError) {
             filePathFromRoot = null;
         }
         else {
@@ -155,19 +155,19 @@ export class AppModel {
     }
 
     private ShowProcessRunning() {
-        this.statusBarItem.text = "$(pulse) Working on it...";
-        this.statusBarItem.tooltip = "In case if it takes long time, try to close all browser window.";
+        this.statusBarItem.text = '$(pulse) Working on it...';
+        this.statusBarItem.tooltip = 'In case if it takes long time, try to close all browser window.';
         this.statusBarItem.command = null;
     }
 
     private HaveAnyHTMLFile(callback) {
-        vscode.workspace.findFiles("**/*.html", "**/node_modules/**", 1).then((files) => {
-            if (files != undefined && files.length != 0) {
+        vscode.workspace.findFiles('**/*.html', '**/node_modules/**', 1).then((files) => {
+            if (files !== undefined && files.length !== 0) {
                 callback();
                 return;
             }
-            if (vscode.window.activeTextEditor == undefined) return;
-            if (vscode.workspace.rootPath == undefined && vscode.window.activeTextEditor.document.languageId == 'html') {
+            if (vscode.window.activeTextEditor === undefined) return;
+            if (vscode.workspace.rootPath === undefined && vscode.window.activeTextEditor.document.languageId === 'html') {
                 callback();
             }
         });
@@ -175,16 +175,16 @@ export class AppModel {
 
     private openBrowser(host: string, port: number, path: string) {
 
-        let CustomBrowser = vscode.workspace.getConfiguration("liveServer.settings").get("CustomBrowser") as string;
+        let CustomBrowser = vscode.workspace.getConfiguration('liveServer.settings').get('CustomBrowser') as string;
         if (path.startsWith('\\')) {
             path = path.substring(1, path.length);
         }
-        path.replace(/\\/gi, "/");
+        path.replace(/\\/gi, '/');
 
         let appConfig: string[] = [];
 
-        if (CustomBrowser != "null") {
-            if (CustomBrowser == 'chrome') {
+        if (CustomBrowser !== 'null') {
+            if (CustomBrowser === 'chrome') {
                 switch (process.platform) {
                     case 'darwin':
                         CustomBrowser = 'google chrome';

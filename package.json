@@ -84,6 +84,7 @@
             "string"
           ],
           "default": "/",
+          "pattern": "/|/[^\\/]",
           "description": "Set Custom root of Live Server. \nTo change root the the server to sub folder of workspace, use '/' and relative path from workspace. \nExample: /subfolder1/subfolder2"
         },
         "liveServer.settings.CustomBrowser": {
