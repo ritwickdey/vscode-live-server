@@ -2,7 +2,8 @@
 
 | Version | Date | Changelog |
 |---|---|---|
-|1.4.3 | 10.17.17 | Status-bar Icon added. Minor Fix update on Status bar control. |
+|1.4.4 | 12.07.17 | Validation Pattern is added for root settings & Custom Browser settings is fixed. Package size reduced.
+|1.4.3 | 10.07.17 | Status-bar Icon added. Minor Fix update on Status bar control. |
 |1.4.2|08.07.17|Minor Fix Update on Custom Browser Setting.|
 |1.4.1 | 07.07.17 | Minor Fix Update. (Thanks [Adam](https://github.com/AdamLombard)) |
 |1.4.0 | 04.07.17 | Two new settings are added. <ul><li>1. `liveServer.settings.root` to change root of server in between workspace folder structure. (Thanks _[zorgoz](https://github.com/zorgoz)_ for the suggestion)</li> <li>2. `liveServer.settings.CustomBrowser` to change default browser.</li></ul> Bug Fixed - `Cannot GET/ Error` when server starts with a html file located sub folder of root. (Thanks _[John Michael Robin](https://github.com/jmmrdev)_ for reporting the bug.)

@@ -1,8 +1,8 @@
 {
   "name": "LiveServer",
   "displayName": "Live Server",
-  "description": "Launch a development Live Server to browser and watch live preview.",
-  "version": "1.4.3",
+  "description": "Launch a development Live Server to browser with live preview and live reload.",
+  "version": "1.4.4",
   "publisher": "ritwickdey",
   "author": {
     "name": "Ritwick Dey",
@@ -88,7 +88,7 @@
           "description": "Set Custom root of Live Server. \nTo change root the the server to sub folder of workspace, use '/' and relative path from workspace. \nExample: /subfolder1/subfolder2"
         },
         "liveServer.settings.CustomBrowser": {
-          "type": ["string","null"],
+          "type": ["string"],
           "default": "null",
           "description": "Specify custom browser settings for Live Server. \nBy Default it will open your default favorite browser.",
           "enum": [
