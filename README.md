@@ -1,5 +1,5 @@
 # Live Server
-**_[If you found any bug or if you have any suggetion, feel free to report or suggest me. If you like the extension, don't forgot to rate it.]_**
+**_[If you found any bug or if you have any suggestion, feel free to report or suggest me. If you like the extension, don't forgot to rate it.]_**
 
 [![VSCode Marketplace Badge](https://vsmarketplacebadge.apphb.com/version/ritwickdey.LiveServer.svg)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) [![Total Install Count Badge](https://vsmarketplacebadge.apphb.com/installs/ritwickdey.LiveServer.svg)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) [![Avarage Rating Badge](https://vsmarketplacebadge.apphb.com/rating-short/ritwickdey.LiveServer.svg)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ritwickdey/vscode-live-server/)
 <br>
@@ -29,9 +29,6 @@ Launch a development local server directly from VSCode to your browser and watch
 * Customizable Server Root.
 * Customizable default browser.
 
-## Installation
-Open VSCode Editor and Press `ctrl+P`, type `ext install LiveServer`.
-
 ## Settings
 * `liveServer.settings.port` : Customize Port Number of your Live Server. Default value is `5500`.  If you want random port number, set it as `0`.
 * `liveServer.settings.root` : To change root of server in between workspace folder structure,  use `/` and absolute path from workspace. _Default value is "`/`".(The Workspace Root)_.
@@ -39,30 +36,19 @@ Open VSCode Editor and Press `ctrl+P`, type `ext install LiveServer`.
 
 * `liveServer.settings.CustomBrowser` : To change your default browser. Default value is `Null`.
 
-## How to config the settings in my project? (FAQ):
-Create a `.vscode` folder in the root of project. Inside of `.vscode` folder create a json file named `settings.json`.
-Inside of the `settings.json`, type following key-value pairs. By the way you'll get intelli-sense.
-
-```json
-{
-    "liveServer.settings.port": 5050,
-    "liveServer.settings.root": "/dist/htmlfolder",
-    "liveServer.settings.CustomBrowser": "firefox"
-}
-```
+## Installation
+Open VSCode Editor and Press `ctrl+P`, type `ext install LiveServer`.
 
 ## What's new ?
-
-#### Verison 1.4.4 (12.07.2017)
-* Validation Pattern is added for root settings.
-* Custom Browser settings is fixed. 
-* Package size reduced.
 
 #### Version 1.4.3 (10.07.2017)
 * Status-bar Icon added. Minor Fix update on Status bar control. 
 
-#### Version 1.4.2 (08.07.2017)
+#### Version 1.4.2 (08.07..2017)
 * Minor Fix Update on Custom Browser Setting.
+
+#### Version 1.4.1 (07.07.2017)
+* Minor Fix Update (Thanks [Adam](https://github.com/AdamLombard))
 
 
 ## Changelog

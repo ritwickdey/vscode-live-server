@@ -29,6 +29,5 @@ export class LiveServerClass {
         LiveServerInstance.close();
         liveServer.shutdown();
         setTimeout(()=>{callback()},1000);
-
     }
 }
