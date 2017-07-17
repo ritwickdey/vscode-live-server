@@ -174,8 +174,12 @@ export class AppModel {
     }
 
     private openBrowser(host: string, port: number, path: string) {
+        //liveServer.settings.ChromeDebuggingAttachment
+        let configSettings = vscode.workspace.getConfiguration('liveServer.settings');
 
-        let CustomBrowser = vscode.workspace.getConfiguration('liveServer.settings').get('CustomBrowser') as string;
+        let CustomBrowser = configSettings.get('CustomBrowser') as string;
+        let ChromeDebuggingAttachmentEnable = configSettings.get('ChromeDebuggingAttachment') as boolean;
+
         if (path.startsWith('\\')) {
             path = path.substring(1, path.length);
         }
@@ -184,7 +188,7 @@ export class AppModel {
         let appConfig: string[] = [];
 
         if (CustomBrowser !== 'null') {
-            if (CustomBrowser === 'chrome') {
+            if (CustomBrowser.startsWith('chrome')) {
                 switch (process.platform) {
                     case 'darwin':
                         CustomBrowser = 'google chrome';
@@ -195,9 +199,19 @@ export class AppModel {
                     case 'win32':
                         CustomBrowser = 'chrome';
                         break;
+                    default:
+                        CustomBrowser = 'chrome';
+
+                }
+                appConfig.push(CustomBrowser);
+                if(ChromeDebuggingAttachmentEnable) {
+                    appConfig.push("--remote-debugging-port=9222");
                 }
             }
-            appConfig.push(CustomBrowser)
+            else {
+                appConfig.push(CustomBrowser);
+            }
+
         }
         opn(`http://${host}:${port}/${path}`, { app: appConfig });
     }
