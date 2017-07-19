@@ -204,7 +204,7 @@ export class AppModel {
             }
         }
 
-        if (appConfig[0] === 'chrome') {
+        if (appConfig[0] && appConfig[0] === 'chrome') {
             switch (process.platform) {
                 case 'darwin':
                     appConfig[0] = 'google chrome';
@@ -220,7 +220,7 @@ export class AppModel {
 
             }
         }
-        else if (appConfig[0].startsWith("microsoft-edge")) {
+        else if (appConfig[0] && appConfig[0].startsWith("microsoft-edge")) {
             appConfig[0] = `microsoft-edge:http://${host}:${port}/${path}`;
         }
 

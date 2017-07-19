@@ -2,7 +2,7 @@
   "name": "LiveServer",
   "displayName": "Live Server",
   "description": "Launch a development Live Server to browser with live preview and live reload.",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "publisher": "ritwickdey",
   "author": {
     "name": "Ritwick Dey",
