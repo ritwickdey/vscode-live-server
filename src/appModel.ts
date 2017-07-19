@@ -174,50 +174,59 @@ export class AppModel {
     }
 
     private openBrowser(host: string, port: number, path: string) {
-        //liveServer.settings.ChromeDebuggingAttachment
+
         let configSettings = vscode.workspace.getConfiguration('liveServer.settings');
-
-        let CustomBrowser = configSettings.get('CustomBrowser') as string;
-        let ChromeDebuggingAttachmentEnable = configSettings.get('ChromeDebuggingAttachment') as boolean;
-
+        let appConfig: string[] = [];
+        let advanceCustomBrowserCmd = configSettings.get("AdvanceCustomBrowserCmdLine") as string;
         if (path.startsWith('\\')) {
             path = path.substring(1, path.length);
         }
         path.replace(/\\/gi, '/');
 
-        let appConfig: string[] = [];
+        if (advanceCustomBrowserCmd) {
+            let commands = advanceCustomBrowserCmd.split(' ');
+            commands.forEach((command) => {
+               if(command) {
+                    appConfig.push(command);
+               }
+            });
+        }
+        else {
+            let CustomBrowser = configSettings.get('CustomBrowser') as string;
+            let ChromeDebuggingAttachmentEnable = configSettings.get('ChromeDebuggingAttachment') as boolean;
 
-        if (CustomBrowser !== 'null') {
+            if (CustomBrowser !== 'null') {
 
-            if (CustomBrowser.startsWith('chrome')) {
-                switch (process.platform) {
-                    case 'darwin':
-                        CustomBrowser = 'google chrome';
-                        break;
-                    case 'linux':
-                        CustomBrowser = 'google-chrome';
-                        break;
-                    case 'win32':
-                        CustomBrowser = 'chrome';
-                        break;
-                    default:
-                        CustomBrowser = 'chrome';
+                if (CustomBrowser === 'chrome') {
+                    switch (process.platform) {
+                        case 'darwin':
+                            CustomBrowser = 'google chrome';
+                            break;
+                        case 'linux':
+                            CustomBrowser = 'google-chrome';
+                            break;
+                        case 'win32':
+                            CustomBrowser = 'chrome';
+                            break;
+                        default:
+                            CustomBrowser = 'chrome';
 
+                    }
+                    appConfig.push(CustomBrowser);
+
+                    if (ChromeDebuggingAttachmentEnable) {
+                        appConfig.push("--remote-debugging-port=9222");
+                    }
                 }
-                appConfig.push(CustomBrowser);
-
-                if(ChromeDebuggingAttachmentEnable) {
-                    appConfig.push("--remote-debugging-port=9222");
+                else if (CustomBrowser === "microsoft edge") {
+                    CustomBrowser = `microsoft-edge:http://${host}:${port}/${path}`;
+                    appConfig.push(CustomBrowser);
                 }
-            }
-            else if(CustomBrowser === "microsoft edge") {
-                CustomBrowser = `microsoft-edge:http://${host}:${port}/${path}`;
-                appConfig.push(CustomBrowser);
-            }
-            else {
-                appConfig.push(CustomBrowser);
-            }
+                else {
+                    appConfig.push(CustomBrowser);
+                }
 
+            }
         }
         opn(`http://${host}:${port}/${path}`, { app: appConfig });
     }

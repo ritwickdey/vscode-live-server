@@ -88,22 +88,33 @@
           "description": "Set Custom root of Live Server. \nTo change root the the server to sub folder of workspace, use '/' and relative path from workspace. \nExample: /subfolder1/subfolder2"
         },
         "liveServer.settings.CustomBrowser": {
-          "type": ["string"],
+          "type": [
+            "string"
+          ],
           "default": "null",
           "description": "Specify custom browser settings for Live Server. \nBy Default it will open your default favorite browser.",
           "enum": [
-            "chrome", "firefox", "microsoft edge","null"
+            "chrome",
+            "firefox",
+            "microsoft edge",
+            "null"
           ]
         },
-
         "liveServer.settings.ChromeDebuggingAttachment": {
-          "type":["boolean"],
+          "type": [
+            "boolean"
+          ],
           "default": false,
-          "description": "To Enable Chrome Debugging Attachment to Live Server.\n NOTE: You have to install 'Debugger for Chrome' \nIf the value is true, Select 'Attach to Chrome' from Debug Window to start debugging. \n\n CAUTION: If it is true, 'Launch Chrome against localhost' may not work."
+          "description": "Enable Chrome Debugging Attachment to Live Server at Debuging Port 9222.\n NOTE: You have to install 'Debugger for Chrome' \nIf the value is true, Select 'Attach to Chrome' from Debug Window to start debugging. \n\n CAUTION: If it is true, 'Launch Chrome against localhost' may not work."
+        },
+        "liveServer.settings.AdvanceCustomBrowserCmdLine": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null,
+          "description": "Note: If it is not Null, It will override CustomBrowser and ChromeDebuggingAttachment settings.\n\n Examples : \nchrome --incognito \nchromecan --remote-debugging-port=9222 \nchrome --headless"
         }
-
-       
-
       }
     }
   },
