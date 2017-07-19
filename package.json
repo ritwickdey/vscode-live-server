@@ -96,7 +96,7 @@
           "enum": [
             "chrome",
             "firefox",
-            "microsoft edge",
+            "microsoft-edge",
             "null"
           ]
         },
@@ -113,7 +113,7 @@
             "null"
           ],
           "default": null,
-          "description": "Note: If it is not Null, It will override CustomBrowser and ChromeDebuggingAttachment settings.\n\n Examples : \nchrome --incognito \nchromecan --remote-debugging-port=9222 \nchrome --headless"
+          "description": "Note: If it is not Null, It will override CustomBrowser and ChromeDebuggingAttachment settings.\n\n Examples : \nchrome --incognito \nchromecan --remote-debugging-port=9222 \nchrome --headless\n"
         }
       }
     }

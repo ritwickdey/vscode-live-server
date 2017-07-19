@@ -186,9 +186,9 @@ export class AppModel {
         if (advanceCustomBrowserCmd) {
             let commands = advanceCustomBrowserCmd.split(' ');
             commands.forEach((command) => {
-               if(command) {
+                if (command) {
                     appConfig.push(command);
-               }
+                }
             });
         }
         else {
@@ -196,38 +196,35 @@ export class AppModel {
             let ChromeDebuggingAttachmentEnable = configSettings.get('ChromeDebuggingAttachment') as boolean;
 
             if (CustomBrowser !== 'null') {
+                appConfig.push(CustomBrowser);
 
-                if (CustomBrowser === 'chrome') {
-                    switch (process.platform) {
-                        case 'darwin':
-                            CustomBrowser = 'google chrome';
-                            break;
-                        case 'linux':
-                            CustomBrowser = 'google-chrome';
-                            break;
-                        case 'win32':
-                            CustomBrowser = 'chrome';
-                            break;
-                        default:
-                            CustomBrowser = 'chrome';
-
-                    }
-                    appConfig.push(CustomBrowser);
-
-                    if (ChromeDebuggingAttachmentEnable) {
-                        appConfig.push("--remote-debugging-port=9222");
-                    }
+                if (CustomBrowser === 'chrome' && ChromeDebuggingAttachmentEnable) {
+                    appConfig.push("--remote-debugging-port=9222");
                 }
-                else if (CustomBrowser === "microsoft edge") {
-                    CustomBrowser = `microsoft-edge:http://${host}:${port}/${path}`;
-                    appConfig.push(CustomBrowser);
-                }
-                else {
-                    appConfig.push(CustomBrowser);
-                }
-
             }
         }
+
+        
+            if (appConfig[0] === 'chrome') {
+                switch (process.platform) {
+                    case 'darwin':
+                        appConfig[0] = 'google chrome';
+                        break;
+                    case 'linux':
+                        appConfig[0] = 'google-chrome';
+                        break;
+                    case 'win32':
+                        appConfig[0] = 'chrome';
+                        break;
+                    default:
+                        appConfig[0] = 'chrome';
+
+                }
+            }
+            else if (appConfig[0].startsWith("microsoft-edge")) {
+                appConfig[0] = `microsoft-edge:http://${host}:${port}/${path}`;
+            }
+
         opn(`http://${host}:${port}/${path}`, { app: appConfig });
     }
 
