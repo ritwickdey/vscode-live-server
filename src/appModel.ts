@@ -188,6 +188,7 @@ export class AppModel {
         let appConfig: string[] = [];
 
         if (CustomBrowser !== 'null') {
+
             if (CustomBrowser.startsWith('chrome')) {
                 switch (process.platform) {
                     case 'darwin':
@@ -204,9 +205,14 @@ export class AppModel {
 
                 }
                 appConfig.push(CustomBrowser);
+
                 if(ChromeDebuggingAttachmentEnable) {
                     appConfig.push("--remote-debugging-port=9222");
                 }
+            }
+            else if(CustomBrowser === "microsoft edge") {
+                CustomBrowser = `microsoft-edge:http://${host}:${port}/${path}`;
+                appConfig.push(CustomBrowser);
             }
             else {
                 appConfig.push(CustomBrowser);

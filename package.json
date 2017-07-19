@@ -92,15 +92,17 @@
           "default": "null",
           "description": "Specify custom browser settings for Live Server. \nBy Default it will open your default favorite browser.",
           "enum": [
-            "chrome", "firefox", "null", "chrome --remote-debugging-port=9222"
+            "chrome", "firefox", "microsoft edge","null"
           ]
         },
 
         "liveServer.settings.ChromeDebuggingAttachment": {
-          "type":"boolean",
+          "type":["boolean"],
           "default": false,
           "description": "To Enable Chrome Debugging Attachment to Live Server.\n NOTE: You have to install 'Debugger for Chrome' \nIf the value is true, Select 'Attach to Chrome' from Debug Window to start debugging. \n\n CAUTION: If it is true, 'Launch Chrome against localhost' may not work."
         }
+
+       
 
       }
     }
