@@ -204,26 +204,25 @@ export class AppModel {
             }
         }
 
-        
-            if (appConfig[0] === 'chrome') {
-                switch (process.platform) {
-                    case 'darwin':
-                        appConfig[0] = 'google chrome';
-                        break;
-                    case 'linux':
-                        appConfig[0] = 'google-chrome';
-                        break;
-                    case 'win32':
-                        appConfig[0] = 'chrome';
-                        break;
-                    default:
-                        appConfig[0] = 'chrome';
+        if (appConfig[0] === 'chrome') {
+            switch (process.platform) {
+                case 'darwin':
+                    appConfig[0] = 'google chrome';
+                    break;
+                case 'linux':
+                    appConfig[0] = 'google-chrome';
+                    break;
+                case 'win32':
+                    appConfig[0] = 'chrome';
+                    break;
+                default:
+                    appConfig[0] = 'chrome';
 
-                }
             }
-            else if (appConfig[0].startsWith("microsoft-edge")) {
-                appConfig[0] = `microsoft-edge:http://${host}:${port}/${path}`;
-            }
+        }
+        else if (appConfig[0].startsWith("microsoft-edge")) {
+            appConfig[0] = `microsoft-edge:http://${host}:${port}/${path}`;
+        }
 
         opn(`http://${host}:${port}/${path}`, { app: appConfig });
     }

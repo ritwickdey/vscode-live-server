@@ -30,38 +30,47 @@ Launch a development local server directly from VSCode to your browser and watch
 * Customizable Server Root.
 * Customizable default browser.
 * Support for Chrome Debugging Attachment (_[More Info](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)_). [[Quick Gif Demo](./images/Screenshot/ChromeDebugging.gif)].
+* Support for any browser (Eg: Chrome Canary, Firefox Nightly) using advance Command Line.
 
 ## Settings
-* `liveServer.settings.port` : Customize Port Number of your Live Server.  If you want random port number, set it as `0`.
+* **`liveServer.settings.port` :** Customize Port Number of your Live Server.  If you want random port number, set it as `0`.
     *  _Default value is `5500`._
 
-* `liveServer.settings.root` : To change root of server in between workspace folder structure,  use `/` and absolute path from workspace.
+* **`liveServer.settings.root` :** To change root of server in between workspace folder structure,  use `/` and absolute path from workspace.
     * _Example: `/sub_folder1/sub_folder2`_. Now `sub_folder2` will be root of the server.
     *  _Default value is "`/`".(The Workspace Root)_.
 
-* `liveServer.settings.CustomBrowser` : To change your system's default browser. (_chrome_ or _firefox_).
+* **`liveServer.settings.CustomBrowser` :** To change your system's default browser. (_chrome_ or _firefox_ or _Microsoft-Edge_).
     * _Default value is `Null`. (It will open your system's default browser.)_
 
-* `liveServer.settings.ChromeDebuggingAttachment`: To Enable Chrome Debugging Attachment to Live Server. [[Quick Gif Demo](./images/Screenshot/ChromeDebugging.gif)].
-    * _**NOTE**: You must have to install [More Info about `Debugger for Chrome.`](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)_
-    * _If the value is `true`, Select `attach` request type ('Attach to Chrome') from Debug Window to start debugging. [`Debugger for Chrome`](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome) Extension will inject debugging feature into running LiveServer window._
-    * _**CAUTION :** If it is `true`, `launch` request type ('Launch Chrome against localhost') of `chrome debugger` may not work, you have to use `attach` request type ('Attach to Chrome') of `chrome debugger`. Alternatively close all instance of `Google Chorme`_.
+* **`liveServer.settings.ChromeDebuggingAttachment` :** To Enable Chrome Debugging Attachment to Live Server. [[Quick Gif Demo](./images/Screenshot/ChromeDebugging.gif)].
+    * _**NOTE**: You must have to install [ `Debugger for Chrome.`](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)_
+    * _If the value is `true`, Start Live Server and select 'Attach to Chrome' from Debug Window to start debugging. [`Debugger for Chrome`](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome) Extension will inject debugging feature into running instance of browser window._
     *  _Default value is `false`._
+* **`liveServer.settings.AdvanceCustomBrowserCmdLine` :**  To set your any favorite browser (Eg: Chrome Canary, Firefox Nightly) using advance Command Line. 
+    * _This setting will override `CustomBrowser` and `ChromeDebuggingAttachment` settings._
+    * _Examples:_
+        * _chrome --incognito_
+        * _chromecan --remote-debugging-port=9222_
+        * _chrome --headless_
+        * _chrome --incognito --remote-debugging-port=9222_
 
 ## Installation
 Open VSCode Editor and Press `ctrl+P`, type `ext install LiveServer`.
 
 ## What's new ?
 
+#### Version 1.6.0 (19.07.2017)
+
+* [[#5](https://github.com/ritwickdey/vscode-live-server/issues/5)] New Settings - `liveServer.settings.AdvanceCustomBrowserCmdLine` - Now set your any favorite browser (Eg: Chrome Canary, Firefox Nightly) for Live Server using advance Command Line. (_[More Info.](https://github.com/ritwickdey/vscode-live-server#settings)_) [Thanks [Obinna A. Kalu](https://github.com/obkalu)].
+
+*  Support for Microsoft-Edge through `liveServer.settings.CustomBrowser` settings.
+
 #### Version 1.5.0 (17.07.2017)
-* [[Quick Gif Demo](./images/Screenshot/ChromeDebugging.gif)] New Feature Added - Support for Chrome Debugging Attachment. (You have to enable the feature through `liveServer.settings.ChromeDebuggingAttachment` settings. _[More Info.](https://github.com/ritwickdey/vscode-live-server#settings)_).  [Thanks [Obinna A. Kalu](https://github.com/obkalu) [[#5](https://github.com/ritwickdey/vscode-live-server/issues/2)] ].
+* [[Quick Gif Demo](./images/Screenshot/ChromeDebugging.gif)] New Feature Added - Support for Chrome Debugging Attachment. (You have to enable the feature through `liveServer.settings.ChromeDebuggingAttachment` settings. _[More Info.](https://github.com/ritwickdey/vscode-live-server#settings)_).  [Thanks [Obinna A. Kalu](https://github.com/obkalu) [[#5](https://github.com/ritwickdey/vscode-live-server/issues/5)] ].
 
 #### Version 1.4.3 (10.07.2017)
 * Status-bar Icon added. Minor Fix update on Status bar control. 
-
-#### Version 1.4.2 (08.07..2017)
-* Minor Fix Update on Custom Browser Setting.
-
 
 ## Changelog
 To check full changelog click here [changelog](CHANGELOG.md).

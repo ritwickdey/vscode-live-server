@@ -2,7 +2,7 @@
   "name": "LiveServer",
   "displayName": "Live Server",
   "description": "Launch a development Live Server to browser with live preview and live reload.",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "publisher": "ritwickdey",
   "author": {
     "name": "Ritwick Dey",
@@ -113,7 +113,7 @@
             "null"
           ],
           "default": null,
-          "description": "Note: If it is not Null, It will override CustomBrowser and ChromeDebuggingAttachment settings.\n\n Examples : \nchrome --incognito \nchromecan --remote-debugging-port=9222 \nchrome --headless\n"
+          "description": "Note: If it is not Null, It will override CustomBrowser and ChromeDebuggingAttachment settings.\n\n Examples : \nchrome --incognito \nchromecan --remote-debugging-port=9222 \nchrome --headless\nchrome --incognito --remote-debugging-port=9222"
         }
       }
     }
