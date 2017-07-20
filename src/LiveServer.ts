@@ -10,11 +10,11 @@ export class LiveServerClass {
             setTimeout(() => {
 
                 if (ServerInstance._connectionKey == undefined || ServerInstance._connectionKey == null) {
-                    callback(null);
+                    return callback(null);
                 }
 
                 httpShutdown(ServerInstance)
-                callback(ServerInstance);
+                return callback(ServerInstance);
 
             }, 1000);
 

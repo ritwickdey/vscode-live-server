@@ -60,7 +60,8 @@ export class AppModel {
             }
             this.Init();
             LiveServerClass.StartServer(params, (ServerInstance) => {
-                if (ServerInstance != null) {
+                if (ServerInstance && ServerInstance.address()) {
+
                     this.LiveServerInstance = ServerInstance;
                     let port = ServerInstance.address().port;
                     this.ToggleStatusBar();
@@ -68,7 +69,11 @@ export class AppModel {
                     this.openBrowser('127.0.0.1', port, file.filePathFromRoot);
                 }
                 else {
-                    vscode.window.showErrorMessage(`Error to open server`);
+                    let port = vscode.workspace.getConfiguration('liveServer.settings').get('port') as Number;
+                    vscode.window.showErrorMessage(`Error to open server at port ${port}.`);
+                    this.IsServerRunning = true; //to revert
+                    this.ToggleStatusBar(); //reverted
+                    return;
                 }
 
             });
