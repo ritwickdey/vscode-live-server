@@ -2,7 +2,7 @@
   "name": "LiveServer",
   "displayName": "Live Server",
   "description": "Launch a development Live Server to browser with live preview and live reload.",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "publisher": "ritwickdey",
   "author": {
     "name": "Ritwick Dey",
@@ -128,7 +128,7 @@
     "type": "git",
     "url": "https://github.com/ritwickdey/vscode-live-server.git"
   },
-  "homepage": "https://github.com/ritwickdey/vscode-live-server/blob/master/README.md",
+  "homepage": "https://ritwickdey.github.io/vscode-live-server/",
   "scripts": {
     "vscode:prepublish": "tsc -p ./",
     "compile": "tsc -watch -p ./",

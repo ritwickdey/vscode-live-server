@@ -2,13 +2,22 @@
 ---
 @import "{{ site.theme }}";
 
+$bold : 500;
+
 * {
     font-family: 'Roboto', sans-serif;
     color: #40484b;
     font-weight: 400;
+    line-height: 30px;
 }
 
-
+li > em {
+    line-height: 35px;
+    font-style: italic;
+}
+li>h4 {
+    margin: 0;
+}
 
 .page-header {
     background-image: none;
@@ -45,8 +54,8 @@
 
 .main-content code,
 .highlighter-rouge {
-    color: #000;
-    font-weight: 600;
+    color: rgba(39, 32, 32, 0.9);;
+    font-weight: $bold;
 }
 
 code.highlighter-rouge {
@@ -57,20 +66,25 @@ code.highlighter-rouge {
 .main-content {
     h4 {
         color: #046380;
-        font-weight: 600;
+        font-weight: $bold;
+        
     }
     h2 {
         color: #046380;
-        font-weight: 600;
+        font-weight: $bold;
         font-size: 28px;
     }
     h1 {
         color: #046380;
-        font-weight: 600;
+        font-weight: $bold;
         font-size: 40px;
     }
     strong>em {
         font-weight: 500;
+    }
+
+    :first-child {
+        margin-top: 1.1rem;
     }
 }
 
