@@ -3,9 +3,9 @@
 
 [![VSCode Marketplace Badge](https://vsmarketplacebadge.apphb.com/version/ritwickdey.LiveServer.svg)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) [![Total Install Count Badge](https://vsmarketplacebadge.apphb.com/installs/ritwickdey.LiveServer.svg)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) [![Avarage Rating Badge](https://vsmarketplacebadge.apphb.com/rating-short/ritwickdey.LiveServer.svg)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ritwickdey/vscode-live-server/)
 <br>
-Launch a development local server directly from VSCode to your browser and watch live preview of HTML<br>
+Launch a development local server directly from VSCode to your browser and watch live preview of HTML
+<br>
 ![App Preview](./images/Screenshot/AnimatedPreview.gif)
-
 
 ## Usage/Shortcuts
 
@@ -32,21 +32,32 @@ Launch a development local server directly from VSCode to your browser and watch
 * Support for Chrome Debugging Attachment (_[More Info](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)_). [[Quick Gif Demo](./images/Screenshot/ChromeDebugging.gif)].
 * Support for any browser (Eg: Chrome Canary, Firefox Nightly) using advance Command Line.
 
+
 ## Settings
+
 * **`liveServer.settings.port` :** Customize Port Number of your Live Server.  If you want random port number, set it as `0`.
     *  _Default value is `5500`._
 
+    <hr>
+ 
 * **`liveServer.settings.root` :** To change root of server in between workspace folder structure,  use `/` and absolute path from workspace.
     * _Example: `/sub_folder1/sub_folder2`_. Now `sub_folder2` will be root of the server.
     *  _Default value is "`/`".(The Workspace Root)_.
 
+    <hr>
+ 
 * **`liveServer.settings.CustomBrowser` :** To change your system's default browser. (_chrome_ or _firefox_ or _Microsoft-Edge_).
     * _Default value is `Null`. (It will open your system's default browser.)_
 
+    <hr>
+ 
 * **`liveServer.settings.ChromeDebuggingAttachment` :** To Enable Chrome Debugging Attachment to Live Server. [[Quick Gif Demo](./images/Screenshot/ChromeDebugging.gif)].
     * _**NOTE**: You must have to install [ `Debugger for Chrome.`](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)_
     * _If the value is `true`, Start Live Server and select 'Attach to Chrome' from Debug Window to start debugging. [`Debugger for Chrome`](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome) Extension will inject debugging feature into running instance of browser window._
     *  _Default value is `false`._
+
+    <hr>
+
 * **`liveServer.settings.AdvanceCustomBrowserCmdLine` :**  To set your any favorite browser (Eg: Chrome Canary, Firefox Nightly) using advance Command Line. 
     * _This setting will override `CustomBrowser` and `ChromeDebuggingAttachment` settings._
     * _Examples:_
@@ -54,6 +65,7 @@ Launch a development local server directly from VSCode to your browser and watch
         * _chromecan --remote-debugging-port=9222_
         * _chrome --headless_
         * _chrome --incognito --remote-debugging-port=9222_
+    <hr>
 
 ## Installation
 Open VSCode Editor and Press `ctrl+P`, type `ext install LiveServer`.
