@@ -6,7 +6,7 @@ repository: ritwickdey/vscode-live-server
 gems:
   - jekyll-seo-tag
 
-title: Live Server VScode Extension
+title: Live Server
 description : Launch a Live development Server to browser from VSCode with live preview and live reload
 author : Ritwick Dey
 twitter:username: Dey_Ritwick
@@ -23,5 +23,5 @@ social:
 lang: "en"
 
 
-# github: [metadata]
+github: [metadata]
 

@@ -18,14 +18,18 @@
     justify-content: center;
     align-items: center;
 
-    height: 90vh;
+    height: 100vh;
 
     h1 , h2 {
         color: #fff;
     }
 
     .btn {
-        max-width: 250px;
+        width: 275px;
+        padding: 15px 8px;
+    }
+    .btn + .btn {
+        margin-left : 0;
     }
 }
 .after-scroll-page-header {
