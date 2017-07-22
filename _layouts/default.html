@@ -19,14 +19,15 @@
   <section class="page-header">
     <h1 class="project-name">{{ site.title | default: site.github.repository_name }}</h1>
     <h2 class="project-tagline">{{ site.description | default: site.github.project_tagline }}</h2>
-    {% if site.github.is_project_page %}
-    <a href="{{ site.github.repository_url }}" class="btn" target="_blank">View on GitHub</a> {% endif %}
-    <a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer" target="_blank" class="btn">Install From VSCode Marketplace</a>    
-    <a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer" target="_blank" class="btn">View on github</a>    
+    <div class="btn-div">
+      {% if site.github.is_project_page %}
+      <a href="{{ site.github.repository_url }}" class="btn" target="_blank">View on GitHub</a> {% endif %}
+      <a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer" target="_blank" class="btn">Install From VSCode Marketplace</a>
+      <a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer" target="_blank" class="btn">View on github</a>
+    </div>
     {% if site.show_downloads %}
     <a href="{{ site.github.zip_url }}" class="btn">Download .zip</a>
-    <a href="{{ site.github.tar_url }}" class="btn">Download .tar.gz</a> 
-    {% endif %}
+    <a href="{{ site.github.tar_url }}" class="btn">Download .tar.gz</a> {% endif %}
   </section>
 
   <section class="main-content">
@@ -102,17 +103,17 @@
 
     function doWork(e) {
       if (!isScrolled) {
-          e.stopPropagation();
-          window.scroll(0,0);
-          disableScroll();
-          var header = document.getElementsByClassName('page-header')[0];
-          header.classList.add("after-scroll-page-header");
-         
-          setTimeout(() => {
-            isScrolled = true;
-            enableScroll();
-          }, 1500);
-        }
+        e.stopPropagation();
+        window.scroll(0, 0);
+        disableScroll();
+        var header = document.getElementsByClassName('page-header')[0];
+        header.classList.add("after-scroll-page-header");
+
+        setTimeout(() => {
+          isScrolled = true;
+          enableScroll();
+        }, 1500);
+      }
     }
 
 </script>
