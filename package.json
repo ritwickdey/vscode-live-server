@@ -77,7 +77,9 @@
             "number"
           ],
           "default": 5500,
-          "description": "Set Custom Port Number of Live Server"
+          "minimum": 0,
+          "maximum": 65535,
+          "description": "Set Custom Port Number of Live Server. Set 0 if you want random port."
         },
         "liveServer.settings.root": {
           "type": [
