@@ -20,7 +20,7 @@ social:
     - https://ritwickdey.github.io
     - https://github.com/ritwickdey/vscode-live-server
     - https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer
-lang: "en"
+lang: en_IN
 
 ## Uncomment below for local test
 # github: [metadata]

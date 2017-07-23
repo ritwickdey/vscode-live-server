@@ -70,6 +70,22 @@ Launch a development local server directly from VSCode to your browser and watch
 ## Installation
 Open VSCode Editor and Press `ctrl+P`, type `ext install LiveServer`.
 
+
+## How to config the settings in my project? (FAQ):
+Create a `.vscode` folder in the root of project. Inside of `.vscode` folder create a json file named `settings.json`.
+Inside of the `settings.json`, type following key-value pairs. By the way you'll get intelli-sense.
+
+```json
+{
+    "liveServer.settings.port": 4500,
+    "liveServer.settings.root": "/src",
+    "liveServer.settings.CustomBrowser" : "microsoft-edge",
+    "liveServer.settings.AdvanceCustomBrowserCmdLine": "chrome --incognito --remote-debugging-port=9222"
+}
+```
+
+
+
 ## What's new ?
 
 * #### Version 1.6.2 (22.07.2017)
