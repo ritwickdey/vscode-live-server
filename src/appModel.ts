@@ -10,6 +10,9 @@ export class AppModel {
     private IsServerRunning: boolean;
     private LiveServerInstance;
 
+    get configSettings() {
+        return vscode.workspace.getConfiguration('liveServer.settings');
+    }
 
     constructor() {
         this.IsServerRunning = false;
@@ -23,11 +26,22 @@ export class AppModel {
 
         if (!this.statusBarItem) {
             this.statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
-            this.statusBarItem.text = '$(broadcast) Go Live';
-            this.statusBarItem.command = 'extension.liveServer.goOnline'
-            this.statusBarItem.tooltip = 'Click to run live server'
+            this.goLiveUI();
             this.statusBarItem.show();
         }
+    }
+
+    public goLiveUI() {
+        this.statusBarItem.text = '$(broadcast) Go Live';
+        this.statusBarItem.command = 'extension.liveServer.goOnline';
+        this.statusBarItem.tooltip = 'Click to run live server'
+    }
+
+    public goOfflineUI() {
+        let port = this.LiveServerInstance.address().port
+        this.statusBarItem.text = `$(circle-slash) Port : ${port} - GoOffline`;
+        this.statusBarItem.command = 'extension.liveServer.goOffline';
+        this.statusBarItem.tooltip = 'Click to close server';
     }
 
 
@@ -49,7 +63,7 @@ export class AppModel {
                 vscode.window.showErrorMessage('Invaild Path in liveServer.settings.root. live Server Starts from workspace root');
             }
 
-            let portNo = vscode.workspace.getConfiguration('liveServer.settings').get('port') as Number;
+            let portNo = this.configSettings.get('port') as Number;
 
             let params = {
                 port: portNo,
@@ -69,7 +83,7 @@ export class AppModel {
                     this.openBrowser('127.0.0.1', port, file.filePathFromRoot);
                 }
                 else {
-                    let port = vscode.workspace.getConfiguration('liveServer.settings').get('port') as Number;
+                    let port = this.configSettings.get('port') as Number;
                     vscode.window.showErrorMessage(`Error to open server at port ${port}.`);
                     this.IsServerRunning = true; //to revert
                     this.ToggleStatusBar(); //reverted
@@ -84,7 +98,7 @@ export class AppModel {
 
     }
 
-    public goOffline() {
+    public GoOffline() {
         if (!this.IsServerRunning) {
             vscode.window.showInformationMessage(`Server is not already running`);
             return;
@@ -102,15 +116,10 @@ export class AppModel {
 
     private ToggleStatusBar() {
         if (!this.IsServerRunning) {
-            let port = this.LiveServerInstance.address().port
-            this.statusBarItem.text = `$(circle-slash) Port : ${port} - GoOffline`;
-            this.statusBarItem.command = 'extension.liveServer.goOffline';
-            this.statusBarItem.tooltip = 'Click to close server';
+            this.goOfflineUI();
         }
         else {
-            this.statusBarItem.text = '$(broadcast) Go Live';
-            this.statusBarItem.command = 'extension.liveServer.goOnline';
-            this.statusBarItem.tooltip = 'Click to run live server';
+            this.goLiveUI();
         }
 
         this.IsServerRunning = !this.IsServerRunning;
@@ -125,7 +134,7 @@ export class AppModel {
         let documentPath = FullFilePath.substring(0, FullFilePath.lastIndexOf('\\'));
         let rootPath = WorkSpacePath ? WorkSpacePath : documentPath;
 
-        let virtualRoot = vscode.workspace.getConfiguration('liveServer.settings').get('root') as string;
+        let virtualRoot = this.configSettings.get('root') as string;
         if (!virtualRoot.startsWith('/')) {
             virtualRoot = '/' + virtualRoot;
         }
@@ -180,9 +189,8 @@ export class AppModel {
 
     private openBrowser(host: string, port: number, path: string) {
 
-        let configSettings = vscode.workspace.getConfiguration('liveServer.settings');
         let appConfig: string[] = [];
-        let advanceCustomBrowserCmd = configSettings.get("AdvanceCustomBrowserCmdLine") as string;
+        let advanceCustomBrowserCmd = this.configSettings.get("AdvanceCustomBrowserCmdLine") as string;
         if (path.startsWith('\\')) {
             path = path.substring(1, path.length);
         }
@@ -197,8 +205,8 @@ export class AppModel {
             });
         }
         else {
-            let CustomBrowser = configSettings.get('CustomBrowser') as string;
-            let ChromeDebuggingAttachmentEnable = configSettings.get('ChromeDebuggingAttachment') as boolean;
+            let CustomBrowser = this.configSettings.get('CustomBrowser') as string;
+            let ChromeDebuggingAttachmentEnable = this.configSettings.get('ChromeDebuggingAttachment') as boolean;
 
             if (CustomBrowser !== 'null') {
                 appConfig.push(CustomBrowser);

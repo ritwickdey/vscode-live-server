@@ -10,7 +10,7 @@ export function activate(context: vscode.ExtensionContext) {
         appModel.Golive();
     });
     let OfflineDisposable = vscode.commands.registerCommand('extension.liveServer.goOffline', ()=>{
-        appModel.goOffline();
+        appModel.GoOffline();
     });
 
     let ActiveTextEditorDisposable = vscode.window.onDidChangeActiveTextEditor(()=>{
