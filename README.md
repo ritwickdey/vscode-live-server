@@ -88,17 +88,14 @@ Inside of the `settings.json`, type following key-value pairs. By the way you'll
 
 ## What's new ?
 
+* #### Version 1.6.3 (24.07.2017)
+    * Validation added for Port range.
+
 * #### Version 1.6.2 (22.07.2017)
-    * Fixed error handling when the extension tried to start Server with a unavailable port.
+    * Fixed error handling for unavailable port.
 
 * #### Version 1.6.1 (20.07.2017)
     * Fixed Update - Extension was not opening system's default browser. _[Sorry for that, Extension was crashing internally]_.
-
-* #### Version 1.6.0 (19.07.2017)
-
-    * [[#5](https://github.com/ritwickdey/vscode-live-server/issues/5)] New Settings - `liveServer.settings.AdvanceCustomBrowserCmdLine` - Now set your any favorite browser (Eg: Chrome Canary, Firefox Nightly) for Live Server using advance Command Line. (_[More Info.](https://github.com/ritwickdey/vscode-live-server#settings)_) [Thanks [Obinna A. Kalu](https://github.com/obkalu)].
-
-    *  Support for Microsoft-Edge through `liveServer.settings.CustomBrowser` settings.
 
 
 ## Changelog

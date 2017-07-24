@@ -2,7 +2,8 @@
 
 | Version | Date | Changelog |
 |---|---|---|
-|1.6.2| 22.07.17 | Fixed error handling when the extension tried to start Server with a unavailable port. |
+|1.6.3| 24.07.17 | Validation added for Port range. |
+|1.6.2| 22.07.17 | Fixed error handling for unavailable port. |
 |1.6.1|20.07.17|Fixed Update - Extension was not opening system's default browser. _[Sorry for that, Extension was crashing internally]_|
 |1.6.0|19.07.17| &mdash; [[#5](https://github.com/ritwickdey/vscode-live-server/issues/5)] New Settings - `liveServer.settings.AdvanceCustomBrowserCmdLine` - Now set your any favorite browser (Eg: Chrome Canary, Firefox Nightly) for Live Server using advance Command Line. (_[More Info.](https://github.com/ritwickdey/vscode-live-server#settings)_) [Thanks [Obinna A. Kalu](https://github.com/obkalu)]. <br><br> &mdash; Support for Microsoft-Edge through `liveServer.settings.CustomBrowser` settings.  |
 |1.5.0 | 17.07.17 | [[Quick Gif Demo](./images/Screenshot/ChromeDebugging.gif)] New Feature Added - Support for Chrome Debugging Attachment. (You have to enable the feature through `liveServer.settings.ChromeDebuggingAttachment` settings. _[More Info.](https://github.com/ritwickdey/vscode-live-server#settings)_).  [Thanks [Obinna A. Kalu](https://github.com/obkalu) [[#5](https://github.com/ritwickdey/vscode-live-server/issues/5)] ].
