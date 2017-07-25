@@ -88,15 +88,14 @@ Inside of the `settings.json`, type following key-value pairs. By the way you'll
 
 ## What's new ?
 
+* #### Version 1.6.4 (26.07.2017)
+    * Critical Bug Fixed for Linux & macOS. Extension was crashing for `liveServer.settings.root` settings on macOS & Linux. 
+
 * #### Version 1.6.3 (24.07.2017)
     * Validation added for Port range.
 
 * #### Version 1.6.2 (22.07.2017)
     * Fixed error handling for unavailable port.
-
-* #### Version 1.6.1 (20.07.2017)
-    * Fixed Update - Extension was not opening system's default browser. _[Sorry for that, Extension was crashing internally]_.
-
 
 ## Changelog
 To check full changelog click here [changelog](CHANGELOG.md).

@@ -2,6 +2,7 @@
 
 | Version | Date | Changelog |
 |---|---|---|
+|1.6.4|26.07.17|Critical Bug Fixed for Linux & macOS. Extension was crashing for `liveServer.settings.root` settings on macOS & Linux. |
 |1.6.3| 24.07.17 | Validation added for Port range. |
 |1.6.2| 22.07.17 | Fixed error handling for unavailable port. |
 |1.6.1|20.07.17|Fixed Update - Extension was not opening system's default browser. _[Sorry for that, Extension was crashing internally]_|
