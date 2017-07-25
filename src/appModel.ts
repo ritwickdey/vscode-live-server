@@ -1,6 +1,7 @@
 'use strict';
 import * as vscode from 'vscode';
 import * as fs from 'fs';
+import * as path from 'path';
 import * as opn from 'opn';
 import { LiveServerClass } from './LiveServer';
 
@@ -80,7 +81,7 @@ export class AppModel {
                     let port = ServerInstance.address().port;
                     this.ToggleStatusBar();
                     vscode.window.showInformationMessage(`Server is Started at port : ${port}`);
-                    this.openBrowser('127.0.0.1', port, file.filePathFromRoot);
+                    this.openBrowser('127.0.0.1', port, file.filePathFromRoot || "");
                 }
                 else {
                     let port = this.configSettings.get('port') as Number;
@@ -131,18 +132,21 @@ export class AppModel {
 
         let WorkSpacePath = vscode.workspace.rootPath;
         let FullFilePath = textEditor.document.fileName;
-        let documentPath = FullFilePath.substring(0, FullFilePath.lastIndexOf('\\'));
+        let documentPath =  path.dirname(FullFilePath);
+       
+        //if only a single file is opened, WorkSpacePath will be NULL
         let rootPath = WorkSpacePath ? WorkSpacePath : documentPath;
 
         let virtualRoot = this.configSettings.get('root') as string;
         if (!virtualRoot.startsWith('/')) {
             virtualRoot = '/' + virtualRoot;
         }
-        virtualRoot = virtualRoot.replace(/\//gi, '\\');
-        virtualRoot = rootPath + virtualRoot;
-        if (virtualRoot.endsWith('\\')) {
-            virtualRoot = virtualRoot.substring(0, virtualRoot.length - 1);
-        }
+        // virtualRoot = virtualRoot.replace(/\//gi, '\\');
+        // virtualRoot = rootPath + virtualRoot;
+        virtualRoot = path.join(rootPath,virtualRoot);
+        // if (virtualRoot.endsWith('\\')) {
+        //     virtualRoot = virtualRoot.substring(0, virtualRoot.length - 1);
+        // }
 
         let HasVirtualRootError: boolean;
         if (fs.existsSync(virtualRoot)) {
@@ -154,11 +158,21 @@ export class AppModel {
         }
 
         let filePathFromRoot: string;
-        if (!FullFilePath.endsWith('.html') && HasVirtualRootError) {
+        if (!FullFilePath.endsWith('.html') || HasVirtualRootError || rootPath.length - path.dirname(FullFilePath || '').length > 1 ) {
             filePathFromRoot = null;
         }
         else {
             filePathFromRoot = FullFilePath.substring(rootPath.length, FullFilePath.length);
+        
+        }
+        
+        if(process.platform === 'win32') {
+            if(!rootPath.endsWith('\\'))
+                rootPath = rootPath+'\\';
+        }
+        else {
+            if(!rootPath.endsWith('/'))
+                rootPath = rootPath+'/';
         }
 
         return {
@@ -191,10 +205,10 @@ export class AppModel {
 
         let appConfig: string[] = [];
         let advanceCustomBrowserCmd = this.configSettings.get("AdvanceCustomBrowserCmdLine") as string;
-        if (path.startsWith('\\')) {
+        if (path.startsWith('\\') || path.startsWith('/')) {
             path = path.substring(1, path.length);
         }
-        path.replace(/\\/gi, '/');
+        path = path.replace(/\\/gi, '/');
 
         if (advanceCustomBrowserCmd) {
             let commands = advanceCustomBrowserCmd.split(' ');
