@@ -222,7 +222,7 @@ export class AppModel {
             let CustomBrowser = this.configSettings.get('CustomBrowser') as string;
             let ChromeDebuggingAttachmentEnable = this.configSettings.get('ChromeDebuggingAttachment') as boolean;
 
-            if (CustomBrowser !== 'null') {
+            if (CustomBrowser && CustomBrowser !== 'null') {
                 appConfig.push(CustomBrowser);
 
                 if (CustomBrowser === 'chrome' && ChromeDebuggingAttachmentEnable) {
@@ -251,7 +251,12 @@ export class AppModel {
             appConfig[0] = `microsoft-edge:http://${host}:${port}/${path}`;
         }
 
-        opn(`http://${host}:${port}/${path}`, { app: appConfig });
+        try {
+            opn(`http://${host}:${port}/${path}`, { app: appConfig || [] });
+        } catch (error) {
+            vscode.window.showInformationMessage(`Error to open browser`);
+            console.log("Error Log to open Browser : ",error);
+        }
     }
 
 
