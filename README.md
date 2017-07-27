@@ -1,3 +1,9 @@
+---
+title: "Home Page"
+permalink : "/index.html"
+---
+
+
 # Live Server
 **_[If you found any bug or if you have any suggestion, feel free to report or suggest me. If you like the extension, don't forgot to rate it.]_**
 

@@ -1,6 +1,4 @@
 theme: jekyll-theme-cayman
-title: Live Server | VSCode Extension
-description: Launch a development Live Server to browser from VSCode with live preview and live reload.
 repository: ritwickdey/vscode-live-server
 
 gems:
