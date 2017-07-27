@@ -1,23 +1,18 @@
 theme: jekyll-theme-cayman
-title: Live Server
-description: Launch a Live development Server to browser from VSCode with live preview and live reload.
+title: Live Server | VSCode Extension
+description: Launch a development Live Server to browser from VSCode with live preview and live reload.
 repository: ritwickdey/vscode-live-server
 
 gems:
   - jekyll-seo-tag
 
-title: Live Server
+title: Live Server | VSCode Extension
 description : Launch a Live development Server to browser from VSCode with live preview and live reload
 author : Ritwick Dey
 twitter:username: Dey_Ritwick
 social:
-  name: Ritwick Dey
+  name: Live Server VSCode Extension
   links:
-    - https://twitter.com/Dey_Ritwick
-    - https://www.facebook.com/DeyRitwick
-    - https://plus.google.com/+Ritwick
-    - https://github.com/ritwickdey
-    - https://ritwickdey.github.io
     - https://github.com/ritwickdey/vscode-live-server
     - https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer
 lang: en_IN
