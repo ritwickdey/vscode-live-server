@@ -1,11 +1,7 @@
----
-title: "Home Page"
-permalink : "/index.html"
----
-
-
 # Live Server
-**_[If you found any bug or if you have any suggestion, feel free to report or suggest me. If you like the extension, don't forgot to rate it.]_**
+**_[If you like the extension, please leave a review, it put a smile on my face.]_**
+
+**_[If you found any bug or if you have any suggestion, feel free to report or suggest me.]_**
 
 [![VSCode Marketplace Badge](https://vsmarketplacebadge.apphb.com/version/ritwickdey.LiveServer.svg)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) [![Total Install](https://vsmarketplacebadge.apphb.com/installs/ritwickdey.LiveServer.svg)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) [![Avarage Rating Badge](https://vsmarketplacebadge.apphb.com/rating-short/ritwickdey.LiveServer.svg)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ritwickdey/vscode-live-server/)
 <br>
@@ -36,7 +32,8 @@ Launch a development local server directly from VSCode to your browser and watch
 * Customizable Server Root.
 * Customizable default browser.
 * Support for Chrome Debugging Attachment (_[More Info](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)_). [[Quick Gif Demo](./images/Screenshot/ChromeDebugging.gif)].
-* Support for any browser (Eg: Chrome Canary, Firefox Nightly) using advance Command Line.
+* Support for any browser _(Eg: Chrome Canary, Firefox Nightly)_ using advance Command Line.
+* Remote Connect (E.g.: Connect with mobile) _[Need Help? See FAQ Section below]_
 
 
 ## Settings
@@ -77,7 +74,32 @@ Launch a development local server directly from VSCode to your browser and watch
 Open VSCode Editor and Press `ctrl+P`, type `ext install LiveServer`.
 
 
-## How to config the settings in my project? (FAQ):
+## What's new ?
+
+* #### Version 1.6.6 (27.07.2017)
+    * Remote Connect :  Change something into HTML/CSS/JS from your PC and watch the effect to your phone with live reload.
+    * `.htm` support.
+
+* #### Version 1.6.5 (26.07.2017)
+    *  Bug Fixed for Linux & macOS. Sometime extension was crashing if `liveServer.settings.CustomBrowser` settings is not provided by manually on macOS & Linux. 
+
+
+* #### Version 1.6.4 (26.07.2017)
+    * Critical Bug Fixed for Linux & macOS. Extension was crashing for `liveServer.settings.root` settings on macOS & Linux. 
+
+
+## Changelog
+To check full changelog click here [changelog](CHANGELOG.md).
+
+
+## LICENSE
+This extension is licensed under the [MIT License](LICENSE)
+
+
+## FAQ (For Beginers)
+
+### How to config the settings in my project?
+
 Create a `.vscode` folder in the root of project. Inside of `.vscode` folder create a json file named `settings.json`.
 Inside of the `settings.json`, type following key-value pairs. By the way you'll get intelli-sense.
 
@@ -90,24 +112,15 @@ Inside of the `settings.json`, type following key-value pairs. By the way you'll
 }
 ```
 
+### How to access the server from Mobile ?
 
+ First, make a sure that your PC & Mobile are connected through same network. 
 
-## What's new ?
+* **Windows User** :  Open `CMD` and enter `ipconfig`.
+* **Linux/macOS** : Open `terminal` and enter `ifconfig`.
 
-* #### Version 1.6.5 (26.07.2017)
-    *  Bug Fixed for Linux & macOS. Sometime extension was crashing if `liveServer.settings.CustomBrowser` settings is not provided by manually on macOS & Linux. 
+And note down the `IPv4 Address` (probably it will look like 192.168.xx.xx). This is your PC's IP address. Enter the address to your browser's URL Bar with the port number**.
 
+        http://<IP Address> : <Port>
 
-* #### Version 1.6.4 (26.07.2017)
-    * Critical Bug Fixed for Linux & macOS. Extension was crashing for `liveServer.settings.root` settings on macOS & Linux. 
-
-* #### Version 1.6.3 (24.07.2017)
-    * Validation added for Port range.
-
-
-## Changelog
-To check full changelog click here [changelog](CHANGELOG.md).
-
-## LICENSE
-
-This extension is licensed under the [MIT License](LICENSE)
+** For an example, if your server running at **http://127.0.0.1:3500** on PC then port number is **3500**.

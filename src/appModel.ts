@@ -189,14 +189,19 @@ export class AppModel {
     }
 
     private HaveAnyHTMLFile(callback) {
-        vscode.workspace.findFiles('**/*.html', '**/node_modules/**', 1).then((files) => {
+        vscode.workspace.findFiles('**/*[.html | .htm]', '**/node_modules/**',1).then((files) => {
             if (files !== undefined && files.length !== 0) {
                 callback();
                 return;
             }
-            if (vscode.window.activeTextEditor === undefined) return;
-            if (vscode.workspace.rootPath === undefined && vscode.window.activeTextEditor.document.languageId === 'html') {
-                callback();
+            
+            let textEditor = vscode.window.activeTextEditor;
+            if (!textEditor) return;
+
+            //If a HTML file open without Workspace
+            if (vscode.workspace.rootPath === undefined && textEditor.document.languageId === 'html') {
+                 callback();
+                 return;
             }
         });
     }
@@ -254,8 +259,9 @@ export class AppModel {
         try {
             opn(`http://${host}:${port}/${path}`, { app: appConfig || [] });
         } catch (error) {
-            vscode.window.showInformationMessage(`Error to open browser`);
-            console.log("Error Log to open Browser : ",error);
+            vscode.window.showErrorMessage(`Error to open browser. See error on console`);
+            console.log("\n\nError Log to open Browser : ",error);
+            console.log("\n\n");
         }
     }
 
