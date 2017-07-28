@@ -68,7 +68,7 @@ export class AppModel {
 
             let params = {
                 port: portNo,
-                host: '127.0.0.1',
+                host: '0.0.0.0',
                 root: file.rootPath,
                 file: null,
                 open: false
