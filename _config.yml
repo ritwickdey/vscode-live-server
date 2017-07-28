@@ -15,6 +15,6 @@ social:
     - https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer
 lang: en_IN
 
-## Uncomment below for local test
-# github: [metadata]
+##Uncomment below for local test
+#github: [metadata]
 
