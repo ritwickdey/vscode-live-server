@@ -1,5 +1,5 @@
 # Live Server
-**_[If you like the extension, please leave a review, it put a smile on my face.]_**
+**_[If you like the extension, please [leave a review](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer#review-details), it puts a smile on my face.]_**
 
 **_[If you found any bug or if you have any suggestion, feel free to report or suggest me.]_**
 
@@ -11,7 +11,7 @@ Launch a development local server directly from VSCode to your browser and watch
 
 ## Usage/Shortcuts
 
-**_[In case if you don't have any `.html` file in your workspace then you have to follow method no 3 & 4 to start Live Server. I don't know why you want so?! :p But feature is still there.]_**
+**_[NOTE: In case if you don't have any `.html` or `.htm` file in your workspace then you have to follow method no 3 & 4 to start Live Server. I don't know why you want so?! :p But feature is still there.]_**
 
 1. Open a HTML File/Project and directly Click to `Go Live` from StatusBar to turn off/on the server. 
 ![Go Live Control Preview](./images/Screenshot/statusbar2.jpg)
@@ -33,7 +33,7 @@ Launch a development local server directly from VSCode to your browser and watch
 * Customizable default browser.
 * Support for Chrome Debugging Attachment (_[More Info](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)_). [[Quick Gif Demo](./images/Screenshot/ChromeDebugging.gif)].
 * Support for any browser _(Eg: Chrome Canary, Firefox Nightly)_ using advance Command Line.
-* Remote Connect (E.g.: Connect with mobile) _[Need Help? See FAQ Section below]_
+* Remote Connect (E.g.: Connect with mobile) _[Need Help? See FAQ Section]_
 
 
 ## Settings
@@ -76,8 +76,8 @@ Open VSCode Editor and Press `ctrl+P`, type `ext install LiveServer`.
 
 ## What's new ?
 
-* #### Version 1.6.6 (27.07.2017)
-    * Remote Connect :  Change something into HTML/CSS/JS from your PC and watch the effect to your phone with live reload.
+* #### Version 1.6.6 (28.07.2017)
+    * Remote Connect :  Change something into HTML/CSS/JS from your PC and watch the effect to your phone with live reload. _[Need Help? See FAQ Section]_
     * `.htm` support.
 
 * #### Version 1.6.5 (26.07.2017)
@@ -89,14 +89,14 @@ Open VSCode Editor and Press `ctrl+P`, type `ext install LiveServer`.
 
 
 ## Changelog
-To check full changelog click here [changelog](CHANGELOG.md).
+To check full changelog [click here](CHANGELOG.md).
 
 
 ## LICENSE
 This extension is licensed under the [MIT License](LICENSE)
 
 
-## FAQ (For Beginers)
+## FAQ (For Beginners)
 
 ### How to config the settings in my project?
 
@@ -116,7 +116,7 @@ Inside of the `settings.json`, type following key-value pairs. By the way you'll
 
  First, make a sure that your PC & Mobile are connected through same network. 
 
-* **Windows User** :  Open `CMD` and enter `ipconfig`.
+* **Windows** :  Open `CMD` and enter `ipconfig`.
 * **Linux/macOS** : Open `terminal` and enter `ifconfig`.
 
 And note down the `IPv4 Address` (probably it will look like 192.168.xx.xx). This is your PC's IP address. Enter the address to your browser's URL Bar with the port number**.
