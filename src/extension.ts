@@ -15,7 +15,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     let ActiveTextEditorDisposable = vscode.window.onDidChangeActiveTextEditor(()=>{
         if(vscode.window.activeTextEditor == undefined) return;
-        if(vscode.workspace.rootPath == undefined && vscode.window.activeTextEditor.document.languageId == 'html'){
+        if(vscode.workspace.rootPath == undefined && （ vscode.window.activeTextEditor.document.languageId == 'html'||vscode.window.activeTextEditor.document.languageId == 'htm' ） ){
            appModel.Init();
         }
     });
