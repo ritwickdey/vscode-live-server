@@ -207,6 +207,7 @@ export class AppModel {
     }
 
     private openBrowser(host: string, port: number, path: string) {
+        if(this.configSettings.get("NoBrowser") as boolean) return;
 
         let appConfig: string[] = [];
         let advanceCustomBrowserCmd = this.configSettings.get("AdvanceCustomBrowserCmdLine") as string;

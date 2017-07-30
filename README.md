@@ -1,5 +1,5 @@
 # Live Server
-**_[If you like the extension, please [leave a review](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer#review-details), it puts a smile on my face.]_**
+**_[If you like the extension, [please leave a review](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer#review-details), it puts a smile on my face.]_**
 
 **_[If you found any bug or if you have any suggestion, feel free to report or suggest me.]_**
 
@@ -50,7 +50,7 @@ Launch a development local server directly from VSCode to your browser and watch
     <hr>
  
 * **`liveServer.settings.CustomBrowser` :** To change your system's default browser. (_chrome_ or _firefox_ or _Microsoft-Edge_).
-    * _Default value is `Null`. (It will open your system's default browser.)_
+    * _Default value is `"Null"` [String, not `null`]. (It will open your system's default browser.)_
 
     <hr>
  
@@ -63,11 +63,16 @@ Launch a development local server directly from VSCode to your browser and watch
 
 * **`liveServer.settings.AdvanceCustomBrowserCmdLine` :**  To set your any favorite browser (Eg: Chrome Canary, Firefox Nightly) using advance Command Line. 
     * _This setting will override `CustomBrowser` and `ChromeDebuggingAttachment` settings._
+    * _Default Value is `null`_ 
     * _Examples:_
         * _chrome --incognito_
         * _chromecan --remote-debugging-port=9222_
         * _chrome --headless_
         * _chrome --incognito --remote-debugging-port=9222_
+    <hr>
+* **`liveServer.settings.NoBrowser` :** If it is true live server will start without browser opened.
+    * _Default Value is `false`_ 
+
     <hr>
 
 ## Installation
@@ -76,6 +81,9 @@ Open VSCode Editor and Press `ctrl+P`, type `ext install LiveServer`.
 
 ## What's new ?
 
+* #### Version 1.6.7 (30.07.2017)
+    * *[New Settings]* `liveServer.settings.NoBrowser` - If it is true live server will start without browser opened.
+
 * #### Version 1.6.6 (28.07.2017)
     * Remote Connect :  Change something into HTML/CSS/JS from your PC and watch the effect to your phone with live reload. _[Need Help? See FAQ Section]_
     * `.htm` support.
@@ -83,9 +91,6 @@ Open VSCode Editor and Press `ctrl+P`, type `ext install LiveServer`.
 * #### Version 1.6.5 (26.07.2017)
     *  Bug Fixed for Linux & macOS. Sometime extension was crashing if `liveServer.settings.CustomBrowser` settings is not provided by manually on macOS & Linux. 
 
-
-* #### Version 1.6.4 (26.07.2017)
-    * Critical Bug Fixed for Linux & macOS. Extension was crashing for `liveServer.settings.root` settings on macOS & Linux. 
 
 
 ## Changelog
@@ -98,7 +103,7 @@ This extension is licensed under the [MIT License](LICENSE)
 
 ## FAQ (For Beginners)
 
-### How to config the settings in my project?
+### How to configure the settings in my project ?
 
 Create a `.vscode` folder in the root of project. Inside of `.vscode` folder create a json file named `settings.json`.
 Inside of the `settings.json`, type following key-value pairs. By the way you'll get intelli-sense.
@@ -107,10 +112,13 @@ Inside of the `settings.json`, type following key-value pairs. By the way you'll
 {
     "liveServer.settings.port": 4500,
     "liveServer.settings.root": "/src",
-    "liveServer.settings.CustomBrowser" : "microsoft-edge",
-    "liveServer.settings.AdvanceCustomBrowserCmdLine": "chrome --incognito --remote-debugging-port=9222"
+    "liveServer.settings.CustomBrowser" : "chrome",
+    "liveServer.settings.AdvanceCustomBrowserCmdLine": "chrome --incognito --remote-debugging-port=9222",
+    "liveServer.settings.NoBrowser" : false
+
 }
 ```
+_Note: Use either `CustomBrowser` or `AdvanceCustomBrowserCmdLine` setting._
 
 ### How to access the server from Mobile ?
 
@@ -123,4 +131,4 @@ And note down the `IPv4 Address` (probably it will look like 192.168.xx.xx). Thi
 
         http://<IP Address> : <Port>
 
-** For an example, if your server running at **http://127.0.0.1:3500** on PC then port number is **3500**.
+** For an example, if your server running at **http:// 127.0.0.1:3500** on PC then port number is **3500**.

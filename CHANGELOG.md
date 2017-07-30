@@ -2,6 +2,7 @@
 
 | Version | Date | Changelog |
 |---|---|---|
+|1.6.7|30.07.17|*[New Settings]* `liveServer.settings.NoBrowser` - If it is true live server will start without browser opened.|
 |1.6.6|28.07.17|&mdash; Remote Connect :  Change something into HTML/CSS/JS from your PC and watch the effect to your phone with live reload._[Need Help? See FAQ Section]_<br> &mdash; `.htm` support.|
 |1.6.5|26.07.17|Bug Fixed for Linux & macOS. Sometime extension was crashing if `liveServer.settings.CustomBrowser` settings is not provided by manually on macOS & Linux. |
 |1.6.4|26.07.17|Critical Bug Fixed for Linux & macOS. Extension was crashing for `liveServer.settings.root` settings on macOS & Linux. |
