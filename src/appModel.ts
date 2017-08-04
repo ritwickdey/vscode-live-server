@@ -66,12 +66,28 @@ export class AppModel {
 
             let portNo = this.configSettings.get('port') as Number;
 
+            let ignoreFilePaths = this.configSettings.get("ignoreFiles") as string[] || [];
+            const workspacePath = file.WorkSpacePath || '';
+            ignoreFilePaths.forEach((ignoredFilePath, index, thisArr) => {
+                if (!ignoredFilePath.startsWith('/') || !ignoredFilePath.startsWith('\\')) {
+                    if (process.platform === 'win32') {
+                        thisArr[index] = '\\'+ ignoredFilePath;
+                    }
+                    else {
+                        thisArr[index] = '/'+ ignoredFilePath;
+                    }
+                }
+
+                thisArr[index] = workspacePath + thisArr[index];
+            });
+
             let params = {
                 port: portNo,
                 host: '0.0.0.0',
                 root: file.rootPath,
                 file: null,
-                open: false
+                open: false,
+                ignore: ignoreFilePaths
             }
             this.Init();
             LiveServerClass.StartServer(params, (ServerInstance) => {
@@ -130,10 +146,10 @@ export class AppModel {
         let textEditor = vscode.window.activeTextEditor;
         if (!textEditor) return null;
 
-        let WorkSpacePath = vscode.workspace.rootPath;
+        const WorkSpacePath = vscode.workspace.rootPath;
         let FullFilePath = textEditor.document.fileName;
-        let documentPath =  path.dirname(FullFilePath);
-       
+        let documentPath = path.dirname(FullFilePath);
+
         //if only a single file is opened, WorkSpacePath will be NULL
         let rootPath = WorkSpacePath ? WorkSpacePath : documentPath;
 
@@ -143,7 +159,7 @@ export class AppModel {
         }
         // virtualRoot = virtualRoot.replace(/\//gi, '\\');
         // virtualRoot = rootPath + virtualRoot;
-        virtualRoot = path.join(rootPath,virtualRoot);
+        virtualRoot = path.join(rootPath, virtualRoot);
         // if (virtualRoot.endsWith('\\')) {
         //     virtualRoot = virtualRoot.substring(0, virtualRoot.length - 1);
         // }
@@ -158,27 +174,28 @@ export class AppModel {
         }
 
         let filePathFromRoot: string;
-        if (!FullFilePath.endsWith('.html') || HasVirtualRootError || rootPath.length - path.dirname(FullFilePath || '').length > 1 ) {
+        if (!FullFilePath.endsWith('.html') || HasVirtualRootError || rootPath.length - path.dirname(FullFilePath || '').length > 1) {
             filePathFromRoot = null;
         }
         else {
             filePathFromRoot = FullFilePath.substring(rootPath.length, FullFilePath.length);
-        
+
         }
-        
-        if(process.platform === 'win32') {
-            if(!rootPath.endsWith('\\'))
-                rootPath = rootPath+'\\';
+
+        if (process.platform === 'win32') {
+            if (!rootPath.endsWith('\\'))
+                rootPath = rootPath + '\\';
         }
         else {
-            if(!rootPath.endsWith('/'))
-                rootPath = rootPath+'/';
+            if (!rootPath.endsWith('/'))
+                rootPath = rootPath + '/';
         }
 
         return {
             HasVirtualRootError: HasVirtualRootError,
             rootPath: rootPath,
-            filePathFromRoot: filePathFromRoot
+            filePathFromRoot: filePathFromRoot,
+            WorkSpacePath: WorkSpacePath
         };
     }
 
@@ -189,25 +206,25 @@ export class AppModel {
     }
 
     private HaveAnyHTMLFile(callback) {
-        vscode.workspace.findFiles('**/*[.html | .htm]', '**/node_modules/**',1).then((files) => {
+        vscode.workspace.findFiles('**/*[.html | .htm]', '**/node_modules/**', 1).then((files) => {
             if (files !== undefined && files.length !== 0) {
                 callback();
                 return;
             }
-            
+
             let textEditor = vscode.window.activeTextEditor;
             if (!textEditor) return;
 
             //If a HTML file open without Workspace
             if (vscode.workspace.rootPath === undefined && textEditor.document.languageId === 'html') {
-                 callback();
-                 return;
+                callback();
+                return;
             }
         });
     }
 
     private openBrowser(host: string, port: number, path: string) {
-        if(this.configSettings.get("NoBrowser") as boolean) return;
+        if (this.configSettings.get("NoBrowser") as boolean) return;
 
         let appConfig: string[] = [];
         let advanceCustomBrowserCmd = this.configSettings.get("AdvanceCustomBrowserCmdLine") as string;
@@ -261,7 +278,7 @@ export class AppModel {
             opn(`http://${host}:${port}/${path}`, { app: appConfig || [] });
         } catch (error) {
             vscode.window.showErrorMessage(`Error to open browser. See error on console`);
-            console.log("\n\nError Log to open Browser : ",error);
+            console.log("\n\nError Log to open Browser : ", error);
             console.log("\n\n");
         }
     }

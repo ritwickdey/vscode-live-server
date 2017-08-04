@@ -2,7 +2,7 @@
   "name": "LiveServer",
   "displayName": "Live Server",
   "description": "Launch a development Live Server to browser with live preview and live reload.",
-  "version": "1.6.7",
+  "version": "1.6.8",
   "publisher": "ritwickdey",
   "author": {
     "name": "Ritwick Dey",
@@ -117,10 +117,19 @@
           "default": null,
           "description": "Note: If it is not Null, It will override CustomBrowser and ChromeDebuggingAttachment settings.\n\n Examples : \nchrome --incognito \nchromecan --remote-debugging-port=9222 \nchrome --headless\nchrome --incognito --remote-debugging-port=9222"
         },
-        "liveServer.settings.NoBrowser":{
+        "liveServer.settings.NoBrowser": {
           "type": "boolean",
           "default": false,
           "description": "If it is true live server will start without browser opened."
+        },
+        "liveServer.settings.ignoreFiles": {
+          "type": "array",
+          "default": [
+            ".vscode/**",
+            "**/*.scss",
+            "**/*.sass"
+          ],
+          "description": "To ignore specific file changes"
         }
       }
     }

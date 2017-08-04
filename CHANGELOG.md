@@ -1,7 +1,7 @@
 # Changelog
-
 | Version | Date | Changelog |
 |---|---|---|
+|1.6.8|04.08.17|*[New Settings]* `liveServer.settings.ignoreFiles`: To ignore specific file changes. _(For More details, check out `Settings` section)_ [[#10](https://github.com/ritwickdey/vscode-live-server/issues/10)]. (Thanks [AminLA](https://github.com/AminLA)).|
 |1.6.7|30.07.17|*[New Settings]* `liveServer.settings.NoBrowser` - If it is true live server will start without browser opened.|
 |1.6.6|28.07.17|&mdash; Remote Connect :  Change something into HTML/CSS/JS from your PC and watch the effect to your phone with live reload._[Need Help? See FAQ Section]_<br> &mdash; `.htm` support.|
 |1.6.5|26.07.17|Bug Fixed for Linux & macOS. Sometime extension was crashing if `liveServer.settings.CustomBrowser` settings is not provided by manually on macOS & Linux. |

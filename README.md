@@ -74,6 +74,17 @@ Launch a development local server directly from VSCode to your browser and watch
     * _Default Value is `false`_ 
 
     <hr>
+* **`liveServer.settings.ignoreFiles` :** To ignore specific file changes.
+    * _Default value is :_
+    ```
+    [
+        ".vscode/**",
+        "**/*.scss",
+        "**/*.sass"
+    ]
+    ```
+    Now, by default Live Server will not track changes of your `.scss` &  `.sass` files. 
+    <hr>
 
 ## Installation
 Open VSCode Editor and Press `ctrl+P`, type `ext install LiveServer`.
@@ -81,15 +92,15 @@ Open VSCode Editor and Press `ctrl+P`, type `ext install LiveServer`.
 
 ## What's new ?
 
+* #### Version 1.6.8 (04.08.2017)
+    * *[New Settings]* `liveServer.settings.ignoreFiles`: To ignore specific file changes. _(For More details, check out `Settings` section)_ [[#10](https://github.com/ritwickdey/vscode-live-server/issues/10)]. (Thanks [AminLA](https://github.com/AminLA)).
+
 * #### Version 1.6.7 (30.07.2017)
     * *[New Settings]* `liveServer.settings.NoBrowser` - If it is true live server will start without browser opened.
 
 * #### Version 1.6.6 (28.07.2017)
     * Remote Connect :  Change something into HTML/CSS/JS from your PC and watch the effect to your phone with live reload. _[Need Help? See FAQ Section]_
     * `.htm` support.
-
-* #### Version 1.6.5 (26.07.2017)
-    *  Bug Fixed for Linux & macOS. Sometime extension was crashing if `liveServer.settings.CustomBrowser` settings is not provided by manually on macOS & Linux. 
 
 
 
@@ -114,7 +125,12 @@ Inside of the `settings.json`, type following key-value pairs. By the way you'll
     "liveServer.settings.root": "/src",
     "liveServer.settings.CustomBrowser" : "chrome",
     "liveServer.settings.AdvanceCustomBrowserCmdLine": "chrome --incognito --remote-debugging-port=9222",
-    "liveServer.settings.NoBrowser" : false
+    "liveServer.settings.NoBrowser" : false,
+    "liveServer.settings.ignoredFiles" : [
+            ".vscode/**",
+            "**/*.scss",
+            "**/*.sass"
+    ]
 
 }
 ```
