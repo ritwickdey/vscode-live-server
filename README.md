@@ -126,7 +126,7 @@ Inside of the `settings.json`, type following key-value pairs. By the way you'll
     "liveServer.settings.CustomBrowser" : "chrome",
     "liveServer.settings.AdvanceCustomBrowserCmdLine": "chrome --incognito --remote-debugging-port=9222",
     "liveServer.settings.NoBrowser" : false,
-    "liveServer.settings.ignoredFiles" : [
+    "liveServer.settings.ignoreFiles" : [
             ".vscode/**",
             "**/*.scss",
             "**/*.sass"
@@ -148,3 +148,5 @@ And note down the `IPv4 Address` (probably it will look like 192.168.xx.xx). Thi
         http://<IP Address> : <Port>
 
 ** For an example, if your server running at **http:// 127.0.0.1:3500** on PC then port number is **3500**.
+
+
