@@ -3,17 +3,15 @@ import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as opn from 'opn';
+
 import { LiveServerClass } from './LiveServer';
+import { Config } from './Config';
 
 export class AppModel {
 
     private statusBarItem: vscode.StatusBarItem;
     private IsServerRunning: boolean;
     private LiveServerInstance;
-
-    get configSettings() {
-        return vscode.workspace.getConfiguration('liveServer.settings');
-    }
 
     constructor() {
         this.IsServerRunning = false;
@@ -64,17 +62,17 @@ export class AppModel {
                 vscode.window.showErrorMessage('Invaild Path in liveServer.settings.root. live Server Starts from workspace root');
             }
 
-            let portNo = this.configSettings.get('port') as Number;
+            let portNo = Config.getPort;
 
-            let ignoreFilePaths = this.configSettings.get("ignoreFiles") as string[] || [];
+            let ignoreFilePaths = Config.getIgnoreFiles || [];
             const workspacePath = file.WorkSpacePath || '';
             ignoreFilePaths.forEach((ignoredFilePath, index, thisArr) => {
                 if (!ignoredFilePath.startsWith('/') || !ignoredFilePath.startsWith('\\')) {
                     if (process.platform === 'win32') {
-                        thisArr[index] = '\\'+ ignoredFilePath;
+                        thisArr[index] = '\\' + ignoredFilePath;
                     }
                     else {
-                        thisArr[index] = '/'+ ignoredFilePath;
+                        thisArr[index] = '/' + ignoredFilePath;
                     }
                 }
 
@@ -100,7 +98,7 @@ export class AppModel {
                     this.openBrowser('127.0.0.1', port, file.filePathFromRoot || "");
                 }
                 else {
-                    let port = this.configSettings.get('port') as Number;
+                    let port = Config.getPort;
                     vscode.window.showErrorMessage(`Error to open server at port ${port}.`);
                     this.IsServerRunning = true; //to revert
                     this.ToggleStatusBar(); //reverted
@@ -153,16 +151,13 @@ export class AppModel {
         //if only a single file is opened, WorkSpacePath will be NULL
         let rootPath = WorkSpacePath ? WorkSpacePath : documentPath;
 
-        let virtualRoot = this.configSettings.get('root') as string;
+        let virtualRoot = Config.getRoot;
         if (!virtualRoot.startsWith('/')) {
             virtualRoot = '/' + virtualRoot;
         }
-        // virtualRoot = virtualRoot.replace(/\//gi, '\\');
-        // virtualRoot = rootPath + virtualRoot;
+
         virtualRoot = path.join(rootPath, virtualRoot);
-        // if (virtualRoot.endsWith('\\')) {
-        //     virtualRoot = virtualRoot.substring(0, virtualRoot.length - 1);
-        // }
+
 
         let HasVirtualRootError: boolean;
         if (fs.existsSync(virtualRoot)) {
@@ -224,10 +219,10 @@ export class AppModel {
     }
 
     private openBrowser(host: string, port: number, path: string) {
-        if (this.configSettings.get("NoBrowser") as boolean) return;
+        if (Config.getNoBrowser) return;
 
         let appConfig: string[] = [];
-        let advanceCustomBrowserCmd = this.configSettings.get("AdvanceCustomBrowserCmdLine") as string;
+        let advanceCustomBrowserCmd = Config.getAdvancedBrowserCmdline;
         if (path.startsWith('\\') || path.startsWith('/')) {
             path = path.substring(1, path.length);
         }
@@ -242,8 +237,8 @@ export class AppModel {
             });
         }
         else {
-            let CustomBrowser = this.configSettings.get('CustomBrowser') as string;
-            let ChromeDebuggingAttachmentEnable = this.configSettings.get('ChromeDebuggingAttachment') as boolean;
+            let CustomBrowser = Config.getCustomBrowser;
+            let ChromeDebuggingAttachmentEnable = Config.getChromeDebuggingAttachment;
 
             if (CustomBrowser && CustomBrowser !== 'null') {
                 appConfig.push(CustomBrowser);
