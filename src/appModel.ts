@@ -5,11 +5,11 @@ import * as path from 'path';
 import * as opn from 'opn';
 
 import { LiveServerClass } from './LiveServer';
+import { StatusbarUi } from './StatusbarUi';
 import { Config } from './Config';
 
 export class AppModel {
 
-    private statusBarItem: vscode.StatusBarItem;
     private IsServerRunning: boolean;
     private LiveServerInstance;
 
@@ -22,27 +22,8 @@ export class AppModel {
     }
 
     public Init() {
-
-        if (!this.statusBarItem) {
-            this.statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
-            this.goLiveUI();
-            this.statusBarItem.show();
-        }
+        StatusbarUi.Init();
     }
-
-    public goLiveUI() {
-        this.statusBarItem.text = '$(broadcast) Go Live';
-        this.statusBarItem.command = 'extension.liveServer.goOnline';
-        this.statusBarItem.tooltip = 'Click to run live server'
-    }
-
-    public goOfflineUI() {
-        let port = this.LiveServerInstance.address().port
-        this.statusBarItem.text = `$(circle-slash) Port : ${port} - GoOffline`;
-        this.statusBarItem.command = 'extension.liveServer.goOffline';
-        this.statusBarItem.tooltip = 'Click to close server';
-    }
-
 
     public Golive() {
 
@@ -109,8 +90,7 @@ export class AppModel {
 
         });
 
-        this.ShowProcessRunning();
-
+        StatusbarUi.Working("Starting...");
     }
 
     public GoOffline() {
@@ -125,16 +105,16 @@ export class AppModel {
             this.LiveServerInstance = null;
         });
 
-        this.ShowProcessRunning();
+        StatusbarUi.Working("Disposing...");
 
     }
 
     private ToggleStatusBar() {
         if (!this.IsServerRunning) {
-            this.goOfflineUI();
+            StatusbarUi.Offline(Config.getPort);
         }
         else {
-            this.goLiveUI();
+           StatusbarUi.Live();
         }
 
         this.IsServerRunning = !this.IsServerRunning;
@@ -192,12 +172,6 @@ export class AppModel {
             filePathFromRoot: filePathFromRoot,
             WorkSpacePath: WorkSpacePath
         };
-    }
-
-    private ShowProcessRunning() {
-        this.statusBarItem.text = '$(pulse) Working on it...';
-        this.statusBarItem.tooltip = 'In case if it takes long time, try to close all browser window.';
-        this.statusBarItem.command = null;
     }
 
     private HaveAnyHTMLFile(callback) {
@@ -281,7 +255,7 @@ export class AppModel {
 
 
     public dispose() {
-        this.statusBarItem.dispose();
+        StatusbarUi.dispose();
     }
 }
 
