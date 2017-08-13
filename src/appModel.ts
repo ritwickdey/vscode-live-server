@@ -31,36 +31,36 @@ export class AppModel {
 
         if (this.IsServerRunning) {
             let port = this.LiveServerInstance.address().port;
-            vscode.window.showInformationMessage(`Server is already running at port ${port} ...`);
+            this.showPopUpMsg(`Server is already running at port ${port} ...`);
             return;
         }
         if (!vscode.window.activeTextEditor) {
-            vscode.window.showInformationMessage(`Open a file...`);
+            this.showPopUpMsg(`Open a file...`);
             return;
         }
         const workspacePath = vscode.workspace.rootPath || '';
         const openDocUri = vscode.window.activeTextEditor.document.fileName;
         let file = Helper.ExtractFilePath(workspacePath, openDocUri, Config.getRoot);
-        
+
         if (file.HasVirtualRootError) {
-            vscode.window.showErrorMessage('Invaild Path in liveServer.settings.root settings. live Server will start from workspace root');
+            this.showPopUpMsg('Invaild Path in liveServer.settings.root settings. live Server will start from workspace root', true);
         }
 
         let ignoreFilePaths = Config.getIgnoreFiles || [];
-        let params = Helper.generateParams(file.rootPath,Config.getPort,ignoreFilePaths,workspacePath);
+        let params = Helper.generateParams(file.rootPath, Config.getPort, ignoreFilePaths, workspacePath);
         this.Init();
         LiveServerHelper.StartServer(params, (ServerInstance) => {
             if (ServerInstance && ServerInstance.address()) {
                 this.LiveServerInstance = ServerInstance;
                 this.runningPort = ServerInstance.address().port;
                 this.ToggleStatusBar();
-                vscode.window.showInformationMessage(`Server is Started at port : ${this.runningPort}`);
+                this.showPopUpMsg(`Server is Started at port : ${this.runningPort}`);
                 let filePathFromRoot = Helper.relativeHtmlPathFromRoot(file.rootPath, openDocUri)
                 this.openBrowser('127.0.0.1', this.runningPort, filePathFromRoot || "");
             }
             else {
-                vscode.window.showErrorMessage(`Error to open server at port ${Config.getPort}.`);
-                this.IsServerRunning = true; //to revert
+                this.showPopUpMsg(`Error to open server at port ${Config.getPort}.`,true);
+                this.IsServerRunning = true; //to revert status - cheat :p 
                 this.ToggleStatusBar(); //reverted
                 return;
             }
@@ -71,14 +71,16 @@ export class AppModel {
         StatusbarUi.Working("Starting...");
     }
 
+
+
     public GoOffline() {
         if (!this.IsServerRunning) {
-            vscode.window.showInformationMessage(`Server is not already running`);
+            this.showPopUpMsg(`Server is not already running`);
             return;
         }
         this.Init();
         LiveServerHelper.StopServer(this.LiveServerInstance, () => {
-            vscode.window.showInformationMessage('Server is now offline.');
+            this.showPopUpMsg('Server is now offline.');
             this.ToggleStatusBar();
             this.LiveServerInstance = null;
             this.runningPort = 0;
@@ -86,6 +88,15 @@ export class AppModel {
 
         StatusbarUi.Working("Disposing...");
 
+    }
+
+    private showPopUpMsg(msg: string, isErrorMsg: boolean = false) {
+        if (isErrorMsg) {
+            vscode.window.showErrorMessage(msg);
+        }
+        else {
+            vscode.window.showInformationMessage(msg);
+        }
     }
 
     private ToggleStatusBar() {
@@ -172,7 +183,7 @@ export class AppModel {
         try {
             opn(`http://${host}:${port}/${path}`, { app: appConfig || [] });
         } catch (error) {
-            vscode.window.showErrorMessage(`Error to open browser. See error on console`);
+            this.showPopUpMsg(`Error to open browser. See error on console`,true);
             console.log("\n\nError Log to open Browser : ", error);
             console.log("\n\n");
         }
