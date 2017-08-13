@@ -7,11 +7,13 @@ import * as opn from 'opn';
 import { LiveServerClass } from './LiveServer';
 import { StatusbarUi } from './StatusbarUi';
 import { Config } from './Config';
+import { Helper } from './Helper';
 
 export class AppModel {
 
     private IsServerRunning: boolean;
     private LiveServerInstance;
+    private runningPort: number;
 
     constructor() {
         this.IsServerRunning = false;
@@ -32,63 +34,39 @@ export class AppModel {
             vscode.window.showInformationMessage(`Server is already running at port ${port} ...`);
             return;
         }
-        let file = this.ExtractFilePath();
-        if (!file) {
-            vscode.window.showInformationMessage(`Open Document...`);
+        if (!vscode.window.activeTextEditor) {
+            vscode.window.showInformationMessage(`Open a file...`);
             return;
         }
-        vscode.workspace.saveAll().then(() => {
+        const workspacePath = vscode.workspace.rootPath || '';
+        const openDocUri = vscode.window.activeTextEditor.document.fileName;
+        let file = Helper.ExtractFilePath(workspacePath, openDocUri, Config.getRoot);
+        
+        if (file.HasVirtualRootError) {
+            vscode.window.showErrorMessage('Invaild Path in liveServer.settings.root settings. live Server will start from workspace root');
+        }
 
-            if (file.HasVirtualRootError) {
-                vscode.window.showErrorMessage('Invaild Path in liveServer.settings.root. live Server Starts from workspace root');
+        let ignoreFilePaths = Config.getIgnoreFiles || [];
+        let params = Helper.generateParams(file.rootPath,Config.getPort,ignoreFilePaths,workspacePath);
+        this.Init();
+        LiveServerClass.StartServer(params, (ServerInstance) => {
+            if (ServerInstance && ServerInstance.address()) {
+                this.LiveServerInstance = ServerInstance;
+                this.runningPort = ServerInstance.address().port;
+                this.ToggleStatusBar();
+                vscode.window.showInformationMessage(`Server is Started at port : ${this.runningPort}`);
+                let filePathFromRoot = Helper.relativeHtmlPathFromRoot(file.rootPath, openDocUri)
+                this.openBrowser('127.0.0.1', this.runningPort, filePathFromRoot || "");
             }
-
-            let portNo = Config.getPort;
-
-            let ignoreFilePaths = Config.getIgnoreFiles || [];
-            const workspacePath = file.WorkSpacePath || '';
-            ignoreFilePaths.forEach((ignoredFilePath, index, thisArr) => {
-                if (!ignoredFilePath.startsWith('/') || !ignoredFilePath.startsWith('\\')) {
-                    if (process.platform === 'win32') {
-                        thisArr[index] = '\\' + ignoredFilePath;
-                    }
-                    else {
-                        thisArr[index] = '/' + ignoredFilePath;
-                    }
-                }
-
-                thisArr[index] = workspacePath + thisArr[index];
-            });
-
-            let params = {
-                port: portNo,
-                host: '0.0.0.0',
-                root: file.rootPath,
-                file: null,
-                open: false,
-                ignore: ignoreFilePaths
+            else {
+                vscode.window.showErrorMessage(`Error to open server at port ${Config.getPort}.`);
+                this.IsServerRunning = true; //to revert
+                this.ToggleStatusBar(); //reverted
+                return;
             }
-            this.Init();
-            LiveServerClass.StartServer(params, (ServerInstance) => {
-                if (ServerInstance && ServerInstance.address()) {
-
-                    this.LiveServerInstance = ServerInstance;
-                    let port = ServerInstance.address().port;
-                    this.ToggleStatusBar();
-                    vscode.window.showInformationMessage(`Server is Started at port : ${port}`);
-                    this.openBrowser('127.0.0.1', port, file.filePathFromRoot || "");
-                }
-                else {
-                    let port = Config.getPort;
-                    vscode.window.showErrorMessage(`Error to open server at port ${port}.`);
-                    this.IsServerRunning = true; //to revert
-                    this.ToggleStatusBar(); //reverted
-                    return;
-                }
-
-            });
 
         });
+
 
         StatusbarUi.Working("Starting...");
     }
@@ -103,6 +81,7 @@ export class AppModel {
             vscode.window.showInformationMessage('Server is now offline.');
             this.ToggleStatusBar();
             this.LiveServerInstance = null;
+            this.runningPort = 0;
         });
 
         StatusbarUi.Working("Disposing...");
@@ -111,68 +90,15 @@ export class AppModel {
 
     private ToggleStatusBar() {
         if (!this.IsServerRunning) {
-            StatusbarUi.Offline(Config.getPort);
+            StatusbarUi.Offline(this.runningPort || Config.getPort);
         }
         else {
-           StatusbarUi.Live();
+            StatusbarUi.Live();
         }
 
         this.IsServerRunning = !this.IsServerRunning;
     }
 
-    private ExtractFilePath() {
-        let textEditor = vscode.window.activeTextEditor;
-        if (!textEditor) return null;
-
-        const WorkSpacePath = vscode.workspace.rootPath;
-        let FullFilePath = textEditor.document.fileName;
-        let documentPath = path.dirname(FullFilePath);
-
-        //if only a single file is opened, WorkSpacePath will be NULL
-        let rootPath = WorkSpacePath ? WorkSpacePath : documentPath;
-
-        let virtualRoot = Config.getRoot;
-        if (!virtualRoot.startsWith('/')) {
-            virtualRoot = '/' + virtualRoot;
-        }
-
-        virtualRoot = path.join(rootPath, virtualRoot);
-
-
-        let HasVirtualRootError: boolean;
-        if (fs.existsSync(virtualRoot)) {
-            rootPath = virtualRoot;
-            HasVirtualRootError = false;
-        }
-        else {
-            HasVirtualRootError = true;
-        }
-
-        let filePathFromRoot: string;
-        if (!FullFilePath.endsWith('.html') || HasVirtualRootError || rootPath.length - path.dirname(FullFilePath || '').length > 1) {
-            filePathFromRoot = null;
-        }
-        else {
-            filePathFromRoot = FullFilePath.substring(rootPath.length, FullFilePath.length);
-
-        }
-
-        if (process.platform === 'win32') {
-            if (!rootPath.endsWith('\\'))
-                rootPath = rootPath + '\\';
-        }
-        else {
-            if (!rootPath.endsWith('/'))
-                rootPath = rootPath + '/';
-        }
-
-        return {
-            HasVirtualRootError: HasVirtualRootError,
-            rootPath: rootPath,
-            filePathFromRoot: filePathFromRoot,
-            WorkSpacePath: WorkSpacePath
-        };
-    }
 
     private HaveAnyHTMLFile(callback) {
         vscode.workspace.findFiles('**/*[.html | .htm]', '**/node_modules/**', 1).then((files) => {
