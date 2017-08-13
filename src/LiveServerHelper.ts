@@ -2,7 +2,7 @@
 import * as liveServer from 'live-server';
 import * as httpShutdown from 'http-shutdown';
 
-export class LiveServerClass {
+export class LiveServerHelper {
 
     static StartServer(params, callback) {
         setTimeout(() => {

@@ -4,7 +4,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as opn from 'opn';
 
-import { LiveServerClass } from './LiveServer';
+import { LiveServerHelper } from './LiveServerHelper';
 import { StatusbarUi } from './StatusbarUi';
 import { Config } from './Config';
 import { Helper } from './Helper';
@@ -49,7 +49,7 @@ export class AppModel {
         let ignoreFilePaths = Config.getIgnoreFiles || [];
         let params = Helper.generateParams(file.rootPath,Config.getPort,ignoreFilePaths,workspacePath);
         this.Init();
-        LiveServerClass.StartServer(params, (ServerInstance) => {
+        LiveServerHelper.StartServer(params, (ServerInstance) => {
             if (ServerInstance && ServerInstance.address()) {
                 this.LiveServerInstance = ServerInstance;
                 this.runningPort = ServerInstance.address().port;
@@ -77,7 +77,7 @@ export class AppModel {
             return;
         }
         this.Init();
-        LiveServerClass.StopServer(this.LiveServerInstance, () => {
+        LiveServerHelper.StopServer(this.LiveServerInstance, () => {
             vscode.window.showInformationMessage('Server is now offline.');
             this.ToggleStatusBar();
             this.LiveServerInstance = null;
