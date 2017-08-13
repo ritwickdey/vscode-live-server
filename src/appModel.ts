@@ -1,7 +1,6 @@
 'use strict';
+
 import * as vscode from 'vscode';
-import * as fs from 'fs';
-import * as path from 'path';
 import * as opn from 'opn';
 
 import { LiveServerHelper } from './LiveServerHelper';
@@ -17,6 +16,8 @@ export class AppModel {
 
     constructor() {
         this.IsServerRunning = false;
+        this.runningPort = null;
+
         this.HaveAnyHTMLFile(() => {
             this.Init();
         })
@@ -30,8 +31,7 @@ export class AppModel {
     public Golive() {
 
         if (this.IsServerRunning) {
-            let port = this.LiveServerInstance.address().port;
-            this.showPopUpMsg(`Server is already running at port ${port} ...`);
+            this.showPopUpMsg(`Server is already running at port ${this.runningPort} ...`);
             return;
         }
         if (!vscode.window.activeTextEditor) {
@@ -39,30 +39,30 @@ export class AppModel {
             return;
         }
         const workspacePath = vscode.workspace.rootPath || '';
-        const openDocUri = vscode.window.activeTextEditor.document.fileName;
-        let file = Helper.ExtractFilePath(workspacePath, openDocUri, Config.getRoot);
+        const openedDocUri = vscode.window.activeTextEditor.document.fileName;
+        let pathInfos = Helper.ExtractFilePath(workspacePath, openedDocUri, Config.getRoot);
 
-        if (file.HasVirtualRootError) {
+        if (pathInfos.HasVirtualRootError) {
             this.showPopUpMsg('Invaild Path in liveServer.settings.root settings. live Server will start from workspace root', true);
         }
 
         let ignoreFilePaths = Config.getIgnoreFiles || [];
-        let params = Helper.generateParams(file.rootPath, Config.getPort, ignoreFilePaths, workspacePath);
+        let params = Helper.generateParams(pathInfos.rootPath, Config.getPort, ignoreFilePaths, workspacePath);
         this.Init();
-        LiveServerHelper.StartServer(params, (ServerInstance) => {
-            if (ServerInstance && ServerInstance.address()) {
-                this.LiveServerInstance = ServerInstance;
-                this.runningPort = ServerInstance.address().port;
+        LiveServerHelper.StartServer(params, (serverInstance) => {
+            if (serverInstance && serverInstance.address()) {
+                this.LiveServerInstance = serverInstance;
+                this.runningPort = serverInstance.address().port;
                 this.ToggleStatusBar();
                 this.showPopUpMsg(`Server is Started at port : ${this.runningPort}`);
-                let filePathFromRoot = Helper.relativeHtmlPathFromRoot(file.rootPath, openDocUri)
-                this.openBrowser('127.0.0.1', this.runningPort, filePathFromRoot || "");
+                
+                let filePathFromRoot = Helper.relativeHtmlPathFromRoot(pathInfos.rootPath, openedDocUri)
+                this.openBrowser(this.runningPort, filePathFromRoot || "");
             }
             else {
                 this.showPopUpMsg(`Error to open server at port ${Config.getPort}.`,true);
                 this.IsServerRunning = true; //to revert status - cheat :p 
                 this.ToggleStatusBar(); //reverted
-                return;
             }
 
         });
@@ -83,7 +83,7 @@ export class AppModel {
             this.showPopUpMsg('Server is now offline.');
             this.ToggleStatusBar();
             this.LiveServerInstance = null;
-            this.runningPort = 0;
+            this.runningPort = null;
         });
 
         StatusbarUi.Working("Disposing...");
@@ -129,8 +129,10 @@ export class AppModel {
         });
     }
 
-    private openBrowser(host: string, port: number, path: string) {
+    private openBrowser(port: number, path: string) {
         if (Config.getNoBrowser) return;
+
+        const host = '127.0.0.1';
 
         let appConfig: string[] = [];
         let advanceCustomBrowserCmd = Config.getAdvancedBrowserCmdline;

@@ -1,22 +1,19 @@
 'use strict';
 
-import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
-import { Config } from './Config';
-
 
 export class Helper {
 
     public static ExtractFilePath(workSpacePath: string, openedDocUri: string, virtualRoot: string) {
 
+        let HasVirtualRootError: boolean;
         let documentPath = path.dirname(openedDocUri);
 
         //if only a single file is opened, WorkSpacePath will be NULL
         let rootPath = workSpacePath ? workSpacePath : documentPath;
 
         virtualRoot = path.join(rootPath, virtualRoot);
-        let HasVirtualRootError: boolean;
 
         if (fs.existsSync(virtualRoot)) {
             rootPath = virtualRoot;
@@ -25,22 +22,17 @@ export class Helper {
         else {
             HasVirtualRootError = true;
         }
-
-        // let filePathFromRoot: string = Helper.relativeHtmlPathFromRoot(rootPath,openedDocUri);
-
+        
         if (process.platform === 'win32') {
-            if (!rootPath.endsWith('\\'))
-                rootPath = rootPath + '\\';
+            if (!rootPath.endsWith('\\')) rootPath = rootPath + '\\';
         }
         else {
-            if (!rootPath.endsWith('/'))
-                rootPath = rootPath + '/';
+            if (!rootPath.endsWith('/')) rootPath = rootPath + '/';
         }
 
         return {
             HasVirtualRootError: HasVirtualRootError,
-            rootPath: rootPath,
-            WorkSpacePath: workSpacePath
+            rootPath: rootPath
         };
     }
 
