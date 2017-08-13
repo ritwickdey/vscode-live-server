@@ -19,13 +19,9 @@ export class AppModel {
         this.runningPort = null;
 
         this.HaveAnyHTMLFile(() => {
-            this.Init();
+            StatusbarUi.Init();
         })
 
-    }
-
-    public Init() {
-        StatusbarUi.Init();
     }
 
     public Golive() {
@@ -48,19 +44,21 @@ export class AppModel {
 
         let ignoreFilePaths = Config.getIgnoreFiles || [];
         let params = Helper.generateParams(pathInfos.rootPath, Config.getPort, ignoreFilePaths, workspacePath);
-        this.Init();
+        // this.Init();
         LiveServerHelper.StartServer(params, (serverInstance) => {
             if (serverInstance && serverInstance.address()) {
                 this.LiveServerInstance = serverInstance;
                 this.runningPort = serverInstance.address().port;
                 this.ToggleStatusBar();
                 this.showPopUpMsg(`Server is Started at port : ${this.runningPort}`);
-                
-                let filePathFromRoot = Helper.relativeHtmlPathFromRoot(pathInfos.rootPath, openedDocUri)
-                this.openBrowser(this.runningPort, filePathFromRoot || "");
+
+                if (!Config.getNoBrowser) {
+                    this.openBrowser(this.runningPort,
+                        Helper.relativeHtmlPathFromRoot(pathInfos.rootPath, openedDocUri) || "");
+                }
             }
             else {
-                this.showPopUpMsg(`Error to open server at port ${Config.getPort}.`,true);
+                this.showPopUpMsg(`Error to open server at port ${Config.getPort}.`, true);
                 this.IsServerRunning = true; //to revert status - cheat :p 
                 this.ToggleStatusBar(); //reverted
             }
@@ -71,14 +69,12 @@ export class AppModel {
         StatusbarUi.Working("Starting...");
     }
 
-
-
     public GoOffline() {
         if (!this.IsServerRunning) {
             this.showPopUpMsg(`Server is not already running`);
             return;
         }
-        this.Init();
+        // this.Init();
         LiveServerHelper.StopServer(this.LiveServerInstance, () => {
             this.showPopUpMsg('Server is now offline.');
             this.ToggleStatusBar();
@@ -110,12 +106,10 @@ export class AppModel {
         this.IsServerRunning = !this.IsServerRunning;
     }
 
-
     private HaveAnyHTMLFile(callback) {
         vscode.workspace.findFiles('**/*[.html | .htm]', '**/node_modules/**', 1).then((files) => {
             if (files !== undefined && files.length !== 0) {
-                callback();
-                return;
+                return callback();
             }
 
             let textEditor = vscode.window.activeTextEditor;
@@ -123,15 +117,12 @@ export class AppModel {
 
             //If a HTML file open without Workspace
             if (vscode.workspace.rootPath === undefined && textEditor.document.languageId === 'html') {
-                callback();
-                return;
+                return callback();
             }
         });
     }
 
     private openBrowser(port: number, path: string) {
-        if (Config.getNoBrowser) return;
-
         const host = '127.0.0.1';
 
         let appConfig: string[] = [];
@@ -185,14 +176,12 @@ export class AppModel {
         try {
             opn(`http://${host}:${port}/${path}`, { app: appConfig || [] });
         } catch (error) {
-            this.showPopUpMsg(`Error to open browser. See error on console`,true);
+            this.showPopUpMsg(`Error to open browser. See error on console`, true);
             console.log("\n\nError Log to open Browser : ", error);
             console.log("\n\n");
         }
     }
-
-
-
+    
     public dispose() {
         StatusbarUi.dispose();
     }

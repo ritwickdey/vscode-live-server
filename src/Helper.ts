@@ -7,20 +7,16 @@ export class Helper {
 
     public static ExtractFilePath(workSpacePath: string, openedDocUri: string, virtualRoot: string) {
 
-        let HasVirtualRootError: boolean;
         let documentPath = path.dirname(openedDocUri);
-
-        //if only a single file is opened, WorkSpacePath will be NULL
+        
+        //WorkSpacePath will be NULL if only a single file is opened.
         let rootPath = workSpacePath ? workSpacePath : documentPath;
-
+        
         virtualRoot = path.join(rootPath, virtualRoot);
-
-        if (fs.existsSync(virtualRoot)) {
+        
+        let HasVirtualRootError = !fs.existsSync(virtualRoot);
+        if (!HasVirtualRootError) {
             rootPath = virtualRoot;
-            HasVirtualRootError = false;
-        }
-        else {
-            HasVirtualRootError = true;
         }
         
         if (process.platform === 'win32') {

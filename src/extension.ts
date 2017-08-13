@@ -1,33 +1,36 @@
 'use strict';
 
 import * as vscode from 'vscode';
+import { StatusbarUi } from './StatusbarUi';
 import { AppModel } from './appModel'
 
 export function activate(context: vscode.ExtensionContext) {
     const appModel = new AppModel();
 
-    let OnlineDisposable = vscode.commands
+    context.subscriptions.push(vscode.commands
         .registerCommand('extension.liveServer.goOnline', () => {
             vscode.workspace.saveAll().then(() => {
                 appModel.Golive();
             });
-        });
-    let OfflineDisposable = vscode.commands
+        })
+    );
+
+    context.subscriptions.push(vscode.commands
         .registerCommand('extension.liveServer.goOffline', () => {
             appModel.GoOffline();
-        });
+        })
+    );
 
-    let ActiveTextEditorDisposable = vscode.window
+    context.subscriptions.push(vscode.window
         .onDidChangeActiveTextEditor(() => {
             if (vscode.window.activeTextEditor == undefined) return;
             if (vscode.workspace.rootPath == undefined && vscode.window.activeTextEditor.document.languageId == 'html') {
-                appModel.Init();
+                StatusbarUi.Init();
             }
-        });
+        })
+    );
 
-    context.subscriptions.push(ActiveTextEditorDisposable);
     context.subscriptions.push(appModel);
-    context.subscriptions.push(OnlineDisposable, OfflineDisposable);
 }
 
 
