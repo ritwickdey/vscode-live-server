@@ -1,4 +1,7 @@
 # Live Server
+
+**_[Lot of code is changed as I've refactored the source code. So, if anything is broken (Hopefully NOT :D), feel free to open a issue request on GitHub. I'll happy to resolve the bugs.]_**
+
 **_[If you like the extension, [please leave a review](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer#review-details), it puts a smile on my face.]_**
 
 **_[If you found any bug or if you have any suggestion, feel free to report or suggest me.]_**
@@ -60,6 +63,7 @@ Launch a development local server directly from VSCode to your browser and watch
     *  _Default value is `false`._
 
     <hr>
+    
 
 * **`liveServer.settings.AdvanceCustomBrowserCmdLine` :**  To set your any favorite browser (Eg: Chrome Canary, Firefox Nightly) using advance Command Line. 
     * _This setting will override `CustomBrowser` and `ChromeDebuggingAttachment` settings._
@@ -85,6 +89,10 @@ Launch a development local server directly from VSCode to your browser and watch
     ```
     Now, by default Live Server will not track changes of your `.scss` &  `.sass` files. 
     <hr>
+* **`liveServer.settings.donotShowInfoMsg` :** To turn off information pop-up messages like _"Server starts with port xxxx"_ or like that. Alternatively you can click to _"Don't show again"_ when a information message popped-up to turn off it.
+       
+    * _Default value is : `false`_
+    <hr>
 
 ## Installation
 Open VSCode Editor and Press `ctrl+P`, type `ext install LiveServer`.
@@ -92,16 +100,16 @@ Open VSCode Editor and Press `ctrl+P`, type `ext install LiveServer`.
 
 ## What's new ?
 
+* #### Version 1.6.9 (15.08.2017)
+    * ***[New Settings]*** `liveServer.settings.donotShowInfoMsg` : To turn off information pop-up messages like _"Server starts with port xxxx"_ or like that. Alternatively you can click to _"Don't show again"_ when a information message popped-up to turn off it.
+    * ***[Enhancement]*** When server is already started before & you right click onto a HTML file & choose 'Open with Live Server', instead of a pop-up message that *"Server already is already running at port xxxx"*, now it will open the HTML file to browser with same server instance.
+    * Source Code is refactored (If you you found anything broken, feel free to report me on GitHub). 
+
 * #### Version 1.6.8 (04.08.2017)
-    * *[New Settings]* `liveServer.settings.ignoreFiles`: To ignore specific file changes. _(For More details, check out `Settings` section)_ [[#10](https://github.com/ritwickdey/vscode-live-server/issues/10)]. (Thanks [AminLA](https://github.com/AminLA)).
+    * ***[New Settings]*** `liveServer.settings.ignoreFiles`: To ignore specific file changes. _(For More details, check out `Settings` section)_ [[#10](https://github.com/ritwickdey/vscode-live-server/issues/10)]. (Thanks [AminLA](https://github.com/AminLA)).
 
 * #### Version 1.6.7 (30.07.2017)
-    * *[New Settings]* `liveServer.settings.NoBrowser` - If it is true live server will start without browser opened.
-
-* #### Version 1.6.6 (28.07.2017)
-    * Remote Connect :  Change something into HTML/CSS/JS from your PC and watch the effect to your phone with live reload. _[Need Help? See FAQ Section]_
-    * `.htm` support.
-
+    * ***[New Settings]*** `liveServer.settings.NoBrowser` - If it is true live server will start without browser opened.
 
 
 ## Changelog
