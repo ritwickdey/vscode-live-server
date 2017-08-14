@@ -102,7 +102,9 @@ Open VSCode Editor and Press `ctrl+P`, type `ext install LiveServer`.
 
 * #### Version 1.6.9 (15.08.2017)
     * ***[New Settings]*** `liveServer.settings.donotShowInfoMsg` : To turn off information pop-up messages like _"Server starts with port xxxx"_ or like that. Alternatively you can click to _"Don't show again"_ when a information message popped-up to turn off it.
+
     * ***[Enhancement]*** When server is already started before & you right click onto a HTML file & choose 'Open with Live Server', instead of a pop-up message that *"Server already is already running at port xxxx"*, now it will open the HTML file to browser with same server instance.
+
     * Source Code is refactored (If you you found anything broken, feel free to report me on GitHub). 
 
 * #### Version 1.6.8 (04.08.2017)
