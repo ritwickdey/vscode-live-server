@@ -1,6 +1,6 @@
 'use strict';
 
-import * as vscode from 'vscode';
+import { window, workspace } from 'vscode';
 import * as opn from 'opn';
 
 import { LiveServerHelper } from './LiveServerHelper';
@@ -26,25 +26,27 @@ export class AppModel {
 
     public Golive() {
 
-        if (this.IsServerRunning) {
-            this.showPopUpMsg(`Server is already running at port ${this.runningPort} ...`);
-            return;
-        }
-        if (!vscode.window.activeTextEditor) {
+        if (!window.activeTextEditor) {
             this.showPopUpMsg(`Open a file...`);
             return;
         }
-        const workspacePath = vscode.workspace.rootPath || '';
-        const openedDocUri = vscode.window.activeTextEditor.document.fileName;
+
+        const workspacePath = workspace.rootPath || '';
+        const openedDocUri = window.activeTextEditor.document.fileName;
         let pathInfos = Helper.ExtractFilePath(workspacePath, openedDocUri, Config.getRoot);
 
+        if (this.IsServerRunning) {
+            this.openBrowser(this.runningPort,
+                Helper.relativeHtmlPathFromRoot(pathInfos.rootPath, openedDocUri) || "");
+            return;
+        }
         if (pathInfos.HasVirtualRootError) {
-            this.showPopUpMsg('Invaild Path in liveServer.settings.root settings. live Server will start from workspace root', true);
+            this.showPopUpMsg('Invaild Path in liveServer.settings.root settings. live Server will serve from workspace root', true);
         }
 
-        let ignoreFilePaths = Config.getIgnoreFiles || [];
-        let params = Helper.generateParams(pathInfos.rootPath, Config.getPort, ignoreFilePaths, workspacePath);
-        // this.Init();
+        let params = Helper.generateParams(pathInfos.rootPath, Config.getPort,
+            Config.getIgnoreFiles, workspacePath);
+
         LiveServerHelper.StartServer(params, (serverInstance) => {
             if (serverInstance && serverInstance.address()) {
                 this.LiveServerInstance = serverInstance;
@@ -88,10 +90,18 @@ export class AppModel {
 
     private showPopUpMsg(msg: string, isErrorMsg: boolean = false) {
         if (isErrorMsg) {
-            vscode.window.showErrorMessage(msg);
+            window.showErrorMessage(msg);
         }
         else {
-            vscode.window.showInformationMessage(msg);
+            if (!Config.getDonotShowInfoMsg) {
+                const donotShowMsg = "Don't show again";
+                window.showInformationMessage(msg, donotShowMsg)
+                    .then((choise) => {
+                        if (choise && choise === donotShowMsg) {
+                            Config.setDonotShowInfoMsg = true;
+                        }
+                    });
+            }
         }
     }
 
@@ -107,16 +117,16 @@ export class AppModel {
     }
 
     private HaveAnyHTMLFile(callback) {
-        vscode.workspace.findFiles('**/*[.html | .htm]', '**/node_modules/**', 1).then((files) => {
+        workspace.findFiles('**/*[.html | .htm]', '**/node_modules/**', 1).then((files) => {
             if (files !== undefined && files.length !== 0) {
                 return callback();
             }
 
-            let textEditor = vscode.window.activeTextEditor;
+            let textEditor = window.activeTextEditor;
             if (!textEditor) return;
 
             //If a HTML file open without Workspace
-            if (vscode.workspace.rootPath === undefined && textEditor.document.languageId === 'html') {
+            if (workspace.rootPath === undefined && textEditor.document.languageId === 'html') {
                 return callback();
             }
         });
@@ -181,7 +191,7 @@ export class AppModel {
             console.log("\n\n");
         }
     }
-    
+
     public dispose() {
         StatusbarUi.dispose();
     }

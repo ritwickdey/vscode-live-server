@@ -130,6 +130,11 @@
             "**/*.sass"
           ],
           "description": "To ignore specific file changes"
+        },
+        "liveServer.settings.donotShowInfoMsg": {
+          "type": "boolean",
+          "default": false,
+          "description": "To disable information pop up messages."
         }
       }
     }

@@ -1,13 +1,15 @@
 'use strict';
 
-import * as vscode from 'vscode';
+import { workspace } from 'vscode';
 
 export class Config {
 
+    public static get configuration() {
+        return workspace.getConfiguration('liveServer.settings')
+    };
+
     private static getSettings<T>(val: string): T {
-        return vscode.workspace
-            .getConfiguration('liveServer.settings')
-            .get(val) as T;
+        return Config.configuration.get(val) as T;
     }
 
     public static get getPort(): number {
@@ -36,5 +38,13 @@ export class Config {
 
     public static get getIgnoreFiles(): string[] {
         return Config.getSettings<string[]>('ignoreFiles');
+    }
+
+    public static get getDonotShowInfoMsg(): boolean {
+        return Config.getSettings<boolean>('donotShowInfoMsg');
+    }
+
+    public static set setDonotShowInfoMsg(val) {
+        Config.configuration.update("donotShowInfoMsg", true, true);
     }
 }

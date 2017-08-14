@@ -47,6 +47,7 @@ export class Helper {
 
     public static generateParams(rootPath: string, port: number, ignoreFilePaths: string[], workspacePath: string) {
         workspacePath = workspacePath || '';
+        ignoreFilePaths = ignoreFilePaths || [];
 
         ignoreFilePaths.forEach((ignoredFilePath, index, thisArr) => {
             if (!ignoredFilePath.startsWith('/') || !ignoredFilePath.startsWith('\\')) {

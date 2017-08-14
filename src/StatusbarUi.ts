@@ -1,13 +1,13 @@
-import * as vscode from 'vscode';
+import { StatusBarItem, window, StatusBarAlignment } from 'vscode';
 
 export class StatusbarUi {
 
-    private static _statusBarItem: vscode.StatusBarItem;
+    private static _statusBarItem: StatusBarItem;
 
     private static get statusbar() {
         if (!StatusbarUi._statusBarItem) {
-            StatusbarUi._statusBarItem = vscode.window
-                .createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
+            StatusbarUi._statusBarItem = window
+                .createStatusBarItem(StatusBarAlignment.Right, 100);
 
             this.statusbar.show();
         }
@@ -40,7 +40,7 @@ export class StatusbarUi {
         StatusbarUi.statusbar.tooltip = 'Click to close server';
     }
 
-    static dispose() {
+    public static dispose() {
         StatusbarUi.statusbar.dispose();
     }
 }
