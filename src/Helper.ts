@@ -48,17 +48,17 @@ export class Helper {
     public static generateParams(rootPath: string, port: number, ignoreFilePaths: string[], workspacePath: string) {
         workspacePath = workspacePath || '';
         ignoreFilePaths = ignoreFilePaths || [];
+        let ignoreFiles = [];
 
-        ignoreFilePaths.forEach((ignoredFilePath, index, thisArr) => {
+        ignoreFilePaths.forEach((ignoredFilePath, index) => {
             if (!ignoredFilePath.startsWith('/') || !ignoredFilePath.startsWith('\\')) {
                 if (process.platform === 'win32') {
-                    thisArr[index] = '\\' + ignoredFilePath;
+                    ignoreFiles[index] = workspacePath + '\\' + ignoredFilePath;
                 }
                 else {
-                    thisArr[index] = '/' + ignoredFilePath;
+                    ignoreFiles[index] = workspacePath + '/' + ignoredFilePath;
                 }
             }
-            thisArr[index] = workspacePath + thisArr[index];
         });
 
 
@@ -68,7 +68,7 @@ export class Helper {
             root: rootPath,
             file: null,
             open: false,
-            ignore: ignoreFilePaths
+            ignore: ignoreFiles
         }
     }
 
