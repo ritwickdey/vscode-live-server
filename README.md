@@ -1,6 +1,6 @@
 # Live Server
 
-**_[Lot of code is changed as I've refactored the source code. So, if anything is broken (Hopefully NOT :D), feel free to open a issue request on GitHub. I'll happy to resolve the bugs.]_**
+**_[Lot of code is changed as I've refactored the source code. So, if anything is ****broken (Hopefully NOT :D), feel free to open a issue request on GitHub. I'll happy to resolve the bugs.]_**
 
 **_[If you like the extension, [please leave a review](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer#review-details), it puts a smile on my face.]_**
 
@@ -24,7 +24,7 @@ Launch a development local server directly from VSCode to your browser and watch
 
 3. Hit `(alt+L, O)` to Open the Server and `(alt+L, C)` to close the server. 
 
-4. Press `F1` or `ctrl+shift+P` and type `Live Server: Open Live Server ` to start a server or type `Live Server: Close Live Server` to stop a server.
+4. Press `F1` or `ctrl+shift+P` and type `Live Server: Open With Live Server ` to start a server or type `Live Server: Close Live Server` to stop a server.
 
 ## Features
 * A Quick Development Live Server.
@@ -89,7 +89,7 @@ Launch a development local server directly from VSCode to your browser and watch
     ```
     Now, by default Live Server will not track changes of your `.scss` &  `.sass` files. 
     <hr>
-* **`liveServer.settings.donotShowInfoMsg` :** To turn off information pop-up messages like _"Server starts with port xxxx"_ or like that. Alternatively you can click to _"Don't show again"_ when a information message popped-up to turn off it.
+* **`liveServer.settings.donotShowInfoMsg` :** To turn off information pop-up messages like _"Server starts with port xxxx"_ or like that.  To turn off it, you can set the value as `true` or you can click to _"Don't show again"_ when a information message pop-up.
        
     * _Default value is : `false`_
     <hr>
@@ -101,11 +101,11 @@ Open VSCode Editor and Press `ctrl+P`, type `ext install LiveServer`.
 ## What's new ?
 
 * #### Version 1.6.9 (15.08.2017)
-    * ***[New Settings]*** `liveServer.settings.donotShowInfoMsg` : To turn off information pop-up messages like _"Server starts with port xxxx"_ or like that. Alternatively you can click to _"Don't show again"_ when a information message popped-up to turn off it.
+    * ***[New Settings]*** `liveServer.settings.donotShowInfoMsg :` To turn off information pop-up messages like _"Server starts with port xxxx"_ or like that. To turn off it, you can set the value as `true` or you can click to _"Don't show again"_ when a information message pop-up.
 
-    * ***[Enhancement]*** When server is already started before & you right click onto a HTML file & choose 'Open with Live Server', instead of a pop-up message that *"Server already is already running at port xxxx"*, now it will open the HTML file to browser with same server instance.
+    * ***[Enhancement]*** When server is already started & you right click onto a HTML file & choose 'Open with Live Server', instead of a pop-up message that *"Server already is already running at port xxxx"*, now it will open the HTML file to browser with same server instance.
 
-    * Source Code is refactored (If you you found anything broken, feel free to report me on GitHub). 
+    * Source Code is refactored (If you found anything is broken, feel free to report me on GitHub). 
 
 * #### Version 1.6.8 (04.08.2017)
     * ***[New Settings]*** `liveServer.settings.ignoreFiles`: To ignore specific file changes. _(For More details, check out `Settings` section)_ [[#10](https://github.com/ritwickdey/vscode-live-server/issues/10)]. (Thanks [AminLA](https://github.com/AminLA)).

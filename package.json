@@ -39,7 +39,7 @@
       },
       {
         "command": "extension.liveServer.goOnline",
-        "title": "Open Live Server",
+        "title": "Open With Live Server",
         "category": "Live Server"
       }
     ],
