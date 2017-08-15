@@ -26,13 +26,13 @@ export class AppModel {
 
     public Golive() {
 
-        if (!window.activeTextEditor) {
-            this.showPopUpMsg(`Open a file...`);
+        if (!window.activeTextEditor && !workspace.rootPath) {
+            this.showPopUpMsg(`Open a file or folder...`,true);
             return;
         }
 
         const workspacePath = workspace.rootPath || '';
-        const openedDocUri = window.activeTextEditor.document.fileName;
+        const openedDocUri = window.activeTextEditor ? window.activeTextEditor.document.fileName : '';
         let pathInfos = Helper.ExtractFilePath(workspacePath, openedDocUri, Config.getRoot);
 
         if (this.IsServerRunning) {
