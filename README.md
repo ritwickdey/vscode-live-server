@@ -1,14 +1,12 @@
 # Live Server
 
-**_[Lot of code is changed as I've refactored the source code. So, if anything is ****broken (Hopefully NOT :D), feel free to open a issue request on GitHub. I'll happy to resolve the bugs.]_**
-
 **_[If you like the extension, [please leave a review](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer#review-details), it puts a smile on my face.]_**
 
 **_[If you found any bug or if you have any suggestion, feel free to report or suggest me.]_**
 
-[![VSCode Marketplace Badge](https://vsmarketplacebadge.apphb.com/version/ritwickdey.LiveServer.svg)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) [![Total Install](https://vsmarketplacebadge.apphb.com/installs/ritwickdey.LiveServer.svg)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) [![Avarage Rating Badge](https://vsmarketplacebadge.apphb.com/rating-short/ritwickdey.LiveServer.svg)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ritwickdey/vscode-live-server/)
+[![VSCode Marketplace](https://vsmarketplacebadge.apphb.com/version/ritwickdey.LiveServer.svg)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) [![Total Installs](https://vsmarketplacebadge.apphb.com/installs/ritwickdey.LiveServer.svg)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) [![Avarage Rating](https://vsmarketplacebadge.apphb.com/rating-short/ritwickdey.LiveServer.svg)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ritwickdey/vscode-live-server/)
 <br>
-Launch a development local server directly from VSCode to your browser and watch live preview of HTML
+Launch a development local Server by a single click and watch live changes with some extra functionality.
 <br>
 ![Live Server Demo VSCode](./images/Screenshot/AnimatedPreview.gif)
 
@@ -28,15 +26,16 @@ Launch a development local server directly from VSCode to your browser and watch
 
 ## Features
 * A Quick Development Live Server.
-* Live Reload on change of HTML files.
-* Run the live server from status bar.
-* Quick Statusbar control.
+* Live Reload of HTML files on changes of tracking files.
+* Start and close the live server directly from status bar by a single click.
+* Support for excluding files for change detection. 
+* Quick Shortcut control.
 * Customizable Port Number.
 * Customizable Server Root.
 * Customizable default browser.
 * Support for Chrome Debugging Attachment (_[More Info](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)_). [[Quick Gif Demo](./images/Screenshot/ChromeDebugging.gif)].
 * Support for any browser _(Eg: Chrome Canary, Firefox Nightly)_ using advance Command Line.
-* Remote Connect (E.g.: Connect with mobile) _[Need Help? See FAQ Section]_
+* Remote Connect through WLAN (E.g.: Connect with mobile) _[Need Help? See FAQ Section]_
 
 
 ## Settings
@@ -100,6 +99,13 @@ Open VSCode Editor and Press `ctrl+P`, type `ext install LiveServer`.
 
 ## What's new ?
 
+* #### Version 1.6.10 (19.08.2017)
+    * ***[Fixed [#13](https://github.com/ritwickdey/vscode-live-server/issues/13)]*** Browser was not opening after server started in Linux. _[Thanks [Ahmed Alzhrani](https://github.com/matt-zhrani)]_.    
+    * ***[Fixed]*** Fixed Ignore Files feature (It was working only for first time of starting server).
+    
+    *  ***[Enhancement]*** Now you don't have to open a file to start server from workspace. Previously you got an annoyed message saying _"Open a file..."_.
+
+
 * #### Version 1.6.9 (15.08.2017)
     * ***[New Settings]*** `liveServer.settings.donotShowInfoMsg :` To turn off information pop-up messages like _"Server starts with port xxxx"_ or like that. To turn off it, you can set the value as `true` or you can click to _"Don't show again"_ when a information message pop-up.
 
@@ -109,9 +115,6 @@ Open VSCode Editor and Press `ctrl+P`, type `ext install LiveServer`.
 
 * #### Version 1.6.8 (04.08.2017)
     * ***[New Settings]*** `liveServer.settings.ignoreFiles`: To ignore specific file changes. _(For More details, check out `Settings` section)_ [[#10](https://github.com/ritwickdey/vscode-live-server/issues/10)]. (Thanks [AminLA](https://github.com/AminLA)).
-
-* #### Version 1.6.7 (30.07.2017)
-    * ***[New Settings]*** `liveServer.settings.NoBrowser` - If it is true live server will start without browser opened.
 
 
 ## Changelog
