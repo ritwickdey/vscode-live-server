@@ -135,6 +135,15 @@
           "type": "boolean",
           "default": false,
           "description": "To disable information pop up messages."
+        },
+        "liveServer.settings.host": {
+          "type": "string",
+          "default": "127.0.0.1",
+          "enum": [
+            "127.0.0.1",
+            "localhost"
+          ],
+          "description": "To switch between localhost & 127.0.0.1. Default is 127.0.0.1"
         }
       }
     }

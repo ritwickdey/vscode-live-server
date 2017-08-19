@@ -133,7 +133,7 @@ export class AppModel {
     }
 
     private openBrowser(port: number, path: string) {
-        const host = Config.getHost || 'localhost';
+        const host = Config.getHost;
 
         let appConfig: string[] = [];
         let advanceCustomBrowserCmd = Config.getAdvancedBrowserCmdline;
