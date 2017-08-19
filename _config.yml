@@ -5,7 +5,7 @@ gems:
   - jekyll-seo-tag
 
 title: Live Server | VSCode Extension
-description : Launch a Live development Server to browser from VSCode with live preview and live reload
+description : Launch a development local Server by a single click and watch live changes with some extra functionality
 author : Ritwick Dey
 twitter:username: Dey_Ritwick
 social:
