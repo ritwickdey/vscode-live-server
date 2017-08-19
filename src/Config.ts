@@ -12,6 +12,10 @@ export class Config {
         return Config.configuration.get(val) as T;
     }
 
+    public static get getHost(): string {
+        return Config.getSettings<string>('host');
+    }
+
     public static get getPort(): number {
         return Config.getSettings<number>('port');
     }
