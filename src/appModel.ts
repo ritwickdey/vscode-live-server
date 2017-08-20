@@ -186,7 +186,7 @@ export class AppModel {
         try {
             opn(`http://${host}:${port}/${path}`, { app: appConfig || [''] });
         } catch (error) {
-            this.showPopUpMsg(`Server is started at ${this.runningPort} but failed to open browser. See error on console.`, true);
+            this.showPopUpMsg(`Server is started at ${this.runningPort} but failed to open browser. Try to change the CustomBrowser settings.`, true);
             console.log("\n\nError Log to open Browser : ", error);
             console.log("\n\n");
         }

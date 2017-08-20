@@ -92,6 +92,9 @@ Launch a development local Server by a single click and watch live changes with 
        
     * _Default value is : `false`_
     <hr>
+* **`liveServer.settings.host` :** To switch host name between `localhost` and `127.0.0.1`. 
+    * _Default is `127.0.0.1`._
+
 
 ## Installation
 Open VSCode Editor and Press `ctrl+P`, type `ext install LiveServer`.
@@ -99,8 +102,14 @@ Open VSCode Editor and Press `ctrl+P`, type `ext install LiveServer`.
 
 ## What's new ?
 
+* #### Version 1.6.11 (20.08.2017)
+    * ***[Fixed Again [#13](https://github.com/ritwickdey/vscode-live-server/issues/13)]*** Browser was not opening after server started in Linux. -  I don't really know, why the issue is occurring if I build package with `vsce` from Windows but no issue from Linux.
+
+    * ***[New Settings]*** `liveServer.settings.host`:  To switch host name between `localhost` and `127.0.0.1`. Default is `127.0.0.1`.
+
 * #### Version 1.6.10 (19.08.2017)
     * ***[Fixed [#13](https://github.com/ritwickdey/vscode-live-server/issues/13)]*** Browser was not opening after server started in Linux. _[Thanks [Ahmed Alzhrani](https://github.com/matt-zhrani)]_.    
+    
     * ***[Fixed]*** Fixed Ignore Files feature (It was working only for first time of starting server).
     
     *  ***[Enhancement]*** Now you don't have to open a file to start server from workspace. Previously you got an annoyed message saying _"Open a file..."_.
@@ -112,9 +121,6 @@ Open VSCode Editor and Press `ctrl+P`, type `ext install LiveServer`.
     * ***[Enhancement]*** When server is already started & you right click onto a HTML file & choose 'Open with Live Server', instead of a pop-up message that *"Server already is already running at port xxxx"*, now it will open the HTML file to browser with same server instance.
 
     * Source Code is refactored (If you found anything is broken, feel free to report me on GitHub). 
-
-* #### Version 1.6.8 (04.08.2017)
-    * ***[New Settings]*** `liveServer.settings.ignoreFiles`: To ignore specific file changes. _(For More details, check out `Settings` section)_ [[#10](https://github.com/ritwickdey/vscode-live-server/issues/10)]. (Thanks [AminLA](https://github.com/AminLA)).
 
 
 ## Changelog
