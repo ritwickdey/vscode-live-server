@@ -10,11 +10,9 @@
     "http",
     "cli"
   ],
+  "main": "index.js",
   "author": {
     "name": "Tapio Vierros"
-  },
-  "bin": {
-    "live-server": "./live-server.js"
   },
   "bugs": {
     "url": "https://github.com/tapio/live-server/issues"
