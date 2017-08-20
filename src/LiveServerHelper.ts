@@ -10,7 +10,7 @@ export class LiveServerHelper {
                 let ServerInstance = liveServer.start(params);
                 setTimeout(() => {
 
-                    if (ServerInstance._connectionKey == undefined || ServerInstance._connectionKey == null) {
+                    if (!ServerInstance._connectionKey) {
                         return callback(null);
                     }
 
