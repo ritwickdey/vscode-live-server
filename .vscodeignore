@@ -16,3 +16,4 @@ _site/**
 assets/**
 _config.yml
 **/*.vsix
+lib/**

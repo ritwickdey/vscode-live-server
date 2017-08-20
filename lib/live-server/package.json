@@ -34,10 +34,10 @@
   },
   "deprecated": false,
   "devDependencies": {
-    "eslint": "^3.13.0",
-    "jshint": "^2.9.2",
     "mocha": "^3.2.0",
-    "supertest": "^2.0.1"
+    "supertest": "^2.0.1",
+    "eslint": "^3.13.0",
+    "jshint": "^2.9.2"
   },
   "engines": {
     "node": ">=0.10.0"
