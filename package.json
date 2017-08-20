@@ -174,7 +174,7 @@
   },
   "dependencies": {
     "http-shutdown": "^1.2.0",
-    "live-server": "^1.2.0",
+    "live-server": "file:lib\\live-server",
     "opn": "^5.1.0"
   }
 }
