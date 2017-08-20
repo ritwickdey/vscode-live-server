@@ -68,7 +68,8 @@ export class Helper {
             root: rootPath,
             file: null,
             open: false,
-            ignore: ignoreFiles
+            ignore: ignoreFiles,
+            disableGlobbing : true
         }
     }
 
