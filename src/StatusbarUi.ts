@@ -16,13 +16,13 @@ export class StatusbarUi {
     }
 
     static Init() {
-        StatusbarUi.Working("Starting...");
+        StatusbarUi.Working('Starting...');
         setTimeout(function () {
             StatusbarUi.Live();
         }, 1000);
     }
 
-    static Working(workingMsg: string = "Working on it...") {
+    static Working(workingMsg: string = 'Working on it...') {
         StatusbarUi.statusbar.text = `$(pulse) ${workingMsg}`;
         StatusbarUi.statusbar.tooltip = 'In case if it takes long time, try to close all browser window.';
         StatusbarUi.statusbar.command = null;

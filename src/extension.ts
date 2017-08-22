@@ -1,30 +1,30 @@
 'use strict';
 
-import * as vscode from 'vscode';
+import {ExtensionContext, workspace, commands, window} from 'vscode';
 import { StatusbarUi } from './StatusbarUi';
 import { AppModel } from './appModel'
 
-export function activate(context: vscode.ExtensionContext) {
+export function activate(context: ExtensionContext) {
     const appModel = new AppModel();
 
-    context.subscriptions.push(vscode.commands
+    context.subscriptions.push(commands
         .registerCommand('extension.liveServer.goOnline', () => {
-            vscode.workspace.saveAll().then(() => {
+            workspace.saveAll().then(() => {
                 appModel.Golive();
             });
         })
     );
 
-    context.subscriptions.push(vscode.commands
+    context.subscriptions.push(commands
         .registerCommand('extension.liveServer.goOffline', () => {
             appModel.GoOffline();
         })
     );
 
-    context.subscriptions.push(vscode.window
+    context.subscriptions.push(window
         .onDidChangeActiveTextEditor(() => {
-            if (vscode.window.activeTextEditor == undefined) return;
-            if (vscode.workspace.rootPath == undefined && vscode.window.activeTextEditor.document.languageId == 'html') {
+            if (window.activeTextEditor === undefined) return;
+            if (workspace.rootPath === undefined && window.activeTextEditor.document.languageId === 'html') {
                 StatusbarUi.Init();
             }
         })

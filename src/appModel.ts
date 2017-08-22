@@ -1,12 +1,13 @@
 'use strict';
 
 import { window, workspace } from 'vscode';
-import * as opn from 'opn';
 
 import { LiveServerHelper } from './LiveServerHelper';
 import { StatusbarUi } from './StatusbarUi';
 import { Config } from './Config';
 import { Helper } from './Helper';
+
+import * as opn from 'opn';
 
 export class AppModel {
 
@@ -27,7 +28,7 @@ export class AppModel {
     public Golive() {
 
         if (!window.activeTextEditor && !workspace.rootPath) {
-            this.showPopUpMsg(`Open a file or folder...`,true);
+            this.showPopUpMsg(`Open a file or folder...`, true);
             return;
         }
 
@@ -37,7 +38,7 @@ export class AppModel {
 
         if (this.IsServerRunning) {
             this.openBrowser(this.runningPort,
-                Helper.relativeHtmlPathFromRoot(pathInfos.rootPath, openedDocUri) || "");
+                Helper.relativeHtmlPathFromRoot(pathInfos.rootPath, openedDocUri) || '');
             return;
         }
         if (pathInfos.HasVirtualRootError) {
@@ -56,19 +57,19 @@ export class AppModel {
 
                 if (!Config.getNoBrowser) {
                     this.openBrowser(this.runningPort,
-                        Helper.relativeHtmlPathFromRoot(pathInfos.rootPath, openedDocUri) || "");
+                        Helper.relativeHtmlPathFromRoot(pathInfos.rootPath, openedDocUri) || '');
                 }
             }
             else {
                 this.showPopUpMsg(`Error to open server at port ${Config.getPort}.`, true);
-                this.IsServerRunning = true; //to revert status - cheat :p 
-                this.ToggleStatusBar(); //reverted
+                this.IsServerRunning = true; // to revert status - cheat :p
+                this.ToggleStatusBar(); // reverted
             }
 
         });
 
 
-        StatusbarUi.Working("Starting...");
+        StatusbarUi.Working('Starting...');
     }
 
     public GoOffline() {
@@ -84,7 +85,7 @@ export class AppModel {
             this.runningPort = null;
         });
 
-        StatusbarUi.Working("Disposing...");
+        StatusbarUi.Working('Disposing...');
 
     }
 
@@ -94,7 +95,7 @@ export class AppModel {
         }
         else {
             if (!Config.getDonotShowInfoMsg) {
-                const donotShowMsg = "Don't show again";
+                const donotShowMsg = 'Don\'t show again';
                 window.showInformationMessage(msg, donotShowMsg)
                     .then((choise) => {
                         if (choise && choise === donotShowMsg) {
@@ -125,7 +126,7 @@ export class AppModel {
             let textEditor = window.activeTextEditor;
             if (!textEditor) return;
 
-            //If a HTML file open without Workspace
+            // If a HTML file open without Workspace
             if (workspace.rootPath === undefined && textEditor.document.languageId === 'html') {
                 return callback();
             }
@@ -158,7 +159,7 @@ export class AppModel {
                 appConfig.push(CustomBrowser);
 
                 if (CustomBrowser === 'chrome' && ChromeDebuggingAttachmentEnable) {
-                    appConfig.push("--remote-debugging-port=9222");
+                    appConfig.push('--remote-debugging-port=9222');
                 }
             }
         }
@@ -179,7 +180,7 @@ export class AppModel {
 
             }
         }
-        else if (appConfig[0] && appConfig[0].startsWith("microsoft-edge")) {
+        else if (appConfig[0] && appConfig[0].startsWith('microsoft-edge')) {
             appConfig[0] = `microsoft-edge:http://${host}:${port}/${path}`;
         }
 
@@ -187,8 +188,8 @@ export class AppModel {
             opn(`http://${host}:${port}/${path}`, { app: appConfig || [''] });
         } catch (error) {
             this.showPopUpMsg(`Server is started at ${this.runningPort} but failed to open browser. Try to change the CustomBrowser settings.`, true);
-            console.log("\n\nError Log to open Browser : ", error);
-            console.log("\n\n");
+            console.log('\n\nError Log to open Browser : ', error);
+            console.log('\n\n');
         }
     }
 
