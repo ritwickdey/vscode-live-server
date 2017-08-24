@@ -67,6 +67,13 @@
           "group": "myGrp@liveServer",
           "when": "resourceLangId == html"
         }
+      ],
+      "explorer/context": [
+        {
+          "command": "extension.liveServer.goOnline",
+          "group": "myGrp@liveServer",
+          "when": "resourceLangId == html"
+        }
       ]
     },
     "configuration": {

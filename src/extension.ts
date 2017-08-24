@@ -8,9 +8,9 @@ export function activate(context: ExtensionContext) {
     const appModel = new AppModel();
 
     context.subscriptions.push(commands
-        .registerCommand('extension.liveServer.goOnline', () => {
+        .registerCommand('extension.liveServer.goOnline', (fileUri) => {
             workspace.saveAll().then(() => {
-                appModel.Golive();
+                appModel.Golive(fileUri ? fileUri.fsPath : null);
             });
         })
     );
