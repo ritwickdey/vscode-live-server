@@ -40,23 +40,23 @@ Launch a development local Server by a single click and watch live changes with 
 
 ## Settings
 
-* **`liveServer.settings.port` :** Customize Port Number of your Live Server.  If you want random port number, set it as `0`.
+* **`liveServer.settings.port`:** Customize Port Number of your Live Server.  If you want random port number, set it as `0`.
     *  _Default value is `5500`._
 
     <hr>
  
-* **`liveServer.settings.root` :** To change root of server in between workspace folder structure,  use `/` and absolute path from workspace.
+* **`liveServer.settings.root`:** To change root of server in between workspace folder structure,  use `/` and absolute path from workspace.
     * _Example: `/sub_folder1/sub_folder2`_. Now `sub_folder2` will be root of the server.
     *  _Default value is "`/`".(The Workspace Root)_.
 
     <hr>
  
-* **`liveServer.settings.CustomBrowser` :** To change your system's default browser. (_chrome_ or _firefox_ or _Microsoft-Edge_).
+* **`liveServer.settings.CustomBrowser`:** To change your system's default browser. (_chrome_ or _firefox_ or _Microsoft-Edge_).
     * _Default value is `"Null"` [String, not `null`]. (It will open your system's default browser.)_
 
     <hr>
  
-* **`liveServer.settings.ChromeDebuggingAttachment` :** To Enable Chrome Debugging Attachment to Live Server. [[Quick Gif Demo](./images/Screenshot/ChromeDebugging.gif)].
+* **`liveServer.settings.ChromeDebuggingAttachment`:** To Enable Chrome Debugging Attachment to Live Server. [[Quick Gif Demo](./images/Screenshot/ChromeDebugging.gif)].
     * _**NOTE**: You must have to install [ `Debugger for Chrome.`](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)_
     * _If the value is `true`, Start Live Server and select 'Attach to Chrome' from Debug Window to start debugging. [`Debugger for Chrome`](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome) Extension will inject debugging feature into running instance of browser window._
     *  _Default value is `false`._
@@ -64,7 +64,7 @@ Launch a development local Server by a single click and watch live changes with 
     <hr>
     
 
-* **`liveServer.settings.AdvanceCustomBrowserCmdLine` :**  To set your any favorite browser (Eg: Chrome Canary, Firefox Nightly) using advance Command Line. 
+* **`liveServer.settings.AdvanceCustomBrowserCmdLine`:**  To set your any favorite browser (Eg: Chrome Canary, Firefox Nightly) using advance Command Line. 
     * _This setting will override `CustomBrowser` and `ChromeDebuggingAttachment` settings._
     * _Default Value is `null`_ 
     * _Examples:_
@@ -73,11 +73,11 @@ Launch a development local Server by a single click and watch live changes with 
         * _chrome --headless_
         * _chrome --incognito --remote-debugging-port=9222_
     <hr>
-* **`liveServer.settings.NoBrowser` :** If it is true live server will start without browser opened.
+* **`liveServer.settings.NoBrowser`:** If it is true live server will start without browser opened.
     * _Default Value is `false`_ 
 
     <hr>
-* **`liveServer.settings.ignoreFiles` :** To ignore specific file changes.
+* **`liveServer.settings.ignoreFiles`:** To ignore specific file changes.
     * _Default value is :_
     ```
     [
@@ -88,7 +88,7 @@ Launch a development local Server by a single click and watch live changes with 
     ```
     Now, by default Live Server will not track changes of your `.scss` &  `.sass` files. 
     <hr>
-* **`liveServer.settings.donotShowInfoMsg` :** To turn off information pop-up messages like _"Server starts with port xxxx"_ or like that.  To turn off it, you can set the value as `true` or you can click to _"Don't show again"_ when a information message pop-up.
+* **`liveServer.settings.donotShowInfoMsg`:** To turn off information pop-up messages like _"Server starts with port xxxx"_ or like that.  To turn off it, you can set the value as `true` or you can click to _"Don't show again"_ when a information message pop-up.
        
     * _Default value is : `false`_
     <hr>
