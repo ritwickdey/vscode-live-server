@@ -49,6 +49,6 @@ export class Config {
     }
 
     public static set setDonotShowInfoMsg(val) {
-        Config.configuration.update("donotShowInfoMsg", true, true);
+        Config.configuration.update('donotShowInfoMsg', true, true);
     }
 }

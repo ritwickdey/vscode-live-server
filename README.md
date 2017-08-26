@@ -92,7 +92,7 @@ Launch a development local Server by a single click and watch live changes with 
        
     * _Default value is : `false`_
     <hr>
-* **`liveServer.settings.host` :** To switch host name between `localhost` and `127.0.0.1`. 
+* **`liveServer.settings.host`:** To switch host name between `localhost` and `127.0.0.1`. 
     * _Default is `127.0.0.1`._
 
 

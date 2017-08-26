@@ -39,7 +39,7 @@
       },
       {
         "command": "extension.liveServer.goOnline",
-        "title": "Open With Live Server",
+        "title": "Open with Live Server",
         "category": "Live Server"
       }
     ],
@@ -71,7 +71,7 @@
       "explorer/context": [
         {
           "command": "extension.liveServer.goOnline",
-          "group": "myGrp@liveServer",
+          "group": "navigation@-LiveServer",
           "when": "resourceLangId == html"
         }
       ]
