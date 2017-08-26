@@ -83,7 +83,7 @@ Launch a development local Server by a single click and watch live changes with 
 
     <hr>
 * **`liveServer.settings.ignoreFiles`:** To ignore specific file changes.
-    * _Default value is :_
+    * _Default value is:_
     ```
     [
         ".vscode/**",
