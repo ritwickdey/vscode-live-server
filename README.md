@@ -8,34 +8,39 @@
 <br>
 Launch a development local Server by a single click and watch live changes with some extra functionality.
 <br>
-![Live Server Demo VSCode](./images/Screenshot/AnimatedPreview.gif)
+![Live Server Demo VSCode](./images/Screenshot/vscode-live-server-animated-demo.gif)
 
-## Usage/Shortcuts
+## Shortcuts to Start/Stop Server
 
-**_[NOTE: In case if you don't have any `.html` or `.htm` file in your workspace then you have to follow method no 3 & 4 to start Live Server. I don't know why you want so?! :p But feature is still there.]_**
+**_[NOTE: In case if you don't have any `.html` or `.htm` file in your workspace then you have to follow method no 4 & 5 to start server. I don't know why you want so?!_ :wink: _But feature is still there._ :smiley: _]_**
 
-1. Open a HTML File/Project and directly Click to `Go Live` from StatusBar to turn off/on the server. 
-![Go Live Control Preview](./images/Screenshot/statusbar2.jpg)
+1. Open a project and directly click to `Go Live` from StatusBar to turn on/off the server. 
+![Go Live Control Preview](./images/Screenshot/vscode-live-server-statusbar-3.jpg)
 
-2. Open a HTML file and Right click on the editor and choose the options.
-![Edit Menu Option Preview](./images/Screenshot/editormenu2.jpg)
+2. Right click on a `HTML` file from Explorer Window & click to `Open with Live Server`. 
+![Explorer Window Control](./images/Screenshot/vscode-live-server-explorer-menu-1.jpg)
 
-3. Hit `(alt+L, O)` to Open the Server and `(alt+L, C)` to close the server. 
+3. Open a HTML file and Right click on the editor and choose the options.
+![Edit Menu Option Preview](./images/Screenshot/vscode-live-server-editor-menu-3.jpg)
 
-4. Press `F1` or `ctrl+shift+P` and type `Live Server: Open With Live Server ` to start a server or type `Live Server: Close Live Server` to stop a server.
+4. Hit `(alt+L, O)` to Open the Server and `(alt+L, C)` to close the server (You can change the shortcut form keybinding). 
+
+5. Press `F1` or `ctrl+shift+P` and type `Live Server: Open With Live Server ` to start a server or type `Live Server: Close Live Server` to stop a server.
 
 ## Features
 * A Quick Development Live Server.
 * Live Reload of HTML files on changes of tracking files.
-* Start and close the live server directly from status bar by a single click.
+* Start or close server by a single click from status bar.
+* Open a HTML file to browser from Explorer menu. 
 * Support for excluding files for change detection. 
-* Quick Shortcut control.
+* Hot Shortcut Key control.
 * Customizable Port Number.
 * Customizable Server Root.
 * Customizable default browser.
 * Support for Chrome Debugging Attachment (_[More Info](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)_). [[Quick Gif Demo](./images/Screenshot/ChromeDebugging.gif)].
 * Support for any browser _(Eg: Chrome Canary, Firefox Nightly)_ using advance Command Line.
 * Remote Connect through WLAN (E.g.: Connect with mobile) _[Need Help? See FAQ Section]_
+* Use preferable host name *(localhost or 127.0.0.1)*.
 
 
 ## Settings
@@ -102,6 +107,18 @@ Open VSCode Editor and Press `ctrl+P`, type `ext install LiveServer`.
 
 ## What's new ?
 
+* #### Version 2.0.0 (27.08.2017)
+
+    *  ***[Final Release with v2.0.0]*** The *Preview* tag is removed from the extension. (BTW, More update comming... :smile:) 
+    
+    * ***[New Shortcut [#17](https://github.com/ritwickdey/vscode-live-server/issues/17)]***  Explorer Context Menu shortcut added. Just right click on a a `HTML` file & click `Open with Live Server`.
+    
+    *  ***[Enhancement [#16](https://github.com/ritwickdey/vscode-live-server/issues/16)]*** No more annoy message _'Live reload enabled'_ on browser console everytime. Now it will be logged on console for only one time.  *[Thanks [AAhrit](https://github.com/AAhrit)].*
+
+    * **[Fixed [#11](https://github.com/ritwickdey/vscode-live-server/issues/11)]** In case if your folder name contains *exclamatory sign* (`!`) (E.g. : `myfolder!name`), live reload was not working.  
+    
+    * ***[One Shortcut Dropped]*** : Server closing shortcut by right clicking onto a `HTML` file is removed. (I believe that was a unconventional shortcut. if I am wrong, open a issue request on GitHub.).
+
 * #### Version 1.6.11 (20.08.2017)
     * ***[Fixed Again [#13](https://github.com/ritwickdey/vscode-live-server/issues/13)]*** Browser was not opening after server started in Linux. -  I don't really know, why the issue is occurring if I build package with `vsce` from Windows but no issue from Linux.
 
@@ -113,14 +130,6 @@ Open VSCode Editor and Press `ctrl+P`, type `ext install LiveServer`.
     * ***[Fixed]*** Fixed Ignore Files feature (It was working only for first time of starting server).
     
     *  ***[Enhancement]*** Now you don't have to open a file to start server from workspace. Previously you got an annoyed message saying _"Open a file..."_.
-
-
-* #### Version 1.6.9 (15.08.2017)
-    * ***[New Settings]*** `liveServer.settings.donotShowInfoMsg :` To turn off information pop-up messages like _"Server starts with port xxxx"_ or like that. To turn off it, you can set the value as `true` or you can click to _"Don't show again"_ when a information message pop-up.
-
-    * ***[Enhancement]*** When server is already started & you right click onto a HTML file & choose 'Open with Live Server', instead of a pop-up message that *"Server already is already running at port xxxx"*, now it will open the HTML file to browser with same server instance.
-
-    * Source Code is refactored (If you found anything is broken, feel free to report me on GitHub). 
 
 
 ## Changelog
