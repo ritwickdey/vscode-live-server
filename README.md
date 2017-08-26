@@ -115,7 +115,7 @@ Open VSCode Editor and Press `ctrl+P`, type `ext install LiveServer`.
     
     *  ***[Enhancement [#16](https://github.com/ritwickdey/vscode-live-server/issues/16)]*** No more annoy message _'Live reload enabled'_ on browser console everytime. Now it will be logged on console for only one time.  *[Thanks [AAhrit](https://github.com/AAhrit)].*
 
-    * **[Fixed [#11](https://github.com/ritwickdey/vscode-live-server/issues/11)]** In case if your folder name contains *exclamatory sign* (`!`) (E.g. : `myfolder!name`), live reload was not working.  
+    * **[Fixed [#11](https://github.com/ritwickdey/vscode-live-server/issues/11)]** In case if your folder name contains *exclamatory sign* (`!`) (E.g. : `myfolder!name`), live reload was not working. *[Thanks [oliku](https://github.com/oliku)].*
     
     * ***[One Shortcut Dropped]*** : Server closing shortcut by right clicking onto a `HTML` file is removed. (I believe that was a unconventional shortcut. if I am wrong, open a issue request on GitHub.).
 
