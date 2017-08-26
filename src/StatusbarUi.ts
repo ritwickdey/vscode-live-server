@@ -16,7 +16,7 @@ export class StatusbarUi {
     }
 
     static Init() {
-        StatusbarUi.Working('Starting...');
+        StatusbarUi.Working('loading...');
         setTimeout(function () {
             StatusbarUi.Live();
         }, 1000);
