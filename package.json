@@ -21,7 +21,7 @@
     "live server",
     "live reload"
   ],
-  "preview": true,
+  "preview": false,
   "galleryBanner": {
     "color": "#41205f",
     "theme": "dark"
@@ -59,11 +59,6 @@
       "editor/context": [
         {
           "command": "extension.liveServer.goOnline",
-          "group": "myGrp@liveServer",
-          "when": "resourceLangId == html"
-        },
-        {
-          "command": "extension.liveServer.goOffline",
           "group": "myGrp@liveServer",
           "when": "resourceLangId == html"
         }
