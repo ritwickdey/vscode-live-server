@@ -33,7 +33,7 @@ export class AppModel {
         }
 
         const workspacePath = workspace.rootPath || '';
-        const openedDocUri = pathUri || window.activeTextEditor ? window.activeTextEditor.document.fileName : '';
+        const openedDocUri = pathUri || (window.activeTextEditor ? window.activeTextEditor.document.fileName : '');
         let pathInfos = Helper.ExtractFilePath(workspacePath, openedDocUri, Config.getRoot);
 
         if (this.IsServerRunning) {
