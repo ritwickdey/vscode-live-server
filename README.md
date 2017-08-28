@@ -17,8 +17,7 @@ Launch a development local Server by a single click and watch live changes with 
 1. Open a project and directly click to `Go Live` from StatusBar to turn on/off the server. 
 ![Go Live Control Preview](./images/Screenshot/vscode-live-server-statusbar-3.jpg)
 
-2. Right click on a `HTML` file from Explorer Window & click to `Open with Live Server`. 
-![Explorer Window Control](./images/Screenshot/vscode-live-server-explorer-menu-1.jpg)
+2. Right click on a `HTML` file from Explorer Window & click to `Open with Live Server`. ![Explorer Window Control](./images/Screenshot/vscode-live-server-explorer-menu-demo-1.gif).
 
 3. Open a HTML file and Right click on the editor and choose the options.
 ![Edit Menu Option Preview](./images/Screenshot/vscode-live-server-editor-menu-3.jpg)
@@ -31,13 +30,13 @@ Launch a development local Server by a single click and watch live changes with 
 * A Quick Development Live Server.
 * Live Reload of HTML files on changes of tracking files.
 * Start or close server by a single click from status bar.
-* Open a HTML file to browser from Explorer menu. 
+* Open a HTML file to browser from Explorer menu.[[Quick Gif Demo](./images/Screenshot/vscode-live-server-explorer-menu-demo-1.gif?raw=true)].
 * Support for excluding files for change detection. 
 * Hot Shortcut Key control.
 * Customizable Port Number.
 * Customizable Server Root.
 * Customizable default browser.
-* Support for Chrome Debugging Attachment (_[More Info](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)_). [[Quick Gif Demo](./images/Screenshot/ChromeDebugging.gif)].
+* Support for Chrome Debugging Attachment (_[More Info](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)_). [[Quick Gif Demo](./images/Screenshot/ChromeDebugging.gif?raw=true)].
 * Support for any browser _(Eg: Chrome Canary, Firefox Nightly)_ using advance Command Line.
 * Remote Connect through WLAN (E.g.: Connect with mobile) _[Need Help? See FAQ Section]_
 * Use preferable host name *(localhost or 127.0.0.1)*.
