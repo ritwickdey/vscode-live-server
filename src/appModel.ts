@@ -46,7 +46,9 @@ export class AppModel {
         }
 
         let params = Helper.generateParams(pathInfos.rootPath, Config.getPort,
-            Config.getIgnoreFiles, workspacePath);
+            Config.getIgnoreFiles, workspacePath, () => {
+                this.tagMissedCallback()
+            });
 
         LiveServerHelper.StartServer(params, (serverInstance) => {
             if (serverInstance && serverInstance.address()) {
@@ -77,7 +79,6 @@ export class AppModel {
             this.showPopUpMsg(`Server is not already running`);
             return;
         }
-        // this.Init();
         LiveServerHelper.StopServer(this.LiveServerInstance, () => {
             this.showPopUpMsg('Server is now offline.');
             this.ToggleStatusBar();
@@ -89,9 +90,16 @@ export class AppModel {
 
     }
 
-    private showPopUpMsg(msg: string, isErrorMsg: boolean = false) {
+    private tagMissedCallback() {
+        this.showPopUpMsg('Live Reload is not possible as body or head tag or defined tag is missing in HTML', null, true);
+    }
+
+    private showPopUpMsg(msg: string, isErrorMsg: boolean = false, isWarning: boolean = false) {
         if (isErrorMsg) {
             window.showErrorMessage(msg);
+        }
+        else if (isWarning) {
+            window.showWarningMessage(msg);
         }
         else {
             if (!Config.getDonotShowInfoMsg) {
