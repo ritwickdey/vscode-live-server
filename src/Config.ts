@@ -51,4 +51,8 @@ export class Config {
     public static set setDonotShowInfoMsg(val) {
         Config.configuration.update('donotShowInfoMsg', true, true);
     }
+
+    public static get getAdditionalTags(): string[] {
+        return Config.getSettings<string[]>('additionalTagsForLiveReload');
+    }
 }

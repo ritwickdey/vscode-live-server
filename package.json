@@ -151,6 +151,13 @@
             "localhost"
           ],
           "description": "To switch between localhost & 127.0.0.1. Default is 127.0.0.1"
+        },
+        "liveServer.settings.additionalTagsForLiveReload": {
+          "type": "array",
+          "default": [
+
+          ],
+          "description": "By default Live Server will inject extra JS code into Head or Body tag of HTML. A standard HTML should have Body & Head tag. \nIn case you don't have those tags, you can add more tags as an array of string format, so that Live Server can able to inject the code for live reloading feature."
         }
       }
     }

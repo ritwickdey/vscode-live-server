@@ -46,7 +46,7 @@ export class AppModel {
         }
 
         let params = Helper.generateParams(pathInfos.rootPath, Config.getPort,
-            Config.getIgnoreFiles, workspacePath, () => {
+            Config.getIgnoreFiles, workspacePath, Config.getAdditionalTags , () => {
                 this.tagMissedCallback()
             });
 

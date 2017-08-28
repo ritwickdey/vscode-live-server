@@ -45,7 +45,7 @@ export class Helper {
         return fileUri.endsWith('.html') || fileUri.endsWith('.htm');
     }
 
-    public static generateParams(rootPath: string, port: number, ignoreFilePaths: string[], workspacePath: string, onTagMissedCallback?: MethodDecorator) {
+    public static generateParams(rootPath: string, port: number, ignoreFilePaths: string[], workspacePath: string, addtionalHTMLtags?: string[] , onTagMissedCallback?: MethodDecorator) {
         workspacePath = workspacePath || '';
         ignoreFilePaths = ignoreFilePaths || [];
         let ignoreFiles = [];
@@ -70,6 +70,7 @@ export class Helper {
             open: false,
             ignore: ignoreFiles,
             disableGlobbing : true,
+            addtionalHTMLtags : addtionalHTMLtags,
             onTagMissedCallback: onTagMissedCallback
         }
     }
