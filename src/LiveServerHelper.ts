@@ -19,6 +19,7 @@ export class LiveServerHelper {
 
                 }, 1000);
             } catch (err) {
+                console.error(err);
                 callback(null);
             }
 

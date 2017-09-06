@@ -11,7 +11,7 @@
       "check-space"
     ],
     "curly": false,
-    "eofline": true,
+    "eofline": false,
     "forin": true,
     "import-blacklist": [
       true,
