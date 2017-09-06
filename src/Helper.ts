@@ -111,6 +111,11 @@ export class Helper {
             root: rootPath,
             file: null,
             open: false,
+            https: {
+                cert: fs.readFileSync('filepath', 'utf8'),
+                key: fs.readFileSync('filepath' + '/server.key', 'utf8'),
+                passphrase: '12345'
+            },
             ignore: ignoreFiles,
             disableGlobbing: true,
             proxy: proxy,
