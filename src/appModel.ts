@@ -12,6 +12,7 @@ import * as opn from 'opn';
 export class AppModel {
 
     private IsServerRunning: boolean;
+    private IsStaging: boolean;
     private LiveServerInstance;
     private runningPort: number;
 
@@ -48,6 +49,8 @@ export class AppModel {
         let params = Helper.generateParams(pathInfos.rootPath, Config.getPort,
             Config.getIgnoreFiles, workspacePath);
 
+        if (this.IsStaging) return;
+
         LiveServerHelper.StartServer(params, (serverInstance) => {
             if (serverInstance && serverInstance.address()) {
                 this.LiveServerInstance = serverInstance;
@@ -65,10 +68,9 @@ export class AppModel {
                 this.IsServerRunning = true; // to revert status - cheat :p
                 this.ToggleStatusBar(); // reverted
             }
-
         });
 
-
+        this.IsStaging = true;
         StatusbarUi.Working('Starting...');
     }
 
@@ -77,7 +79,6 @@ export class AppModel {
             this.showPopUpMsg(`Server is not already running`);
             return;
         }
-        // this.Init();
         LiveServerHelper.StopServer(this.LiveServerInstance, () => {
             this.showPopUpMsg('Server is now offline.');
             this.ToggleStatusBar();
@@ -93,20 +94,19 @@ export class AppModel {
         if (isErrorMsg) {
             window.showErrorMessage(msg);
         }
-        else {
-            if (!Config.getDonotShowInfoMsg) {
-                const donotShowMsg = 'Don\'t show again';
-                window.showInformationMessage(msg, donotShowMsg)
-                    .then((choise) => {
-                        if (choise && choise === donotShowMsg) {
-                            Config.setDonotShowInfoMsg = true;
-                        }
-                    });
-            }
+        else if (!Config.getDonotShowInfoMsg) {
+            const donotShowMsg = 'Don\'t show again';
+            window.showInformationMessage(msg, donotShowMsg)
+                .then(choise => {
+                    if (choise && choise === donotShowMsg)
+                        Config.setDonotShowInfoMsg(true);
+                });
         }
+
     }
 
     private ToggleStatusBar() {
+        this.IsStaging = false;
         if (!this.IsServerRunning) {
             StatusbarUi.Offline(this.runningPort || Config.getPort);
         }
