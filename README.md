@@ -4,10 +4,8 @@
 
 **_[If you found any bug or if you have any suggestion, feel free to report or suggest me.]_**
 
-[![VSCode Marketplace](https://vsmarketplacebadge.apphb.com/version/ritwickdey.LiveServer.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
-[![Total Installs](https://vsmarketplacebadge.apphb.com/installs/ritwickdey.LiveServer.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) 
-[![Avarage Rating](https://vsmarketplacebadge.apphb.com/rating-short/ritwickdey.LiveServer.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/ritwickdey/vscode-live-server/)
+[![VSCode Marketplace](https://vsmarketplacebadge.apphb.com/version/ritwickdey.LiveServer.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) [![Total Installs](https://vsmarketplacebadge.apphb.com/installs/ritwickdey.LiveServer.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) 
+[![Avarage Rating](https://vsmarketplacebadge.apphb.com/rating-short/ritwickdey.LiveServer.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)  [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/ritwickdey/vscode-live-server/)
 <br>
 Launch a development local Server by a single click and watch live changes with some extra functionality.
 <br>
