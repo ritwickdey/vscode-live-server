@@ -47,7 +47,7 @@ export class AppModel {
         }
 
         let params = Helper.generateParams(pathInfos.rootPath, Config.getPort,
-            Config.getIgnoreFiles, workspacePath, Config.getAdditionalTags , () => {
+            Config.getIgnoreFiles, workspacePath, Config.getAdditionalTags, () => {
                 this.tagMissedCallback()
             });
 
@@ -103,17 +103,16 @@ export class AppModel {
         else if (isWarning) {
             window.showWarningMessage(msg);
         }
-        else {
-            if (!Config.getDonotShowInfoMsg) {
-                const donotShowMsg = 'Don\'t show again';
-                window.showInformationMessage(msg, donotShowMsg)
-                    .then((choise) => {
-                        if (choise && choise === donotShowMsg) {
-                            Config.setDonotShowInfoMsg = true;
-                        }
-                    });
-            }
+        else if (!Config.getDonotShowInfoMsg) {
+            const donotShowMsg = 'Don\'t show again';
+            window.showInformationMessage(msg, donotShowMsg)
+                .then(choise => {
+                    if (choise && choise === donotShowMsg) {
+                        Config.setDonotShowInfoMsg = true;
+                    }
+                });
         }
+
 
     }
 

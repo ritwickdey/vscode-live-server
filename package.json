@@ -149,10 +149,8 @@
         },
         "liveServer.settings.additionalTagsForLiveReload": {
           "type": "array",
-          "default": [
-
-          ],
-          "description": "By default Live Server will inject extra JS code into Head or Body tag of HTML. A standard HTML should have Body & Head tag. \nIn case you don't have those tags, you can add more tags as an array of string format, so that Live Server can able to inject the code for live reloading feature."
+          "default": [],
+          "description": "Live Server injects a requried JS code into Head or Body tag of HTML for enabling Live Reload Feature. \nIn case if you want to give support for another tags (Experimental Feature), you can set here. \n\n Note: Prescience of choosing tag is 'left to right' or 'up to down'"
         }
       }
     }
