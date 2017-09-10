@@ -66,7 +66,7 @@ export class AppModel {
                 }
             }
             else {
-                this.showPopUpMsg(`Error to open server at port ${Config.getPort}.`, true);
+                this.showPopUpMsg(`Error on port ${Config.getPort}. It may be already in use. Please change it through settings.`, true);
                 this.IsServerRunning = true; // to revert status - cheat :p
                 this.ToggleStatusBar(); // reverted
             }

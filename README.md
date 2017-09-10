@@ -40,6 +40,7 @@ Launch a development local Server by a single click and watch live changes with 
 * Support for any browser _(Eg: Chrome Canary, Firefox Nightly)_ using advance Command Line.
 * Remote Connect through WLAN (E.g.: Connect with mobile) _[Need Help? See FAQ Section]_
 * Use preferable host name *(localhost or 127.0.0.1)*.
+* Customizable Supporting Tag for Live Reload feature. (Default is `Body` or `head`)
 
 
 ## Settings
@@ -51,6 +52,7 @@ Launch a development local Server by a single click and watch live changes with 
  
 * **`liveServer.settings.root`:** To change root of server in between workspace folder structure,  use `/` and absolute path from workspace.
     * _Example: `/sub_folder1/sub_folder2`_. Now `sub_folder2` will be root of the server.
+    
     *  _Default value is "`/`".(The Workspace Root)_.
 
     <hr>
@@ -62,7 +64,9 @@ Launch a development local Server by a single click and watch live changes with 
  
 * **`liveServer.settings.ChromeDebuggingAttachment`:** To Enable Chrome Debugging Attachment to Live Server. [[Quick Gif Demo](./images/Screenshot/ChromeDebugging.gif)].
     * _**NOTE**: You must have to install [ `Debugger for Chrome.`](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)_
+    
     * _If the value is `true`, Start Live Server and select 'Attach to Chrome' from Debug Window to start debugging. [`Debugger for Chrome`](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome) Extension will inject debugging feature into running instance of browser window._
+   
     *  _Default value is `false`._
 
     <hr>
@@ -78,12 +82,13 @@ Launch a development local Server by a single click and watch live changes with 
         * _chrome --incognito --remote-debugging-port=9222_
     <hr>
 * **`liveServer.settings.NoBrowser`:** If it is true live server will start without browser opened.
+    
     * _Default Value is `false`_ 
 
     <hr>
 * **`liveServer.settings.ignoreFiles`:** To ignore specific file changes.
     * _Default value is:_
-    ```
+    ```json
     [
         ".vscode/**",
         "**/*.scss",
@@ -91,13 +96,29 @@ Launch a development local Server by a single click and watch live changes with 
     ]
     ```
     Now, by default Live Server will not track changes of your `.scss` &  `.sass` files. 
+
     <hr>
 * **`liveServer.settings.donotShowInfoMsg`:** To turn off information pop-up messages like _"Server starts with port xxxx"_ or like that.  To turn off it, you can set the value as `true` or you can click to _"Don't show again"_ when a information message pop-up.
        
     * _Default value is : `false`_
+    
     <hr>
 * **`liveServer.settings.host`:** To switch host name between `localhost` and `127.0.0.1`. 
     * _Default is `127.0.0.1`._
+     
+    <hr>
+* **`liveServer.settings.additionalTagsForLiveReload`:** *(Experimental Feature)* Live Server injects a requried JS code into Head or Body tag of HTML for enabling Live Reload feature. <br> In case your HTML don't have Body or Head tag, you can define another tags here, so that Live Server can inject the JS code into that tag.
+    
+     * *Note: Prescience of choosing tag is 'left to right' or 'up to down'. `Body` has highest prescience, then `head` tag.*
+     
+     * *Example: If body/head tag is missing, it will look for div tag. If `div` tag is also missing, then it will look for `myCustomTag`. If multiple tags are found it'll inject the code into first one.*
+    ```json
+        [
+                "div", 
+                "myCustomTag"
+        ]
+    ```
+
 
 
 ## Installation
@@ -106,9 +127,16 @@ Open VSCode Editor and Press `ctrl+P`, type `ext install LiveServer`.
 
 ## What's new ?
 
+* #### Version 2.1.0 (10.09.2017)
+    * ***[New Feature with Setting [#14](https://github.com/ritwickdey/vscode-live-server/issues/14)]*** `liveServer.settings.additionalTagsForLiveReload` : Support for Live Reload feature if there are no body or head tag in HTML. *(See Settings section for more details).*
+    
+    * ***[Feature/Enhancement [#18](https://github.com/ritwickdey/vscode-live-server/issues/18)]***  Now the Extension will prompt a message if supporting tag for live reload isn't detected in HTML.
+    
+    * ***[Bug Fixes [#21](https://github.com/ritwickdey/vscode-live-server/issues/21)]*** Error on very fast double click on "Go Live" button.
+
 * #### Version 2.0.0 (27.08.2017)
 
-    *  ***[Final Release with v2.0.0]*** The *Preview* tag is removed from the extension. (BTW, More update comming... :smile:) 
+    *  ***[Final Release with v2.0.0]*** The *Preview* tag is removed from the extension. (BTW, More update comming... :D) 
     
     * ***[New Shortcut [#17](https://github.com/ritwickdey/vscode-live-server/issues/17)]***  Explorer Context Menu shortcut added. Just right click on a a `HTML` file & click `Open with Live Server`.
     
@@ -123,12 +151,6 @@ Open VSCode Editor and Press `ctrl+P`, type `ext install LiveServer`.
 
     * ***[New Settings]*** `liveServer.settings.host`:  To switch host name between `localhost` and `127.0.0.1`. Default is `127.0.0.1`.
 
-* #### Version 1.6.10 (19.08.2017)
-    * ***[Fixed [#13](https://github.com/ritwickdey/vscode-live-server/issues/13)]*** Browser was not opening after server started in Linux. _[Thanks [Ahmed Alzhrani](https://github.com/matt-zhrani)]_.    
-    
-    * ***[Fixed]*** Fixed Ignore Files feature (It was working only for first time of starting server).
-    
-    *  ***[Enhancement]*** Now you don't have to open a file to start server from workspace. Previously you got an annoyed message saying _"Open a file..."_.
 
 
 ## Changelog
