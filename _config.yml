@@ -1,0 +1,22 @@
+theme: jekyll-theme-cayman
+repository: ritwickdey/vscode-live-server
+
+gems:
+  - jekyll-seo-tag
+
+title: Live Server | VSCode Extension
+description : Launch a development local Server by a single click and watch live changes with some extra functionality
+author : Ritwick Dey
+twitter:username: Dey_Ritwick
+social:
+  name: Live Server VSCode Extension
+  links:
+    - https://github.com/ritwickdey/vscode-live-server
+    - https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer
+lang: en_IN
+
+
+
+##Uncomment below for local test
+#github: [metadata]
+

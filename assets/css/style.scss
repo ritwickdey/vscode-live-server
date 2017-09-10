@@ -1,0 +1,119 @@
+--- 
+---
+@import "{{ site.theme }}";
+
+$bold : 500;
+
+* {
+    font-family: 'Roboto', sans-serif;
+    color: #40484b;
+    font-weight: 400;
+    line-height: 26px;
+}
+
+li > em {
+    line-height: 35px;
+    font-style: italic;
+}
+li>h4 {
+    margin: 0;
+}
+
+.page-header {
+    background-image: none;
+    background-color: rgb(5, 99, 161);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    h1,
+    h2 {
+        color: #fff;
+    }
+    .btn+.btn {
+        margin-left: 0;
+    }
+    .btn-div {
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        height: auto;
+        .btn {
+            margin: 3px 0px;
+            width: 275px;
+            padding: 15px 8px;
+        }
+    }
+}
+
+.after-scroll-page-header {
+    height: 45vh;
+    transition: 1.5s;
+}
+
+.main-content code,
+.highlighter-rouge {
+    color: rgba(39, 32, 32, 0.9);;
+    font-weight: $bold;
+}
+
+code.highlighter-rouge {
+    font-size: 18px;
+    font-size: 15px;
+}
+
+.main-content {
+    h4 {
+        color: #046380;
+        font-weight: $bold;
+        
+    }
+    h2 {
+        color: #046380;
+        font-weight: $bold;
+        font-size: 28px;
+    }
+    h1 {
+        color: #046380;
+        font-weight: $bold;
+        font-size: 40px;
+    }
+    strong>em {
+        font-weight: 500;
+    }
+
+    :first-child {
+        margin-top: 1.1rem;
+    }
+}
+
+.project-tagline {
+    color: #fff;
+}
+
+@media screen and (min-width: 64em) {
+    .page-header {
+        padding: 0rem 0rem;
+    }
+}
+
+@media screen and (max-width: 42em) {
+    .page-header {
+        padding: 0rem 1rem;
+    }
+}
+
+@media screen and (max-width: 64em) and (min-width: 42em) {
+    .page-header {
+        padding: 0rem 2rem;
+    }
+    
+}
+
+@media screen and (max-width: 64em)  and (max-height:500px) {
+        .after-scroll-page-header {
+        height: 80vh;
+        transition: 1.5s;
+    }
+}
