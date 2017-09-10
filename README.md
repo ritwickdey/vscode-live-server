@@ -4,7 +4,10 @@
 
 **_[If you found any bug or if you have any suggestion, feel free to report or suggest me.]_**
 
-[![VSCode Marketplace](https://vsmarketplacebadge.apphb.com/version/ritwickdey.LiveServer.svg)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) [![Total Installs](https://vsmarketplacebadge.apphb.com/installs/ritwickdey.LiveServer.svg)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) [![Avarage Rating](https://vsmarketplacebadge.apphb.com/rating-short/ritwickdey.LiveServer.svg)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ritwickdey/vscode-live-server/)
+[![VSCode Marketplace](https://vsmarketplacebadge.apphb.com/version/ritwickdey.LiveServer.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
+[![Total Installs](https://vsmarketplacebadge.apphb.com/installs/ritwickdey.LiveServer.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) 
+[![Avarage Rating](https://vsmarketplacebadge.apphb.com/rating-short/ritwickdey.LiveServer.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) 
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/ritwickdey/vscode-live-server/)
 <br>
 Launch a development local Server by a single click and watch live changes with some extra functionality.
 <br>
@@ -12,7 +15,7 @@ Launch a development local Server by a single click and watch live changes with 
 
 ## Shortcuts to Start/Stop Server
 
-**_[NOTE: In case if you don't have any `.html` or `.htm` file in your workspace then you have to follow method no 4 & 5 to start server. I don't know why you want so?!_ :wink: _But feature is still there._ :smiley: _]_**
+**_[NOTE: In case if you don't have any `.html` or `.htm` file in your workspace then you have to follow method no 4 & 5 to start server.]_**
 
 1. Open a project and directly click to `Go Live` from StatusBar to turn on/off the server. 
 ![Go Live Control Preview](./images/Screenshot/vscode-live-server-statusbar-3.jpg)
