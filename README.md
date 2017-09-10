@@ -110,17 +110,18 @@ Launch a development local Server by a single click and watch live changes with 
     * _Default is `127.0.0.1`._
      
     <hr>
-* **`liveServer.settings.additionalTagsForLiveReload`:** *(Experimental Feature)* Live Server injects a requried JS code into Head or Body tag of HTML for enabling Live Reload feature. <br> In case your HTML don't have Body or Head tag, you can define another tags here, so that Live Server can inject the JS code into that tag.
+* **`liveServer.settings.additionalTagsForLiveReload`:** *(Experimental Feature - BETA)* Live Server injects a requried JS code into Head or Body tag of HTML for enabling Live Reload feature. <br> In case your HTML don't have Body or Head tag, you can define another tags here, so that Live Server can inject the JS code into that tag.
     
      * *Note: Prescience of choosing tag is 'left to right' or 'up to down'. `Body` has highest prescience, then `head` tag.*
      
-     * *Example: If body/head tag is missing, it will look for div tag. If `div` tag is also missing, then it will look for `myCustomTag`. If multiple tags are found it'll inject the code into first one.*
+     * *Example: If body/head tag is missing, it will look for `myTag` tag. If `myTag` tag is also missing, then it will look for `myCustomTag`.*
     ```json
         [
-                "div", 
+                "myTag", 
                 "myCustomTag"
         ]
     ```
+    * ***Known Bug***: There is a issue if multiple tag found. 
 
 
 
@@ -131,7 +132,7 @@ Open VSCode Editor and Press `ctrl+P`, type `ext install LiveServer`.
 ## What's new ?
 
 * #### Version 2.1.0 (10.09.2017)
-    * ***[New Feature with Setting [#14](https://github.com/ritwickdey/vscode-live-server/issues/14)]*** `liveServer.settings.additionalTagsForLiveReload` : Support for Live Reload feature if there are no body or head tag in HTML. *(See Settings section for more details).*
+    * ***[New Feature with Setting [#14](https://github.com/ritwickdey/vscode-live-server/issues/14)]*** `liveServer.settings.additionalTagsForLiveReload` : Support for Live Reload feature if there are no body or head tag in HTML. *[Experimental Feature - BETA]* *(See Settings section for more details).*
     
     * ***[Feature/Enhancement [#18](https://github.com/ritwickdey/vscode-live-server/issues/18)]***  Now the Extension will prompt a message if supporting tag for live reload isn't detected in HTML.
     
