@@ -120,6 +120,10 @@ Launch a development local Server by a single click and watch live changes with 
         ]
     ```
     * ***Known Bug***: There is a issue if multiple tag found. 
+    <hr>
+
+* **`liveServer.settings.donotVerifyTags`:** To turn off prompt warning message if body or head or other supporting tag is missing in your HTML.
+    * _Default value if `false`_
 
 
 
@@ -128,6 +132,9 @@ Open VSCode Editor and Press `ctrl+P`, type `ext install LiveServer`.
 
 
 ## What's new ?
+
+* #### Version 2.1.1 (11.09.2017)
+    * ***[Enhancement [#22](https://github.com/ritwickdey/vscode-live-server/issues/22) [#23](https://github.com/ritwickdey/vscode-live-server/issues/23)]*** Now you can trun off the warring message for not detecting supporting tag for live reload. _(Thanks [skelesp](https://github.com/skelesp) and [郑国庆](https://github.com/zhengshuai1001) for the feedback)_
 
 * #### Version 2.1.0 (10.09.2017)
     * ***[New Feature with Setting [#14](https://github.com/ritwickdey/vscode-live-server/issues/14)]*** `liveServer.settings.additionalTagsForLiveReload` : Support for Live Reload feature if there are no body or head tag in HTML. *[Experimental Feature - BETA]* *(See Settings section for more details).*
@@ -147,12 +154,6 @@ Open VSCode Editor and Press `ctrl+P`, type `ext install LiveServer`.
     * **[Fixed [#11](https://github.com/ritwickdey/vscode-live-server/issues/11)]** In case if your folder name contains *exclamatory sign* (`!`) (E.g. : `myfolder!name`), live reload was not working. *[Thanks [oliku](https://github.com/oliku)].*
     
     * ***[One Shortcut Dropped]*** : Server closing shortcut by right clicking onto a `HTML` file is removed. (I believe that was a unconventional shortcut. if I am wrong, open a issue request on GitHub.).
-
-* #### Version 1.6.11 (20.08.2017)
-    * ***[Fixed Again [#13](https://github.com/ritwickdey/vscode-live-server/issues/13)]*** Browser was not opening after server started in Linux. -  I don't really know, why the issue is occurring if I build package with `vsce` from Windows but no issue from Linux.
-
-    * ***[New Settings]*** `liveServer.settings.host`:  To switch host name between `localhost` and `127.0.0.1`. Default is `127.0.0.1`.
-
 
 
 ## Changelog
