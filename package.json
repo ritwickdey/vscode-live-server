@@ -2,7 +2,7 @@
   "name": "LiveServer",
   "displayName": "Live Server",
   "description": "Launch a development local Server by a single click and watch live changes with some extra functionality",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "publisher": "ritwickdey",
   "author": {
     "name": "Ritwick Dey",
@@ -137,6 +137,11 @@
           "type": "boolean",
           "default": false,
           "description": "To disable information pop up messages."
+        },
+        "liveServer.settings.donotVerifyTags": {
+          "type": "boolean",
+          "default": false,
+          "description": "To turn off prompt warning message if body or head or other supporting tag is missing in your HTML."
         },
         "liveServer.settings.host": {
           "type": "string",

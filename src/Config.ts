@@ -48,11 +48,19 @@ export class Config {
         return Config.getSettings<boolean>('donotShowInfoMsg');
     }
 
-    public static set setDonotShowInfoMsg(val) {
-        Config.configuration.update('donotShowInfoMsg', true, true);
+    public static setDonotShowInfoMsg(val: boolean, isGlobal: boolean = false) {
+        Config.configuration.update('donotShowInfoMsg', val, isGlobal);
     }
 
     public static get getAdditionalTags(): string[] {
         return Config.getSettings<string[]>('additionalTagsForLiveReload');
+    }
+
+    public static get getDonotVerifyTags(): boolean {
+        return Config.getSettings<boolean>('donotVerifyTags');
+    }
+
+    public static setDonotVerifyTags(val: boolean, isGlobal: boolean = false) {
+        Config.configuration.update('donotVerifyTags', val, isGlobal);
     }
 }

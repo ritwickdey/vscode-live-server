@@ -93,22 +93,28 @@ export class AppModel {
     }
 
     private tagMissedCallback() {
-        this.showPopUpMsg('Live Reload is not possible as body or head tag or defined tag is missing in HTML', null, true);
+        this.showPopUpMsg('Live Reload is not possible without body or head tag.', null, true);
     }
 
     private showPopUpMsg(msg: string, isErrorMsg: boolean = false, isWarning: boolean = false) {
         if (isErrorMsg) {
             window.showErrorMessage(msg);
         }
-        else if (isWarning) {
-            window.showWarningMessage(msg);
+        else if (isWarning && !Config.getDonotVerifyTags) {
+            const donotShowMsg = 'I understand, Don\'t show again'
+            window.showWarningMessage(msg, donotShowMsg)
+            .then(choise => {
+                if (choise && choise === donotShowMsg) {
+                    Config.setDonotVerifyTags(true, true);
+                }
+            });
         }
         else if (!Config.getDonotShowInfoMsg) {
             const donotShowMsg = 'Don\'t show again';
             window.showInformationMessage(msg, donotShowMsg)
                 .then(choise => {
                     if (choise && choise === donotShowMsg) {
-                        Config.setDonotShowInfoMsg = true;
+                        Config.setDonotShowInfoMsg(true, true);
                     }
                 });
         }
