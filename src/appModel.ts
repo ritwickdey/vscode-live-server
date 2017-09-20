@@ -103,11 +103,11 @@ export class AppModel {
         else if (isWarning && !Config.getDonotVerifyTags) {
             const donotShowMsg = 'I understand, Don\'t show again'
             window.showWarningMessage(msg, donotShowMsg)
-            .then(choise => {
-                if (choise && choise === donotShowMsg) {
-                    Config.setDonotVerifyTags(true, true);
-                }
-            });
+                .then(choise => {
+                    if (choise && choise === donotShowMsg) {
+                        Config.setDonotVerifyTags(true, true);
+                    }
+                });
         }
         else if (!Config.getDonotShowInfoMsg) {
             const donotShowMsg = 'Don\'t show again';
@@ -153,7 +153,7 @@ export class AppModel {
     private openBrowser(port: number, path: string) {
         const host = Config.getHost;
 
-        let appConfig: string[] = [];
+        let params: string[] = [];
         let advanceCustomBrowserCmd = Config.getAdvancedBrowserCmdline;
         if (path.startsWith('\\') || path.startsWith('/')) {
             path = path.substring(1, path.length);
@@ -164,7 +164,7 @@ export class AppModel {
             let commands = advanceCustomBrowserCmd.split(' ');
             commands.forEach((command) => {
                 if (command) {
-                    appConfig.push(command);
+                    params.push(command);
                 }
             });
         }
@@ -173,36 +173,45 @@ export class AppModel {
             let ChromeDebuggingAttachmentEnable = Config.getChromeDebuggingAttachment;
 
             if (CustomBrowser && CustomBrowser !== 'null') {
-                appConfig.push(CustomBrowser);
+                let browserDetails = CustomBrowser.split(':');
+                let browserName = browserDetails[0];
+                params.push(browserName);
 
-                if (CustomBrowser === 'chrome' && ChromeDebuggingAttachmentEnable) {
-                    appConfig.push('--remote-debugging-port=9222');
+                if (browserDetails[1] && browserDetails[1] === 'PrivateMode') {
+                    if (browserName === 'chrome')
+                        params.push('--incognito');
+                    else if (browserName === 'firefox')
+                        params.push('-private-window');
+                }
+
+                if (browserName === 'chrome' && ChromeDebuggingAttachmentEnable) {
+                    params.push('--remote-debugging-port=9222');
                 }
             }
         }
 
-        if (appConfig[0] && appConfig[0] === 'chrome') {
+        if (params[0] && params[0] === 'chrome') {
             switch (process.platform) {
                 case 'darwin':
-                    appConfig[0] = 'google chrome';
+                    params[0] = 'google chrome';
                     break;
                 case 'linux':
-                    appConfig[0] = 'google-chrome';
+                    params[0] = 'google-chrome';
                     break;
                 case 'win32':
-                    appConfig[0] = 'chrome';
+                    params[0] = 'chrome';
                     break;
                 default:
-                    appConfig[0] = 'chrome';
+                    params[0] = 'chrome';
 
             }
         }
-        else if (appConfig[0] && appConfig[0].startsWith('microsoft-edge')) {
-            appConfig[0] = `microsoft-edge:http://${host}:${port}/${path}`;
+        else if (params[0] && params[0].startsWith('microsoft-edge')) {
+            params[0] = `microsoft-edge:http://${host}:${port}/${path}`;
         }
 
         try {
-            opn(`http://${host}:${port}/${path}`, { app: appConfig || [''] });
+            opn(`http://${host}:${port}/${path}`, { app: params || [''] });
         } catch (error) {
             this.showPopUpMsg(`Server is started at ${this.runningPort} but failed to open browser. Try to change the CustomBrowser settings.`, true);
             console.log('\n\nError Log to open Browser : ', error);
