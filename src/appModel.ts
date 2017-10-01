@@ -145,7 +145,7 @@ export class AppModel {
             if (!textEditor) return;
 
             // If a HTML file open without Workspace
-            if (workspace.rootPath === undefined &&  Helper.IsSupportedFile(textEditor.document.languageId)) {
+            if (workspace.rootPath === undefined &&  Helper.IsSupportedFile(textEditor.document.fileName)) {
                 return callback();
             }
         });

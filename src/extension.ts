@@ -25,7 +25,7 @@ export function activate(context: ExtensionContext) {
     context.subscriptions.push(window
         .onDidChangeActiveTextEditor(() => {
             if (window.activeTextEditor === undefined) return;
-            if (workspace.rootPath === undefined && Helper.IsSupportedFile(window.activeTextEditor.document.languageId)) {
+            if (workspace.rootPath === undefined && Helper.IsSupportedFile(window.activeTextEditor.document.fileName)) {
                 StatusbarUi.Init();
             }
         })

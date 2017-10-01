@@ -62,6 +62,11 @@
           "command": "extension.liveServer.goOnline",
           "group": "myGrp@liveServer",
           "when": "resourceLangId == html"
+        },
+        {
+          "command": "extension.liveServer.goOnline",
+          "group": "myGrp@liveServer",
+          "when": "resourceLangId == xml"
         }
       ],
       "explorer/context": [
@@ -69,6 +74,11 @@
           "command": "extension.liveServer.goOnline",
           "group": "navigation@-LiveServer",
           "when": "resourceLangId == html"
+        },
+        {
+          "command": "extension.liveServer.goOnline",
+          "group": "navigation@-LiveServer",
+          "when": "resourceLangId == xml"
         }
       ]
     },
