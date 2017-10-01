@@ -8,8 +8,9 @@
 [![Travis branch](https://img.shields.io/travis/ritwickdey/vscode-live-server/master.svg?style=flat-square)](https://travis-ci.org/ritwickdey/vscode-live-server) [![Appveyor branch](https://img.shields.io/appveyor/ci/ritwickdey/vscode-live-server.svg?style=flat-square)](https://ci.appveyor.com/project/ritwickdey/vscode-live-server) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/ritwickdey/vscode-live-server/) 
 <br>
 
-Launch a development local Server by a single click and watch live changes with some extra functionality.
+**Launch a development local Server in live mode of static files (html, css, js, svg).**
 <br>
+
 ![Live Server Demo VSCode](./images/Screenshot/vscode-live-server-animated-demo.gif)
 
 ## Shortcuts to Start/Stop Server
@@ -28,6 +29,7 @@ Launch a development local Server by a single click and watch live changes with 
 
 5. Press `F1` or `ctrl+shift+P` and type `Live Server: Open With Live Server ` to start a server or type `Live Server: Close Live Server` to stop a server.
 
+
 ## Features
 * A Quick Development Live Server.
 * Live Reload of HTML files on changes of tracking files.
@@ -43,7 +45,7 @@ Launch a development local Server by a single click and watch live changes with 
 * Remote Connect through WLAN (E.g.: Connect with mobile) _[Need Help? See FAQ Section]_
 * Use preferable host name *(localhost or 127.0.0.1)*.
 * Customizable Supporting Tag for Live Reload feature. (Default is `Body` or `head`)
-
+* SVG Support
 
 ## Settings
 
@@ -59,9 +61,16 @@ Launch a development local Server by a single click and watch live changes with 
 
     <hr>
  
-* **`liveServer.settings.CustomBrowser`:** To change your system's default browser. (_chrome_ or _firefox_ or _Microsoft-Edge_).
+* **`liveServer.settings.CustomBrowser`:** To change your system's default browser.
     * _Default value is `"Null"` [String, not `null`]. (It will open your system's default browser.)_
+    * *Available Options :*
+        * chrome
+        * chrome:PrivateMode
+        * firefox
+        * firefox:PrivateMode
+        * microsoft-edge
 
+    _Not enough? need more? open an/a issue/pull request on github. For now, use `liveServer.settings.AdvanceCustomBrowserCmdLine` settings (see below)._
     <hr>
  
 * **`liveServer.settings.ChromeDebuggingAttachment`:** To Enable Chrome Debugging Attachment to Live Server. [[Quick Gif Demo](./images/Screenshot/ChromeDebugging.gif)].
@@ -105,7 +114,7 @@ Launch a development local Server by a single click and watch live changes with 
     * _Default value is : `false`_
     
     <hr>
-* **`liveServer.settings.host`:** To switch host name between `localhost` and `127.0.0.1`. 
+* **`liveServer.settings.host`:** To switch host name between `localhost` and `127.0.0.1` or anything else. 
     * _Default is `127.0.0.1`._
      
     <hr>
@@ -134,6 +143,17 @@ Open VSCode Editor and Press `ctrl+P`, type `ext install LiveServer`.
 
 ## What's new ?
 
+* #### Version 2.2.0 (2.10.2017)
+    * ***[New]*** Two new options added to `liveServer.settings.CustomBrowser` settings.     
+        - `chrome:PrivateMode` 
+        - `firefox:PrivateMode` 
+
+        *(For more, see the `setting` section)*.
+    
+    * ***[New/Enhancement]*** Support for `SVG` files. *(Now right on a `svg` file & click to `Open with live Server`).* 
+    
+    * ***[Fixed [#27](https://github.com/ritwickdey/vscode-live-server/issues/27)]*** Possibility of add custom hostname. _(Thanks [Alex Lukyanov](https://github.com/lavir) for reporting the issue)_.
+
 * #### Version 2.1.1 (11.09.2017)
     * ***[Enhancement [#22](https://github.com/ritwickdey/vscode-live-server/issues/22) [#23](https://github.com/ritwickdey/vscode-live-server/issues/23)]*** Now you can trun off the warring message for not detecting supporting tag for live reload. _(Thanks [skelesp](https://github.com/skelesp) and [郑国庆](https://github.com/zhengshuai1001) for the feedback)_
 
@@ -143,18 +163,6 @@ Open VSCode Editor and Press `ctrl+P`, type `ext install LiveServer`.
     * ***[Feature/Enhancement [#18](https://github.com/ritwickdey/vscode-live-server/issues/18)]***  Now the Extension will prompt a message if supporting tag for live reload isn't detected in HTML.
     
     * ***[Bug Fixes [#21](https://github.com/ritwickdey/vscode-live-server/issues/21)]*** Error on very fast double click on "Go Live" button.
-
-* #### Version 2.0.0 (27.08.2017)
-
-    *  ***[Final Release with v2.0.0]*** The *Preview* tag is removed from the extension. (BTW, More update comming... :D) 
-    
-    * ***[New Shortcut [#17](https://github.com/ritwickdey/vscode-live-server/issues/17)]***  Explorer Context Menu shortcut added. Just right click on a a `HTML` file & click `Open with Live Server`.
-    
-    *  ***[Enhancement [#16](https://github.com/ritwickdey/vscode-live-server/issues/16)]*** No more annoy message _'Live reload enabled'_ on browser console everytime. Now it will be logged on console for only one time.  *[Thanks [AAhrit](https://github.com/AAhrit)].*
-
-    * **[Fixed [#11](https://github.com/ritwickdey/vscode-live-server/issues/11)]** In case if your folder name contains *exclamatory sign* (`!`) (E.g. : `myfolder!name`), live reload was not working. *[Thanks [oliku](https://github.com/oliku)].*
-    
-    * ***[One Shortcut Dropped]*** : Server closing shortcut by right clicking onto a `HTML` file is removed. (I believe that was a unconventional shortcut. if I am wrong, open a issue request on GitHub.).
 
 
 ## Changelog
