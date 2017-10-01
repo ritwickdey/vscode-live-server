@@ -39,7 +39,7 @@ export class AppModel {
 
         if (this.IsServerRunning) {
             this.openBrowser(this.runningPort,
-                Helper.relativeHtmlPathFromRoot(pathInfos.rootPath, openedDocUri) || '');
+                Helper.getSubPathIfSupported(pathInfos.rootPath, openedDocUri) || '');
             return;
         }
         if (pathInfos.HasVirtualRootError) {
@@ -62,7 +62,7 @@ export class AppModel {
 
                 if (!Config.getNoBrowser) {
                     this.openBrowser(this.runningPort,
-                        Helper.relativeHtmlPathFromRoot(pathInfos.rootPath, openedDocUri) || '');
+                        Helper.getSubPathIfSupported(pathInfos.rootPath, openedDocUri) || '');
                 }
             }
             else {

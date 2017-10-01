@@ -37,7 +37,15 @@ export class Helper {
         };
     }
 
-    public static relativeHtmlPathFromRoot(rootPath: string, targetPath: string) {
+    /**
+     * This function return the remaining path from root to target.
+     * e.g. : root is `c:\user\rootfolder\` and target is `c:\user\rootfolder\subfolder\index.html`
+     * then this function will return `subfolder\index.html` as html is a supported otherwise it will return null.
+     * 
+     * @param rootPath 
+     * @param targetPath 
+     */
+    public static getSubPathIfSupported(rootPath: string, targetPath: string) {
 
         if (!Helper.IsSupportedFile(targetPath) || !targetPath.startsWith(rootPath)) {
             return null;
@@ -46,23 +54,36 @@ export class Helper {
         return targetPath.substring(rootPath.length, targetPath.length);
     }
 
+    /**
+     * It returns true if file is supported. input can be in full file path or just filename with extension name. 
+     * @param file: can be path/subpath/file.ts or file.ts
+     */
     public static IsSupportedFile(file: string): boolean {
         let ext = path.extname(file) || (file.startsWith('.') ? file : `.${file}`);
         return SUPPRORTED_EXT.indexOf(ext.toLowerCase()) > -1;
     }
-
-    public static generateParams(rootPath: string, port: number, ignoreFilePaths: string[], workspacePath: string, addtionalHTMLtags?: string[], onTagMissedCallback?: MethodDecorator) {
+    
+    /**
+     * 
+     * @param rootPath 
+     * @param port 
+     * @param ignorePathGlob 
+     * @param workspacePath 
+     * @param addtionalHTMLtags 
+     * @param onTagMissedCallback 
+     */
+    public static generateParams(rootPath: string, port: number, ignorePathGlob: string[], workspacePath: string, addtionalHTMLtags?: string[], onTagMissedCallback?: MethodDecorator) {
         workspacePath = workspacePath || '';
-        ignoreFilePaths = ignoreFilePaths || [];
+        ignorePathGlob = ignorePathGlob || [];
         let ignoreFiles = [];
 
-        ignoreFilePaths.forEach((ignoredFilePath, index) => {
-            if (!ignoredFilePath.startsWith('/') || !ignoredFilePath.startsWith('\\')) {
+        ignorePathGlob.forEach((ignoredPath, index) => {
+            if (!ignoredPath.startsWith('/') || !ignoredPath.startsWith('\\')) {
                 if (process.platform === 'win32') {
-                    ignoreFiles[index] = workspacePath + '\\' + ignoredFilePath;
+                    ignoreFiles[index] = workspacePath + '\\' + ignoredPath;
                 }
                 else {
-                    ignoreFiles[index] = workspacePath + '/' + ignoredFilePath;
+                    ignoreFiles[index] = workspacePath + '/' + ignoredPath;
                 }
             }
         });
