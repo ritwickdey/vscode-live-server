@@ -14,9 +14,31 @@ import * as myExtension from '../src/extension';
 // Defines a Mocha test suite to group tests of similar kind together
 suite('Extension Tests', () => {
 
-    // Defines a Mocha unit test
-    test('Something 1', () => {
-        assert.equal(-1, [1, 2, 3].indexOf(5));
-        assert.equal(-1, [1, 2, 3].indexOf(0));
+    test('Extension should be present', () => {
+        assert.ok(vscode.extensions.getExtension('ritwickdey.LiveServer'));
     });
+
+    test('should activate', function () {
+        this.timeout(1 * 60 * 1000);
+        return vscode.extensions.getExtension('ritwickdey.LiveServer').activate()
+            .then((api) => {
+                assert.ok(true);
+            });
+    });
+
+    test('should register all java commands', function () {
+		return vscode.commands.getCommands(true).then((commands) =>
+		{
+			const COMMANDS = [
+                'extension.liveServer.goOnline',
+                'extension.liveServer.goOffline'
+            ];
+			let foundJavaCommands = commands.filter((value) => {
+				return COMMANDS.indexOf(value)>=0 || value.startsWith('extension.liveServer.');
+			});
+			assert.equal(foundJavaCommands.length, COMMANDS.length);
+		});
+	});
+
+
 });
