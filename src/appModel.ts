@@ -5,7 +5,7 @@ import { window, workspace } from 'vscode';
 import { LiveServerHelper } from './LiveServerHelper';
 import { StatusbarUi } from './StatusbarUi';
 import { Config } from './Config';
-import { Helper } from './Helper';
+import { Helper, SUPPRORTED_EXT } from './Helper';
 
 import * as opn from 'opn';
 
@@ -20,7 +20,7 @@ export class AppModel {
         this.IsServerRunning = false;
         this.runningPort = null;
 
-        this.HaveAnyHTMLFile(() => {
+        this.HaveAnySupportedFile(() => {
             StatusbarUi.Init();
         })
 
@@ -134,9 +134,10 @@ export class AppModel {
         this.IsServerRunning = !this.IsServerRunning;
     }
 
-    private HaveAnyHTMLFile(callback) {
-        workspace.findFiles('**/*[.html | .htm]', '**/node_modules/**', 1).then((files) => {
-            if (files !== undefined && files.length !== 0) {
+    private HaveAnySupportedFile(callback) {
+        const globFormat = `**/*[${SUPPRORTED_EXT.join(' | ')}]`;
+        workspace.findFiles(globFormat, '**/node_modules/**').then((files) => {
+            if (files && files.length !== 0) {
                 return callback();
             }
 
@@ -144,7 +145,7 @@ export class AppModel {
             if (!textEditor) return;
 
             // If a HTML file open without Workspace
-            if (workspace.rootPath === undefined && textEditor.document.languageId === 'html') {
+            if (workspace.rootPath === undefined &&  Helper.IsSupportedFile(textEditor.document.languageId)) {
                 return callback();
             }
         });

@@ -3,7 +3,12 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
+export const SUPPRORTED_EXT: string[] = [
+    '.html', '.htm', '.svg'
+];
+
 export class Helper {
+
 
     public static ExtractFilePath(workSpacePath: string, openedDocUri: string, virtualRoot: string) {
 
@@ -34,18 +39,19 @@ export class Helper {
 
     public static relativeHtmlPathFromRoot(rootPath: string, targetPath: string) {
 
-        if (!Helper.IsHtmlFile(targetPath) || !targetPath.startsWith(rootPath)) {
+        if (!Helper.IsSupportedFile(targetPath) || !targetPath.startsWith(rootPath)) {
             return null;
         }
 
         return targetPath.substring(rootPath.length, targetPath.length);
     }
 
-    public static IsHtmlFile(fileUri: string): boolean {
-        return fileUri.endsWith('.html') || fileUri.endsWith('.htm');
+    public static IsSupportedFile(file: string): boolean {
+        let ext = path.extname(file) || (file.startsWith('.') ? file : `.${file}`);
+        return SUPPRORTED_EXT.indexOf(ext.toLowerCase()) > -1;
     }
 
-    public static generateParams(rootPath: string, port: number, ignoreFilePaths: string[], workspacePath: string, addtionalHTMLtags?: string[] , onTagMissedCallback?: MethodDecorator) {
+    public static generateParams(rootPath: string, port: number, ignoreFilePaths: string[], workspacePath: string, addtionalHTMLtags?: string[], onTagMissedCallback?: MethodDecorator) {
         workspacePath = workspacePath || '';
         ignoreFilePaths = ignoreFilePaths || [];
         let ignoreFiles = [];
@@ -69,8 +75,8 @@ export class Helper {
             file: null,
             open: false,
             ignore: ignoreFiles,
-            disableGlobbing : true,
-            addtionalHTMLtags : addtionalHTMLtags,
+            disableGlobbing: true,
+            addtionalHTMLtags: addtionalHTMLtags,
             onTagMissedCallback: onTagMissedCallback
         }
     }
