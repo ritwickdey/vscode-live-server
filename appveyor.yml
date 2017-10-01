@@ -12,4 +12,5 @@ build_script:
   - npm run vscode:prepublish
 
 test_script:
+  - npm run lint
   - npm test
