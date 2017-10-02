@@ -31,7 +31,7 @@ export class StatusbarUi {
     public static Live() {
         StatusbarUi.statusbar.text = '$(broadcast) Go Live';
         StatusbarUi.statusbar.command = 'extension.liveServer.goOnline';
-        StatusbarUi.statusbar.tooltip = 'Click to run live server'
+        StatusbarUi.statusbar.tooltip = 'Click to run live server';
     }
 
     public static Offline(port: Number) {

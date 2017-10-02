@@ -99,7 +99,7 @@ export class Helper {
             disableGlobbing: true,
             addtionalHTMLtags: addtionalHTMLtags,
             onTagMissedCallback: onTagMissedCallback
-        }
+        };
     }
 
 

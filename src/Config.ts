@@ -5,8 +5,8 @@ import { workspace } from 'vscode';
 export class Config {
 
     public static get configuration() {
-        return workspace.getConfiguration('liveServer.settings')
-    };
+        return workspace.getConfiguration('liveServer.settings');
+    }
 
     private static getSettings<T>(val: string): T {
         return Config.configuration.get(val) as T;

@@ -2,7 +2,7 @@
 
 import {ExtensionContext, workspace, commands, window} from 'vscode';
 import { StatusbarUi } from './StatusbarUi';
-import { AppModel } from './appModel'
+import { AppModel } from './appModel';
 import { Helper } from './Helper';
 
 export function activate(context: ExtensionContext) {

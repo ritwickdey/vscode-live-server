@@ -14,7 +14,7 @@ export class LiveServerHelper {
                         return callback(null);
                     }
 
-                    httpShutdown(ServerInstance)
+                    httpShutdown(ServerInstance);
                     return callback(ServerInstance);
 
                 }, 1000);
@@ -33,6 +33,6 @@ export class LiveServerHelper {
         });
         LiveServerInstance.close();
         liveServer.shutdown();
-        setTimeout(() => { callback() }, 1000);
+        setTimeout(() => { callback(); }, 1000);
     }
 }

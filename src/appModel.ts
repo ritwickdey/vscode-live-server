@@ -22,7 +22,7 @@ export class AppModel {
 
         this.HaveAnySupportedFile(() => {
             StatusbarUi.Init();
-        })
+        });
 
     }
 
@@ -48,7 +48,7 @@ export class AppModel {
 
         let params = Helper.generateParams(pathInfos.rootPath, Config.getPort,
             Config.getIgnoreFiles, workspacePath, Config.getAdditionalTags, () => {
-                this.tagMissedCallback()
+                this.tagMissedCallback();
             });
 
         if (this.IsStaging) return;
@@ -101,7 +101,7 @@ export class AppModel {
             window.showErrorMessage(msg);
         }
         else if (isWarning && !Config.getDonotVerifyTags) {
-            const donotShowMsg = 'I understand, Don\'t show again'
+            const donotShowMsg = 'I understand, Don\'t show again';
             window.showWarningMessage(msg, donotShowMsg)
                 .then(choise => {
                     if (choise && choise === donotShowMsg) {
