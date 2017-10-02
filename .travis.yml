@@ -5,6 +5,10 @@ node_js:
 os:
   - linux
 
+branches:
+  only:
+    - master
+
 addons:
    apt:
      packages:
