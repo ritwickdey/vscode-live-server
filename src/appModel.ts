@@ -77,6 +77,7 @@ export class AppModel {
     }
 
     public GoOffline() {
+        if (this.IsStaging) return;
         if (!this.IsServerRunning) {
             this.showPopUpMsg(`Server is not already running`);
             return;
@@ -87,6 +88,7 @@ export class AppModel {
             this.LiveServerInstance = null;
             this.runningPort = null;
         });
+        this.IsStaging = true;
 
         StatusbarUi.Working('Disposing...');
 
