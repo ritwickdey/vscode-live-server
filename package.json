@@ -2,7 +2,7 @@
   "name": "LiveServer",
   "displayName": "Live Server",
   "description": "Launch a development local Server by a single click and watch live changes with some extra functionality",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "publisher": "ritwickdey",
   "author": {
     "name": "Ritwick Dey",

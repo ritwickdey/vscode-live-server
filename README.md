@@ -4,8 +4,8 @@
 
 **_[If you found any bug or if you have any suggestion, feel free to report or suggest me.]_**
 
-[![VSCode Marketplace](https://vsmarketplacebadge.apphb.com/version/ritwickdey.LiveServer.svg?style=flat-square&label=VSCode%20Marketplace)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) [![Total Installs](https://vsmarketplacebadge.apphb.com/installs-short/ritwickdey.LiveServer.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) [![Avarage Rating](https://vsmarketplacebadge.apphb.com/rating-short/ritwickdey.LiveServer.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)  
-[![Travis branch](https://img.shields.io/travis/ritwickdey/vscode-live-server/master.svg?style=flat-square)](https://travis-ci.org/ritwickdey/vscode-live-server) [![Appveyor branch](https://img.shields.io/appveyor/ci/ritwickdey/vscode-live-server.svg?style=flat-square)](https://ci.appveyor.com/project/ritwickdey/vscode-live-server) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/ritwickdey/vscode-live-server/) 
+[![VSCode Marketplace](https://img.shields.io/vscode-marketplace/v/ritwickdey.LiveServer.svg?style=flat-square&label=VSCode%20Marketplace)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) [![Total Installs](https://vsmarketplacebadge.apphb.com/installs-short/ritwickdey.LiveServer.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) [![Avarage Rating](https://img.shields.io/vscode-marketplace/r/ritwickdey.LiveServer.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)  
+[![Travis branch](https://img.shields.io/travis/ritwickdey/vscode-live-server/master.svg?style=flat-square&label=travis%20build)](https://travis-ci.org/ritwickdey/vscode-live-server) [![Appveyor branch](https://img.shields.io/appveyor/ci/ritwickdey/vscode-live-server.svg?style=flat-square&label=appveyor%20build)](https://ci.appveyor.com/project/ritwickdey/vscode-live-server) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/ritwickdey/vscode-live-server/) 
 <br>
 
 **Launch a development local Server in live mode of static files (html, css, js, svg).**
@@ -143,6 +143,12 @@ Open VSCode Editor and Press `ctrl+P`, type `ext install LiveServer`.
 
 ## What's new ?
 
+
+* ### Version 2.2.1 (07.10.17)
+    * ***[Fixed [#26](https://github.com/ritwickdey/vscode-live-server/issues/26)]*** : CPU Overloads due to `**/node_modules/**` folder is fixed - Now `**/node_modules/**` is excluded by default. *(Special Thanks to [Bestvow](https://github.com/bestvow) for the help, Thanks to [user921](https://github.com/user921) for the report).*
+
+    * ***[Fixed]*** Small fixes in Statusbar Button.
+
 * #### Version 2.2.0 (2.10.2017)
     * ***[New]*** Two new options added to `liveServer.settings.CustomBrowser` settings.     
         - `chrome:PrivateMode` 
@@ -156,13 +162,6 @@ Open VSCode Editor and Press `ctrl+P`, type `ext install LiveServer`.
 
 * #### Version 2.1.1 (11.09.2017)
     * ***[Enhancement [#22](https://github.com/ritwickdey/vscode-live-server/issues/22) [#23](https://github.com/ritwickdey/vscode-live-server/issues/23)]*** Now you can trun off the warring message for not detecting supporting tag for live reload. _(Thanks [skelesp](https://github.com/skelesp) and [郑国庆](https://github.com/zhengshuai1001) for the feedback)_
-
-* #### Version 2.1.0 (10.09.2017)
-    * ***[New Feature with Setting [#14](https://github.com/ritwickdey/vscode-live-server/issues/14)]*** `liveServer.settings.additionalTagsForLiveReload` : Support for Live Reload feature if there are no body or head tag in HTML. *[Experimental Feature - BETA]* *(See Settings section for more details).*
-    
-    * ***[Feature/Enhancement [#18](https://github.com/ritwickdey/vscode-live-server/issues/18)]***  Now the Extension will prompt a message if supporting tag for live reload isn't detected in HTML.
-    
-    * ***[Bug Fixes [#21](https://github.com/ritwickdey/vscode-live-server/issues/21)]*** Error on very fast double click on "Go Live" button.
 
 
 ## Changelog
