@@ -101,6 +101,9 @@ export class Helper {
         if (proxySetup.enable === true) {
             proxy[0].push(proxySetup.baseUri, proxySetup.proxyUri)
         }
+        else {
+            proxy = null; //requried to change the type [[]] to black array []. 
+        }
 
         return {
             port: port,
