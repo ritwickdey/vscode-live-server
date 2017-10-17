@@ -8,6 +8,13 @@ export interface IProxy {
     proxyUri: string;
 }
 
+export interface IHttps {
+    enable: boolean;
+    cert: string;
+    key: string;
+    passphrase: string
+}
+
 export class Config {
 
     public static get configuration() {
@@ -76,5 +83,9 @@ export class Config {
 
     public static get getProxy(): IProxy {
         return Config.getSettings<IProxy>('proxy');
+    }
+
+    public static get getHttps(): IHttps {
+        return Config.getSettings<IHttps>('https') || {} as IHttps;
     }
 }

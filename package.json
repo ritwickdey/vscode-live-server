@@ -179,6 +179,16 @@
           "type": "boolean",
           "default": false,
           "description": "..."
+        },
+        "liveServer.settings.https" : {
+          "type": "object",
+          "default" : {
+            "enable": false,
+            "cert": "",
+            "key": "",
+            "passphrase": ""
+          },
+          "description": "..."
         }
       }
     }

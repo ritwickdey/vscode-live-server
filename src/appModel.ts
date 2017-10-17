@@ -147,7 +147,7 @@ export class AppModel {
             if (!textEditor) return;
 
             // If a HTML file open without Workspace
-            if (workspace.rootPath === undefined &&  Helper.IsSupportedFile(textEditor.document.fileName)) {
+            if (workspace.rootPath === undefined && Helper.IsSupportedFile(textEditor.document.fileName)) {
                 return callback();
             }
         });
@@ -155,6 +155,7 @@ export class AppModel {
 
     private openBrowser(port: number, path: string) {
         const host = Config.getHost;
+        const protocol = Config.getHttps.enable ? 'https' : 'http';
 
         let params: string[] = [];
         let advanceCustomBrowserCmd = Config.getAdvancedBrowserCmdline;
@@ -210,11 +211,11 @@ export class AppModel {
             }
         }
         else if (params[0] && params[0].startsWith('microsoft-edge')) {
-            params[0] = `microsoft-edge:http://${host}:${port}/${path}`;
+            params[0] = `microsoft-edge:${protocol}://${host}:${port}/${path}`;
         }
 
         try {
-            opn(`http://${host}:${port}/${path}`, { app: params || [''] });
+            opn(`${protocol}://${host}:${port}/${path}`, { app: params || [''] });
         } catch (error) {
             this.showPopUpMsg(`Server is started at ${this.runningPort} but failed to open browser. Try to change the CustomBrowser settings.`, true);
             console.log('\n\nError Log to open Browser : ', error);

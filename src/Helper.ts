@@ -81,7 +81,6 @@ export class Helper {
         addtionalHTMLtags?: string[],
         onTagMissedCallback?: MethodDecorator) {
 
-    public static generateParams(rootPath: string, port: number, ignoreFilePaths: string[], workspacePath: string, addtionalHTMLtags?: string[], onTagMissedCallback?: MethodDecorator, isHttps = false) {
         workspacePath = workspacePath || '';
         ignorePathGlob = ignorePathGlob || [];
         let ignoreFiles = [];
@@ -106,16 +105,18 @@ export class Helper {
             proxy = null; // requried to change the type [[]] to black array [].
         }
 
+        let httpsConfig = Config.getHttps;
+
         return {
             port: port,
             host: '0.0.0.0',
             root: rootPath,
             file: null,
             open: false,
-            https: isHttps ? {
-                cert: fs.readFileSync('filepath', 'utf8'),
-                key: fs.readFileSync('filepath' + '/server.key', 'utf8'),
-                passphrase: '12345'
+            https: httpsConfig.enable ? {
+                cert: fs.readFileSync(httpsConfig.cert, 'utf8'),
+                key: fs.readFileSync(httpsConfig.key, 'utf8'),
+                passphrase: httpsConfig.passphrase
             } : null,
             ignore: ignoreFiles,
             disableGlobbing: true,
