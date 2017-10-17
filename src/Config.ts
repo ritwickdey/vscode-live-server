@@ -3,9 +3,9 @@
 import { workspace } from 'vscode';
 
 export interface IProxy {
-    enable: boolean,
-    baseUri: string,
-    proxyUri: string,
+    enable: boolean;
+    baseUri: string;
+    proxyUri: string;
 }
 
 export class Config {
