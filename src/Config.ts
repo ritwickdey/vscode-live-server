@@ -2,6 +2,12 @@
 
 import { workspace } from 'vscode';
 
+export interface IProxy {
+    enable: boolean,
+    baseUri: string,
+    proxyUri: string,
+}
+
 export class Config {
 
     public static get configuration() {
@@ -66,5 +72,9 @@ export class Config {
 
     public static get getUseBrowserExtension(): boolean {
         return Config.getSettings<boolean>('useBrowserExtension') || false;
+    }
+
+    public static get getProxy(): IProxy {
+        return Config.getSettings<IProxy>('proxy');
     }
 }

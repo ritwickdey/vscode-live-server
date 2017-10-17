@@ -96,6 +96,11 @@ export class Helper {
             }
         });
 
+        let proxySetup = Config.getProxy;
+        let proxy = [[]];
+        if (proxySetup.enable === true) {
+            proxy[0].push(proxySetup.baseUri, proxySetup.proxyUri)
+        }
 
         return {
             port: port,
@@ -105,7 +110,8 @@ export class Helper {
             open: false,
             ignore: ignoreFiles,
             disableGlobbing: true,
-            useBrowserExtension : Config.getUseBrowserExtension,
+            proxy: proxy,
+            useBrowserExtension: Config.getUseBrowserExtension,
             addtionalHTMLtags: addtionalHTMLtags,
             onTagMissedCallback: onTagMissedCallback
         };
