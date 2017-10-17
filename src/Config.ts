@@ -63,4 +63,8 @@ export class Config {
     public static setDonotVerifyTags(val: boolean, isGlobal: boolean = false) {
         Config.configuration.update('donotVerifyTags', val, isGlobal);
     }
+
+    public static get getUseBrowserExtension(): boolean {
+        return Config.getSettings<boolean>('useBrowserExtension') || false;
+    }
 }

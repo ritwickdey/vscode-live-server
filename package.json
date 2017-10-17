@@ -165,6 +165,20 @@
           "type": "array",
           "default": [],
           "description": "Live Server injects a requried JS code into Head or Body tag of HTML for enabling Live Reload Feature. \nIn case if you want to give support for another tags (Experimental Feature - BETA), you can set here. \n\n Note: Prescience of choosing tag is 'left to right' or 'up to down' (See Documentation)"
+        },
+        "liveServer.settings.proxy" : {
+          "type": "object",
+          "default" : {
+            "enable": false,
+            "baseUri": "/",
+            "proxyUri": "127.0.0.1:80"
+          },
+          "description": "..."
+        },
+        "liveServer.settings.useBrowserExtension" : {
+          "type": "boolean",
+          "default": false,
+          "description": "..."
         }
       }
     }

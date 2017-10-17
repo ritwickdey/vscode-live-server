@@ -2,6 +2,7 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
+import { Config } from './Config';
 
 export const SUPPRORTED_EXT: string[] = [
     '.html', '.htm', '.svg'
@@ -72,7 +73,14 @@ export class Helper {
      * @param addtionalHTMLtags
      * @param onTagMissedCallback
      */
-    public static generateParams(rootPath: string, port: number, ignorePathGlob: string[], workspacePath: string, addtionalHTMLtags?: string[], onTagMissedCallback?: MethodDecorator) {
+    public static generateParams(
+        rootPath: string,
+        port: number,
+        ignorePathGlob: string[],
+        workspacePath: string,
+        addtionalHTMLtags?: string[],
+        onTagMissedCallback?: MethodDecorator) {
+
         workspacePath = workspacePath || '';
         ignorePathGlob = ignorePathGlob || [];
         let ignoreFiles = [];
@@ -97,6 +105,7 @@ export class Helper {
             open: false,
             ignore: ignoreFiles,
             disableGlobbing: true,
+            useBrowserExtension : Config.getUseBrowserExtension,
             addtionalHTMLtags: addtionalHTMLtags,
             onTagMissedCallback: onTagMissedCallback
         };
