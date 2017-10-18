@@ -175,7 +175,7 @@
           },
           "description": "..."
         },
-        "liveServer.settings.useBrowserExtension" : {
+        "liveServer.settings.useWebExt" : {
           "type": "boolean",
           "default": false,
           "description": "..."

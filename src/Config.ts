@@ -77,8 +77,8 @@ export class Config {
         Config.configuration.update('donotVerifyTags', val, isGlobal);
     }
 
-    public static get getUseBrowserExtension(): boolean {
-        return Config.getSettings<boolean>('useBrowserExtension') || false;
+    public static get getUseWebExt(): boolean {
+        return Config.getSettings<boolean>('useWebExt') || false;
     }
 
     public static get getProxy(): IProxy {
