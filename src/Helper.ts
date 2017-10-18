@@ -67,22 +67,17 @@ export class Helper {
     /**
      *
      * @param rootPath
-     * @param port
-     * @param ignorePathGlob
      * @param workspacePath
-     * @param addtionalHTMLtags
      * @param onTagMissedCallback
      */
     public static generateParams(
         rootPath: string,
-        port: number,
-        ignorePathGlob: string[],
         workspacePath: string,
-        addtionalHTMLtags?: string[],
         onTagMissedCallback?: MethodDecorator) {
 
         workspacePath = workspacePath || '';
-        ignorePathGlob = ignorePathGlob || [];
+        const port = Config.getPort;
+        const ignorePathGlob = Config.getIgnoreFiles || [];
         let ignoreFiles = [];
 
         ignorePathGlob.forEach((ignoredPath, index) => {
@@ -122,7 +117,6 @@ export class Helper {
             disableGlobbing: true,
             proxy: proxy,
             useBrowserExtension: Config.getUseWebExt,
-            addtionalHTMLtags: addtionalHTMLtags,
             onTagMissedCallback: onTagMissedCallback
         };
     }

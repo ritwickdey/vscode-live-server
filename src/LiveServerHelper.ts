@@ -11,7 +11,7 @@ export class LiveServerHelper {
                 setTimeout(() => {
 
                     if (!ServerInstance._connectionKey) {
-                        return callback(null);
+                        return callback({});
                     }
 
                     httpShutdown(ServerInstance);
@@ -20,7 +20,9 @@ export class LiveServerHelper {
                 }, 1000);
             } catch (err) {
                 console.error(err);
-                callback(null);
+                callback({
+                    errorMsg: err
+                });
             }
 
         }, 0);

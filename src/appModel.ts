@@ -46,15 +46,12 @@ export class AppModel {
             this.showPopUpMsg('Invaild Path in liveServer.settings.root settings. live Server will serve from workspace root', true);
         }
 
-        let params = Helper.generateParams(pathInfos.rootPath, Config.getPort,
-            Config.getIgnoreFiles, workspacePath, Config.getAdditionalTags, () => {
-                this.tagMissedCallback();
-            });
-
         if (this.IsStaging) return;
 
+        let params = Helper.generateParams(pathInfos.rootPath, workspacePath, this.tagMissedCallback);
+
         LiveServerHelper.StartServer(params, (serverInstance) => {
-            if (serverInstance && serverInstance.address()) {
+            if (serverInstance && serverInstance.address) {
                 this.LiveServerInstance = serverInstance;
                 this.runningPort = serverInstance.address().port;
                 this.ToggleStatusBar();
@@ -66,7 +63,10 @@ export class AppModel {
                 }
             }
             else {
-                this.showPopUpMsg(`Error on port ${Config.getPort}. It may be already in use. Please change it through settings.`, true);
+                if (!serverInstance.errorMsg)
+                    this.showPopUpMsg(`Error on port ${Config.getPort}. Please try to change the port through settings or report on GitHub.`, true);
+                else
+                    this.showPopUpMsg(`Something is went wrong! Please check into Developer Console or report on GitHub.`, true);
                 this.IsServerRunning = true; // to revert status - cheat :p
                 this.ToggleStatusBar(); // reverted
             }

@@ -65,10 +65,6 @@ export class Config {
         Config.configuration.update('donotShowInfoMsg', val, isGlobal);
     }
 
-    public static get getAdditionalTags(): string[] {
-        return Config.getSettings<string[]>('additionalTagsForLiveReload');
-    }
-
     public static get getDonotVerifyTags(): boolean {
         return Config.getSettings<boolean>('donotVerifyTags');
     }
