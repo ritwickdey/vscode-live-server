@@ -270,5 +270,10 @@
     "http-shutdown": "^1.2.0",
     "live-server": "file:lib\\live-server",
     "opn": "^5.1.0"
+  },
+
+  "announcement": {
+    "onVersion" : "3.0.0",
+    "message" : "Boom! Big Announcement! Live Server is now supports dynamic pages like PHP."
   }
 }

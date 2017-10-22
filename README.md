@@ -1,6 +1,6 @@
 # Live Server
 
-***Boom! Big Announcement! Live Server is now supports dynamic pages like `PHP`. [Check Here for more details](https://github.com/ritwickdey/live-server-web-extension).***
+***Boom! Big Announcement! Live Server is now supports dynamic pages like PHP. [Check Here for more details](https://github.com/ritwickdey/live-server-web-extension).***
 
 _[If you like the extension, [please leave a review](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer#review-details), it puts a smile on my face.]_
 
