@@ -13,7 +13,7 @@ export async function checkNewAnnouncement(memento: Memento) {
     const stateVersion = await memento.get(SETUP_STRING) || '0.0.0';
     const installedVersion = packageJSON.version;
 
-    if (stateVersion != installedVersion && installedVersion === announment.onVersion) {
+    if (stateVersion !== installedVersion && installedVersion === announment.onVersion) {
         await memento.update(SETUP_STRING, installedVersion);
         const choice = await window.showInformationMessage(announment.message, 'Show Details');
         if (choice === 'Show Details') {
