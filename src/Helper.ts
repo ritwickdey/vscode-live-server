@@ -64,6 +64,7 @@ export class Helper {
         return SUPPRORTED_EXT.indexOf(ext.toLowerCase()) > -1;
     }
 
+
     /**
      *
      * @param rootPath
@@ -90,35 +91,50 @@ export class Helper {
                 }
             }
         });
-
-        let proxySetup = Config.getProxy;
-        let proxy = [[]];
-        if (proxySetup.enable === true) {
-            proxy[0].push(proxySetup.baseUri, proxySetup.proxyUri);
-        }
-        else {
-            proxy = null; // requried to change the type [[]] to black array [].
-        }
-
-        let httpsConfig = Config.getHttps;
-
+        const proxy = Helper.getProxySetup();
+        const https = Helper.getHttpsSetup();
         return {
             port: port,
             host: '0.0.0.0',
             root: rootPath,
             file: null,
             open: false,
-            https: httpsConfig.enable ? {
-                cert: fs.readFileSync(httpsConfig.cert, 'utf8'),
-                key: fs.readFileSync(httpsConfig.key, 'utf8'),
-                passphrase: httpsConfig.passphrase
-            } : null,
+            https: https,
             ignore: ignoreFiles,
             disableGlobbing: true,
             proxy: proxy,
             useBrowserExtension: Config.getUseWebExt,
             onTagMissedCallback: onTagMissedCallback
         };
+    }
+
+    static getHttpsSetup() {
+        const httpsConfig = Config.getHttps;
+        let https = null;
+        if (httpsConfig.enable === true) {
+            let cert = fs.readFileSync(httpsConfig.cert, 'utf8');
+            let key = fs.readFileSync(httpsConfig.key, 'utf8');
+            https = {
+                cert: cert,
+                key: key,
+                passphrase: httpsConfig.passphrase
+            };
+        }
+
+        return https;
+    }
+
+    static getProxySetup() {
+        const proxySetup = Config.getProxy;
+        let proxy = [[]];
+        if (proxySetup.enable === true) {
+            proxy[0].push(proxySetup.baseUri, proxySetup.proxyUri);
+        }
+        else {
+            proxy = null; // required to change the type [[]] to black array [].
+        }
+
+        return proxy;
     }
 
 
