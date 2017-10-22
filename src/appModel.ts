@@ -48,7 +48,9 @@ export class AppModel {
 
         if (this.IsStaging) return;
 
-        let params = Helper.generateParams(pathInfos.rootPath, workspacePath, this.tagMissedCallback);
+        let params = Helper.generateParams(pathInfos.rootPath, workspacePath, () => {
+            this.tagMissedCallback();
+        });
 
         LiveServerHelper.StartServer(params, (serverInstance) => {
             if (serverInstance && serverInstance.address) {
