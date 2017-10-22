@@ -1,11 +1,13 @@
 # FAQs
-- [FAQs](#faqs) <br>
-        - [How to configure the settings in my project ?](#how-to-configure-the-settings-in-my-project) <br>
-        - [How to access the server from Mobile ?](#how-to-access-the-server-from-mobile)
 
+- [FAQs](#faqs)
+    - [How to configure the settings in my project?](#how-to-configure-the-settings-in-my-project)
+    - [How to use Live Server Web Extension?](#how-to-use-live-server-web-extension)
+    - [How to setup Live Server for Dynamic Pages (like PHP)?](#how-to-setup-live-server-for-dynamic-pages-like-php)
+    - [How to access the server from Mobile?](#how-to-access-the-server-from-mobile)
 ----------
 
-## How to configure the settings in my project ?
+## How to configure the settings in my project?
 
 Create a `.vscode` folder in the root of project. Inside of `.vscode` folder create a json file named `settings.json`.
 Inside of the `settings.json`, type following key-value pairs. By the way you'll get intelli-sense.
@@ -29,7 +31,21 @@ _Note: Use either `CustomBrowser` or `AdvanceCustomBrowserCmdLine` setting._
 
 ----------
 
-## How to access the server from Mobile ?
+## How to use Live Server Web Extension?
+
+*  Please [check here](https://github.com/ritwickdey/live-server-web-extension) 
+
+----------
+
+## How to setup Live Server for Dynamic Pages (like PHP)?
+
+*  Please [check here](https://github.com/ritwickdey/live-server-web-extension) 
+
+----------
+
+
+
+## How to access the server from Mobile?
 
  First, make a sure that your PC & Mobile are connected through same network. 
 
@@ -42,4 +58,5 @@ And note down the `IPv4 Address` (probably it will look like 192.168.xx.xx). Thi
 
 ** For an example, if your server running at **http:// 127.0.0.1:3500** on PC then port number is **3500**.
 
+----------
 
