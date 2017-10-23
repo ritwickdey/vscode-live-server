@@ -2,11 +2,24 @@
 
 import { workspace } from 'vscode';
 
+export interface IProxy {
+    enable: boolean;
+    baseUri: string;
+    proxyUri: string;
+}
+
+export interface IHttps {
+    enable: boolean;
+    cert: string;
+    key: string;
+    passphrase: string;
+}
+
 export class Config {
 
     public static get configuration() {
-        return workspace.getConfiguration('liveServer.settings')
-    };
+        return workspace.getConfiguration('liveServer.settings');
+    }
 
     private static getSettings<T>(val: string): T {
         return Config.configuration.get(val) as T;
@@ -52,15 +65,23 @@ export class Config {
         Config.configuration.update('donotShowInfoMsg', val, isGlobal);
     }
 
-    public static get getAdditionalTags(): string[] {
-        return Config.getSettings<string[]>('additionalTagsForLiveReload');
-    }
-
     public static get getDonotVerifyTags(): boolean {
         return Config.getSettings<boolean>('donotVerifyTags');
     }
 
     public static setDonotVerifyTags(val: boolean, isGlobal: boolean = false) {
         Config.configuration.update('donotVerifyTags', val, isGlobal);
+    }
+
+    public static get getUseWebExt(): boolean {
+        return Config.getSettings<boolean>('useWebExt') || false;
+    }
+
+    public static get getProxy(): IProxy {
+        return Config.getSettings<IProxy>('proxy');
+    }
+
+    public static get getHttps(): IHttps {
+        return Config.getSettings<IHttps>('https') || {} as IHttps;
     }
 }

@@ -2,6 +2,7 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
+import { Config } from './Config';
 
 export const SUPPRORTED_EXT: string[] = [
     '.html', '.htm', '.svg'
@@ -63,18 +64,21 @@ export class Helper {
         return SUPPRORTED_EXT.indexOf(ext.toLowerCase()) > -1;
     }
 
+
     /**
      *
      * @param rootPath
-     * @param port
-     * @param ignorePathGlob
      * @param workspacePath
-     * @param addtionalHTMLtags
      * @param onTagMissedCallback
      */
-    public static generateParams(rootPath: string, port: number, ignorePathGlob: string[], workspacePath: string, addtionalHTMLtags?: string[], onTagMissedCallback?: MethodDecorator) {
+    public static generateParams(
+        rootPath: string,
+        workspacePath: string,
+        onTagMissedCallback?: MethodDecorator) {
+
         workspacePath = workspacePath || '';
-        ignorePathGlob = ignorePathGlob || [];
+        const port = Config.getPort;
+        const ignorePathGlob = Config.getIgnoreFiles || [];
         let ignoreFiles = [];
 
         ignorePathGlob.forEach((ignoredPath, index) => {
@@ -87,19 +91,50 @@ export class Helper {
                 }
             }
         });
-
-
+        const proxy = Helper.getProxySetup();
+        const https = Helper.getHttpsSetup();
         return {
             port: port,
             host: '0.0.0.0',
             root: rootPath,
             file: null,
             open: false,
+            https: https,
             ignore: ignoreFiles,
             disableGlobbing: true,
-            addtionalHTMLtags: addtionalHTMLtags,
+            proxy: proxy,
+            useBrowserExtension: Config.getUseWebExt,
             onTagMissedCallback: onTagMissedCallback
+        };
+    }
+
+    static getHttpsSetup() {
+        const httpsConfig = Config.getHttps;
+        let https = null;
+        if (httpsConfig.enable === true) {
+            let cert = fs.readFileSync(httpsConfig.cert, 'utf8');
+            let key = fs.readFileSync(httpsConfig.key, 'utf8');
+            https = {
+                cert: cert,
+                key: key,
+                passphrase: httpsConfig.passphrase
+            };
         }
+
+        return https;
+    }
+
+    static getProxySetup() {
+        const proxySetup = Config.getProxy;
+        let proxy = [[]];
+        if (proxySetup.enable === true) {
+            proxy[0].push(proxySetup.baseUri, proxySetup.proxyUri);
+        }
+        else {
+            proxy = null; // required to change the type [[]] to black array [].
+        }
+
+        return proxy;
     }
 
 

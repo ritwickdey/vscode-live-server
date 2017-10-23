@@ -11,16 +11,18 @@ export class LiveServerHelper {
                 setTimeout(() => {
 
                     if (!ServerInstance._connectionKey) {
-                        return callback(null);
+                        return callback({});
                     }
 
-                    httpShutdown(ServerInstance)
+                    httpShutdown(ServerInstance);
                     return callback(ServerInstance);
 
                 }, 1000);
             } catch (err) {
                 console.error(err);
-                callback(null);
+                callback({
+                    errorMsg: err
+                });
             }
 
         }, 0);
@@ -33,6 +35,6 @@ export class LiveServerHelper {
         });
         LiveServerInstance.close();
         liveServer.shutdown();
-        setTimeout(() => { callback() }, 1000);
+        setTimeout(() => { callback(); }, 1000);
     }
 }
