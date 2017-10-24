@@ -167,12 +167,14 @@ export class AppModel {
         path = path.replace(/\\/gi, '/');
 
         if (advanceCustomBrowserCmd) {
-            let commands = advanceCustomBrowserCmd.split(' ');
-            commands.forEach((command) => {
-                if (command) {
-                    params.push(command);
-                }
-            });
+            advanceCustomBrowserCmd
+                .split('--')
+                .forEach((command, index) => {
+                    if (command) {
+                        if (index !== 0) command = '--' + command;
+                        params.push(command);
+                    }
+                });
         }
         else {
             let CustomBrowser = Config.getCustomBrowser;
