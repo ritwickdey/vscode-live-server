@@ -15,8 +15,9 @@ export async function checkNewAnnouncement(memento: Memento) {
 
     if (stateVersion !== installedVersion && installedVersion === announment.onVersion) {
         await memento.update(SETUP_STRING, installedVersion);
-        const choice = await window.showInformationMessage(announment.message, 'Show Details');
-        if (choice === 'know more') {
+        const showDetails = 'Show Details';
+        const choice = await window.showInformationMessage(announment.message, showDetails);
+        if (choice === showDetails) {
             const url = announment.url || 'https://github.com/ritwickdey/vscode-live-server#live-server';
             opn(url);
         }
