@@ -130,7 +130,7 @@
             "null"
           ],
           "default": null,
-          "description": "Note: If it is not Null, It will override CustomBrowser and ChromeDebuggingAttachment settings.\n\n Examples : \nchrome --incognito \nchromecan --remote-debugging-port=9222 \nchrome --headless\nchrome --incognito --remote-debugging-port=9222"
+          "description": "Note: If it is not Null, It will override CustomBrowser and ChromeDebuggingAttachment settings.\n\n Examples : \nchrome --incognito --headless --remote-debugging-port=9222 \n C:\\\\Program Files\\\\Firefox Developer Edition\\\\firefox.exe --private-window"
         },
         "liveServer.settings.NoBrowser": {
           "type": "boolean",

@@ -24,6 +24,18 @@
     _Not enough? need more? open an/a issue/pull request on github. For now, use `liveServer.settings.AdvanceCustomBrowserCmdLine` settings (see below)._
     
     <hr>
+
+* **`liveServer.settings.AdvanceCustomBrowserCmdLine`:**  To set your any favorite browser (Eg: Chrome Canary, Firefox Nightly) using advance Command Line. _(You can specify full path of your favorite custom browser)_.
+
+    * _This setting will override `CustomBrowser` and `ChromeDebuggingAttachment` settings._
+    * _Default Value is `null`_ 
+    * _Examples:_
+        * _chrome --incognito --headless --remote-debugging-port=9222_
+        * _C:\\Program Files\\Firefox Developer Edition\\firefox.exe --private-window_
+
+    > Note: Eighter use `AdvanceCustomBrowserCmdLine` or `CustomBrowser`. If you use both, `AdvanceCustomBrowserCmdLine` has higher priority.
+    
+    <hr>
  
 * **`liveServer.settings.ChromeDebuggingAttachment`:** To Enable Chrome Debugging Attachment to Live Server. [[Quick Gif Demo](./images/Screenshot/ChromeDebugging.gif)].
     * _**NOTE**: You must have to install [ `Debugger for Chrome.`](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)_
@@ -36,16 +48,7 @@
     <hr>
 
 
-* **`liveServer.settings.AdvanceCustomBrowserCmdLine`:**  To set your any favorite browser (Eg: Chrome Canary, Firefox Nightly) using advance Command Line. 
-    * _This setting will override `CustomBrowser` and `ChromeDebuggingAttachment` settings._
-    * _Default Value is `null`_ 
-    * _Examples:_
-        * _chrome --incognito_
-        * _chrome--remote-debugging-port=9222_
-        * _chrome --headless_
-        * _chrome --incognito --remote-debugging-port=9222_
-    
-    <hr>
+
 
 * **`liveServer.settings.NoBrowser`:** If it is true live server will start without browser opened.
     
