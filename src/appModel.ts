@@ -189,7 +189,7 @@ export class AppModel {
                     if (browserName === 'chrome')
                         params.push('--incognito');
                     else if (browserName === 'firefox')
-                        params.push('-private-window');
+                        params.push('--private-window');
                 }
 
                 if (browserName === 'chrome' && ChromeDebuggingAttachmentEnable) {
