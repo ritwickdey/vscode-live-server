@@ -2,7 +2,7 @@
   "name": "LiveServer",
   "displayName": "Live Server",
   "description": "Launch a development local Server with live reload feature for static & dynamic pages",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "publisher": "ritwickdey",
   "author": {
     "name": "Ritwick Dey",
@@ -273,7 +273,7 @@
   },
 
   "announcement": {
-    "onVersion" : "3.0.0",
-    "message" : "Boom! Big Announcement! Live Server is now supported for dynamic pages like PHP."
+    "onVersion" : "3.0.1",
+    "message" : "Live Server Web Extension (for dynamic pages) is now available for chrome."
   }
 }

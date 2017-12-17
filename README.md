@@ -58,6 +58,11 @@ All settings are now listed here  [Settings Docs](./docs/settings.md).
 
 ## What's new ?
 
+* ### Version 3.0.1 (17.12.17) 
+    * ***[Bug Fixed [#31](https://github.com/ritwickdey/vscode-live-server/issues/31)]*** `AdvanceCustomBrowserCmdLine` settings has been fixed. You can specify full path of your favorite custom browser *[Thanks [hdd1013](https://github.com/hdd1013)].*
+    
+    * ***[Bug Fixed [#47](https://github.com/ritwickdey/vscode-live-server/issues/47)]*** `ChromeDebuggingAttachment` settings has been fixed. *[Thanks [Dr. YSG](https://github.com/DrYSG)].*
+
 * ### Version 3.0.0 (23.10.17)
 
     * ***[Announcement]*** : Live Server is now supports dynamic pages like PHP through *[Live Server Web Extension](https://github.com/ritwickdey/live-server-web-extension)*. 
