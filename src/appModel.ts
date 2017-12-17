@@ -172,7 +172,7 @@ export class AppModel {
                 .forEach((command, index) => {
                     if (command) {
                         if (index !== 0) command = '--' + command;
-                        params.push(command);
+                        params.push(command.trim());
                     }
                 });
         }
@@ -193,7 +193,12 @@ export class AppModel {
                 }
 
                 if (browserName === 'chrome' && ChromeDebuggingAttachmentEnable) {
-                    params.push('--remote-debugging-port=9222');
+                    params.push(...[
+                        '--new-window',
+                        '--no-default-browser-check',
+                        '--remote-debugging-port=9222',
+                        '--user-data-dir=' + __dirname
+                    ]);
                 }
             }
         }
