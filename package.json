@@ -48,12 +48,14 @@
       {
         "command": "extension.liveServer.goOffline",
         "key": "alt+L C",
-        "when": "editorTextFocus"
+        "when": "editorTextFocus",
+        "mac": "cmd+L C"
       },
       {
         "command": "extension.liveServer.goOnline",
         "key": "alt+L O",
-        "when": "editorTextFocus"
+        "when": "editorTextFocus",
+        "mac": "cmd+L O"
       }
     ],
     "menus": {
