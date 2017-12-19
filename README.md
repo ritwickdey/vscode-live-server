@@ -58,22 +58,13 @@ All settings are now listed here  [Settings Docs](./docs/settings.md).
 
 ## What's new ?
 
+* ### Version 3.0.2 (19.12.17)
+    * ***[Enhacement [#38](https://github.com/ritwickdey/vscode-live-server/issues/38) & [#55](https://github.com/ritwickdey/vscode-live-server/issues/55)]*** default keybinding for MAC is changed to `cmd+L O` & `cmd+L C` to open & close server respectively. *[Thanks [Jens Alexander Ewald](https://github.com/jens-a-e), [Tim-Lars Schnehag](https://github.com/tallon1252) & [@nakedtoast](https://github.com/nakedtoast)]*
+
 * ### Version 3.0.1 (17.12.17) 
     * ***[Bug Fixed [#31](https://github.com/ritwickdey/vscode-live-server/issues/31)]*** `AdvanceCustomBrowserCmdLine` settings has been fixed. You can specify full path of your favorite custom browser *[Thanks [hdd1013](https://github.com/hdd1013)].*
     
     * ***[Bug Fixed [#47](https://github.com/ritwickdey/vscode-live-server/issues/47)]*** `ChromeDebuggingAttachment` settings has been fixed. *[Thanks [Dr. YSG](https://github.com/DrYSG)].*
-
-* ### Version 3.0.0 (23.10.17)
-
-    * ***[Announcement]*** : Live Server is now supports dynamic pages like PHP through *[Live Server Web Extension](https://github.com/ritwickdey/live-server-web-extension)*. 
-
-    * ***[New [#20](https://github.com/ritwickdey/vscode-live-server/issues/20)]*** Support for `https` protocol. *(For more, see the `setting` section)* *[Thanks [Xaqron](https://github.com/Xaqron)].*
-
-    * ***[New]*** Support for proxy. *(For more, see the `setting` section)*
-    
-    * ***[New]*** Setup settings for *[Live Server Web Extension](https://github.com/ritwickdey/live-server-web-extension)*. *(For more, see the `setting` section)*
-    
-    * ***[Dropped]***  `additionalTagsForLiveReload` setting dropped. *(For more, see the `setting` section)*
 
 
 ## Changelog
