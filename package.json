@@ -10,7 +10,7 @@
     "url": "http://twitter.com/Dey_Ritwick"
   },
   "engines": {
-    "vscode": "^1.12.0"
+    "vscode": "^1.18.0"
   },
   "categories": [
     "Other"
@@ -184,7 +184,7 @@
             "proxyUri": {
               "type": "string",
               "default": "http://127.0.0.1:80",
-              "pattern": "(^http[s]?:\/\/)(.[^(\\|\\s)]+)$"
+              "pattern": "(^http[s]?://)(.[^(\\|\\s)]+)$"
             }
           },
           "required": [
@@ -264,18 +264,17 @@
     "@types/mocha": "^2.2.32",
     "@types/node": "^6.0.40",
     "mocha": "^2.3.3",
-    "tslint": "^5.7.0",
-    "typescript": "^2.0.3",
-    "vscode": "^1.0.0"
+    "tslint": "^5.8.0",
+    "typescript": "^2.6.2",
+    "vscode": "^1.1.10"
   },
   "dependencies": {
     "http-shutdown": "^1.2.0",
     "live-server": "file:lib\\live-server",
     "opn": "^5.1.0"
   },
-
   "announcement": {
-    "onVersion" : "3.0.1",
-    "message" : "Live Server Web Extension (for dynamic pages) is now available for chrome."
+    "onVersion": "3.0.1",
+    "message": "Live Server Web Extension (for dynamic pages) is now available for chrome."
   }
 }
