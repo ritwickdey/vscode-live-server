@@ -4,6 +4,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { Config } from './Config';
 import { WorkspaceFolder, window, workspace } from 'vscode';
+import * as opn from 'opn';
 
 export const SUPPRORTED_EXT: string[] = [
     '.html', '.htm', '.svg'
@@ -55,10 +56,10 @@ export class Helper {
      */
     public static getSubPathIfSupported(rootPaths: string[], targetPath: string) {
 
-        if(!targetPath) return null;
-        
+        if (!targetPath) return null;
+
         const selectedRootPath = rootPaths.find(e => targetPath.startsWith(e));
-        
+
         if (!selectedRootPath || !Helper.IsSupportedFile(targetPath)) {
             return null;
         }
@@ -173,6 +174,126 @@ export class Helper {
 
         return (relativePathObj.workspaceIndex + 1) + relativePathObj.relativePath;
     }
+
+    static openBrowser(port: number, path?: string) {
+        path = path || '/';
+        const host = Config.getHost;
+        const protocol = Config.getHttps.enable ? 'https' : 'http';
+
+        let params: string[] = [];
+        let advanceCustomBrowserCmd = Config.getAdvancedBrowserCmdline;
+        if (path.startsWith('\\') || path.startsWith('/')) {
+            path = path.substring(1, path.length);
+        }
+        path = path.replace(/\\/gi, '/');
+
+        if (advanceCustomBrowserCmd) {
+            advanceCustomBrowserCmd
+                .split('--')
+                .forEach((command, index) => {
+                    if (command) {
+                        if (index !== 0) command = '--' + command;
+                        params.push(command.trim());
+                    }
+                });
+        }
+        else {
+            let CustomBrowser = Config.getCustomBrowser;
+            let ChromeDebuggingAttachmentEnable = Config.getChromeDebuggingAttachment;
+
+            if (CustomBrowser && CustomBrowser !== 'null') {
+                let browserDetails = CustomBrowser.split(':');
+                let browserName = browserDetails[0];
+                params.push(browserName);
+
+                if (browserDetails[1] && browserDetails[1] === 'PrivateMode') {
+                    if (browserName === 'chrome')
+                        params.push('--incognito');
+                    else if (browserName === 'firefox')
+                        params.push('--private-window');
+                }
+
+                if (browserName === 'chrome' && ChromeDebuggingAttachmentEnable) {
+                    params.push(...[
+                        '--new-window',
+                        '--no-default-browser-check',
+                        '--remote-debugging-port=9222',
+                        '--user-data-dir=' + __dirname
+                    ]);
+                }
+            }
+        }
+
+        if (params[0] && params[0] === 'chrome') {
+            switch (process.platform) {
+                case 'darwin':
+                    params[0] = 'google chrome';
+                    break;
+                case 'linux':
+                    params[0] = 'google-chrome';
+                    break;
+                case 'win32':
+                    params[0] = 'chrome';
+                    break;
+                default:
+                    params[0] = 'chrome';
+
+            }
+        }
+        else if (params[0] && params[0].startsWith('microsoft-edge')) {
+            params[0] = `microsoft-edge:${protocol}://${host}:${port}/${path}`;
+        }
+
+        try {
+            opn(`${protocol}://${host}:${port}/${path}`, { app: params || [''] });
+        } catch (error) {
+            Helper.showPopUpMsg(`Server is started at ${port} but failed to open browser. Try to change the CustomBrowser settings.`, true);
+            console.log('\n\nError Log to open Browser : ', error);
+            console.log('\n\n');
+        }
+    }
+
+    static HaveAnySupportedFile(callback) {
+        const globFormat = `**/*[${SUPPRORTED_EXT.join(' | ')}]`;
+        workspace.findFiles(globFormat, '**/node_modules/**', 1).then((files) => {
+            if (files && files.length !== 0) {
+                return callback();
+            }
+
+            let textEditor = window.activeTextEditor;
+            if (!textEditor) return;
+
+            // If a HTML file open without Workspace
+            if (workspace.rootPath === undefined && Helper.IsSupportedFile(textEditor.document.fileName)) {
+                return callback();
+            }
+        });
+    }
+
+    static showPopUpMsg(msg: string, isErrorMsg: boolean = false, isWarning: boolean = false) {
+        if (isErrorMsg) {
+            window.showErrorMessage(msg);
+        }
+        else if (isWarning && !Config.getDonotVerifyTags) {
+            const donotShowMsg = 'I understand, Don\'t show again';
+            window.showWarningMessage(msg, donotShowMsg)
+                .then(choise => {
+                    if (choise === donotShowMsg)
+                        Config.setDonotVerifyTags(true, true);
+                });
+        }
+        else if (!Config.getDonotShowInfoMsg) {
+            const donotShowMsg = 'Don\'t show again';
+            window.showInformationMessage(msg, donotShowMsg)
+                .then(choise => {
+                    if (choise === donotShowMsg)
+                        Config.setDonotShowInfoMsg(true, true);
+                });
+        }
+
+
+    }
+
 
 
 }
