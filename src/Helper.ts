@@ -3,6 +3,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { Config } from './Config';
+import { WorkspaceFolder } from 'vscode';
 
 export const SUPPRORTED_EXT: string[] = [
     '.html', '.htm', '.svg'
@@ -11,29 +12,35 @@ export const SUPPRORTED_EXT: string[] = [
 export class Helper {
 
 
-    public static ExtractFilePath(workSpacePath: string, openedDocUri: string, virtualRoot: string) {
+    public static ExtractFilePath(workSpaceFolders: WorkspaceFolder[], openedDocUri: string) {
 
-        let documentPath = path.dirname(openedDocUri);
+        // let documentPath = path.dirname(activeDocUrl);
 
         // WorkSpacePath will be NULL if only a single file is opened.
-        let rootPath = workSpacePath ? workSpacePath : documentPath;
+        let rootPath = workSpaceFolders.map(e => e.uri.fsPath);
 
-        virtualRoot = path.join(rootPath, virtualRoot);
+        /*
+        *
+        * TODO : Config.roots
+        *
+        */
 
-        let HasVirtualRootError = !fs.existsSync(virtualRoot);
-        if (!HasVirtualRootError) {
-            rootPath = virtualRoot;
-        }
+        // virtualRoot = path.join(rootPath, virtualRoot);
 
-        if (process.platform === 'win32') {
-            if (!rootPath.endsWith('\\')) rootPath = rootPath + '\\';
-        }
-        else {
-            if (!rootPath.endsWith('/')) rootPath = rootPath + '/';
-        }
+        // let HasVirtualRootError = !fs.existsSync(virtualRoot);
+        // if (!HasVirtualRootError) {
+        //     rootPath = virtualRoot;
+        // }
+
+        // if (process.platform === 'win32') {
+        //     if (!rootPath.endsWith('\\')) rootPath = rootPath + '\\';
+        // }
+        // else {
+        //     if (!rootPath.endsWith('/')) rootPath = rootPath + '/';
+        // }
 
         return {
-            HasVirtualRootError: HasVirtualRootError,
+            // HasVirtualRootError: HasVirtualRootError,
             rootPath: rootPath
         };
     }
@@ -43,16 +50,21 @@ export class Helper {
      * e.g. : root is `c:\user\rootfolder\` and target is `c:\user\rootfolder\subfolder\index.html`
      * then this function will return `subfolder\index.html` as html is a supported otherwise it will return null.
      *
-     * @param rootPath
+     * @param rootPaths
      * @param targetPath
      */
-    public static getSubPathIfSupported(rootPath: string, targetPath: string) {
+    public static getSubPathIfSupported(rootPaths: string[], targetPath: string) {
 
-        if (!Helper.IsSupportedFile(targetPath) || !targetPath.startsWith(rootPath)) {
+        const selectedRootPath = rootPaths.find(e => targetPath.startsWith(e));
+
+        if (!selectedRootPath && !Helper.IsSupportedFile(targetPath)) {
             return null;
         }
 
-        return targetPath.substring(rootPath.length, targetPath.length);
+        return {
+            workspaceIndex : rootPaths.indexOf(selectedRootPath),
+            relativePath: targetPath.substring(selectedRootPath.length, targetPath.length)
+        };
     }
 
     /**
@@ -73,24 +85,19 @@ export class Helper {
      */
     public static generateParams(
         rootPaths: string[],
-        workspacePath: string,
+        workspacePath: WorkspaceFolder[],
         onTagMissedCallback?: MethodDecorator) {
 
-        workspacePath = workspacePath || '';
+        workspacePath = workspacePath || null;
         const port = Config.getPort;
         const ignorePathGlob = Config.getIgnoreFiles || [];
         let ignoreFiles = [];
 
-        ignorePathGlob.forEach((ignoredPath, index) => {
-            if (!ignoredPath.startsWith('/') || !ignoredPath.startsWith('\\')) {
-                if (process.platform === 'win32') {
-                    ignoreFiles[index] = workspacePath + '\\' + ignoredPath;
-                }
-                else {
-                    ignoreFiles[index] = workspacePath + '/' + ignoredPath;
-                }
-            }
-        });
+        // ignorePathGlob.forEach((ignoredPath, index) => {
+        //     if (!ignoredPath.startsWith('/') || !ignoredPath.startsWith('\\')) {
+        //         ignoreFiles[index] = path.join(workspacePath, ignoredPath);
+        //     }
+        // });
         const proxy = Helper.getProxySetup();
         const https = Helper.getHttpsSetup();
 

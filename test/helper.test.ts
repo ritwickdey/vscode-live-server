@@ -40,40 +40,40 @@ suite('Helper Tests', () => {
     });
 
     suite('Test for getSubPathIfSupported() method', () => {
-        test('Should return correct Relative Path. format 1', () => {
-            const targetPath = 'c:\\Users\\HTML\\cake\\index.html';
-            const rootPath = 'c:\\Users\\HTML\\cake\\';
-            const result = Helper.getSubPathIfSupported(rootPath, targetPath);
-            assert.equal(result, 'index.html');
-        });
+        // test('Should return correct Relative Path. format 1', () => {
+        //     const targetPath = 'c:\\Users\\HTML\\cake\\index.html';
+        //     const rootPath = 'c:\\Users\\HTML\\cake\\';
+        //     const result = Helper.getSubPathIfSupported(rootPath, targetPath);
+        //     assert.equal(result, 'index.html');
+        // });
 
-        test('Should return correct Relative Path. format 2', () => {
-            const targetPath = 'c:\\Users\\HTML\\cake\\sub\\hello.html';
-            const rootPath = 'c:\\Users\\HTML\\cake\\';
-            const result = Helper.getSubPathIfSupported(rootPath, targetPath);
-            assert.equal(result, 'sub\\hello.html');
-        });
+        // test('Should return correct Relative Path. format 2', () => {
+        //     const targetPath = 'c:\\Users\\HTML\\cake\\sub\\hello.html';
+        //     const rootPath = 'c:\\Users\\HTML\\cake\\';
+        //     const result = Helper.getSubPathIfSupported(rootPath, targetPath);
+        //     assert.equal(result, 'sub\\hello.html');
+        // });
 
-        test('Should return null as targert file format is unsupported', () => {
-            const targetPath = 'c:\\Users\\HTML\\cake\\sub\\hello.xyz';
-            const rootPath = 'c:\\Users\\HTML\\cake\\';
-            const result = Helper.getSubPathIfSupported(rootPath, targetPath);
-            assert.equal(result, null);
-        });
+        // test('Should return null as targert file format is unsupported', () => {
+        //     const targetPath = 'c:\\Users\\HTML\\cake\\sub\\hello.xyz';
+        //     const rootPath = 'c:\\Users\\HTML\\cake\\';
+        //     const result = Helper.getSubPathIfSupported(rootPath, targetPath);
+        //     assert.equal(result, null);
+        // });
     });
 
     suite('Test for generateParams() method', () => {
         test('should return correct parameters', () => {
             // const targetPath = 'c:\\Users\\HTML\\cake\\index.html';
-            const rootPath = 'c:\\Users\\HTML\\cake\\';
-            const port = 8080;
-            const workspace = 'c:\\Users\\HTML\\';
-            const ignorePathGlob = [];
+        //     const rootPath = 'c:\\Users\\HTML\\cake\\';
+        //     const port = 8080;
+        //     const workspace = 'c:\\Users\\HTML\\';
+        //     const ignorePathGlob = [];
 
-            const result = Helper.generateParams([rootPath], workspace);
+        //     const result = Helper.generateParams([rootPath], workspace);
 
-          // assert.equal(result.port, port); //next todo
-           assert.equal(result.roots, rootPath);
+        //   // assert.equal(result.port, port); //next todo
+        //    assert.equal(result.roots, rootPath);
         });
     });
 

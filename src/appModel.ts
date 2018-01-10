@@ -1,6 +1,6 @@
 'use strict';
 
-import { window, workspace } from 'vscode';
+import { window, workspace, WorkspaceFolder } from 'vscode';
 
 import { LiveServerHelper } from './LiveServerHelper';
 import { StatusbarUi } from './StatusbarUi';
@@ -28,27 +28,28 @@ export class AppModel {
 
     public Golive(pathUri?: string) {
 
-        if (!window.activeTextEditor && !workspace.rootPath) {
-            this.showPopUpMsg(`Open a file or folder...`, true);
+        if (!workspace.workspaceFolders) {
+            this.showPopUpMsg(`Open a folder...`, true);
             return;
         }
 
-        const workspacePath = workspace.rootPath || '';
-        const openedDocUri = pathUri || (window.activeTextEditor ? window.activeTextEditor.document.fileName : '');
-        let pathInfos = Helper.ExtractFilePath(workspacePath, openedDocUri, Config.getRoot);
+        const workspaceFolders: WorkspaceFolder[] = workspace.workspaceFolders;
+        const activeDocUrl = pathUri || (window.activeTextEditor ? window.activeTextEditor.document.fileName : '');
+        let pathInfos = Helper.ExtractFilePath(workspaceFolders, activeDocUrl);
 
         if (this.IsServerRunning) {
-            this.openBrowser(this.runningPort,
-                Helper.getSubPathIfSupported(pathInfos.rootPath, openedDocUri) || '');
+            // this.openBrowser(this.runningPort,
+            //     Helper.getSubPathIfSupported(pathInfos.rootPath, activeDocUrl) || '');
             return;
         }
-        if (pathInfos.HasVirtualRootError) {
-            this.showPopUpMsg('Invaild Path in liveServer.settings.root settings. live Server will serve from workspace root', true);
-        }
+
+        // if (pathInfos.HasVirtualRootError) {
+        //     this.showPopUpMsg('Invaild Path in liveServer.settings.root settings. live Server will serve from workspace root', true);
+        // }
 
         if (this.IsStaging) return;
 
-        let params = Helper.generateParams(workspace.workspaceFolders.map(e => e.uri.fsPath), workspacePath, () => {
+        let params = Helper.generateParams(workspace.workspaceFolders.map(e => e.uri.fsPath), workspaceFolders, () => {
             this.tagMissedCallback();
         });
 
@@ -60,8 +61,12 @@ export class AppModel {
                 this.showPopUpMsg(`Server is Started at port : ${this.runningPort}`);
 
                 if (!Config.getNoBrowser) {
-                    this.openBrowser(this.runningPort,
-                        Helper.getSubPathIfSupported(pathInfos.rootPath, openedDocUri) || '');
+                    const relativePath = Helper.getSubPathIfSupported(pathInfos.rootPath, activeDocUrl);
+                    if (!relativePath)
+                        this.openBrowser(this.runningPort, '');
+                    else
+                        this.openBrowser(this.runningPort, (relativePath.workspaceIndex + 1)  + relativePath.relativePath);
+
                 }
             }
             else {
@@ -140,7 +145,7 @@ export class AppModel {
 
     private HaveAnySupportedFile(callback) {
         const globFormat = `**/*[${SUPPRORTED_EXT.join(' | ')}]`;
-        workspace.findFiles(globFormat, '**/node_modules/**').then((files) => {
+        workspace.findFiles(globFormat, '**/node_modules/**', 1).then((files) => {
             if (files && files.length !== 0) {
                 return callback();
             }

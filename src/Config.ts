@@ -33,8 +33,8 @@ export class Config {
         return Config.getSettings<number>('port');
     }
 
-    public static get getRoot(): string {
-        return Config.getSettings<string>('root');
+    public static get getRoots(): string[] {
+        return Config.getSettings<string[]>('roots');
     }
 
     public static get getNoBrowser(): boolean {
