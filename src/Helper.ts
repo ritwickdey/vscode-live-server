@@ -3,7 +3,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { Config } from './Config';
-import { WorkspaceFolder } from 'vscode';
+import { WorkspaceFolder, window, workspace } from 'vscode';
 
 export const SUPPRORTED_EXT: string[] = [
     '.html', '.htm', '.svg'
@@ -55,14 +55,16 @@ export class Helper {
      */
     public static getSubPathIfSupported(rootPaths: string[], targetPath: string) {
 
+        if(!targetPath) return null;
+        
         const selectedRootPath = rootPaths.find(e => targetPath.startsWith(e));
-
-        if (!selectedRootPath && !Helper.IsSupportedFile(targetPath)) {
+        
+        if (!selectedRootPath || !Helper.IsSupportedFile(targetPath)) {
             return null;
         }
 
         return {
-            workspaceIndex : rootPaths.indexOf(selectedRootPath),
+            workspaceIndex: rootPaths.indexOf(selectedRootPath),
             relativePath: targetPath.substring(selectedRootPath.length, targetPath.length)
         };
     }
@@ -147,6 +149,29 @@ export class Helper {
         }
 
         return proxy;
+    }
+
+    static getActiveDocUrl(): string {
+        return window.activeTextEditor ? window.activeTextEditor.document.fileName : null;
+    }
+
+    static getWorkspacesUrls() {
+        if (!workspace.workspaceFolders) return null;
+
+        return workspace.workspaceFolders
+            .map(e => e.uri.fsPath);
+    }
+
+    static getRelativeUrlToOpenInBrowser(activeDocUrl?: string) {
+        activeDocUrl = activeDocUrl || Helper.getActiveDocUrl();
+
+        const workspaceUrls = Helper.getWorkspacesUrls();
+        const relativePathObj = Helper.getSubPathIfSupported(workspaceUrls, activeDocUrl);
+        if (!relativePathObj) return null;
+        if (workspaceUrls.length === 1)
+            return relativePathObj.relativePath;
+
+        return (relativePathObj.workspaceIndex + 1) + relativePathObj.relativePath;
     }
 
 

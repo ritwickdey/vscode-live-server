@@ -34,14 +34,11 @@ export class AppModel {
         }
 
         const workspaceFolders: WorkspaceFolder[] = workspace.workspaceFolders;
-        const activeDocUrl = pathUri || (window.activeTextEditor ? window.activeTextEditor.document.fileName : '');
+        const activeDocUrl = pathUri || Helper.getActiveDocUrl();
         let pathInfos = Helper.ExtractFilePath(workspaceFolders, activeDocUrl);
 
-        if (this.IsServerRunning) {
-            // this.openBrowser(this.runningPort,
-            //     Helper.getSubPathIfSupported(pathInfos.rootPath, activeDocUrl) || '');
-            return;
-        }
+        if (this.IsServerRunning)
+            return this.openBrowser(this.runningPort, Helper.getRelativeUrlToOpenInBrowser(pathUri));
 
         // if (pathInfos.HasVirtualRootError) {
         //     this.showPopUpMsg('Invaild Path in liveServer.settings.root settings. live Server will serve from workspace root', true);
@@ -60,14 +57,8 @@ export class AppModel {
                 this.ToggleStatusBar();
                 this.showPopUpMsg(`Server is Started at port : ${this.runningPort}`);
 
-                if (!Config.getNoBrowser) {
-                    const relativePath = Helper.getSubPathIfSupported(pathInfos.rootPath, activeDocUrl);
-                    if (!relativePath)
-                        this.openBrowser(this.runningPort, '');
-                    else
-                        this.openBrowser(this.runningPort, (relativePath.workspaceIndex + 1)  + relativePath.relativePath);
-
-                }
+                if (!Config.getNoBrowser)
+                    this.openBrowser(this.runningPort, Helper.getRelativeUrlToOpenInBrowser(pathUri));
             }
             else {
                 if (!serverInstance.errorMsg)
@@ -160,7 +151,8 @@ export class AppModel {
         });
     }
 
-    private openBrowser(port: number, path: string) {
+    private openBrowser(port: number, path?: string) {
+        path =  path || '/';
         const host = Config.getHost;
         const protocol = Config.getHttps.enable ? 'https' : 'http';
 
