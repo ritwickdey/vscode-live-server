@@ -109,7 +109,7 @@ export class Helper {
             proxy: proxy,
             useBrowserExtension: Config.getUseWebExt,
             onTagMissedCallback: onTagMissedCallback,
-            serveMaps: serveMaps.length <= 1 ? ['/'] : serveMaps //if workspace contains 1 root, then use `/` mapping 
+            serveMaps: serveMaps.length <= 1 ? [] : serveMaps //if workspace contains 1 root, then use `/` mapping 
         };
     }
 
