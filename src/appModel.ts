@@ -48,7 +48,7 @@ export class AppModel {
 
         if (this.IsStaging) return;
 
-        let params = Helper.generateParams(pathInfos.rootPath, workspacePath, () => {
+        let params = Helper.generateParams(workspace.workspaceFolders.map(e => e.uri.fsPath), workspacePath, () => {
             this.tagMissedCallback();
         });
 

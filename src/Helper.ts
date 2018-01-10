@@ -67,12 +67,12 @@ export class Helper {
 
     /**
      *
-     * @param rootPath
+     * @param rootPaths
      * @param workspacePath
      * @param onTagMissedCallback
      */
     public static generateParams(
-        rootPath: string,
+        rootPaths: string[],
         workspacePath: string,
         onTagMissedCallback?: MethodDecorator) {
 
@@ -93,10 +93,14 @@ export class Helper {
         });
         const proxy = Helper.getProxySetup();
         const https = Helper.getHttpsSetup();
+
+        const serveMaps: number[] = [];
+        rootPaths.forEach((e, i) => serveMaps.push(i + 1));
+
         return {
             port: port,
             host: '0.0.0.0',
-            root: rootPath,
+            roots: rootPaths,
             file: null,
             open: false,
             https: https,
@@ -104,7 +108,8 @@ export class Helper {
             disableGlobbing: true,
             proxy: proxy,
             useBrowserExtension: Config.getUseWebExt,
-            onTagMissedCallback: onTagMissedCallback
+            onTagMissedCallback: onTagMissedCallback,
+            serveMaps: serveMaps.length <= 1 ? ['/'] : serveMaps //if workspace contains 1 root, then use `/` mapping 
         };
     }
 

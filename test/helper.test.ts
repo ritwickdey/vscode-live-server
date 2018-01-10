@@ -70,10 +70,10 @@ suite('Helper Tests', () => {
             const workspace = 'c:\\Users\\HTML\\';
             const ignorePathGlob = [];
 
-            const result = Helper.generateParams(rootPath, workspace);
+            const result = Helper.generateParams([rootPath], workspace);
 
           // assert.equal(result.port, port); //next todo
-           assert.equal(result.root, rootPath);
+           assert.equal(result.roots, rootPath);
         });
     });
 
