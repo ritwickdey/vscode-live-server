@@ -2,7 +2,7 @@
   "name": "LiveServer",
   "displayName": "Live Server",
   "description": "Launch a development local Server with live reload feature for static & dynamic pages",
-  "version": "3.0.2",
+  "version": "3.1.0",
   "publisher": "ritwickdey",
   "author": {
     "name": "Ritwick Dey",
@@ -284,7 +284,7 @@
     "opn": "^5.1.0"
   },
   "announcement": {
-    "onVersion": "3.0.1",
-    "message": "Live Server Web Extension (for dynamic pages) is now available for chrome."
+    "onVersion": "3.1.0",
+    "message": "LiveServer Update: CORS enabled | Add Delay before reloading | Option for full reload instead of css inject"
   }
 }

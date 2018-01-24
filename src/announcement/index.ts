@@ -18,7 +18,7 @@ export async function checkNewAnnouncement(memento: Memento) {
         const showDetails = 'Show Details';
         const choice = await window.showInformationMessage(announment.message, showDetails);
         if (choice === showDetails) {
-            const url = announment.url || 'https://github.com/ritwickdey/vscode-live-server#live-server';
+            const url = announment.url || 'https://github.com/ritwickdey/vscode-live-server';
             opn(url);
         }
 
