@@ -203,7 +203,7 @@
         "liveServer.settings.wait": {
           "type": "number",
           "default": 100,
-          "description": "Delay before reloading. Value in milliseconds. Default is 100"
+          "description": "Delay before live reloading. Value in milliseconds. Default is 100"
         },
         "liveServer.settings.fullReload": {
           "type": "boolean",
