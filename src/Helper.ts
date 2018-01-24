@@ -103,6 +103,7 @@ export class Helper {
             ignore: ignoreFiles,
             disableGlobbing: true,
             proxy: proxy,
+            cors: true,
             useBrowserExtension: Config.getUseWebExt,
             onTagMissedCallback: onTagMissedCallback
         };
