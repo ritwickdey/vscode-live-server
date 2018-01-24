@@ -184,7 +184,7 @@
             "proxyUri": {
               "type": "string",
               "default": "http://127.0.0.1:80",
-              "pattern": "(^http[s]?:\/\/)(.[^(\\|\\s)]+)$"
+              "pattern": "(^http[s]?://)(.[^(\\|\\s)]+)$"
             }
           },
           "required": [
@@ -273,9 +273,8 @@
     "live-server": "file:lib\\live-server",
     "opn": "^5.1.0"
   },
-
   "announcement": {
-    "onVersion" : "3.0.1",
-    "message" : "Live Server Web Extension (for dynamic pages) is now available for chrome."
+    "onVersion": "3.0.1",
+    "message": "Live Server Web Extension (for dynamic pages) is now available for chrome."
   }
 }
