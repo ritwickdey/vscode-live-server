@@ -84,4 +84,8 @@ export class Config {
     public static get getHttps(): IHttps {
         return Config.getSettings<IHttps>('https') || {} as IHttps;
     }
+
+    public static get getWait(): number {
+        return Config.getSettings<number>('wait');
+    }
 }

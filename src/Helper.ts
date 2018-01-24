@@ -104,6 +104,7 @@ export class Helper {
             disableGlobbing: true,
             proxy: proxy,
             cors: true,
+            wait: Config.getWait || 100,
             useBrowserExtension: Config.getUseWebExt,
             onTagMissedCallback: onTagMissedCallback
         };

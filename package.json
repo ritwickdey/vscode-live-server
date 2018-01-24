@@ -200,6 +200,11 @@
           "default": false,
           "description": "You have to install a browser extension. That will be works for your dynamic pages (like PHP)."
         },
+        "liveServer.settings.wait": {
+          "type": "number",
+          "default": 100,
+          "description": "Delay before reloading. Value in milliseconds. Default is 100"
+        },
         "liveServer.settings.https": {
           "type": "object",
           "default": {
