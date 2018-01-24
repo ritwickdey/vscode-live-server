@@ -205,6 +205,11 @@
           "default": 100,
           "description": "Delay before reloading. Value in milliseconds. Default is 100"
         },
+        "liveServer.settings.fullReload": {
+          "type": "boolean",
+          "default": false,
+          "description": "By Default Live Server inject CSS changes without full reloading of browser. You can change this behviour by making this setting as `true`"
+        },
         "liveServer.settings.https": {
           "type": "object",
           "default": {

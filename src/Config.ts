@@ -88,4 +88,8 @@ export class Config {
     public static get getWait(): number {
         return Config.getSettings<number>('wait');
     }
+
+    public static get getfullReload(): boolean {
+        return Config.getSettings<boolean>('fullReload');
+    }
 }
