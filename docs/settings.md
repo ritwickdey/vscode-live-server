@@ -130,3 +130,15 @@
     * Default is `false`
 
     <hr>
+
+* **`liveServer.settings.fullReload:`** : By Default Live Server inject CSS changes without full reloading of browser. You can change this behviour by making this setting as `true`. 
+    
+    * Default: `false`
+
+    <hr>
+    
+* **`liveServer.settings.wait:`** : Delay before live reloading. Value in milliseconds.
+    
+    * Default: `100`
+
+    <hr>
