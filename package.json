@@ -148,6 +148,11 @@
           ],
           "description": "To ignore specific file changes"
         },
+        "liveServer.settings.mount": {
+          "type": "array",
+          "default": [],
+          "description": "Mount a directory to a route. Such as [['/components', './node_modules']]"
+        },
         "liveServer.settings.donotShowInfoMsg": {
           "type": "boolean",
           "default": false,

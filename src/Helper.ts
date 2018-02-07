@@ -93,6 +93,15 @@ export class Helper {
         });
         const proxy = Helper.getProxySetup();
         const https = Helper.getHttpsSetup();
+        const mount = Config.getMount;
+        // In live-server mountPath is reslove by `path.resolve(process.cwd(), mountRule[1])`.
+        // but in vscode `process.cwd()` is the vscode extensions path.
+        // The correct path should be resolve by workspacePath.
+        mount.forEach((mountRule) => {
+            if (mountRule[1]) {
+                mountRule[1] = path.resolve(workspacePath, mountRule[1]);
+            }
+        });
         return {
             port: port,
             host: '0.0.0.0',
@@ -107,7 +116,8 @@ export class Helper {
             wait: Config.getWait || 100,
             fullReload: Config.getfullReload,
             useBrowserExtension: Config.getUseWebExt,
-            onTagMissedCallback: onTagMissedCallback
+            onTagMissedCallback: onTagMissedCallback,
+            mount: mount
         };
     }
 

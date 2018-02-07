@@ -92,4 +92,8 @@ export class Config {
     public static get getfullReload(): boolean {
         return Config.getSettings<boolean>('fullReload');
     }
+
+    public static get getMount(): Array<Array<string>> {
+        return Config.getSettings<Array<Array<string>>>('mount');
+    }
 }
