@@ -2,7 +2,7 @@
   "name": "LiveServer",
   "displayName": "Live Server",
   "description": "Launch a development local Server with live reload feature for static & dynamic pages",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "publisher": "ritwickdey",
   "author": {
     "name": "Ritwick Dey",
@@ -297,7 +297,7 @@
     "opn": "^5.1.0"
   },
   "announcement": {
-    "onVersion": "3.1.0",
-    "message": "LiveServer Update: CORS enabled | Add Delay before reloading | Option for full reload instead of css inject"
+    "onVersion": "3.2.0",
+    "message": "LiveServer Update: Mounting a directory is added"
   }
 }
