@@ -58,13 +58,9 @@ All settings are now listed here  [Settings Docs](./docs/settings.md).
 
 ## What's new ?
 
-* ### Version 3.1.0 (24.01.18)
-    * ***[New feature [#68](https://github.com/ritwickdey/vscode-live-server/issues/68) & [#64](https://github.com/ritwickdey/vscode-live-server/issues/64)]*** CROS Enabled by default. *[Thanks [Elias García](https://github.com/elias-garcia) & [Gabriele Garavini](https://github.com/garaving)]*
+* ### Version 3.2.0 (09.02.18)
+    * ***[New Feature [[#72](https://github.com/ritwickdey/vscode-live-server/issues/72)]]*** `liveServer.settings.mount` settings added for mounting a directory to a route (see [settings section](https://github.com/ritwickdey/vscode-live-server/blob/master/docs/settings.md) for more details.) *[Thanks [Douglas Chen](https://github.com/cdswyda) for the [PR#73](https://github.com/ritwickdey/vscode-live-server/pull/73)]*
     
-    * ***[New Settings / Enhacement]*** `liveServer.settings.fullReload` settings added for full reload instead of css inject (see [settings section](https://github.com/ritwickdey/vscode-live-server/blob/master/docs/settings.md) for more details.) 
-    
-    * ***[New Settings / Enhacement [#49](https://github.com/ritwickdey/vscode-live-server/issues/49)]***  `liveServer.settings.wait` settings added for delay before live reloading (see [settings section](https://github.com/ritwickdey/vscode-live-server/blob/master/docs/settings.md) for more details.) *[Thanks [Allen](https://github.com/justforuse)]*
-
 
 ## Changelog
 To check full changelog [click here](CHANGELOG.md).
