@@ -98,7 +98,7 @@ export class Helper {
         // but in vscode `process.cwd()` is the vscode extensions path.
         // The correct path should be resolve by workspacePath.
         mount.forEach((mountRule: Array<any>) => {
-            if (mountRule.length == 2 && mountRule[1]) {
+            if (mountRule.length === 2 && mountRule[1]) {
                 mountRule[1] = path.resolve(workspacePath, mountRule[1]);
             }
         });
