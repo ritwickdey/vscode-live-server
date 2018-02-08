@@ -150,6 +150,14 @@
         },
         "liveServer.settings.mount": {
           "type": "array",
+          "items": {
+            "type":"array",
+            "minItems":2,
+            "maxItems":2,
+            "items": {
+              "type":"string"
+            }
+          },
           "default": [],
           "description": "Mount a directory to a route. Such as [['/components', './node_modules']]"
         },

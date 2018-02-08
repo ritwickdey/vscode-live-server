@@ -97,8 +97,8 @@ export class Helper {
         // In live-server mountPath is reslove by `path.resolve(process.cwd(), mountRule[1])`.
         // but in vscode `process.cwd()` is the vscode extensions path.
         // The correct path should be resolve by workspacePath.
-        mount.forEach((mountRule) => {
-            if (mountRule[1]) {
+        mount.forEach((mountRule: Array<any>) => {
+            if (mountRule.length == 2 && mountRule[1]) {
                 mountRule[1] = path.resolve(workspacePath, mountRule[1]);
             }
         });
