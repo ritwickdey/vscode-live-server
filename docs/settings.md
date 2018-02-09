@@ -142,3 +142,20 @@
     * Default: `100`
 
     <hr>
+
+* **`liveServer.settings.mount:`** : Mount a directory to a route.
+    
+    * Default: `[]`
+
+    * Example: 
+    ```js
+    {
+        "liveServer.settings.mount:" [
+            ["/", "/path1"]
+            ["/", "/path2"]
+            ["/root", "/dist"]
+        ]
+    }
+    ```
+
+    <hr>
