@@ -2,7 +2,7 @@
   "name": "LiveServer",
   "displayName": "Live Server",
   "description": "Launch a development local Server with live reload feature for static & dynamic pages",
-  "version": "3.0.0",
+  "version": "3.2.1",
   "publisher": "ritwickdey",
   "author": {
     "name": "Ritwick Dey",
@@ -48,12 +48,14 @@
       {
         "command": "extension.liveServer.goOffline",
         "key": "alt+L C",
-        "when": "editorTextFocus"
+        "when": "editorTextFocus",
+        "mac": "cmd+L C"
       },
       {
         "command": "extension.liveServer.goOnline",
         "key": "alt+L O",
-        "when": "editorTextFocus"
+        "when": "editorTextFocus",
+        "mac": "cmd+L O"
       }
     ],
     "menus": {
@@ -130,7 +132,7 @@
             "null"
           ],
           "default": null,
-          "description": "Note: If it is not Null, It will override CustomBrowser and ChromeDebuggingAttachment settings.\n\n Examples : \nchrome --incognito \nchromecan --remote-debugging-port=9222 \nchrome --headless\nchrome --incognito --remote-debugging-port=9222"
+          "description": "Note: If it is not Null, It will override CustomBrowser and ChromeDebuggingAttachment settings.\n\n Examples : \nchrome --incognito --headless --remote-debugging-port=9222 \n C:\\\\Program Files\\\\Firefox Developer Edition\\\\firefox.exe --private-window"
         },
         "liveServer.settings.NoBrowser": {
           "type": "boolean",
@@ -145,6 +147,19 @@
             "**/*.sass"
           ],
           "description": "To ignore specific file changes"
+        },
+        "liveServer.settings.mount": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+              "type": "string"
+            }
+          },
+          "default": [],
+          "description": "Mount a directory to a route. Such as [['/components', './node_modules']]"
         },
         "liveServer.settings.donotShowInfoMsg": {
           "type": "boolean",
@@ -182,7 +197,7 @@
             "proxyUri": {
               "type": "string",
               "default": "http://127.0.0.1:80",
-              "pattern": "(^http[s]?:\/\/)(.[^(\\|\\s)]+)$"
+              "pattern": "(^http[s]?://)(.[^(\\|\\s)]+)$"
             }
           },
           "required": [
@@ -197,6 +212,16 @@
           "type": "boolean",
           "default": false,
           "description": "You have to install a browser extension. That will be works for your dynamic pages (like PHP)."
+        },
+        "liveServer.settings.wait": {
+          "type": "number",
+          "default": 100,
+          "description": "Delay before live reloading. Value in milliseconds. Default is 100"
+        },
+        "liveServer.settings.fullReload": {
+          "type": "boolean",
+          "default": false,
+          "description": "By Default Live Server inject CSS changes without full reloading of browser. You can change this behviour by making this setting as `true`"
         },
         "liveServer.settings.https": {
           "type": "object",
@@ -271,9 +296,8 @@
     "live-server": "file:lib\\live-server",
     "opn": "^5.1.0"
   },
-
   "announcement": {
-    "onVersion" : "3.0.0",
-    "message" : "Boom! Big Announcement! Live Server is now supported for dynamic pages like PHP."
+    "onVersion": "3.2.0",
+    "message": "LiveServer Update: Mounting a directory is added"
   }
 }

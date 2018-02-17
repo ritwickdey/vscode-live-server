@@ -84,4 +84,16 @@ export class Config {
     public static get getHttps(): IHttps {
         return Config.getSettings<IHttps>('https') || {} as IHttps;
     }
+
+    public static get getWait(): number {
+        return Config.getSettings<number>('wait');
+    }
+
+    public static get getfullReload(): boolean {
+        return Config.getSettings<boolean>('fullReload');
+    }
+
+    public static get getMount(): Array<Array<string>> {
+        return Config.getSettings<Array<Array<string>>>('mount');
+    }
 }

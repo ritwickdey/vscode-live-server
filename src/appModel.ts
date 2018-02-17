@@ -167,12 +167,14 @@ export class AppModel {
         path = path.replace(/\\/gi, '/');
 
         if (advanceCustomBrowserCmd) {
-            let commands = advanceCustomBrowserCmd.split(' ');
-            commands.forEach((command) => {
-                if (command) {
-                    params.push(command);
-                }
-            });
+            advanceCustomBrowserCmd
+                .split('--')
+                .forEach((command, index) => {
+                    if (command) {
+                        if (index !== 0) command = '--' + command;
+                        params.push(command.trim());
+                    }
+                });
         }
         else {
             let CustomBrowser = Config.getCustomBrowser;
@@ -187,11 +189,16 @@ export class AppModel {
                     if (browserName === 'chrome')
                         params.push('--incognito');
                     else if (browserName === 'firefox')
-                        params.push('-private-window');
+                        params.push('--private-window');
                 }
 
                 if (browserName === 'chrome' && ChromeDebuggingAttachmentEnable) {
-                    params.push('--remote-debugging-port=9222');
+                    params.push(...[
+                        '--new-window',
+                        '--no-default-browser-check',
+                        '--remote-debugging-port=9222',
+                        '--user-data-dir=' + __dirname
+                    ]);
                 }
             }
         }
