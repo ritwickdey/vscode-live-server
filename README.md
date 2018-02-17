@@ -2,7 +2,7 @@
 
 ***Boom! Big Announcement! Live Server is now supported for dynamic pages like PHP. [Check Here for more details](https://github.com/ritwickdey/live-server-web-extension).***
 
-_[If you like the extension, [please leave a review](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer#review-details), it puts a smile on my face.]_
+***[If you're facing 'command not found error', please follow the steps [#78](https://github.com/ritwickdey/vscode-live-server/issues/78)]***
 
 [![VSCode Marketplace](https://img.shields.io/vscode-marketplace/v/ritwickdey.LiveServer.svg?style=flat-square&label=vscode%20marketplace)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) [![Total Installs](https://img.shields.io/vscode-marketplace/d/ritwickdey.LiveServer.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) [![Avarage Rating](https://img.shields.io/vscode-marketplace/r/ritwickdey.LiveServer.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)  
 [![Travis branch](https://img.shields.io/travis/ritwickdey/vscode-live-server/master.svg?style=flat-square&label=travis%20branch)](https://travis-ci.org/ritwickdey/vscode-live-server) [![Appveyor branch](https://img.shields.io/appveyor/ci/ritwickdey/vscode-live-server.svg?style=flat-square&label=appveyor%20branch)](https://ci.appveyor.com/project/ritwickdey/vscode-live-server) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/ritwickdey/vscode-live-server/) 
@@ -25,7 +25,7 @@ _[If you like the extension, [please leave a review](https://marketplace.visuals
 3. Open a HTML file and Right click on the editor and choose the options.
 ![Edit Menu Option Preview](./images/Screenshot/vscode-live-server-editor-menu-3.jpg)
 
-4. Hit `(alt+L, O)` to Open the Server and `(alt+L, C)` to close the server (You can change the shortcut form keybinding). 
+4. Hit `(alt+L, O)` to Open the Server and `(alt+L, C)` to close the server (You can change the shortcut form keybinding). *[On MAC, `cmd+L, O` and `cmd+L, C`]*
 
 5. Press `F1` or `ctrl+shift+P` and type `Live Server: Open With Live Server ` to start a server or type `Live Server: Close Live Server` to stop a server.
 
@@ -45,6 +45,7 @@ _[If you like the extension, [please leave a review](https://marketplace.visuals
 * SVG Support
 * `https` Support. 
 * Support for proxy.
+* CROS Enable
 * Support for any file even dynamic pages through *[Live Server Web Extension](https://github.com/ritwickdey/live-server-web-extension)*.
 
 ## Installation
@@ -58,9 +59,16 @@ All settings are now listed here  [Settings Docs](./docs/settings.md).
 
 ## What's new ?
 
-* ### Version 3.2.0 (09.02.18)
-    * ***[New Feature [[#72](https://github.com/ritwickdey/vscode-live-server/issues/72)]]*** `liveServer.settings.mount` settings added for mounting a directory to a route (see [settings section](https://github.com/ritwickdey/vscode-live-server/blob/master/docs/settings.md) for more details.) *[Thanks [Douglas Chen](https://github.com/cdswyda) for the [PR#73](https://github.com/ritwickdey/vscode-live-server/pull/73)]*
+* ### Version 3.2.1 (17.02.18)
+    * Re-deployed to vscode marketplace. For some reason few users are facing `command 'extension.liveServer.goOnline' not found` error. 
+        * [#78](https://github.com/ritwickdey/vscode-live-server/issues/78)
+        * [#80](https://github.com/ritwickdey/vscode-live-server/issues/80)
+        * [78#issuecomment](https://github.com/ritwickdey/vscode-live-server/issues/78#issuecomment-365891533)
+        * [Tweet](https://twitter.com/mohamed_aladdin/status/962608074212200448)
+
+        *(Still the reason of the error is unknown to me.)*
     
+    * Docs Updated 
 
 ## Changelog
 To check full changelog [click here](CHANGELOG.md).

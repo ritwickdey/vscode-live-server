@@ -2,7 +2,7 @@
   "name": "LiveServer",
   "displayName": "Live Server",
   "description": "Launch a development local Server with live reload feature for static & dynamic pages",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "publisher": "ritwickdey",
   "author": {
     "name": "Ritwick Dey",
@@ -151,11 +151,11 @@
         "liveServer.settings.mount": {
           "type": "array",
           "items": {
-            "type":"array",
-            "minItems":2,
-            "maxItems":2,
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
             "items": {
-              "type":"string"
+              "type": "string"
             }
           },
           "default": [],
