@@ -292,6 +292,7 @@
     "vscode": "^1.0.0"
   },
   "dependencies": {
+    "http-proxy": "^1.16.2",
     "http-shutdown": "^1.2.0",
     "live-server": "file:lib\\live-server",
     "opn": "^5.1.0"
