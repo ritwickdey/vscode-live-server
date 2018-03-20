@@ -45,7 +45,7 @@
 * SVG Support
 * `https` Support. 
 * Support for proxy.
-* CROS Enable
+* CORS Enabled
 * Support for any file even dynamic pages through *[Live Server Web Extension](https://github.com/ritwickdey/live-server-web-extension)*.
 
 ## Installation
