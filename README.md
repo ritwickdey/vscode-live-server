@@ -1,7 +1,9 @@
+***[[I'm sorry! I can't maintain the repo as I'm so busy now days for exams! I need 2-3 maintainers .
+If you want to help me to maintain this repo && if you know how to debug, you're welcome - contact with me ritwickdey@outlook.com]]***
+
+
 # Live Server
 
-***[[I'm sorry! I can't maintain the repo as I'm so busy now days for exams! I need maintainers.
-If you want to help me to maintain this repo && if you know how to debug, you're welcome - contact with me ritwickdey@outlook.com]]***
 
 **Boom! Big Announcement! Live Server is now supported for dynamic pages like PHP. [Check Here for more details](https://github.com/ritwickdey/live-server-web-extension).**
 
