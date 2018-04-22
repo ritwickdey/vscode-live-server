@@ -54,7 +54,7 @@ If you want to help me to maintain this repo && if you know how to debug, you're
 * Support for any file even dynamic pages through *[Live Server Web Extension](https://github.com/ritwickdey/live-server-web-extension)*.
 
 ## Installation
-Open VSCode Editor and Press `ctrl+P`, type `ext install LiveServer`.
+Open VSCode Editor and Press `ctrl+P`, type `ext install ritwickdey.liveserver`.
 
 ## Settings
 All settings are now listed here  [Settings Docs](./docs/settings.md).
