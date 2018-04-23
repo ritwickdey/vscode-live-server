@@ -33,7 +33,7 @@
         * _chrome --incognito --headless --remote-debugging-port=9222_
         * _C:\\Program Files\\Firefox Developer Edition\\firefox.exe --private-window_
 
-    > Note: Eighter use `AdvanceCustomBrowserCmdLine` or `CustomBrowser`. If you use both, `AdvanceCustomBrowserCmdLine` has higher priority.
+    > Note: Either use `AdvanceCustomBrowserCmdLine` or `CustomBrowser`. If you use both, `AdvanceCustomBrowserCmdLine` has higher priority.
     
     <hr>
  
