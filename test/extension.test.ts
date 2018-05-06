@@ -26,16 +26,16 @@ suite('Extension Tests', () => {
             });
     });
 
-    test('should register all java commands', function () {
+    test('should register all live server commands', function () {
         return vscode.commands.getCommands(true).then((commands) => {
             const COMMANDS = [
                 'extension.liveServer.goOnline',
                 'extension.liveServer.goOffline'
             ];
-            let foundJavaCommands = commands.filter((value) => {
+            const foundLiveServerCommands = commands.filter((value) => {
                 return COMMANDS.indexOf(value) >= 0 || value.startsWith('extension.liveServer.');
             });
-            assert.equal(foundJavaCommands.length, COMMANDS.length);
+            assert.equal(foundLiveServerCommands.length, COMMANDS.length);
         });
     });
 
