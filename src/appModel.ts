@@ -8,6 +8,7 @@ import { Config } from './Config';
 import { Helper, SUPPRORTED_EXT } from './Helper';
 
 import * as opn from 'opn';
+import IP from './ip';
 
 export class AppModel {
 
@@ -15,10 +16,12 @@ export class AppModel {
     private IsStaging: boolean;
     private LiveServerInstance;
     private runningPort: number;
-    private localIp: String;
+    private localIps: any;
+    private ip: any;
 
     constructor() {
-        this.localIp = Helper.getEthernetInfo().address;
+        this.ip = new IP();
+        this.localIps = this.ip.address();
         this.IsServerRunning = false;
         this.runningPort = null;
 
@@ -158,7 +161,9 @@ export class AppModel {
     }
 
     private openBrowser(port: number, path: string) {
-        const host = Config.getLocalIp ? this.localIp : Config.getHost;
+        const host = Config.getLocalIp ?  this.localIps.map(
+            host => !this.ip.isLoopback(host) ? host : null
+        ).filter(Boolean)[0] : Config.getHost;
         const protocol = Config.getHttps.enable ? 'https' : 'http';
 
         let params: string[] = [];
