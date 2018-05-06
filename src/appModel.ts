@@ -8,7 +8,7 @@ import { Config } from './Config';
 import { Helper, SUPPRORTED_EXT } from './Helper';
 
 import * as opn from 'opn';
-import IP from './ip';
+import * as ips from 'ips';
 
 export class AppModel {
 
@@ -17,18 +17,16 @@ export class AppModel {
     private LiveServerInstance;
     private runningPort: number;
     private localIps: any;
-    private ip: any;
 
     constructor() {
-        this.ip = new IP();
-        this.localIps = this.ip.address();
+        const _ips = ips();
+        this.localIps = _ips.local ? _ips.local : Config.getHost;
         this.IsServerRunning = false;
         this.runningPort = null;
 
         this.HaveAnySupportedFile(() => {
             StatusbarUi.Init();
         });
-
     }
 
     public Golive(pathUri?: string) {
@@ -161,7 +159,7 @@ export class AppModel {
     }
 
     private openBrowser(port: number, path: string) {
-        const host = Config.getLocalIp ? this.localIps.length ? this.localIps.map((hostName) => !this.ip.isLoopback(hostName) ? hostName : null).filter(Boolean)[0] : Config.getHost : Config.getHost;
+        const host = Config.getLocalIp ? this.localIps : Config.getHost;
         const protocol = Config.getHttps.enable ? 'https' : 'http';
 
         let params: string[] = [];
