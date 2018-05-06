@@ -15,8 +15,10 @@ export class AppModel {
     private IsStaging: boolean;
     private LiveServerInstance;
     private runningPort: number;
+    private localIp: String;
 
     constructor() {
+        this.localIp = Helper.getEthernetInfo().address;
         this.IsServerRunning = false;
         this.runningPort = null;
 
@@ -156,7 +158,7 @@ export class AppModel {
     }
 
     private openBrowser(port: number, path: string) {
-        const host = Config.getHost;
+        const host = Config.getLocalIp ? this.localIp : Config.getHost;
         const protocol = Config.getHttps.enable ? 'https' : 'http';
 
         let params: string[] = [];

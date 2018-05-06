@@ -159,3 +159,9 @@
     ```
 
     <hr>
+
+* **`liveServer.settings.useLocalIp:`** : Use local IP as host.
+    
+    * Default: `false`
+
+    <hr>
