@@ -298,8 +298,8 @@
   },
   "dependencies": {
     "http-shutdown": "^1.2.0",
+    "ips": "^2.1.3",
     "live-server": "file:lib\\live-server",
-    "ips": "file:lib\\ips",
     "opn": "^5.1.0"
   },
   "announcement": {
