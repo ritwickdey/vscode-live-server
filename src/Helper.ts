@@ -152,7 +152,7 @@ export class Helper {
     }
 
     public static getEthernetInfo() {
-        var interfaces = os.networkInterfaces();
+        const interfaces = os.networkInterfaces();
         return interfaces['Ethernet'][1];
     }
 }
