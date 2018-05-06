@@ -2,6 +2,7 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
+import * as os from 'os';
 import { Config } from './Config';
 
 export const SUPPRORTED_EXT: string[] = [
@@ -149,6 +150,4 @@ export class Helper {
 
         return proxy;
     }
-
-
 }

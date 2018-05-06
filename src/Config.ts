@@ -29,6 +29,10 @@ export class Config {
         return Config.getSettings<string>('host');
     }
 
+    public static get getLocalIp(): string {
+        return Config.getSettings<string>('useLocalIp');
+    }
+
     public static get getPort(): number {
         return Config.getSettings<number>('port');
     }
