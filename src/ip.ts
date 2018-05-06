@@ -24,13 +24,13 @@ export default class IP {
             /^fe80:/i.test(addr) ||
             /^::1$/.test(addr) ||
             /^::$/.test(addr);
-    };
+    }
 
     public isPublic(addr) {
         return !this.isPrivate(addr);
-    };
+    }
 
-    private static _loopback(family) {
+    private _loopback(family) {
         //
         // Default to `ipv4`
         //
@@ -61,11 +61,12 @@ export default class IP {
                     return true;
                 } else {
                     return name === 'public' ? this.isPrivate(details.address) :
-                        this.isPublic(details.address)
-                };
+                        this.isPublic(details.address);
+                }
             });
             return addresses.length ? addresses[0].address : undefined;
         }).filter(Boolean); // filter null
-        return !all.length ? IP._loopback(family) : all;
-    };
+
+        return !all.length ? this._loopback(family) : all;
+    }
 }

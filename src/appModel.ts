@@ -161,9 +161,7 @@ export class AppModel {
     }
 
     private openBrowser(port: number, path: string) {
-        const host = Config.getLocalIp ?  this.localIps.map(
-            host => !this.ip.isLoopback(host) ? host : null
-        ).filter(Boolean)[0] : Config.getHost;
+        const host = Config.getLocalIp ? this.localIps.length ? this.localIps.map((hostName) => !this.ip.isLoopback(hostName) ? hostName : null).filter(Boolean)[0] : Config.getHost : Config.getHost;
         const protocol = Config.getHttps.enable ? 'https' : 'http';
 
         let params: string[] = [];

@@ -150,9 +150,4 @@ export class Helper {
 
         return proxy;
     }
-
-    public static getEthernetInfo() {
-        const interfaces = os.networkInterfaces();
-        return interfaces['Ethernet'][1];
-    }
 }
