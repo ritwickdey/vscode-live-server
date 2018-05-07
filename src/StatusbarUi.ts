@@ -1,11 +1,11 @@
 import { StatusBarItem, window, StatusBarAlignment } from 'vscode';
-
+import { Config } from './Config';
 export class StatusbarUi {
 
     private static _statusBarItem: StatusBarItem;
 
     private static get statusbar() {
-        if (!StatusbarUi._statusBarItem) {
+        if (!StatusbarUi._statusBarItem && Config.getShowOnStatusbar) {
             StatusbarUi._statusBarItem = window
                 .createStatusBarItem(StatusBarAlignment.Right, 100);
 

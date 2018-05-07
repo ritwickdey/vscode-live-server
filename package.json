@@ -1,5 +1,5 @@
 {
-  "name": "LiveServer",
+  "name": "JLiveServer",
   "displayName": "Live Server",
   "description": "Launch a development local Server with live reload feature for static & dynamic pages",
   "version": "3.2.1",
@@ -133,6 +133,11 @@
           ],
           "default": null,
           "description": "Note: If it is not Null, It will override CustomBrowser and ChromeDebuggingAttachment settings.\n\n Examples : \nchrome --incognito --headless --remote-debugging-port=9222 \n C:\\\\Program Files\\\\Firefox Developer Edition\\\\firefox.exe --private-window"
+        },
+        "liveServer.settings.showOnStatusbar": {
+          "type": "boolean",
+          "default": true,
+          "description": "Change this to false if you don't want the button to show in the statusbar"
         },
         "liveServer.settings.NoBrowser": {
           "type": "boolean",

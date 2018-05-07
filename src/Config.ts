@@ -75,7 +75,7 @@ export class Config {
 
     public static get getUseWebExt(): boolean {
         return Config.getSettings<boolean>('useWebExt') || false;
-    }
+	}
 
     public static get getProxy(): IProxy {
         return Config.getSettings<IProxy>('proxy');
@@ -95,5 +95,9 @@ export class Config {
 
     public static get getMount(): Array<Array<string>> {
         return Config.getSettings<Array<Array<string>>>('mount');
-    }
+	}
+		
+	public static get getShowOnStatusbar(): boolean {
+		return Config.getSettings<boolean>('showOnStatusbar') || false;
+	}
 }
