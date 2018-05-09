@@ -4,12 +4,12 @@ import {ExtensionContext, workspace, commands, window} from 'vscode';
 import { StatusbarUi } from './StatusbarUi';
 import { AppModel } from './appModel';
 import { Helper } from './Helper';
-import { checkNewAnnouncement } from './announcement/index';
+// import { checkNewAnnouncement } from './announcement/index';
 
 export function activate(context: ExtensionContext) {
     const appModel = new AppModel();
 
-    checkNewAnnouncement(context.globalState);
+    // checkNewAnnouncement(context.globalState);
 
     context.subscriptions.push(commands
         .registerCommand('extension.liveServer.goOnline', (fileUri) => {

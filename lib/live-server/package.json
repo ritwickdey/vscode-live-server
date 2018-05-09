@@ -43,6 +43,10 @@
     "node": ">=0.10.0"
   },
   "eslintConfig": {
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module"
+    },
     "env": {
       "node": true
     },
