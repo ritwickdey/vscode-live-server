@@ -261,6 +261,11 @@
           ],
           "additionalProperties": false,
           "description": "Setup https configuration"
+        },
+        "liveServer.settings.file": {
+          "type": "string",
+          "default": "",
+          "description": "When set, serve this file (server root relative) for every 404 (useful for single-page applications)"
         }
       }
     }
