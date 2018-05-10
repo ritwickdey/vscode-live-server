@@ -100,4 +100,8 @@ export class Config {
     public static get getMount(): Array<Array<string>> {
         return Config.getSettings<Array<Array<string>>>('mount');
     }
+
+    public static get getFile(): string {
+        return Config.getSettings<string>('file');
+    }
 }

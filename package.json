@@ -266,6 +266,11 @@
           ],
           "additionalProperties": false,
           "description": "Setup https configuration"
+        },
+        "liveServer.settings.file": {
+          "type": "string",
+          "default": "",
+          "description": "When set, serve this file (server root relative) for every 404 (useful for single-page applications)"
         }
       }
     }
@@ -289,18 +294,19 @@
     "lint": "tslint --project ."
   },
   "devDependencies": {
-    "@types/mocha": "^2.2.32",
-    "@types/node": "^6.0.40",
-    "mocha": "^2.3.3",
-    "tslint": "^5.7.0",
-    "typescript": "^2.0.3",
-    "vscode": "^1.0.0"
+    "@types/mocha": "^2.2.48",
+    "@types/node": "^9.4.7",
+    "mocha": "^5.0.4",
+    "tslint": "^5.9.1",
+    "typescript": "^2.7.2",
+    "vscode": "^1.1.13"
   },
   "dependencies": {
+    "http-proxy": "^1.16.2",
     "http-shutdown": "^1.2.0",
     "ips": "^2.1.3",
     "live-server": "file:lib\\live-server",
-    "opn": "^5.1.0"
+    "opn": "^5.3.0"
   },
   "announcement": {
     "onVersion": "3.2.0",

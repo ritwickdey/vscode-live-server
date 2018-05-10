@@ -103,11 +103,12 @@ export class Helper {
                 mountRule[1] = path.resolve(workspacePath, mountRule[1]);
             }
         });
+        const file = Config.getFile;
         return {
             port: port,
             host: '0.0.0.0',
             root: rootPath,
-            file: null,
+            file: file,
             open: false,
             https: https,
             ignore: ignoreFiles,
