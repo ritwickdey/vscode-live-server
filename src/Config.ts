@@ -96,7 +96,7 @@ export class Config {
     public static get getMount(): Array<Array<string>> {
         return Config.getSettings<Array<Array<string>>>('mount');
     }
-		
+
     public static get getShowOnStatusbar(): boolean {
         return Config.getSettings<boolean>('showOnStatusbar') || false;
     }
