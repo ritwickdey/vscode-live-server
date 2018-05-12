@@ -100,4 +100,8 @@ export class Config {
     public static get getShowOnStatusbar(): boolean {
         return Config.getSettings<boolean>('showOnStatusbar') || false;
     }
+
+    public static get getFile(): string {
+        return Config.getSettings<string>('file');
+    }
 }
