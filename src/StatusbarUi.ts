@@ -5,11 +5,13 @@ export class StatusbarUi {
     private static _statusBarItem: StatusBarItem;
 
     private static get statusbar() {
-        if (!StatusbarUi._statusBarItem && Config.getShowOnStatusbar) {
+        if (!StatusbarUi._statusBarItem) {
             StatusbarUi._statusBarItem = window
                 .createStatusBarItem(StatusBarAlignment.Right, 100);
 
-            this.statusbar.show();
+            // Show status bar only if user wants :)
+            if (Config.getShowOnStatusbar)
+                this.statusbar.show();
         }
 
         return StatusbarUi._statusBarItem;
