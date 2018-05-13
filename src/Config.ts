@@ -29,6 +29,10 @@ export class Config {
         return Config.getSettings<string>('host');
     }
 
+    public static get getLocalIp(): string {
+        return Config.getSettings<string>('useLocalIp');
+    }
+
     public static get getPort(): number {
         return Config.getSettings<number>('port');
     }
@@ -95,6 +99,10 @@ export class Config {
 
     public static get getMount(): Array<Array<string>> {
         return Config.getSettings<Array<Array<string>>>('mount');
+    }
+
+    public static get getShowOnStatusbar(): boolean {
+        return Config.getSettings<boolean>('showOnStatusbar') || false;
     }
 
     public static get getFile(): string {

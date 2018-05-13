@@ -1,5 +1,5 @@
 import { StatusBarItem, window, StatusBarAlignment } from 'vscode';
-
+import { Config } from './Config';
 export class StatusbarUi {
 
     private static _statusBarItem: StatusBarItem;
@@ -9,7 +9,9 @@ export class StatusbarUi {
             StatusbarUi._statusBarItem = window
                 .createStatusBarItem(StatusBarAlignment.Right, 100);
 
-            this.statusbar.show();
+            // Show status bar only if user wants :)
+            if (Config.getShowOnStatusbar)
+                this.statusbar.show();
         }
 
         return StatusbarUi._statusBarItem;

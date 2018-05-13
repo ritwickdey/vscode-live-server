@@ -166,7 +166,7 @@
 
     <hr>
     
-* **`liveServer.settings.liveEditing`** : Live editing along with live server.
+* **`liveServer.settings.liveEditing`** : Live editing with live server.
     
     * Default: `false`
 
