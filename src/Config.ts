@@ -101,6 +101,10 @@ export class Config {
         return Config.getSettings<Array<Array<string>>>('mount');
     }
 
+    public static get getShowOnStatusbar(): boolean {
+        return Config.getSettings<boolean>('showOnStatusbar') || false;
+    }
+
     public static get getFile(): string {
         return Config.getSettings<string>('file');
     }
