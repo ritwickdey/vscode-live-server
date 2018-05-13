@@ -1,7 +1,7 @@
 'use strict';
 import * as liveServer from 'live-server';
 import * as httpShutdown from 'http-shutdown';
-import * as EventEmitter  from 'events';
+import * as EventEmitter from 'events';
 
 export class LiveServerHelper extends EventEmitter {
 

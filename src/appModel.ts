@@ -78,12 +78,12 @@ export class AppModel {
         StatusbarUi.Working('Starting...');
 
         // for live editing
-        if(Config.getLiveEditing) {
+        if (Config.getLiveEditing) {
             const liveServerHelper = new LiveServerHelper();
             workspace.onDidChangeTextDocument((e: TextDocumentChangeEvent) => {
                 liveServerHelper.emit('liveEditing', e, window.activeTextEditor.document.getText());
             });
-        }        
+        }
     }
 
     public GoOffline() {
