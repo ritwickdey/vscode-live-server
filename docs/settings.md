@@ -43,13 +43,20 @@
     * _If the value is `true`, Start Live Server and select 'Attach to Chrome' from Debug Window to start debugging. [`Debugger for Chrome`](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome) Extension will inject debugging feature into running instance of browser window._
    
     *  _Default value is `false`._
+
+
     <hr>
+
+
+
 
 * **`liveServer.settings.NoBrowser`:** If it is true live server will start without browser opened.
     
     * _Default Value is `false`_ 
+
     
     <hr>
+
 
 * **`liveServer.settings.ignoreFiles`:** To ignore specific file changes.
     * _Default value is:_
@@ -153,7 +160,11 @@
 
     <hr>
 
+* **`liveServer.settings.useLocalIp`** : Use local IP as host.
+    
+    * Default: `false`
 
+    <hr>
     
 * **`liveServer.settings.liveEditing`** : Live editing along with live server.
     

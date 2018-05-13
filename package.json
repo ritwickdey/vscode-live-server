@@ -269,7 +269,7 @@
         },
         "liveServer.settings.liveEditing": {
           "type": "Boolean",
-          "default": true,
+          "default": false,
           "description": "Live editing along with live server"
         }
       }
