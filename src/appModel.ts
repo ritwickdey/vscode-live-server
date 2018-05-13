@@ -77,11 +77,13 @@ export class AppModel {
         this.IsStaging = true;
         StatusbarUi.Working('Starting...');
 
-        const liveServerHelper = new LiveServerHelper();
-
-        workspace.onDidChangeTextDocument((e: TextDocumentChangeEvent) => {
-            liveServerHelper.emit('onTextChange', e, window.activeTextEditor.document.getText());
-        });
+        // for live editing
+        if(Config.getLiveEditing) {
+            const liveServerHelper = new LiveServerHelper();
+            workspace.onDidChangeTextDocument((e: TextDocumentChangeEvent) => {
+                liveServerHelper.emit('liveEditing', e, window.activeTextEditor.document.getText());
+            });
+        }        
     }
 
     public GoOffline() {

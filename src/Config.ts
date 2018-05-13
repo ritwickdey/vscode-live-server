@@ -100,4 +100,8 @@ export class Config {
     public static get getFile(): string {
         return Config.getSettings<string>('file');
     }
+    
+    public static get getLiveEditing(): string {
+        return Config.getSettings<string>('liveEditing');
+    }
 }

@@ -41,8 +41,8 @@ export class LiveServerHelper extends EventEmitter {
 
     constructor() {
         super();
-        this.on('onTextChange', (file, content) => {
-            liveServer.onTextChange(file, content);
+        this.on('liveEditing', (file, content) => {
+            liveServer.liveEditing(file, content);
         });
     }
 }

@@ -7,10 +7,10 @@
 			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
 			var address = protocol + window.location.host + window.location.pathname + '/ws';
 			var socket = new WebSocket(address);
+			var count = 0;
 
 			function textchanged(content) {
-				console.log(content);
-				document.write(content);
+				document.body.innerHTML = content;
 			}
 
 			function refreshCSS() {
@@ -32,9 +32,9 @@
 				var msgJSON = JSON.parse(msg.data);
 				if (msgJSON.cmd == 'reload') window.location.reload();
 				else if (msgJSON.cmd == 'refreshcss') refreshCSS();
-				else if (msgJSON.cmd == 'textchanged') textchanged(msgJSON.content);
+				else if (msgJSON.cmd == 'liveEditing') textchanged(msgJSON.content);
 				else {}
-				socket.send('changeFlag');
+				socket.send('blockLiveEditing');
 			};
 
 			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
