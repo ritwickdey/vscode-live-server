@@ -30,7 +30,7 @@ If you want to help me to maintain this repo && if you know how to debug, you're
 3. Open a HTML file and Right click on the editor and choose the options.
 ![Edit Menu Option Preview](./images/Screenshot/vscode-live-server-editor-menu-3.jpg)
 
-4. Hit `(alt+L, O)` to Open the Server and `(alt+L, C)` to close the server (You can change the shortcut form keybinding). *[On MAC, `cmd+L, O` and `cmd+L, C`]*
+4. Hit `(alt+L, alt+O)` to Open the Server and `(alt+L, alt+C)` to close the server (You can change the shortcut form keybinding). *[On MAC, `cmd+L, cmd+O` and `cmd+L, cmd+C`]*
 
 5. Press `F1` or `ctrl+shift+P` and type `Live Server: Open With Live Server ` to start a server or type `Live Server: Close Live Server` to stop a server.
 
