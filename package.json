@@ -2,7 +2,7 @@
   "name": "LiveServer",
   "displayName": "Live Server",
   "description": "Launch a development local Server with live reload feature for static & dynamic pages",
-  "version": "3.2.1",
+  "version": "4.0.0",
   "publisher": "ritwickdey",
   "author": {
     "name": "Ritwick Dey",
@@ -320,7 +320,7 @@
     "opn": "^5.3.0"
   },
   "announcement": {
-    "onVersion": "3.2.0",
-    "message": "LiveServer Update: Mounting a directory is added"
+    "onVersion": "4.0.0",
+    "message": "LiveServer Update: Hide `Go Live`, Local Ip, Websocket, SPA Support"
   }
 }

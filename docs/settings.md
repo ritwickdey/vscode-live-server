@@ -171,3 +171,9 @@
     * Default: `false`
 
     <hr>
+
+* **`liveServer.settings.file:`** : Path to the entry point file. Useful for SPA 
+    
+    * Default: `""`
+
+    <hr>
