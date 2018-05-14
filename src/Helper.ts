@@ -2,6 +2,7 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
+import * as os from 'os';
 import { Config } from './Config';
 
 export const SUPPRORTED_EXT: string[] = [
@@ -102,11 +103,12 @@ export class Helper {
                 mountRule[1] = path.resolve(workspacePath, mountRule[1]);
             }
         });
+        const file = Config.getFile;
         return {
             port: port,
             host: '0.0.0.0',
             root: rootPath,
-            file: null,
+            file: file,
             open: false,
             https: https,
             ignore: ignoreFiles,
@@ -149,6 +151,4 @@ export class Helper {
 
         return proxy;
     }
-
-
 }

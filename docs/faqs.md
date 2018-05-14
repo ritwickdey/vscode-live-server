@@ -60,3 +60,7 @@ And note down the `IPv4 Address` (probably it will look like 192.168.xx.xx). Thi
 
 ----------
 
+## Are Multi-root workspaces supported?
+
+Currently there is no support for multi-root workspaces. It's automatically the first folder in the workspace choosen.
+The current state of this issue you can track [here](https://github.com/ritwickdey/vscode-live-server/issues/43).
