@@ -1,17 +1,17 @@
 import * as fs from 'fs';
 
-export type Stats = {
+type Stats = {
     first: string,
     last: string,
     isNegated: boolean,
 };
 
-export type Parsed = {
+type Parsed = {
     stats: any,
     patterns: Array<string>
 };
 
-export type Options = {
+type Options = {
     cache: boolean,
     isGlob: boolean
 };
@@ -31,7 +31,7 @@ export class IgnoreParser {
         if (this.cache.hasOwnProperty(fp)) {
             return this.cache[fp];
         }
-        
+
         this.options = options;
 
         const str = fs.readFileSync(fp, 'utf8');
@@ -48,7 +48,7 @@ export class IgnoreParser {
 
     public parse(arr: Array<any>, opts: Options): Array<String> {
         arr = this.arrayify(arr);
-        const len = arr.length
+        const len = arr.length;
         let i = -1;
         let res = [];
 
@@ -132,10 +132,10 @@ export class IgnoreParser {
             throw new TypeError('array-unique expects an array.');
         }
 
-        var arrLen = arr.length;
-        var newArr = new Array(arrLen);
+        let arrLen = arr.length;
+        let newArr = new Array(arrLen);
 
-        for (var i = 0; i < arrLen; i++) {
+        for (let i = 0; i < arrLen; i++) {
             newArr[i] = arr[i];
         }
 

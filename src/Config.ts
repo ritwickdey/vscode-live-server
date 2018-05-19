@@ -108,8 +108,4 @@ export class Config {
     public static get getFile(): string {
         return Config.getSettings<string>('file');
     }
-    
-    public static get liveServerIngore(): Object {
-        return Config.getSettings<string>('liveServerIngore');
-    }
 }
