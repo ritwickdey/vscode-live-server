@@ -9,6 +9,10 @@ import { Helper, SUPPRORTED_EXT } from './Helper';
 
 import * as opn from 'opn';
 import * as ips from 'ips';
+import * as path from 'path';
+import * as fs from 'fs';
+
+import { IgnoreParser } from './ignoreparser';
 
 export class AppModel {
 
@@ -17,6 +21,7 @@ export class AppModel {
     private LiveServerInstance;
     private runningPort: number;
     private localIps: any;
+    private ignoreParser: any;
 
     constructor() {
         const _ips = ips();
@@ -27,6 +32,10 @@ export class AppModel {
         this.HaveAnySupportedFile(() => {
             StatusbarUi.Init();
         });
+
+        this.ignoreParser = new IgnoreParser();
+
+        console.log(Config.liveServerIngore);
     }
 
     public Golive(pathUri?: string) {
@@ -54,6 +63,14 @@ export class AppModel {
         let params = Helper.generateParams(pathInfos.rootPath, workspacePath, () => {
             this.tagMissedCallback();
         });
+
+        if (Config.liveServerIngore['enable']) {
+            const patterns = this.ignoreParser.ignore(path.join(workspace.rootPath, '.liveserverignore'), {
+                cache: Config.liveServerIngore['cache'],
+                isGlob: Config.liveServerIngore['isGlobal']
+            });
+            console.log(patterns);
+        }
 
         LiveServerHelper.StartServer(params, (serverInstance) => {
             if (serverInstance && serverInstance.address) {
