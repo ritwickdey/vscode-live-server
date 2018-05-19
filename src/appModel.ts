@@ -34,8 +34,6 @@ export class AppModel {
         });
 
         this.ignoreParser = new IgnoreParser();
-
-        console.log(Config.liveServerIngore);
     }
 
     public Golive(pathUri?: string) {
@@ -64,12 +62,15 @@ export class AppModel {
             this.tagMissedCallback();
         });
 
-        if (Config.liveServerIngore['enable']) {
-            const patterns = this.ignoreParser.ignore(path.join(workspace.rootPath, '.liveserverignore'), {
-                cache: Config.liveServerIngore['cache'],
-                isGlob: Config.liveServerIngore['isGlobal']
-            });
-            console.log(patterns);
+        const patterns = this.ignoreParser.ignore(path.join(workspace.rootPath, '.liveserverignore'), {
+            cache: Config.liveServerIngore['cache'],
+            isGlob: Config.liveServerIngore['isGlobal']
+        });
+
+        if(patterns.length) {
+            params.ignore = patterns;
+        } else {
+            params.ignore = Config.getIgnoreFiles;
         }
 
         LiveServerHelper.StartServer(params, (serverInstance) => {
@@ -248,7 +249,6 @@ export class AppModel {
         } catch (error) {
             this.showPopUpMsg(`Server is started at ${this.runningPort} but failed to open browser. Try to change the CustomBrowser settings.`, true);
             console.log('\n\nError Log to open Browser : ', error);
-            console.log('\n\n');
         }
     }
 

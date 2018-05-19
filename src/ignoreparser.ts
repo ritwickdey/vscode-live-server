@@ -25,21 +25,17 @@ export class IgnoreParser {
         this.cache = {};
     }
 
-    public ignore(fp: any, patterns?: Array<any>, options?: Options): Array<String> {
+    public ignore(fp: any, options?: Options): Array<String> {
         if (!fp || !fs.existsSync(fp)) return [];
 
         if (this.cache.hasOwnProperty(fp)) {
             return this.cache[fp];
         }
-
-        if (typeof patterns !== 'string' && !Array.isArray(patterns)) {
-            options = patterns;
-        }
-
+        
         this.options = options;
 
         const str = fs.readFileSync(fp, 'utf8');
-        const lines = str.split(/\r\n|\n/).concat(patterns || []);
+        const lines = str.split(/\r\n|\n/);
 
         const arr = this.unique(this.parse(lines, this.options));
 
