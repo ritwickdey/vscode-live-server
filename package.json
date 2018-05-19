@@ -47,15 +47,15 @@
     "keybindings": [
       {
         "command": "extension.liveServer.goOffline",
-        "key": "alt+L C",
+        "key": "alt+L alt+C",
         "when": "editorTextFocus",
-        "mac": "cmd+L C"
+        "mac": "cmd+L cmd+C"
       },
       {
         "command": "extension.liveServer.goOnline",
-        "key": "alt+L O",
+        "key": "alt+L alt+O",
         "when": "editorTextFocus",
-        "mac": "cmd+L O"
+        "mac": "cmd+L cmd+O"
       }
     ],
     "menus": {
