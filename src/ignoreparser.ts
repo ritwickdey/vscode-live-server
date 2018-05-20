@@ -127,7 +127,29 @@ export class IgnoreParser {
         return Array.isArray(val) ? val : [val];
     }
 
-    private unique(arr: Array<any>): Array<any> {
+    private unique(_arr: Array<any>): Array<any> {
+        const arr = this.immutable(_arr);
+        
+        if (!Array.isArray(arr)) {
+            throw new TypeError('array-unique expects an array.');
+        }
+
+        var len = arr.length;
+        var i = -1;
+
+        while (i++ < len) {
+            var j = i + 1;
+
+            for (; j < arr.length; ++j) {
+                if (arr[i] === arr[j]) {
+                    arr.splice(j--, 1);
+                }
+            }
+        }
+        return arr;
+    }
+
+    private immutable(arr: Array<any>): Array<any> {
         if (!Array.isArray(arr)) {
             throw new TypeError('array-unique expects an array.');
         }

@@ -1,5 +1,5 @@
 {
-  "name": "vscode-live-server",
+  "name": "LiveServer",
   "displayName": "Live Server",
   "description": "Launch a development local Server with live reload feature for static & dynamic pages",
   "version": "4.0.0",
