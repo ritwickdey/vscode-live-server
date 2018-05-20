@@ -30,7 +30,7 @@
   "activationEvents": [
     "*"
   ],
-  "main": "./build/src/extension",
+  "main": "./out/src/extension",
   "contributes": {
     "commands": [
       {
