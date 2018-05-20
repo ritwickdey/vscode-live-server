@@ -129,16 +129,16 @@ export class IgnoreParser {
 
     private unique(_arr: Array<any>): Array<any> {
         const arr = this.immutable(_arr);
-        
+
         if (!Array.isArray(arr)) {
             throw new TypeError('array-unique expects an array.');
         }
 
-        var len = arr.length;
-        var i = -1;
+        const len = arr.length;
+        let i = -1;
 
         while (i++ < len) {
-            var j = i + 1;
+            let j = i + 1;
 
             for (; j < arr.length; ++j) {
                 if (arr[i] === arr[j]) {
