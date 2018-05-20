@@ -1,5 +1,5 @@
 {
-  "name": "LiveServer",
+  "name": "vscode-live-server",
   "displayName": "Live Server",
   "description": "Launch a development local Server with live reload feature for static & dynamic pages",
   "version": "4.0.0",
@@ -292,8 +292,10 @@
   },
   "homepage": "https://ritwickdey.github.io/vscode-live-server/",
   "scripts": {
-    "vscode:prepublish": "tsc -p ./",
+    "vscode:prepublish": "tsc -p ./tsconfig.prod.json",
     "compile": "tsc -watch -p ./",
+    "dev:compile": "tsc -watch -p ./tsconfig.dev.json",
+    "prod:compile": "tsc -watch -p ./tsconfig.prod.json",
     "postinstall": "node ./node_modules/vscode/bin/install",
     "test": "node ./node_modules/vscode/bin/test",
     "lint": "tslint --project ."
