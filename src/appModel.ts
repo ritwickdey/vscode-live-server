@@ -9,6 +9,10 @@ import { Helper, SUPPRORTED_EXT } from './Helper';
 
 import * as opn from 'opn';
 import * as ips from 'ips';
+import * as path from 'path';
+import * as fs from 'fs';
+
+import { IgnoreParser } from './ignoreparser';
 
 export class AppModel {
 
@@ -17,6 +21,7 @@ export class AppModel {
     private LiveServerInstance;
     private runningPort: number;
     private localIps: any;
+    private ignoreParser: any;
 
     constructor() {
         const _ips = ips();
@@ -27,6 +32,8 @@ export class AppModel {
         this.HaveAnySupportedFile(() => {
             StatusbarUi.Init();
         });
+
+        this.ignoreParser = new IgnoreParser();
     }
 
     public Golive(pathUri?: string) {
@@ -54,6 +61,17 @@ export class AppModel {
         let params = Helper.generateParams(pathInfos.rootPath, workspacePath, () => {
             this.tagMissedCallback();
         });
+
+        const patterns = this.ignoreParser.ignore(path.join(workspace.rootPath, '.liveserverignore'), {
+            cache: true,
+            isGlob: false
+        });
+
+        if (patterns.length) {
+            params.ignore = patterns;
+        } else {
+            params.ignore = Config.getIgnoreFiles;
+        }
 
         LiveServerHelper.StartServer(params, (serverInstance) => {
             if (serverInstance && serverInstance.address) {
@@ -158,16 +176,16 @@ export class AppModel {
         });
     }
 
-    private openBrowser(port: number, path: string) {
+    private openBrowser(port: number, _path: string /* fix: tslint shadowed name */ ) {
         const host = Config.getLocalIp ? this.localIps : Config.getHost;
         const protocol = Config.getHttps.enable ? 'https' : 'http';
 
         let params: string[] = [];
         let advanceCustomBrowserCmd = Config.getAdvancedBrowserCmdline;
-        if (path.startsWith('\\') || path.startsWith('/')) {
-            path = path.substring(1, path.length);
+        if (_path.startsWith('\\') || _path.startsWith('/')) {
+            _path = _path.substring(1, _path.length);
         }
-        path = path.replace(/\\/gi, '/');
+        _path = _path.replace(/\\/gi, '/');
 
         if (advanceCustomBrowserCmd) {
             advanceCustomBrowserCmd
@@ -219,19 +237,17 @@ export class AppModel {
                     break;
                 default:
                     params[0] = 'chrome';
-
             }
         }
         else if (params[0] && params[0].startsWith('microsoft-edge')) {
-            params[0] = `microsoft-edge:${protocol}://${host}:${port}/${path}`;
+            params[0] = `microsoft-edge:${protocol}://${host}:${port}/${_path}`;
         }
 
         try {
-            opn(`${protocol}://${host}:${port}/${path}`, { app: params || [''] });
+            opn(`${protocol}://${host}:${port}/${_path}`, { app: params || [''] });
         } catch (error) {
             this.showPopUpMsg(`Server is started at ${this.runningPort} but failed to open browser. Try to change the CustomBrowser settings.`, true);
             console.log('\n\nError Log to open Browser : ', error);
-            console.log('\n\n');
         }
     }
 
