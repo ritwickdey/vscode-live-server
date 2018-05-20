@@ -149,7 +149,8 @@
           "default": [
             ".vscode/**",
             "**/*.scss",
-            "**/*.sass"
+            "**/*.sass",
+            "**/*.ts"
           ],
           "description": "To ignore specific file changes"
         },
