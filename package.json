@@ -292,7 +292,7 @@
   },
   "homepage": "https://ritwickdey.github.io/vscode-live-server/",
   "scripts": {
-    "vscode:prepublish": "tsc -p ./tsconfig.prod.json",
+    "vscode:prepublish": "tsc -p ./tsconfig.dev.json",
     "compile": "tsc -watch -p ./",
     "dev:compile": "tsc -watch -p ./tsconfig.dev.json",
     "prod:compile": "tsc -watch -p ./tsconfig.prod.json",
