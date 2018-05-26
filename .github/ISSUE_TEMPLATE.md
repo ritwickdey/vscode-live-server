@@ -23,20 +23,9 @@ ISSUES MISSING IMPORTANT INFORMATION MAY BE CLOSED WITHOUT INVESTIGATION.
 
 <!-- Describe what the desired behavior would be. -->
 
-## Minimal reproduction of the problem with instructions
-
-<!--For bug reports please provide the *STEPS TO REPRODUCE* and if possible a *MINIMAL DEMO* of the problem.-->
-
-## What is the motivation / use case for changing the behavior?
-
-<!-- Describe the motivation or the concrete use case. -->
-
 ## Environment
 
 ```html
-Angular version: X.Y.Z
-<!-- Check whether this is still an issue in the most recent Angular version -->
-
 Browser:
 
 - [ ] Chrome (desktop) version XX
