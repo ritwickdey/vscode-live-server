@@ -282,7 +282,7 @@
     }
   },
   "license": "MIT",
-  "icon": "images/icon.png",
+  "icon": "images/icon.svg",
   "bugs": {
     "url": "https://github.com/ritwickdey/vscode-live-server/issues",
     "email": "ritwickdey@outlook.com"
