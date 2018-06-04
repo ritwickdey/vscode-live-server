@@ -4,8 +4,8 @@ import { workspace } from 'vscode';
 
 export interface IProxy {
     enable: boolean;
-    baseUri: string;
-    proxyUri: string;
+    baseUri: string | Array<string>;
+    proxyUri: string | Array<string>;
 }
 
 export interface IHttps {

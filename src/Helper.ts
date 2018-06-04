@@ -4,6 +4,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as os from 'os';
 import { Config } from './Config';
+import { window } from "vscode";
 
 export const SUPPRORTED_EXT: string[] = [
     '.html', '.htm', '.svg'
@@ -141,9 +142,29 @@ export class Helper {
 
     static getProxySetup() {
         const proxySetup = Config.getProxy;
-        let proxy = [[]];
-        if (proxySetup.enable === true) {
-            proxy[0].push(proxySetup.baseUri, proxySetup.proxyUri);
+        const { enable, baseUri, proxyUri } = proxySetup;
+        let proxy: Array<Array<string>>;
+        if (enable === true) {
+            if (typeof baseUri === 'string' && typeof proxyUri === 'string') {
+                proxy = [[]];
+                proxy[0].push(baseUri, proxyUri);
+            } else if (baseUri instanceof Array && proxyUri instanceof Array) {
+                if (baseUri.length !== proxyUri.length) {
+                    console.error('When both baseUri and proxyUri are array, their length must be the same');
+                    window.showErrorMessage('When both baseUri and proxyUri are array, their length must be the same');
+                } else {
+                    proxy = [];
+                    for (let index = 0, length = baseUri.length; index < length; index++) {
+                        const baseUriElement = baseUri[index];
+                        const proxyUriElement = proxyUri[index];
+                        proxy.push([]);
+                        proxy[index].push(baseUriElement, proxyUriElement);
+                    }
+                }
+            } else {
+                console.error('baseUri and proxyUri must both be array or string');
+                window.showErrorMessage('baseUri and proxyUri must both be array or string');
+            }
         }
         else {
             proxy = null; // required to change the type [[]] to black array [].
