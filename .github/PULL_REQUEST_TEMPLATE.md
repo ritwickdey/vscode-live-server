@@ -9,7 +9,7 @@ What kind of change does this PR introduce?
 [ ] Feature
 [ ] Refactoring (no functional changes, no api changes)
 [ ] Documentation content changes
-[ ] Other... Please describe:
+[ ] Other: <!-- Please describe: -->
 ```
 
 ## What is the current behavior?

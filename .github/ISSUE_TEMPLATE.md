@@ -12,7 +12,7 @@ ISSUES MISSING IMPORTANT INFORMATION MAY BE CLOSED WITHOUT INVESTIGATION.
 [ ] Bug report  <!-- Please search GitHub for a similar issue or PR before submitting -->
 [ ] Feature request
 [ ] Documentation issue or request
-[ ] Other... Please describe:
+[ ] Other: <!-- Please describe: -->
 ```
 
 ## Current behavior
@@ -36,8 +36,7 @@ Browser:
 
 For Tooling issues:
 
-- Node version: XX  <!-- run `node --version` -->
-- Npm version: XX  <!-- run `npm --version` -->
+- Live Server: <!-- Check which version is installed --> 
 - Platform:  <!-- Mac, Linux, Windows -->
 - Visual Studio Code: <!-- `code --version` -->
 ```
