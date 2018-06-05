@@ -35,7 +35,7 @@
     "commands": [
       {
         "command": "extension.liveServer.goOffline",
-        "title": "Close Live Server",
+        "title": "Stop Live Server",
         "category": "Live Server"
       },
       {
@@ -62,6 +62,11 @@
       "editor/context": [
         {
           "command": "extension.liveServer.goOnline",
+          "group": "myGrp@liveServer",
+          "when": "resourceLangId == html"
+        },
+        {
+          "command": "extension.liveServer.goOffline",
           "group": "myGrp@liveServer",
           "when": "resourceLangId == html"
         },
