@@ -26,14 +26,14 @@
 3. Open a HTML file and Right click on the editor and choose the options.
 ![Edit Menu Option Preview](./images/Screenshot/vscode-live-server-editor-menu-3.jpg)
 
-4. Hit `(alt+L, O)` to Open the Server and `(alt+L, C)` to close the server (You can change the shortcut form keybinding). *[On MAC, `cmd+L, O` and `cmd+L, C`]*
+4. Hit `(alt+L, alt+O)` to Open the Server and `(alt+L, alt+C)` to Stop the server (You can change the shortcut form keybinding). *[On MAC, `cmd+L, cmd+O` and `cmd+L, cmd+C`]*
 
-5. Press `F1` or `ctrl+shift+P` and type `Live Server: Open With Live Server ` to start a server or type `Live Server: Close Live Server` to stop a server.
+5. Press `F1` or `ctrl+shift+P` and type `Live Server: Open With Live Server ` to start a server or type `Live Server: Stop Live Server` to stop a server.
 
 
 ## Features
 * A Quick Development Live Server with live browser reload.
-* Start or close server by a single click from status bar.
+* Start or Stop server by a single click from status bar.
 * Open a HTML file to browser from Explorer menu.[[Quick Gif Demo](./images/Screenshot/vscode-live-server-explorer-menu-demo-1.gif?raw=true)].
 * Support for excluding files for change detection. 
 * Hot Key control.
@@ -59,26 +59,14 @@ All settings are now listed here  [Settings Docs](./docs/settings.md).
 *All FAQs are now listed here [FAQ Docs](./docs/faqs.md)*
 
 ## What's new ?
-* ### Version 4.0.0 (14.05.18)
-  * Integraded Websocket Support. [[#89](https://github.com/ritwickdey/vscode-live-server/pull/89)]
-  * Now open server with `Local Ip` instead of `127.0.0.1` *(See settings page for more details)* [[#116](https://github.com/ritwickdey/vscode-live-server/pull/116)]
-  * Availity to hide status bar `Go Live` button. [[#117](https://github.com/ritwickdey/vscode-live-server/pull/117)]
-  * `file` settings : Path to the entry point `entry point` file.   For SPA support. *(See settings page for more details)* [[#118](https://github.com/ritwickdey/vscode-live-server/pull/118)]
-  * Docs updated. [[#93](https://github.com/ritwickdey/vscode-live-server/pull/93) [#94](https://github.com/ritwickdey/vscode-live-server/pull/94) [#107](https://github.com/ritwickdey/vscode-live-server/pull/107) [#109](https://github.com/ritwickdey/vscode-live-server/pull/109)]
+* ### Version 4.1.0 (05.06.18)
+  * Keybinding has been changed to `alt+L, alt+O` & `alt+L, alt+C` for Windows/Linux &  `cmd+L, cmd+O` & `cmd+L, cmd+C` for MAC . [[#121](https://github.com/ritwickdey/vscode-live-server/pull/121)] *(Thanks [Joydip Roy](https://github.com/rjoydip))*
 
-Thanks to the contributors 💓 who made this possible. <br>
-&mdash;  [Max Schmitt](https://github.com/mxschmitt)
-<br>
-&mdash; [Joydip Roy](https://github.com/rjoydip)
-<br>
-&mdash;  [Jasonalex](https://github.com/jasonalex13)
-<br>
-&mdash;  [Douglas Chen](https://github.com/cdswyda)
-<br>
-&mdash;  [Bernard Vander Beken](https://github.com/jawn)<br>
-&mdash;  [Philippe Loctaux](https://github.com/x4m3)
-<br> 
-&mdash;  [Arshad Hasan](https://github.com/arshadhasan)
+  * `Stop Live Server` options is added in editor-context menu. 
+  
+  * Live Sever Icon is refreshed [[#144](https://github.com/ritwickdey/vscode-live-server/pull/144)] *(Thanks [Pluwen](https://github.com/pluwen))*
+  
+  * TypeScript files are now in default ignore list. [[#125](https://github.com/ritwickdey/vscode-live-server/pull/125)] *(Thanks [Ryan Naddy](https://github.com/TheColorRed))*
 
 ## Changelog
 To check full changelog [click here](CHANGELOG.md).
