@@ -126,31 +126,31 @@
 
      <hr>
 
-* **`liveServer.settings.useWebExt:`** : If it is `true`, Live Reload will be fully controled by the [Live Server Web Extension](https://github.com/ritwickdey/live-server-web-extension). And also, it does not matter if your HTML have `<body>` tag or not, Live Reload will work for every file. :smile:
+* **`liveServer.settings.useWebExt`** : If it is `true`, Live Reload will be fully controled by the [Live Server Web Extension](https://github.com/ritwickdey/live-server-web-extension). And also, it does not matter if your HTML have `<body>` tag or not, Live Reload will work for every file. :smile:
     * Default is `false`
 
     <hr>
 
-* **`liveServer.settings.fullReload:`** : By Default Live Server inject CSS changes without full reloading of browser. You can change this behviour by making this setting as `true`. 
+* **`liveServer.settings.fullReload`** : By Default Live Server inject CSS changes without full reloading of browser. You can change this behviour by making this setting as `true`. 
     
     * Default: `false`
 
     <hr>
     
-* **`liveServer.settings.wait:`** : Delay before live reloading. Value in milliseconds.
+* **`liveServer.settings.wait`** : Delay before live reloading. Value in milliseconds.
     
     * Default: `100`
 
     <hr>
 
-* **`liveServer.settings.mount:`** : Mount a directory to a route.
+* **`liveServer.settings.mount`** : Mount a directory to a route.
     
     * Default: `[]`
 
     * Example: 
     ```js
     {
-        "liveServer.settings.mount:" [
+        "liveServer.settings.mount" [
             ["/", "/path1"]
             ["/", "/path2"]
             ["/root", "/dist"]
@@ -160,7 +160,13 @@
 
     <hr>
 
-* **`liveServer.settings.useLocalIp:`** : Use local IP as host.
+* **`liveServer.settings.useLocalIp`** : Use local IP as host.
+    
+    * Default: `false`
+
+    <hr>
+    
+* **`liveServer.settings.liveEditing`** : Live editing with live server.
     
     * Default: `false`
 
