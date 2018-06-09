@@ -1,7 +1,3 @@
-***[[I'm sorry! I can't maintain the repo as I'm so busy now days for exams! I need 2-3 maintainers .
-If you want to help me to maintain this repo && if you know how to debug, you're welcome - contact with me ritwickdey@outlook.com]]***
-
-
 # Live Server
 
 
@@ -30,7 +26,7 @@ If you want to help me to maintain this repo && if you know how to debug, you're
 3. Open a HTML file and Right click on the editor and choose the options.
 ![Edit Menu Option Preview](./images/Screenshot/vscode-live-server-editor-menu-3.jpg)
 
-4. Hit `(alt+L, O)` to Open the Server and `(alt+L, C)` to close the server (You can change the shortcut form keybinding). *[On MAC, `cmd+L, O` and `cmd+L, C`]*
+4. Hit `(alt+L, alt+O)` to Open the Server and `(alt+L, alt+C)` to close the server (You can change the shortcut form keybinding). *[On MAC, `cmd+L, cmd+O` and `cmd+L, cmd+C`]*
 
 5. Press `F1` or `ctrl+shift+P` and type `Live Server: Open With Live Server ` to start a server or type `Live Server: Close Live Server` to stop a server.
 
@@ -63,20 +59,36 @@ All settings are now listed here  [Settings Docs](./docs/settings.md).
 *All FAQs are now listed here [FAQ Docs](./docs/faqs.md)*
 
 ## What's new ?
+* ### Version 4.0.0 (14.05.18)
+  * Integraded Websocket Support. [[#89](https://github.com/ritwickdey/vscode-live-server/pull/89)]
+  * Now open server with `Local Ip` instead of `127.0.0.1` *(See settings page for more details)* [[#116](https://github.com/ritwickdey/vscode-live-server/pull/116)]
+  * Availity to hide status bar `Go Live` button. [[#117](https://github.com/ritwickdey/vscode-live-server/pull/117)]
+  * `file` settings : Path to the entry point `entry point` file.   For SPA support. *(See settings page for more details)* [[#118](https://github.com/ritwickdey/vscode-live-server/pull/118)]
+  * Docs updated. [[#93](https://github.com/ritwickdey/vscode-live-server/pull/93) [#94](https://github.com/ritwickdey/vscode-live-server/pull/94) [#107](https://github.com/ritwickdey/vscode-live-server/pull/107) [#109](https://github.com/ritwickdey/vscode-live-server/pull/109)]
 
-* ### Version 3.2.1 (17.02.18)
-    * Re-deployed to vscode marketplace. For some reason few users are facing `command 'extension.liveServer.goOnline' not found` error. 
-        * [#78](https://github.com/ritwickdey/vscode-live-server/issues/78)
-        * [#80](https://github.com/ritwickdey/vscode-live-server/issues/80)
-        * [78#issuecomment](https://github.com/ritwickdey/vscode-live-server/issues/78#issuecomment-365891533)
-        * [Tweet](https://twitter.com/mohamed_aladdin/status/962608074212200448)
-
-        *(Still the reason of the error is unknown to me.)*
-    
-    * Docs Updated 
+Thanks to the contributors 💓 who made this possible. <br>
+&mdash;  [Max Schmitt](https://github.com/mxschmitt)
+<br>
+&mdash; [Joydip Roy](https://github.com/rjoydip)
+<br>
+&mdash;  [Jasonalex](https://github.com/jasonalex13)
+<br>
+&mdash;  [Douglas Chen](https://github.com/cdswyda)
+<br>
+&mdash;  [Bernard Vander Beken](https://github.com/jawn)<br>
+&mdash;  [Philippe Loctaux](https://github.com/x4m3)
+<br> 
+&mdash;  [Arshad Hasan](https://github.com/arshadhasan)
 
 ## Changelog
 To check full changelog [click here](CHANGELOG.md).
+
+
+## Special Thanks To Maintainers
+A special thanks to [Max Schmitt](https://github.com/mxschmitt)  & [Joydip Roy](https://github.com/rjoydip) for contributing their valueable times on this project.
+
+[![Max Schmitt](https://avatars2.githubusercontent.com/u/17984549?s=64)](https://github.com/mxschmitt)
+[![Joydip Roy](https://avatars2.githubusercontent.com/u/15318294?s=64)](https://github.com/rjoydip)
 
 
 ## LICENSE

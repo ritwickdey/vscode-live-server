@@ -175,5 +175,10 @@
 * **`liveServer.experimental.liveEditing`** : Live editing experimental flag.
     
     * Default: `true`
+    <hr>
+
+* **`liveServer.settings.file:`** : Path to the entry point file. Useful for SPA 
+    
+    * Default: `""`
 
     <hr>
