@@ -166,15 +166,10 @@
 
     <hr>
     
-* **`liveServer.settings.liveEditing`** : Live editing along with live server.
+* **`liveServer.experimental.liveEditing`** : Live editing with live server.
     
     * Default: `false`
-
-    <hr>
-
-* **`liveServer.experimental.liveEditing`** : Live editing experimental flag.
     
-    * Default: `true`
     <hr>
 
 * **`liveServer.settings.file:`** : Path to the entry point file. Useful for SPA 

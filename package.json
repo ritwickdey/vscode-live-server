@@ -277,15 +277,10 @@
           "default": "",
           "description": "When set, serve this file (server root relative) for every 404 (useful for single-page applications)"
         },
-        "liveServer.settings.liveEditing": {
-          "type": "Boolean",
-          "default": true,
-          "description": "Live editing along with live server"
-        },
         "liveServer.experimental.liveEditing": {
-          "type": "Boolean",
-          "default": true,
-          "description": "Live editing along with live server experimental"
+          "type": "boolean",
+          "default": false,
+          "description": "Live editing with live server"
         }
       }
     }
@@ -318,6 +313,7 @@
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
+    "events": "^3.0.0",
     "http-proxy": "^1.16.2",
     "http-shutdown": "^1.2.0",
     "ips": "^2.1.3",

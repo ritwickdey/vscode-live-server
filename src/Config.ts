@@ -117,10 +117,6 @@ export class Config {
         return Config.getSettings<string>('file');
     }
 
-    public static get getLiveEditing(): string {
-        return Config.getSettings<string>('liveEditing');
-    }
-
     public static get getExpLiveEditing(): string {
         return Config.getExpSettings<string>('liveEditing');
     }
