@@ -77,8 +77,8 @@ export class AppModel {
         this.IsStaging = true;
         StatusbarUi.Working('Starting...');
 
-        // for live editing
-        if (Config.getLiveEditing) {
+        // live editing
+        if (Config.getLiveEditing && Config.getExpLiveEditing) {
             const liveServerHelper = new LiveServerHelper();
             workspace.onDidChangeTextDocument((e: TextDocumentChangeEvent) => {
                 liveServerHelper.emit('liveEditing', e, window.activeTextEditor.document.getText());

@@ -20,7 +20,6 @@ export class LiveServerHelper extends EventEmitter {
 
                 }, 1000);
             } catch (err) {
-                console.error(err);
                 callback({
                     errorMsg: err
                 });
@@ -42,6 +41,7 @@ export class LiveServerHelper extends EventEmitter {
     constructor() {
         super();
         this.on('liveEditing', (file, content) => {
+            console.log(file);
             liveServer.liveEditing(file, content);
         });
     }

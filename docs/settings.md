@@ -171,3 +171,9 @@
     * Default: `false`
 
     <hr>
+
+* **`liveServer.experimental.liveEditing`** : Live editing experimental flag.
+    
+    * Default: `true`
+
+    <hr>

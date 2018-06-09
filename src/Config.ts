@@ -21,8 +21,16 @@ export class Config {
         return workspace.getConfiguration('liveServer.settings');
     }
 
+    public static get expConfiguration() {
+        return workspace.getConfiguration('liveServer.experimental');
+    }
+
     private static getSettings<T>(val: string): T {
         return Config.configuration.get(val) as T;
+    }
+
+    private static getExpSettings<T>(val: string): T {
+        return Config.expConfiguration.get(val) as T;
     }
 
     public static get getHost(): string {
@@ -103,5 +111,9 @@ export class Config {
 
     public static get getLiveEditing(): string {
         return Config.getSettings<string>('liveEditing');
+    }
+    
+    public static get getExpLiveEditing(): string {
+        return Config.getExpSettings<string>('liveEditing');
     }
 }

@@ -269,8 +269,13 @@
         },
         "liveServer.settings.liveEditing": {
           "type": "Boolean",
-          "default": false,
+          "default": true,
           "description": "Live editing along with live server"
+        },
+        "liveServer.experimental.liveEditing": {
+          "type": "Boolean",
+          "default": true,
+          "description": "Live editing along with live server experimental"
         }
       }
     }
@@ -306,7 +311,9 @@
     "http-proxy": "^1.16.2",
     "http-shutdown": "^1.2.0",
     "live-server": "file:lib\\live-server",
-    "opn": "^5.3.0"
+    "lodash": "^4.17.10",
+    "opn": "^5.3.0",
+    "slash": "^2.0.0"
   },
   "announcement": {
     "onVersion": "3.2.0",
