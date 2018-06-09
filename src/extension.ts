@@ -6,9 +6,9 @@ import { AppModel } from './appModel';
 import { Helper } from './Helper';
 import { checkNewAnnouncement } from './announcement/index';
 
-export function activate(context: ExtensionContext) {
-    const appModel = new AppModel();
+const appModel = new AppModel();
 
+export function activate(context: ExtensionContext) {
     checkNewAnnouncement(context.globalState);
     context.subscriptions.push(commands
         .registerCommand('extension.liveServer.goOnline', (fileUri) => {
@@ -36,8 +36,6 @@ export function activate(context: ExtensionContext) {
     context.subscriptions.push(appModel);
 }
 
-
 export function deactivate() {
-    const appModel = new AppModel();
     appModel.GoOffline();
 }
