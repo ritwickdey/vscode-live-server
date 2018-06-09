@@ -80,8 +80,6 @@ export class AppModel {
         this.IsStaging = true;
         StatusbarUi.Working('Starting...');
 
-        console.log(Config.getExpLiveEditing);
-
         // live editing
         if (Config.getExpLiveEditing) {
             const liveServerHelper = new LiveServerHelper();
