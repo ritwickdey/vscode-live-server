@@ -10,6 +10,7 @@ export function activate(context: ExtensionContext) {
     const appModel = new AppModel();
 
     checkNewAnnouncement(context.globalState);
+    
     context.subscriptions.push(commands
         .registerCommand('extension.liveServer.goOnline', (fileUri) => {
             workspace.saveAll().then(() => {
