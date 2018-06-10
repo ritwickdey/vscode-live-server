@@ -283,6 +283,11 @@
           "type": "string",
           "default": "",
           "description": "When set, serve this file (server root relative) for every 404 (useful for single-page applications)"
+        },
+        "liveServer.settings.multiRootWorkspaceName": {
+          "type": "string",
+          "default": null,
+          "description": "Set the name of workspace (or folder name) for multiroot"
         }
       }
     }
