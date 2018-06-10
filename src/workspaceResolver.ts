@@ -2,6 +2,21 @@ import { workspace, window } from 'vscode';
 import { Config } from './Config';
 
 
+export const setOrChangeWorkspace = () => {
+    const { workspaceFolders } = workspace;
+    const workspaceNames = workspaceFolders.map(e => e.name);
+
+    return window.showQuickPick(workspaceNames, {
+        placeHolder: 'choose workspace for Live Server',
+        ignoreFocusOut: true
+    }).then(workspaceName => {
+        if (workspaceName) {
+            return Config.setMutiRootWorkspaceName(workspaceName).then(() => workspaceName);
+        }
+    });
+};
+
+
 export const workspaceResolver = () => {
     return new Promise<string>(resolve => {
         const { workspaceFolders } = workspace;
@@ -29,20 +44,5 @@ export const workspaceResolver = () => {
                 const workspaceUri = workspaceFolders.find(e => e.name === workspaceName).uri.fsPath;
                 return resolve(workspaceUri);
             });
-    });
-};
-
-
-export const setOrChangeWorkspace = () => {
-    const { workspaceFolders } = workspace;
-    const workspaceNames = workspaceFolders.map(e => e.name);
-
-    return window.showQuickPick(workspaceNames, {
-        placeHolder: 'choose workspace for Live Server',
-        ignoreFocusOut: true
-    }).then(workspaceName => {
-        if (workspaceName) {
-            return Config.setMutiRootWorkspaceName(workspaceName).then(() => workspaceName);
-        }
     });
 };
