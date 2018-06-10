@@ -33,8 +33,7 @@ export class AppModel {
     public async Golive(pathUri?: string) {
 
         if (!window.activeTextEditor && !(await workspaceResolver())) {
-            this.showPopUpMsg(`Open a file or folder...`, true);
-            return;
+            return this.showPopUpMsg(`Open a folder or workspace...`, true);
         }
 
         const workspacePath = await workspaceResolver();
@@ -120,8 +119,8 @@ export class AppModel {
         else if (!Config.getDonotShowInfoMsg) {
             const donotShowMsg = 'Don\'t show again';
             window.showInformationMessage(msg, donotShowMsg)
-                .then(choise => {
-                    if (choise && choise === donotShowMsg) {
+                .then(choice => {
+                    if (choice && choice === donotShowMsg) {
                         Config.setDonotShowInfoMsg(true, true);
                     }
                 });
