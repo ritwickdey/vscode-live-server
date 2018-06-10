@@ -6,10 +6,10 @@ import { LiveServerHelper } from './LiveServerHelper';
 import { StatusbarUi } from './StatusbarUi';
 import { Config } from './Config';
 import { Helper, SUPPRORTED_EXT } from './Helper';
+import { workspaceResolver, setOrChangeWorkspace } from './workspaceResolver';
 
 import * as opn from 'opn';
 import * as ips from 'ips';
-import { workspaceResolver } from './workspaceResolver';
 
 export class AppModel {
 
@@ -97,6 +97,17 @@ export class AppModel {
 
         StatusbarUi.Working('Disposing...');
 
+    }
+
+    changeWorkspaceRoot() {
+        setOrChangeWorkspace()
+            .then(workspceName => {
+                window.showInformationMessage(`Success! '${workspceName}' workspace is now root of Live Server`);
+
+                // If server is running, Turn off the server.
+                if (this.IsServerRunning)
+                    this.GoOffline();
+            });
     }
 
     private tagMissedCallback() {

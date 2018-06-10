@@ -1,6 +1,6 @@
 'use strict';
 
-import {ExtensionContext, workspace, commands, window} from 'vscode';
+import { ExtensionContext, workspace, commands, window } from 'vscode';
 import { StatusbarUi } from './StatusbarUi';
 import { AppModel } from './appModel';
 import { Helper } from './Helper';
@@ -21,6 +21,12 @@ export function activate(context: ExtensionContext) {
     context.subscriptions.push(commands
         .registerCommand('extension.liveServer.goOffline', () => {
             appModel.GoOffline();
+        })
+    );
+
+    context.subscriptions.push(commands
+        .registerCommand('extension.liveServer.changeWorkspace', () => {
+            appModel.changeWorkspaceRoot();
         })
     );
 

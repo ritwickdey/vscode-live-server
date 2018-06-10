@@ -43,6 +43,11 @@
         "command": "extension.liveServer.goOnline",
         "title": "Open with Live Server",
         "category": "Live Server"
+      },
+      {
+        "command": "extension.liveServer.changeWorkspace",
+        "title": "Change Live Server workspace",
+        "category": "Live Server"
       }
     ],
     "keybindings": [
