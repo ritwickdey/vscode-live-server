@@ -68,25 +68,22 @@ export class Helper {
     public static generateParams(
         rootPath: string,
         workspacePath: string,
-        onTagMissedCallback?: MethodDecorator) {
+        onTagMissedCallback?: MethodDecorator
+    ) {
 
         workspacePath = workspacePath || '';
         const port = Config.getPort;
         const ignorePathGlob = Config.getIgnoreFiles || [];
-        let ignoreFiles = [];
 
-        ignorePathGlob.forEach((ignoredPath, index) => {
-            if (!ignoredPath.startsWith('/') || !ignoredPath.startsWith('\\')) {
-                if (process.platform === 'win32') {
-                    ignoreFiles[index] = workspacePath + '\\' + ignoredPath;
-                }
-                else {
-                    ignoreFiles[index] = workspacePath + '/' + ignoredPath;
-                }
-            }
+        const ignoreFiles = [];
+        ignorePathGlob.forEach(ignoredPath => {
+            if (!ignoredPath.startsWith('/') || !ignoredPath.startsWith('\\'))
+                ignoreFiles.push(workspacePath + path.sep + ignoredPath);
         });
+
         const proxy = Helper.getProxySetup();
         const https = Helper.getHttpsSetup();
+
         const mount = Config.getMount;
         // In live-server mountPath is reslove by `path.resolve(process.cwd(), mountRule[1])`.
         // but in vscode `process.cwd()` is the vscode extensions path.
@@ -96,6 +93,7 @@ export class Helper {
                 mountRule[1] = path.resolve(workspacePath, mountRule[1]);
             }
         });
+
         const file = Config.getFile;
         return {
             port: port,
