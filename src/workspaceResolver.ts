@@ -2,7 +2,7 @@ import { workspace, window } from 'vscode';
 import { Config } from './Config';
 
 
-export const setOrChangeWorkspace = () => {
+export function setOrChangeWorkspace() {
     const { workspaceFolders } = workspace;
     const workspaceNames = workspaceFolders.map(e => e.name);
 
@@ -14,10 +14,10 @@ export const setOrChangeWorkspace = () => {
             return Config.setMutiRootWorkspaceName(workspaceName).then(() => workspaceName);
         }
     });
-};
+}
 
 
-export const workspaceResolver = () => {
+export function workspaceResolver() {
     return new Promise<string>(resolve => {
         const { workspaceFolders } = workspace;
         const workspaceNames = workspaceFolders.map(e => e.name);
@@ -45,4 +45,4 @@ export const workspaceResolver = () => {
                 return resolve(workspaceUri);
             });
     });
-};
+}
