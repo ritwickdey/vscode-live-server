@@ -2,7 +2,6 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
-import * as os from 'os';
 import { Config } from './Config';
 
 export const SUPPRORTED_EXT: string[] = [
@@ -12,30 +11,24 @@ export const SUPPRORTED_EXT: string[] = [
 export class Helper {
 
 
-    public static ExtractFilePath(workSpacePath: string, openedDocUri: string, virtualRoot: string) {
+    public static testPathWithRoot(workSpacePath: string) {
 
-        let documentPath = path.dirname(openedDocUri);
+        let rootPath: string;
 
-        // WorkSpacePath will be NULL if only a single file is opened.
-        let rootPath = workSpacePath ? workSpacePath : documentPath;
+        // Test the path is actually exists or not
+        const testPath = path.join(workSpacePath, Config.getRoot);
 
-        virtualRoot = path.join(rootPath, virtualRoot);
-
-        let HasVirtualRootError = !fs.existsSync(virtualRoot);
-        if (!HasVirtualRootError) {
-            rootPath = virtualRoot;
+        let isNotOkay = !fs.existsSync(testPath);
+        if (!isNotOkay) { // means okay :)
+            rootPath = testPath;
         }
 
-        if (process.platform === 'win32') {
-            if (!rootPath.endsWith('\\')) rootPath = rootPath + '\\';
-        }
-        else {
-            if (!rootPath.endsWith('/')) rootPath = rootPath + '/';
-        }
+        if (!rootPath.endsWith(path.sep))
+            rootPath = rootPath + path.sep;
 
         return {
-            HasVirtualRootError: HasVirtualRootError,
-            rootPath: rootPath
+            isNotOkay,
+            rootPath
         };
     }
 
@@ -47,7 +40,7 @@ export class Helper {
      * @param rootPath
      * @param targetPath
      */
-    public static getSubPathIfSupported(rootPath: string, targetPath: string) {
+    public static getSubPath(rootPath: string, targetPath: string) {
 
         if (!Helper.IsSupportedFile(targetPath) || !targetPath.startsWith(rootPath)) {
             return null;

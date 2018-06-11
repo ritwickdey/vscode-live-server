@@ -43,21 +43,21 @@ suite('Helper Tests', () => {
         test('Should return correct Relative Path. format 1', () => {
             const targetPath = 'c:\\Users\\HTML\\cake\\index.html';
             const rootPath = 'c:\\Users\\HTML\\cake\\';
-            const result = Helper.getSubPathIfSupported(rootPath, targetPath);
+            const result = Helper.getSubPath(rootPath, targetPath);
             assert.equal(result, 'index.html');
         });
 
         test('Should return correct Relative Path. format 2', () => {
             const targetPath = 'c:\\Users\\HTML\\cake\\sub\\hello.html';
             const rootPath = 'c:\\Users\\HTML\\cake\\';
-            const result = Helper.getSubPathIfSupported(rootPath, targetPath);
+            const result = Helper.getSubPath(rootPath, targetPath);
             assert.equal(result, 'sub\\hello.html');
         });
 
         test('Should return null as targert file format is unsupported', () => {
             const targetPath = 'c:\\Users\\HTML\\cake\\sub\\hello.xyz';
             const rootPath = 'c:\\Users\\HTML\\cake\\';
-            const result = Helper.getSubPathIfSupported(rootPath, targetPath);
+            const result = Helper.getSubPath(rootPath, targetPath);
             assert.equal(result, null);
         });
     });

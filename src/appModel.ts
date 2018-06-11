@@ -43,15 +43,15 @@ export class AppModel {
         if (!this.isCorrectWorkspace(workspacePath)) return;
 
         const openedDocUri = pathUri || (window.activeTextEditor ? window.activeTextEditor.document.fileName : '');
-        let pathInfos = Helper.ExtractFilePath(workspacePath, openedDocUri, Config.getRoot);
+        const pathInfos = Helper.testPathWithRoot(workspacePath);
 
         if (this.IsServerRunning) {
             return this.openBrowser(
                 this.runningPort,
-                Helper.getSubPathIfSupported(pathInfos.rootPath, openedDocUri) || ''
+                Helper.getSubPath(pathInfos.rootPath, openedDocUri) || ''
             );
         }
-        if (pathInfos.HasVirtualRootError) {
+        if (pathInfos.isNotOkay) {
             this.showPopUpMsg('Invaild Path in liveServer.settings.root settings. live Server will serve from workspace root', true);
         }
 
@@ -71,7 +71,7 @@ export class AppModel {
                 if (!Config.getNoBrowser) {
                     this.openBrowser(
                         this.runningPort,
-                        Helper.getSubPathIfSupported(pathInfos.rootPath, openedDocUri) || ''
+                        Helper.getSubPath(pathInfos.rootPath, openedDocUri) || ''
                     );
                 }
             }
