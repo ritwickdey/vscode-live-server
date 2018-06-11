@@ -1,7 +1,5 @@
 import { workspace, window } from 'vscode';
 import { Config } from './Config';
-import * as path from 'path';
-
 
 export function setOrChangeWorkspace() {
     const { workspaceFolders } = workspace;

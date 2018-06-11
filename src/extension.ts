@@ -1,9 +1,7 @@
 'use strict';
 
 import { ExtensionContext, workspace, commands, window } from 'vscode';
-import { StatusbarUi } from './StatusbarUi';
 import { AppModel } from './appModel';
-import { Helper } from './Helper';
 import { checkNewAnnouncement } from './announcement';
 
 export function activate(context: ExtensionContext) {
