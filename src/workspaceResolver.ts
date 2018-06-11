@@ -1,5 +1,6 @@
 import { workspace, window } from 'vscode';
 import { Config } from './Config';
+import * as path from 'path';
 
 
 export function setOrChangeWorkspace() {
@@ -17,10 +18,19 @@ export function setOrChangeWorkspace() {
 }
 
 
-export function workspaceResolver() {
+export function workspaceResolver(fileUri?: string) {
     return new Promise<string>(resolve => {
         const { workspaceFolders } = workspace;
         const workspaceNames = workspaceFolders.map(e => e.name);
+
+        // if fileUri is set. Means, user tried to open server by right clicking to a HTML file.
+        if (fileUri) {
+            const selectedWorkspace = workspaceFolders.find(ws => fileUri.startsWith(ws.uri.fsPath));
+            if (selectedWorkspace) {
+                return Config.setMutiRootWorkspaceName(selectedWorkspace.name)
+                    .then(() => resolve(selectedWorkspace.uri.fsPath));
+            }
+        }
 
         // If only one workspace. No need to check anything.
         if (workspaceNames.length === 1) {

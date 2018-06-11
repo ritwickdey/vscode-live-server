@@ -18,6 +18,7 @@ export class AppModel {
     private LiveServerInstance;
     private runningPort: number;
     private localIps: any;
+    private previousWorkspacePath: string;
 
     constructor() {
         const _ips = ips();
@@ -32,18 +33,23 @@ export class AppModel {
 
     public async Golive(pathUri?: string) {
 
-        if (!window.activeTextEditor && !(await workspaceResolver())) {
-            return this.showPopUpMsg(`Open a folder or workspace...`, true);
+        // if no folder is opened.
+        if (!workspace.workspaceFolders) {
+            return this.showPopUpMsg(`Open a folder or workspace... (File -> Open Folder)`, true);
         }
 
-        const workspacePath = await workspaceResolver();
+        const workspacePath = await workspaceResolver(pathUri);
+
+        if (!this.isCorrectWorkspace(workspacePath)) return;
+
         const openedDocUri = pathUri || (window.activeTextEditor ? window.activeTextEditor.document.fileName : '');
         let pathInfos = Helper.ExtractFilePath(workspacePath, openedDocUri, Config.getRoot);
 
         if (this.IsServerRunning) {
-            this.openBrowser(this.runningPort,
-                Helper.getSubPathIfSupported(pathInfos.rootPath, openedDocUri) || '');
-            return;
+            return this.openBrowser(
+                this.runningPort,
+                Helper.getSubPathIfSupported(pathInfos.rootPath, openedDocUri) || ''
+            );
         }
         if (pathInfos.HasVirtualRootError) {
             this.showPopUpMsg('Invaild Path in liveServer.settings.root settings. live Server will serve from workspace root', true);
@@ -63,8 +69,10 @@ export class AppModel {
                 this.showPopUpMsg(`Server is Started at port : ${this.runningPort}`);
 
                 if (!Config.getNoBrowser) {
-                    this.openBrowser(this.runningPort,
-                        Helper.getSubPathIfSupported(pathInfos.rootPath, openedDocUri) || '');
+                    this.openBrowser(
+                        this.runningPort,
+                        Helper.getSubPathIfSupported(pathInfos.rootPath, openedDocUri) || ''
+                    );
                 }
             }
             else {
@@ -92,6 +100,7 @@ export class AppModel {
             this.ToggleStatusBar();
             this.LiveServerInstance = null;
             this.runningPort = null;
+            this.previousWorkspacePath = null;
         });
         this.IsStaging = true;
 
@@ -108,6 +117,20 @@ export class AppModel {
                 if (this.IsServerRunning)
                     this.GoOffline();
             });
+    }
+
+
+    private isCorrectWorkspace(workspacePath: string) {
+        if (
+            this.IsServerRunning &&
+            this.previousWorkspacePath &&
+            this.previousWorkspacePath !== workspacePath
+        ) {
+            this.showPopUpMsg(`Server is already running from diffrent workspace.`, true);
+            return false;
+        }
+        else this.previousWorkspacePath = workspacePath;
+        return true;
     }
 
     private tagMissedCallback() {
