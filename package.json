@@ -21,7 +21,7 @@
     "live reload",
     "svg preview",
     "open in browser",
-    "workspaceFolders"
+    "multi-root ready"
   ],
   "preview": false,
   "galleryBanner": {
