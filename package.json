@@ -2,7 +2,7 @@
   "name": "LiveServer",
   "displayName": "Live Server",
   "description": "Launch a development local Server with live reload feature for static & dynamic pages",
-  "version": "4.1.0",
+  "version": "5.0.0",
   "publisher": "ritwickdey",
   "author": {
     "name": "Ritwick Dey",
@@ -331,7 +331,7 @@
     "opn": "^5.3.0"
   },
   "announcement": {
-    "onVersion": "4.1.0",
-    "message": "LiveServer 4.1.0: Default keybinding has been changed. Stop Server option is added in editor-context menu."
+    "onVersion": "4.0.0",
+    "message": "LiveServer 5.0: Live Server loves💘 your multi-root workspace. Yep! It's now supported."
   }
 }
