@@ -1,9 +1,10 @@
 # Live Server
 
+**Live Server loves** 💘 **your multi-root workspace**
 
-**Boom! Big Announcement! Live Server is now supported for dynamic pages like PHP. [Check Here for more details](https://github.com/ritwickdey/live-server-web-extension).**
+> **Live Server for server side pages like PHP. [Check Here](https://github.com/ritwickdey/live-server-web-extension)**
 
-***[If you're facing 'command not found error', please follow the steps [#78](https://github.com/ritwickdey/vscode-live-server/issues/78)]***
+> ***[For 'command not found error' [#78](https://github.com/ritwickdey/vscode-live-server/issues/78)]***
 
 [![VSCode Marketplace](https://img.shields.io/vscode-marketplace/v/ritwickdey.LiveServer.svg?style=flat-square&label=vscode%20marketplace)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) [![Total Installs](https://img.shields.io/vscode-marketplace/d/ritwickdey.LiveServer.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) [![Avarage Rating](https://img.shields.io/vscode-marketplace/r/ritwickdey.LiveServer.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)  
 [![Travis branch](https://img.shields.io/travis/ritwickdey/vscode-live-server/master.svg?style=flat-square&label=travis%20branch)](https://travis-ci.org/ritwickdey/vscode-live-server) [![Appveyor branch](https://img.shields.io/appveyor/ci/ritwickdey/vscode-live-server.svg?style=flat-square&label=appveyor%20branch)](https://ci.appveyor.com/project/ritwickdey/vscode-live-server) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/ritwickdey/vscode-live-server/) 
@@ -47,6 +48,7 @@
 * `https` Support. 
 * Support for proxy.
 * CORS Enabled
+* Multi-root workspace supported.
 * Support for any file even dynamic pages through *[Live Server Web Extension](https://github.com/ritwickdey/live-server-web-extension)*.
 
 ## Installation
@@ -59,14 +61,13 @@ All settings are now listed here  [Settings Docs](./docs/settings.md).
 *All FAQs are now listed here [FAQ Docs](./docs/faqs.md)*
 
 ## What's new ?
-* ### Version 4.1.0 (05.06.18)
-  * Keybinding has been changed to `alt+L, alt+O` & `alt+L, alt+C` for Windows/Linux &  `cmd+L, cmd+O` & `cmd+L, cmd+C` for MAC . [[#121](https://github.com/ritwickdey/vscode-live-server/pull/121)] *(Thanks [Joydip Roy](https://github.com/rjoydip))*
 
-  * `Stop Live Server` options is added in editor-context menu. 
+* ### Version 5.0.0 (15.06.18)
+  - ***[New]*** One of the most requested feature is here. **Live Server loves** 💘 **your multi-root workspace**. Yes, Live Server is now supports vscode multi-root workspace. *[[#151](https://github.com/ritwickdey/vscode-live-server/pull/151)]*
   
-  * Live Sever Icon is refreshed [[#144](https://github.com/ritwickdey/vscode-live-server/pull/144)] *(Thanks [Pluwen](https://github.com/pluwen))*
+  - ***[Dropped]*** Previously, Live Server was supported for no workspace (just a single `html` file is opened). This feature is removed. *(In case, you're missing this feature, open an issue request. We love your feedback)*
   
-  * TypeScript files are now in default ignore list. [[#125](https://github.com/ritwickdey/vscode-live-server/pull/125)] *(Thanks [Ryan Naddy](https://github.com/TheColorRed))*
+  - ***[New]*** New Command is added to change entry point of workspace. `ctrl+shift+p` and type `Live Server: Change Live Server workspace` to change workspace path. *Tips: You don't need to use the command, Live Server is smart enough, it'll eigher ask what you want or automatically set the correct workspace if you right click on a HTML file to start the server*
 
 ## Changelog
 To check full changelog [click here](CHANGELOG.md).
