@@ -331,7 +331,7 @@
     "opn": "^5.3.0"
   },
   "announcement": {
-    "onVersion": "4.0.0",
+    "onVersion": "5.0.0",
     "message": "LiveServer 5.0: Live Server loves💘 your multi-root workspace. Yep! It's now supported."
   }
 }
