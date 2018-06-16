@@ -2,7 +2,6 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
-import * as os from 'os';
 import { Config } from './Config';
 
 export const SUPPRORTED_EXT: string[] = [
@@ -12,30 +11,24 @@ export const SUPPRORTED_EXT: string[] = [
 export class Helper {
 
 
-    public static ExtractFilePath(workSpacePath: string, openedDocUri: string, virtualRoot: string) {
+    public static testPathWithRoot(workSpacePath: string) {
 
-        let documentPath = path.dirname(openedDocUri);
+        let rootPath: string;
 
-        // WorkSpacePath will be NULL if only a single file is opened.
-        let rootPath = workSpacePath ? workSpacePath : documentPath;
+        // Test the path is actually exists or not
+        const testPath = path.join(workSpacePath, Config.getRoot);
 
-        virtualRoot = path.join(rootPath, virtualRoot);
-
-        let HasVirtualRootError = !fs.existsSync(virtualRoot);
-        if (!HasVirtualRootError) {
-            rootPath = virtualRoot;
+        let isNotOkay = !fs.existsSync(testPath);
+        if (!isNotOkay) { // means okay :)
+            rootPath = testPath;
         }
 
-        if (process.platform === 'win32') {
-            if (!rootPath.endsWith('\\')) rootPath = rootPath + '\\';
-        }
-        else {
-            if (!rootPath.endsWith('/')) rootPath = rootPath + '/';
-        }
+        if (!rootPath.endsWith(path.sep))
+            rootPath = rootPath + path.sep;
 
         return {
-            HasVirtualRootError: HasVirtualRootError,
-            rootPath: rootPath
+            isNotOkay,
+            rootPath
         };
     }
 
@@ -47,7 +40,7 @@ export class Helper {
      * @param rootPath
      * @param targetPath
      */
-    public static getSubPathIfSupported(rootPath: string, targetPath: string) {
+    public static getSubPath(rootPath: string, targetPath: string) {
 
         if (!Helper.IsSupportedFile(targetPath) || !targetPath.startsWith(rootPath)) {
             return null;
@@ -75,25 +68,22 @@ export class Helper {
     public static generateParams(
         rootPath: string,
         workspacePath: string,
-        onTagMissedCallback?: MethodDecorator) {
+        onTagMissedCallback?: MethodDecorator
+    ) {
 
         workspacePath = workspacePath || '';
         const port = Config.getPort;
         const ignorePathGlob = Config.getIgnoreFiles || [];
-        let ignoreFiles = [];
 
-        ignorePathGlob.forEach((ignoredPath, index) => {
-            if (!ignoredPath.startsWith('/') || !ignoredPath.startsWith('\\')) {
-                if (process.platform === 'win32') {
-                    ignoreFiles[index] = workspacePath + '\\' + ignoredPath;
-                }
-                else {
-                    ignoreFiles[index] = workspacePath + '/' + ignoredPath;
-                }
-            }
+        const ignoreFiles = [];
+        ignorePathGlob.forEach(ignoredPath => {
+            if (!ignoredPath.startsWith('/') || !ignoredPath.startsWith('\\'))
+                ignoreFiles.push(workspacePath + path.sep + ignoredPath);
         });
+
         const proxy = Helper.getProxySetup();
         const https = Helper.getHttpsSetup();
+
         const mount = Config.getMount;
         // In live-server mountPath is reslove by `path.resolve(process.cwd(), mountRule[1])`.
         // but in vscode `process.cwd()` is the vscode extensions path.
@@ -103,6 +93,7 @@ export class Helper {
                 mountRule[1] = path.resolve(workspacePath, mountRule[1]);
             }
         });
+
         const file = Config.getFile;
         return {
             port: port,
