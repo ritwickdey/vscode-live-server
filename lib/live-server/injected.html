@@ -7,10 +7,13 @@
 			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
 			var address = protocol + window.location.host + window.location.pathname + '/ws';
 			var socket = new WebSocket(address);
-			var count = 0;
 
 			function textchanged(content) {
-				document.body.innerHTML = content;
+				console.log(content);
+				// document.open();
+				document.close();
+				document.write(content);
+				window.focus();
 			}
 
 			function refreshCSS() {
