@@ -69,8 +69,6 @@ export class AppModel {
 
         if (patterns.length) {
             params.ignore = patterns;
-        } else {
-            params.ignore = Config.getIgnoreFiles;
         }
 
         LiveServerHelper.StartServer(params, (serverInstance) => {
