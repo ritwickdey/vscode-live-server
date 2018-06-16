@@ -2,7 +2,7 @@
   "name": "LiveServer",
   "displayName": "Live Server",
   "description": "Launch a development local Server with live reload feature for static & dynamic pages",
-  "version": "4.1.0",
+  "version": "5.0.0",
   "publisher": "ritwickdey",
   "author": {
     "name": "Ritwick Dey",
@@ -10,7 +10,7 @@
     "url": "http://twitter.com/Dey_Ritwick"
   },
   "engines": {
-    "vscode": "^1.12.0"
+    "vscode": "^1.20.0"
   },
   "categories": [
     "Other"
@@ -20,7 +20,8 @@
     "live preview",
     "live reload",
     "svg preview",
-    "open in browser"
+    "open in browser",
+    "multi-root ready"
   ],
   "preview": false,
   "galleryBanner": {
@@ -41,6 +42,11 @@
       {
         "command": "extension.liveServer.goOnline",
         "title": "Open with Live Server",
+        "category": "Live Server"
+      },
+      {
+        "command": "extension.liveServer.changeWorkspace",
+        "title": "Change Live Server workspace",
         "category": "Live Server"
       }
     ],
@@ -281,6 +287,11 @@
           "type": "string",
           "default": "",
           "description": "When set, serve this file (server root relative) for every 404 (useful for single-page applications)"
+        },
+        "liveServer.settings.multiRootWorkspaceName": {
+          "type": "string",
+          "default": null,
+          "description": "This the entry point of server when you're in multiroot workspace"
         }
       }
     }
@@ -309,7 +320,7 @@
     "mocha": "^5.0.4",
     "tslint": "^5.9.1",
     "typescript": "^2.7.2",
-    "vscode": "^1.1.13"
+    "vscode": "^1.1.18"
   },
   "dependencies": {
     "http-proxy": "^1.16.2",
@@ -319,7 +330,7 @@
     "opn": "^5.3.0"
   },
   "announcement": {
-    "onVersion": "4.1.0",
-    "message": "LiveServer 4.1.0: Default keybinding has been changed. Stop Server option is added in editor-context menu."
+    "onVersion": "5.0.0",
+    "message": "LiveServer 5.0: Live Server loves💘 your multi-root workspace. Yep! It's now supported."
   }
 }
