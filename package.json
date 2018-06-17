@@ -127,8 +127,7 @@
             "firefox",
             "firefox:PrivateMode",
             "microsoft-edge",
-            "blisk",
-            "blisk:PrivateMode"
+            "blisk"
           ]
         },
         "liveServer.settings.ChromeDebuggingAttachment": {
