@@ -22,6 +22,9 @@ export class Helper {
         if (!isNotOkay) { // means okay :)
             rootPath = testPath;
         }
+        else {
+            rootPath =  workSpacePath;
+        }
 
         if (!rootPath.endsWith(path.sep))
             rootPath = rootPath + path.sep;
