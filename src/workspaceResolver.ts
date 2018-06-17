@@ -21,6 +21,11 @@ export function workspaceResolver(fileUri?: string) {
         const { workspaceFolders } = workspace;
         const workspaceNames = workspaceFolders.map(e => e.name);
 
+        // If only one workspace. No need to check anything.
+        if (workspaceNames.length === 1) {
+            return resolve(workspaceFolders[0].uri.fsPath);
+        }
+
         // if fileUri is set. Means, user tried to open server by right clicking to a HTML file.
         if (fileUri) {
             const selectedWorkspace = workspaceFolders.find(ws => fileUri.startsWith(ws.uri.fsPath));
@@ -28,11 +33,6 @@ export function workspaceResolver(fileUri?: string) {
                 return Config.setMutiRootWorkspaceName(selectedWorkspace.name)
                     .then(() => resolve(selectedWorkspace.uri.fsPath));
             }
-        }
-
-        // If only one workspace. No need to check anything.
-        if (workspaceNames.length === 1) {
-            return resolve(workspaceFolders[0].uri.fsPath);
         }
 
         // If workspace already set by User
