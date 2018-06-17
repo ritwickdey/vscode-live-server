@@ -120,7 +120,7 @@ export class Config {
     public static get getExpLiveEditing(): string {
         return Config.getExpSettings<string>('liveEditing');
     }
-    
+
     public static get getMutiRootWorkspaceName(): string {
         return Config.getSettings<string>('multiRootWorkspaceName');
     }
