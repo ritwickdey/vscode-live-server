@@ -4,13 +4,27 @@
 	if ('WebSocket' in window) {
 		(function () {
 			function refreshCSS(file) {
-				var timestamp = new Date().getTime();
-				document.head.insertAdjacentHTML('beforeend', `<link rel="stylesheet" href="${file}" class="cache_${timestamp}">`);
-				document.querySelectorAll(`link[href="${file}"]`).forEach(function(e) {
-					if (!!~e.href.indexOf(file) && e.className !== 'cache_' + timestamp) {
-						setTimeout(function(){e.remove()}, 300);
-					}
-				});
+				const cssFile = document.querySelectorAll(`link[href="${file}"]`);
+				const allCssFile = document.querySelectorAll(`link`);
+				const timestamp = new Date().getTime();
+
+				if (cssFile.length) {
+					document.head.insertAdjacentHTML('beforeend', `<link rel="stylesheet" href="${file}">`);
+					cssFile.forEach(function (e) {
+						if (!!~e.href.indexOf(file)) {
+							e.remove();
+						}
+					});
+				} else {
+					allCssFile.forEach(function (e) {
+						const _href = e.href.replace(/^.*[\\\/]/, '')
+						document.head.insertAdjacentHTML('beforeend',
+							`<link rel="stylesheet" href="${_href}">`);
+						if (!!~e.href.indexOf(_href)) {
+							e.remove();
+						}
+					});
+				}
 			}
 			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
 			var address = protocol + window.location.host + window.location.pathname + '/ws';
@@ -27,8 +41,7 @@
 				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
 			}
 		})();
-	}
-	else {
+	} else {
 		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
 	}
 	// ]]>
