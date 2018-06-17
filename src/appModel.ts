@@ -115,8 +115,8 @@ export class AppModel {
     changeWorkspaceRoot() {
         setOrChangeWorkspace()
             .then(workspceName => {
+                if (workspceName === undefined) return;
                 window.showInformationMessage(`Success! '${workspceName}' workspace is now root of Live Server`);
-
                 // If server is running, Turn off the server.
                 if (this.IsServerRunning)
                     this.GoOffline();
