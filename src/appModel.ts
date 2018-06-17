@@ -38,6 +38,10 @@ export class AppModel {
             return this.showPopUpMsg(`Open a folder or workspace... (File -> Open Folder)`, true);
         }
 
+        if (!workspace.workspaceFolders.length) {
+            return this.showPopUpMsg(`You've not added any folder in the workspace`, true);
+        }
+
         const workspacePath = await workspaceResolver(pathUri);
 
         if (!this.isCorrectWorkspace(workspacePath)) return;
