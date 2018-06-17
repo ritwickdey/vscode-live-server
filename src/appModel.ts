@@ -6,6 +6,7 @@ import { LiveServerHelper } from './LiveServerHelper';
 import { StatusbarUi } from './StatusbarUi';
 import { Config } from './Config';
 import { Helper, SUPPRORTED_EXT } from './Helper';
+import { workspaceResolver, setOrChangeWorkspace } from './workspaceResolver';
 
 import * as opn from 'opn';
 import * as ips from 'ips';
@@ -17,6 +18,7 @@ export class AppModel {
     private LiveServerInstance;
     private runningPort: number;
     private localIps: any;
+    private previousWorkspacePath: string;
 
     constructor() {
         const _ips = ips();
@@ -24,28 +26,32 @@ export class AppModel {
         this.IsServerRunning = false;
         this.runningPort = null;
 
-        this.HaveAnySupportedFile(() => {
+        this.haveAnySupportedFile().then(() => {
             StatusbarUi.Init();
         });
     }
 
-    public Golive(pathUri?: string) {
+    public async Golive(pathUri?: string) {
 
-        if (!window.activeTextEditor && !workspace.rootPath) {
-            this.showPopUpMsg(`Open a file or folder...`, true);
-            return;
+        // if no folder is opened.
+        if (!workspace.workspaceFolders) {
+            return this.showPopUpMsg(`Open a folder or workspace... (File -> Open Folder)`, true);
         }
 
-        const workspacePath = workspace.rootPath || '';
+        const workspacePath = await workspaceResolver(pathUri);
+
+        if (!this.isCorrectWorkspace(workspacePath)) return;
+
         const openedDocUri = pathUri || (window.activeTextEditor ? window.activeTextEditor.document.fileName : '');
-        let pathInfos = Helper.ExtractFilePath(workspacePath, openedDocUri, Config.getRoot);
+        const pathInfos = Helper.testPathWithRoot(workspacePath);
 
         if (this.IsServerRunning) {
-            this.openBrowser(this.runningPort,
-                Helper.getSubPathIfSupported(pathInfos.rootPath, openedDocUri) || '');
-            return;
+            return this.openBrowser(
+                this.runningPort,
+                Helper.getSubPath(pathInfos.rootPath, openedDocUri) || ''
+            );
         }
-        if (pathInfos.HasVirtualRootError) {
+        if (pathInfos.isNotOkay) {
             this.showPopUpMsg('Invaild Path in liveServer.settings.root settings. live Server will serve from workspace root', true);
         }
 
@@ -63,8 +69,10 @@ export class AppModel {
                 this.showPopUpMsg(`Server is Started at port : ${this.runningPort}`);
 
                 if (!Config.getNoBrowser) {
-                    this.openBrowser(this.runningPort,
-                        Helper.getSubPathIfSupported(pathInfos.rootPath, openedDocUri) || '');
+                    this.openBrowser(
+                        this.runningPort,
+                        Helper.getSubPath(pathInfos.rootPath, openedDocUri) || ''
+                    );
                 }
             }
             else {
@@ -100,11 +108,37 @@ export class AppModel {
             this.ToggleStatusBar();
             this.LiveServerInstance = null;
             this.runningPort = null;
+            this.previousWorkspacePath = null;
         });
         this.IsStaging = true;
 
         StatusbarUi.Working('Disposing...');
 
+    }
+
+    changeWorkspaceRoot() {
+        setOrChangeWorkspace()
+            .then(workspceName => {
+                window.showInformationMessage(`Success! '${workspceName}' workspace is now root of Live Server`);
+
+                // If server is running, Turn off the server.
+                if (this.IsServerRunning)
+                    this.GoOffline();
+            });
+    }
+
+
+    private isCorrectWorkspace(workspacePath: string) {
+        if (
+            this.IsServerRunning &&
+            this.previousWorkspacePath &&
+            this.previousWorkspacePath !== workspacePath
+        ) {
+            this.showPopUpMsg(`Server is already running from diffrent workspace.`, true);
+            return false;
+        }
+        else this.previousWorkspacePath = workspacePath;
+        return true;
     }
 
     private tagMissedCallback() {
@@ -127,8 +161,8 @@ export class AppModel {
         else if (!Config.getDonotShowInfoMsg) {
             const donotShowMsg = 'Don\'t show again';
             window.showInformationMessage(msg, donotShowMsg)
-                .then(choise => {
-                    if (choise && choise === donotShowMsg) {
+                .then(choice => {
+                    if (choice && choice === donotShowMsg) {
                         Config.setDonotShowInfoMsg(true, true);
                     }
                 });
@@ -149,20 +183,13 @@ export class AppModel {
         this.IsServerRunning = !this.IsServerRunning;
     }
 
-    private HaveAnySupportedFile(callback) {
-        const globFormat = `**/*[${SUPPRORTED_EXT.join(' | ')}]`;
-        workspace.findFiles(globFormat, '**/node_modules/**').then((files) => {
-            if (files && files.length !== 0) {
-                return callback();
-            }
-
-            let textEditor = window.activeTextEditor;
-            if (!textEditor) return;
-
-            // If a HTML file open without Workspace
-            if (workspace.rootPath === undefined && Helper.IsSupportedFile(textEditor.document.fileName)) {
-                return callback();
-            }
+    private haveAnySupportedFile() {
+        return new Promise<void>(resolve => {
+            const globFormat = `**/*[${SUPPRORTED_EXT.join(' | ')}]`;
+            workspace.findFiles(globFormat, '**/node_modules/**', 1)
+                .then(async (files) => {
+                    if (files && files.length) return resolve();
+                });
         });
     }
 

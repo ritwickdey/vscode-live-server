@@ -30,7 +30,8 @@ suite('Extension Tests', () => {
         return vscode.commands.getCommands(true).then((commands) => {
             const COMMANDS = [
                 'extension.liveServer.goOnline',
-                'extension.liveServer.goOffline'
+                'extension.liveServer.goOffline',
+                'extension.liveServer.changeWorkspace'
             ];
             const foundLiveServerCommands = commands.filter((value) => {
                 return COMMANDS.indexOf(value) >= 0 || value.startsWith('extension.liveServer.');

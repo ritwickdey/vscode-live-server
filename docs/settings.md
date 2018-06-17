@@ -177,3 +177,12 @@
     * Default: `""`
 
     <hr>
+
+* **`liveServer.settings.multiRootWorkspaceName:`** : This the entry point of server when you're in multiroot workspace. 
+    
+    * Default: `null`
+
+    * You can change it using Command Palette `ctrl+shift+p` & type `Live Server: Change Live Server workspace`
+    
+    * Tips: You don't need to set this setting, Live Server is smart enough, it'll eigher ask what you want or automatically set the correct workspace if open the server by right clicking any HTML file.    
+    <hr>

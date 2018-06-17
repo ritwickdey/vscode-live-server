@@ -1,9 +1,10 @@
 # Live Server
 
+**Live Server loves** 💘 **your multi-root workspace**
 
-**Boom! Big Announcement! Live Server is now supported for dynamic pages like PHP. [Check Here for more details](https://github.com/ritwickdey/live-server-web-extension).**
+> **Live Server for server side pages like PHP. [Check Here](https://github.com/ritwickdey/live-server-web-extension)**
 
-***[If you're facing 'command not found error', please follow the steps [#78](https://github.com/ritwickdey/vscode-live-server/issues/78)]***
+> ***[For 'command not found error' [#78](https://github.com/ritwickdey/vscode-live-server/issues/78)]***
 
 [![VSCode Marketplace](https://img.shields.io/vscode-marketplace/v/ritwickdey.LiveServer.svg?style=flat-square&label=vscode%20marketplace)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) [![Total Installs](https://img.shields.io/vscode-marketplace/d/ritwickdey.LiveServer.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) [![Avarage Rating](https://img.shields.io/vscode-marketplace/r/ritwickdey.LiveServer.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)  
 [![Travis branch](https://img.shields.io/travis/ritwickdey/vscode-live-server/master.svg?style=flat-square&label=travis%20branch)](https://travis-ci.org/ritwickdey/vscode-live-server) [![Appveyor branch](https://img.shields.io/appveyor/ci/ritwickdey/vscode-live-server.svg?style=flat-square&label=appveyor%20branch)](https://ci.appveyor.com/project/ritwickdey/vscode-live-server) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/ritwickdey/vscode-live-server/) 
@@ -26,14 +27,14 @@
 3. Open a HTML file and Right click on the editor and choose the options.
 ![Edit Menu Option Preview](./images/Screenshot/vscode-live-server-editor-menu-3.jpg)
 
-4. Hit `(alt+L, alt+O)` to Open the Server and `(alt+L, alt+C)` to close the server (You can change the shortcut form keybinding). *[On MAC, `cmd+L, cmd+O` and `cmd+L, cmd+C`]*
+4. Hit `(alt+L, alt+O)` to Open the Server and `(alt+L, alt+C)` to Stop the server (You can change the shortcut form keybinding). *[On MAC, `cmd+L, cmd+O` and `cmd+L, cmd+C`]*
 
-5. Press `F1` or `ctrl+shift+P` and type `Live Server: Open With Live Server ` to start a server or type `Live Server: Close Live Server` to stop a server.
+5. Press `F1` or `ctrl+shift+P` and type `Live Server: Open With Live Server ` to start a server or type `Live Server: Stop Live Server` to stop a server.
 
 
 ## Features
 * A Quick Development Live Server with live browser reload.
-* Start or close server by a single click from status bar.
+* Start or Stop server by a single click from status bar.
 * Open a HTML file to browser from Explorer menu.[[Quick Gif Demo](./images/Screenshot/vscode-live-server-explorer-menu-demo-1.gif?raw=true)].
 * Support for excluding files for change detection. 
 * Hot Key control.
@@ -47,6 +48,7 @@
 * `https` Support. 
 * Support for proxy.
 * CORS Enabled
+* Multi-root workspace supported.
 * Support for any file even dynamic pages through *[Live Server Web Extension](https://github.com/ritwickdey/live-server-web-extension)*.
 
 ## Installation
@@ -59,26 +61,13 @@ All settings are now listed here  [Settings Docs](./docs/settings.md).
 *All FAQs are now listed here [FAQ Docs](./docs/faqs.md)*
 
 ## What's new ?
-* ### Version 4.0.0 (14.05.18)
-  * Integraded Websocket Support. [[#89](https://github.com/ritwickdey/vscode-live-server/pull/89)]
-  * Now open server with `Local Ip` instead of `127.0.0.1` *(See settings page for more details)* [[#116](https://github.com/ritwickdey/vscode-live-server/pull/116)]
-  * Availity to hide status bar `Go Live` button. [[#117](https://github.com/ritwickdey/vscode-live-server/pull/117)]
-  * `file` settings : Path to the entry point `entry point` file.   For SPA support. *(See settings page for more details)* [[#118](https://github.com/ritwickdey/vscode-live-server/pull/118)]
-  * Docs updated. [[#93](https://github.com/ritwickdey/vscode-live-server/pull/93) [#94](https://github.com/ritwickdey/vscode-live-server/pull/94) [#107](https://github.com/ritwickdey/vscode-live-server/pull/107) [#109](https://github.com/ritwickdey/vscode-live-server/pull/109)]
 
-Thanks to the contributors 💓 who made this possible. <br>
-&mdash;  [Max Schmitt](https://github.com/mxschmitt)
-<br>
-&mdash; [Joydip Roy](https://github.com/rjoydip)
-<br>
-&mdash;  [Jasonalex](https://github.com/jasonalex13)
-<br>
-&mdash;  [Douglas Chen](https://github.com/cdswyda)
-<br>
-&mdash;  [Bernard Vander Beken](https://github.com/jawn)<br>
-&mdash;  [Philippe Loctaux](https://github.com/x4m3)
-<br> 
-&mdash;  [Arshad Hasan](https://github.com/arshadhasan)
+* ### Version 5.0.0 (15.06.18)
+  - ***[New]*** One of the most requested feature is here. **Live Server loves** 💘 **your multi-root workspace**. Yes, Live Server is now supports vscode multi-root workspace. *[[#151](https://github.com/ritwickdey/vscode-live-server/pull/151)]*
+  
+  - ***[Dropped]*** Previously, Live Server was supported for no workspace (just a single `html` file is opened). This feature is removed. *(In case, you're missing this feature, open an issue request. We love your feedback)*
+  
+  - ***[New]*** New Command is added to change entry point of workspace. `ctrl+shift+p` and type `Live Server: Change Live Server workspace` to change workspace path. *Tips: You don't need to use the command, Live Server is smart enough, it'll eigher ask what you want or automatically set the correct workspace if you right click on a HTML file to start the server*
 
 ## Changelog
 To check full changelog [click here](CHANGELOG.md).

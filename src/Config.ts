@@ -120,4 +120,12 @@ export class Config {
     public static get getExpLiveEditing(): string {
         return Config.getExpSettings<string>('liveEditing');
     }
+    
+    public static get getMutiRootWorkspaceName(): string {
+        return Config.getSettings<string>('multiRootWorkspaceName');
+    }
+
+    public static setMutiRootWorkspaceName(val: string) {
+       return Config.configuration.update('multiRootWorkspaceName', val, false);
+    }
 }
