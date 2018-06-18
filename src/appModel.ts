@@ -1,6 +1,6 @@
 'use strict';
 
-import { window, workspace } from 'vscode';
+import { window, workspace, TextDocumentChangeEvent } from 'vscode';
 
 import { LiveServerHelper } from './LiveServerHelper';
 import { StatusbarUi } from './StatusbarUi';
@@ -91,6 +91,14 @@ export class AppModel {
 
         this.IsStaging = true;
         StatusbarUi.Working('Starting...');
+
+        // live editing
+        if (Config.getExpLiveEditing) {
+            const liveServerHelper = new LiveServerHelper();
+            workspace.onDidChangeTextDocument((e: TextDocumentChangeEvent) => {
+                liveServerHelper.emit('liveEditing', e, window.activeTextEditor.document.getText());
+            });
+        }
     }
 
     public GoOffline() {

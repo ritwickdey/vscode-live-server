@@ -21,8 +21,16 @@ export class Config {
         return workspace.getConfiguration('liveServer.settings');
     }
 
+    public static get expConfiguration() {
+        return workspace.getConfiguration('liveServer.experimental');
+    }
+
     private static getSettings<T>(val: string): T {
         return Config.configuration.get(val) as T;
+    }
+
+    private static getExpSettings<T>(val: string): T {
+        return Config.expConfiguration.get(val) as T;
     }
 
     public static get getHost(): string {
@@ -107,6 +115,10 @@ export class Config {
 
     public static get getFile(): string {
         return Config.getSettings<string>('file');
+    }
+
+    public static get getExpLiveEditing(): string {
+        return Config.getExpSettings<string>('liveEditing');
     }
 
     public static get getMutiRootWorkspaceName(): string {

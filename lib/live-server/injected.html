@@ -3,6 +3,19 @@
 	// <![CDATA[  <-- For SVG support
 	if ('WebSocket' in window) {
 		(function () {
+
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+
+			function textchanged(content) {
+				console.log(content);
+				// document.open();
+				document.close();
+				document.write(content);
+				window.focus();
+			}
+
 			function refreshCSS() {
 				var sheets = [].slice.call(document.getElementsByTagName("link"));
 				var head = document.getElementsByTagName("head")[0];
@@ -17,20 +30,22 @@
 					head.appendChild(elem);
 				}
 			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
+
 			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
+				var msgJSON = JSON.parse(msg.data);
+				if (msgJSON.cmd == 'reload') window.location.reload();
+				else if (msgJSON.cmd == 'refreshcss') refreshCSS();
+				else if (msgJSON.cmd == 'liveEditing') textchanged(msgJSON.content);
+				else {}
+				socket.send('blockLiveEditing');
 			};
+
 			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
 				console.log('Live reload enabled.');
 				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
 			}
 		})();
-	}
-	else {
+	} else {
 		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
 	}
 	// ]]>

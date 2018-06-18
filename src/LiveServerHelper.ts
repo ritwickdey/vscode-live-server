@@ -1,8 +1,9 @@
 'use strict';
 import * as liveServer from 'live-server';
 import * as httpShutdown from 'http-shutdown';
+import * as EventEmitter from 'events';
 
-export class LiveServerHelper {
+export class LiveServerHelper extends EventEmitter {
 
     static StartServer(params, callback) {
         setTimeout(() => {
@@ -19,7 +20,6 @@ export class LiveServerHelper {
 
                 }, 1000);
             } catch (err) {
-                console.error(err);
                 callback({
                     errorMsg: err
                 });
@@ -36,5 +36,13 @@ export class LiveServerHelper {
         LiveServerInstance.close();
         liveServer.shutdown();
         setTimeout(() => { callback(); }, 1000);
+    }
+
+    constructor() {
+        super();
+        this.on('liveEditing', (file, content) => {
+            console.log(file);
+            liveServer.liveEditing(file, content);
+        });
     }
 }
