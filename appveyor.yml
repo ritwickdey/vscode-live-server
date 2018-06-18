@@ -17,3 +17,4 @@ build_script:
 
 test_script:
   - npm run lint
+  - npm test
