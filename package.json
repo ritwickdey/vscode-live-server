@@ -319,8 +319,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint",
-      "pre-push": "npm run pre-push"
+      "pre-commit": "npm run precommit",
+      "pre-push": "npm run prepush"
     }
   },
   "devDependencies": {
