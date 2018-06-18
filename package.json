@@ -314,7 +314,8 @@
     "postinstall": "node ./node_modules/vscode/bin/install",
     "test": "node ./node_modules/vscode/bin/test",
     "lint": "tslint --project .",
-    "pre-push": "npm run lint && npm test"
+    "precommit": "npm run lint",
+    "prepush": "npm run lint && npm test"
   },
   "husky": {
     "hooks": {
