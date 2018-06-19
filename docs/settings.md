@@ -13,13 +13,14 @@
     <hr>
  
 * **`liveServer.settings.CustomBrowser`:** To change your system's default browser.
-    * _Default value is `"Null"` [String, not `null`]. (It will open your system's default browser.)_
+    * _Default value is `null` ~~[String, not `null`]~~. (It will open your system's default browser.)_
     * *Available Options :*
         * chrome
         * chrome:PrivateMode
         * firefox
         * firefox:PrivateMode
         * microsoft-edge
+        * blisk
 
     _Not enough? need more? open an/a issue/pull request on github. For now, use `liveServer.settings.AdvanceCustomBrowserCmdLine` settings (see below)._
     
