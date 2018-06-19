@@ -120,15 +120,7 @@
             "string"
           ],
           "default": "null",
-          "description": "Specify custom browser settings for Live Server. \nBy Default it will open your default favorite browser.",
-          "enum": [
-            "chrome",
-            "chrome:PrivateMode",
-            "firefox",
-            "firefox:PrivateMode",
-            "microsoft-edge",
-            "null"
-          ]
+          "description": "Specify custom browser settings for Live Server. \nBy Default it will open your default favorite browser."
         },
         "liveServer.settings.ChromeDebuggingAttachment": {
           "type": [

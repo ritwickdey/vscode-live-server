@@ -220,13 +220,13 @@ export class AppModel {
                 params.push(browserName);
 
                 if (browserDetails[1] && browserDetails[1] === 'PrivateMode') {
-                    if (browserName === 'chrome')
+                    if (browserName === 'chrome' || browserName === 'blisk')
                         params.push('--incognito');
                     else if (browserName === 'firefox')
                         params.push('--private-window');
                 }
 
-                if (browserName === 'chrome' && ChromeDebuggingAttachmentEnable) {
+                if ((browserName === 'chrome' || browserName === 'blisk') && ChromeDebuggingAttachmentEnable) {
                     params.push(...[
                         '--new-window',
                         '--no-default-browser-check',
@@ -252,8 +252,7 @@ export class AppModel {
                     params[0] = 'chrome';
 
             }
-        }
-        else if (params[0] && params[0].startsWith('microsoft-edge')) {
+        } else if (params[0] && params[0].startsWith('microsoft-edge')) {
             params[0] = `microsoft-edge:${protocol}://${host}:${port}/${path}`;
         }
 
