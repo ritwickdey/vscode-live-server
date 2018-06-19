@@ -305,11 +305,20 @@
     "compile": "tsc -watch -p ./",
     "postinstall": "node ./node_modules/vscode/bin/install",
     "test": "node ./node_modules/vscode/bin/test",
-    "lint": "tslint --project ."
+    "lint": "tslint --project .",
+    "precommit": "npm run lint",
+    "prepush": "npm run lint && npm test"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run precommit",
+      "pre-push": "npm run prepush"
+    }
   },
   "devDependencies": {
     "@types/mocha": "^2.2.48",
     "@types/node": "^9.4.7",
+    "husky": "^1.0.0-rc.9",
     "mocha": "^5.0.4",
     "tslint": "^5.9.1",
     "typescript": "^2.7.2",
