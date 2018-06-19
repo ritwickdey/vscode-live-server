@@ -214,7 +214,7 @@ export class AppModel {
             let CustomBrowser = Config.getCustomBrowser;
             let ChromeDebuggingAttachmentEnable = Config.getChromeDebuggingAttachment;
 
-            if (CustomBrowser && CustomBrowser !== 'null') {
+            if (CustomBrowser && CustomBrowser !== 'null' /*For backward capability*/) {
                 let browserDetails = CustomBrowser.split(':');
                 let browserName = browserDetails[0];
                 params.push(browserName);
