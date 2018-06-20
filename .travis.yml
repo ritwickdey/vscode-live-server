@@ -4,6 +4,7 @@ node_js:
 
 os:
   - linux
+  - osx
 
 branches:
   only:
