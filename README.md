@@ -62,6 +62,13 @@ All settings are now listed here  [Settings Docs](./docs/settings.md).
 
 ## What's new ?
 
+* ### Version 5.1.0 (20.16.18)
+  * ***[Fixes]*** Few Bug fixes for multi-root workspace
+  
+  * New Browser support for *Blisk*  [[#162](https://github.com/ritwickdey/vscode-live-server/pull/162)]
+
+  * Custom Browser settings is updated. (please check the settings page).
+
 * ### Version 5.0.0 (15.06.18)
   - ***[New]*** One of the most requested feature is here. **Live Server loves** 💘 **your multi-root workspace**. Yes, Live Server is now supports vscode multi-root workspace. *[[#151](https://github.com/ritwickdey/vscode-live-server/pull/151)]*
   
