@@ -2,13 +2,15 @@ language: node_js
 node_js:
   - "7.9.0"
 
+cache:
+  directories:
+    - node_modules
+  yarn: true
+
 os:
   - linux
   - osx
 
-branches:
-  only:
-    - master
 
 addons:
    apt:
@@ -24,9 +26,11 @@ before_install:
     fi
 
 install:
+  - npm i -g vsce
   - npm install
   - npm run vscode:prepublish
 
 script:
   - npm run lint
   - npm test --silent
+  - vsce package
