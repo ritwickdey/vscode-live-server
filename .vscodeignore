@@ -20,8 +20,6 @@ lib/**
 .git/**
 .github/**
 docs/**
-README.md
-CHANGELOG.md
 package-lock.json
 tslint.json
 .travis.yml
