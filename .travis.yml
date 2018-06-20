@@ -11,13 +11,11 @@ os:
   - linux
   - osx
 
-
 addons:
    apt:
      packages:
        - libsecret-1-dev
  
-
 before_install:
   - if [ $TRAVIS_OS_NAME == "linux" ]; then
       export CXX="g++-4.9" CC="gcc-4.9" DISPLAY=:99.0;
@@ -34,3 +32,11 @@ script:
   - npm run lint
   - npm test --silent
   - vsce package
+
+deploy:
+  provider: releases
+  api_key: $github_token
+  file: "*.xsix"
+  skip_cleanup: true
+  on:
+    tags: true
