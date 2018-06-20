@@ -63,7 +63,7 @@ All settings are now listed here  [Settings Docs](./docs/settings.md).
 ## What's new ?
 
 * ### Version 5.1.1 (20.16.18)
-  * Fixed Blank Markplace's description & changelog Page. 
+  * Fixed Blank Marketplace's description & changelog Page. 
 
 * ### Version 5.1.0 (20.16.18)
   * ***[Fixes]*** Few Bug fixes for multi-root workspace
