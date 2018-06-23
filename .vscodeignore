@@ -17,4 +17,10 @@ assets/**
 _config.yml
 **/*.vsix
 lib/**
-.github
+.git/**
+.github/**
+docs/**
+package-lock.json
+tslint.json
+.travis.yml
+appveyor.yml

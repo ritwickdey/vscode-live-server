@@ -62,12 +62,16 @@ All settings are now listed here  [Settings Docs](./docs/settings.md).
 
 ## What's new ?
 
-* ### Version 5.0.0 (15.06.18)
-  - ***[New]*** One of the most requested feature is here. **Live Server loves** 💘 **your multi-root workspace**. Yes, Live Server is now supports vscode multi-root workspace. *[[#151](https://github.com/ritwickdey/vscode-live-server/pull/151)]*
+* ### Version 5.1.1 (20.16.18)
+  * Fixed Blank Marketplace's description & changelog Page. 
+
+* ### Version 5.1.0 (20.16.18)
+  * ***[Fixes]*** Few Bug fixes for multi-root workspace
   
-  - ***[Dropped]*** Previously, Live Server was supported for no workspace (just a single `html` file is opened). This feature is removed. *(In case, you're missing this feature, open an issue request. We love your feedback)*
-  
-  - ***[New]*** New Command is added to change entry point of workspace. `ctrl+shift+p` and type `Live Server: Change Live Server workspace` to change workspace path. *Tips: You don't need to use the command, Live Server is smart enough, it'll eigher ask what you want or automatically set the correct workspace if you right click on a HTML file to start the server*
+  * New Browser support for *Blisk*  [[#162](https://github.com/ritwickdey/vscode-live-server/pull/162)]
+
+  * Custom Browser settings is updated. (please check the settings page).
+
 
 ## Changelog
 To check full changelog [click here](CHANGELOG.md).

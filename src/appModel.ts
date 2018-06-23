@@ -44,6 +44,10 @@ export class AppModel {
             return this.showPopUpMsg(`Open a folder or workspace... (File -> Open Folder)`, true);
         }
 
+        if (!workspace.workspaceFolders.length) {
+            return this.showPopUpMsg(`You've not added any folder in the workspace`, true);
+        }
+
         const workspacePath = await workspaceResolver(pathUri);
 
         if (!this.isCorrectWorkspace(workspacePath)) return;
@@ -126,8 +130,8 @@ export class AppModel {
     changeWorkspaceRoot() {
         setOrChangeWorkspace()
             .then(workspceName => {
+                if (workspceName === undefined) return;
                 window.showInformationMessage(`Success! '${workspceName}' workspace is now root of Live Server`);
-
                 // If server is running, Turn off the server.
                 if (this.IsServerRunning)
                     this.GoOffline();
@@ -225,19 +229,19 @@ export class AppModel {
             let CustomBrowser = Config.getCustomBrowser;
             let ChromeDebuggingAttachmentEnable = Config.getChromeDebuggingAttachment;
 
-            if (CustomBrowser && CustomBrowser !== 'null') {
+            if (CustomBrowser && CustomBrowser !== 'null' /*For backward capability*/) {
                 let browserDetails = CustomBrowser.split(':');
                 let browserName = browserDetails[0];
                 params.push(browserName);
 
                 if (browserDetails[1] && browserDetails[1] === 'PrivateMode') {
-                    if (browserName === 'chrome')
+                    if (browserName === 'chrome' || browserName === 'blisk')
                         params.push('--incognito');
                     else if (browserName === 'firefox')
                         params.push('--private-window');
                 }
 
-                if (browserName === 'chrome' && ChromeDebuggingAttachmentEnable) {
+                if ((browserName === 'chrome' || browserName === 'blisk') && ChromeDebuggingAttachmentEnable) {
                     params.push(...[
                         '--new-window',
                         '--no-default-browser-check',
@@ -262,9 +266,8 @@ export class AppModel {
                 default:
                     params[0] = 'chrome';
             }
-        }
-        else if (params[0] && params[0].startsWith('microsoft-edge')) {
-            params[0] = `microsoft-edge:${protocol}://${host}:${port}/${_path}`;
+        } else if (params[0] && params[0].startsWith('microsoft-edge')) {
+            params[0] = `microsoft-edge:${protocol}://${host}:${port}/${path}`;
         }
 
         try {
