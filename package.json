@@ -214,12 +214,18 @@
               "description": "Make it true to enable the feature."
             },
             "baseUri": {
-              "type": "string",
+              "type": [
+                "string",
+                "array"
+              ],
               "default": "/",
               "pattern": ""
             },
             "proxyUri": {
-              "type": "string",
+              "type": [
+                "string",
+                "array"
+              ],
               "default": "http://127.0.0.1:80",
               "pattern": "(^http[s]?://)(.[^(\\|\\s)]+)$"
             }
