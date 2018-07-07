@@ -1,6 +1,5 @@
 import * as assert from 'assert';
 
-import * as vscode from 'vscode';
 import { Helper } from '../src/Helper';
 
 suite('Helper Tests', () => {
@@ -66,9 +65,7 @@ suite('Helper Tests', () => {
         test('should return correct parameters', () => {
             // const targetPath = 'c:\\Users\\HTML\\cake\\index.html';
             const rootPath = 'c:\\Users\\HTML\\cake\\';
-            const port = 8080;
             const workspace = 'c:\\Users\\HTML\\';
-            const ignorePathGlob = [];
 
             const result = Helper.generateParams(rootPath, workspace);
 
