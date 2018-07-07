@@ -21,7 +21,6 @@ export async function checkNewAnnouncement(memento: Memento) {
             const url = announment.url || 'https://github.com/ritwickdey/vscode-live-server';
             opn(url);
         }
-
     }
 
 }
