@@ -65,7 +65,8 @@
     [
         ".vscode/**",
         "**/*.scss",
-        "**/*.sass"
+        "**/*.sass",
+        "**/*.ts"
     ]
     ```
     Now, by default Live Server will not track changes of your `.scss` &  `.sass` files. 
