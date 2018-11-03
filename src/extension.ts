@@ -1,12 +1,13 @@
 'use strict';
 
 import { ExtensionContext, workspace, commands, window } from 'vscode';
+import { StatusbarUi } from './StatusbarUi';
 import { AppModel } from './appModel';
 import { checkNewAnnouncement } from './announcement';
 
-export function activate(context: ExtensionContext) {
-    const appModel = new AppModel();
+const appModel = new AppModel();
 
+export function activate(context: ExtensionContext) {
     checkNewAnnouncement(context.globalState);
     context.subscriptions.push(commands
         .registerCommand('extension.liveServer.goOnline', (fileUri) => {
@@ -40,7 +41,6 @@ export function activate(context: ExtensionContext) {
     context.subscriptions.push(appModel);
 }
 
-
 export function deactivate() {
-
+    appModel.GoOffline();
 }
