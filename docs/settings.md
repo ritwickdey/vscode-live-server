@@ -153,8 +153,8 @@
     ```js
     {
         "liveServer.settings.mount:" [
-            ["/", "/path1"]
-            ["/", "/path2"]
+            ["/", "/path1"],
+            ["/", "/path2"],
             ["/root", "/dist"]
         ]
     }
