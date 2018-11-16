@@ -1,30 +1,46 @@
 'use strict';
 
-import { window, workspace } from 'vscode';
+import { window, workspace, Event, EventEmitter } from 'vscode';
 
 import { LiveServerHelper } from './LiveServerHelper';
 import { StatusbarUi } from './StatusbarUi';
 import { Config } from './Config';
 import { Helper, SUPPRORTED_EXT } from './Helper';
 import { workspaceResolver, setOrChangeWorkspace } from './workspaceResolver';
+import { IAppModel, GoLiveEvent, GoOfflineEvent } from './IAppModel';
+import { LiveShareHelper } from './LiveShareHelper';
 
 import * as opn from 'opn';
 import * as ips from 'ips';
 
-export class AppModel {
+export class AppModel implements IAppModel {
 
     private IsServerRunning: boolean;
     private IsStaging: boolean;
     private LiveServerInstance;
-    private runningPort: number;
     private localIps: any;
     private previousWorkspacePath: string;
+
+    private readonly goLiveEvent = new EventEmitter<GoLiveEvent>();
+    private readonly goOfflineEvent = new EventEmitter<GoOfflineEvent>();
+    private readonly liveShareHelper: LiveShareHelper;
+
+    public runningPort: number;
+
+    public get onDidGoLive(): Event<GoLiveEvent> {
+        return this.goLiveEvent.event;
+    }
+    public get onDidGoOffline(): Event<GoOfflineEvent> {
+        return this.goOfflineEvent.event;
+    }
 
     constructor() {
         const _ips = ips();
         this.localIps = _ips.local ? _ips.local : Config.getHost;
         this.IsServerRunning = false;
         this.runningPort = null;
+
+        this.liveShareHelper = new LiveShareHelper(this);
 
         this.haveAnySupportedFile().then(() => {
             StatusbarUi.Init();
@@ -50,9 +66,11 @@ export class AppModel {
         const pathInfos = Helper.testPathWithRoot(workspacePath);
 
         if (this.IsServerRunning) {
+            const relativePath = Helper.getSubPath(pathInfos.rootPath, openedDocUri) || '';
+            this.goLiveEvent.fire({ runningPort: this.runningPort, pathUri: relativePath });
             return this.openBrowser(
                 this.runningPort,
-                Helper.getSubPath(pathInfos.rootPath, openedDocUri) || ''
+                relativePath
             );
         }
         if (pathInfos.isNotOkay) {
@@ -73,9 +91,11 @@ export class AppModel {
                 this.showPopUpMsg(`Server is Started at port : ${this.runningPort}`);
 
                 if (!Config.getNoBrowser) {
+                    const relativePath = Helper.getSubPath(pathInfos.rootPath, openedDocUri) || '';
+                    this.goLiveEvent.fire({ runningPort: this.runningPort, pathUri: relativePath });
                     this.openBrowser(
                         this.runningPort,
-                        Helper.getSubPath(pathInfos.rootPath, openedDocUri) || ''
+                        relativePath
                     );
                 }
             }
@@ -99,6 +119,7 @@ export class AppModel {
             this.showPopUpMsg(`Server is not already running`);
             return;
         }
+        this.goOfflineEvent.fire({ runningPort: this.runningPort });
         LiveServerHelper.StopServer(this.LiveServerInstance, () => {
             this.showPopUpMsg('Server is now offline.');
             this.ToggleStatusBar();
