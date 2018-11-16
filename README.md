@@ -65,15 +65,11 @@ All settings are now listed here  [Settings Docs](./docs/settings.md).
 
 ## What's new ?
 
-* ### Version 5.1.1 (20.16.18)
-  * Fixed blank Marketplace's description & changelog Page. 
-
-* ### Version 5.1.0 (20.16.18)
-  * ***[Fixes]*** Few bug fixes for multi-root workspace
+* ### Version 5.2.0 (16.11.18)
+  * ***[Features]*** Live Server + Live Share = 💘. Share your live server over the internet with live reload feature! You'll be prompted to share live server using live server when you click to `Go Live`. *(Thank you so much [Alex Panov](https://github.com/alpaix) for opening PR [#232](https://github.com/ritwickdey/vscode-live-server/pull/232) )*
   
-  * New browser support for *Blisk*  [[#162](https://github.com/ritwickdey/vscode-live-server/pull/162)]
+  * ***[Docs fixing /  update]*** #170, #185, #201, #233 *(Thanks [Shaurya Shubham](https://github.com/coolshaurya), [Benjamin Vincent](https://github.com/luxcium), [Jan Dittrich](https://github.com/jan-di),  [Karsten 7.](https://github.com/Karsten7))*
 
-  * Custom browser settings have been updated. (please check the settings page).
 
 
 ## Changelog
