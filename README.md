@@ -65,11 +65,8 @@ All settings are now listed here  [Settings Docs](./docs/settings.md).
 
 ## What's new ?
 
-* ### Version 5.2.0 (16.11.18)
-  * ***[Features]*** Live Server + Live Share = 💘. Share your live server over the internet with live reload feature! You'll be prompted to share live server using live server when you click to `Go Live`. *(Thank you so much [Alex Panov](https://github.com/alpaix) for opening PR [#232](https://github.com/ritwickdey/vscode-live-server/pull/232) )*
-  
-  * ***[Docs fixing /  update]*** #170, #185, #201, #233 *(Thanks [Shaurya Shubham](https://github.com/coolshaurya), [Benjamin Vincent](https://github.com/luxcium), [Jan Dittrich](https://github.com/jan-di),  [Karsten 7.](https://github.com/Karsten7))*
-
+* ### Version 5.3.0 (27.11.18)
+  * Few Packages are upgraded. 
 
 
 ## Changelog
