@@ -65,6 +65,9 @@ All settings are now listed here  [Settings Docs](./docs/settings.md).
 
 ## What's new ?
 
+* ### Version 5.3.1 (28.11.18)
+  * Event-Stream Package Security Update. 
+
 * ### Version 5.3.0 (27.11.18)
   * Few Packages are upgraded. 
 

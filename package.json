@@ -2,7 +2,7 @@
   "name": "LiveServer",
   "displayName": "Live Server",
   "description": "Launch a development local Server with live reload feature for static & dynamic pages",
-  "version": "5.3.0",
+  "version": "5.3.1",
   "publisher": "ritwickdey",
   "author": {
     "name": "Ritwick Dey",
@@ -342,7 +342,7 @@
     "vsls": "^0.3.896"
   },
   "announcement": {
-    "onVersion": "5.2.0",
-    "message": "LiveServer@5.2: Live Server + Live Share = 💘. Share your live server over the internet with live reload feature!"
+    "onVersion": "5.3.1",
+    "message": "LiveServer@5.3.1: Event-Stream Package Security Update"
   }
 }
