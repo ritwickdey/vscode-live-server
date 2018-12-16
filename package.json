@@ -2,7 +2,7 @@
   "name": "LiveServer",
   "displayName": "Live Server",
   "description": "Launch a development local Server with live reload feature for static & dynamic pages",
-  "version": "5.4.0-alpha",
+  "version": "5.4.0-alpha3",
   "publisher": "ritwickdey",
   "author": {
     "name": "Ritwick Dey",
@@ -10,7 +10,7 @@
     "url": "http://twitter.com/Dey_Ritwick"
   },
   "engines": {
-    "vscode": "^1.20.0"
+    "vscode": "^1.28.0"
   },
   "categories": [
     "Other"
@@ -316,7 +316,7 @@
     "postinstall": "node ./node_modules/vscode/bin/install",
     "test": "node ./node_modules/vscode/bin/test",
     "lint": "tslint --project .",
-    "precommit": "npm run lint", 
+    "precommit": "npm run lint",
     "prepush": "npm run lint"
   },
   "husky": {
