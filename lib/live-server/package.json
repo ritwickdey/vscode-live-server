@@ -1,6 +1,6 @@
 {
   "name": "live-server",
-  "version": "1.6.1",
+  "version": "2.0.0",
   "description": "Taken from https://github.com/tapio/live-server for modification",
   "keywords": [
     "front-end",
@@ -18,7 +18,7 @@
     "url": "https://github.com/tapio/live-server/issues"
   },
   "dependencies": {
-    "chokidar": "^1.7.0",
+    "chokidar": "^2.0.2",
     "colors": "^1.3.0",
     "connect": "^3.6.6",
     "cors": "^2.8.4",
@@ -35,10 +35,7 @@
   },
   "deprecated": false,
   "devDependencies": {
-    "eslint": "^3.13.0",
-    "jshint": "^2.9.6",
-    "mocha": "^5.2.0",
-    "supertest": "^3.3.0"
+    "eslint": "^3.13.0"
   },
   "engines": {
     "node": ">=0.10.0"
@@ -69,8 +66,6 @@
     "url": "git+https://github.com/tapio/live-server.git"
   },
   "scripts": {
-    "hint": "jshint live-server.js index.js",
-    "lint": "eslint live-server.js index.js",
-    "test": "mocha test && npm run lint"
+    "lint": "eslint live-server.js index.js"
   }
 }
