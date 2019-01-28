@@ -6,7 +6,7 @@ branches:
       - master
 
 install:
-  - ps: Install-Product node 10.14.2
+  - ps: Update-NodeJsInstallation (Get-NodeJsLatestBuild 10.14)
 
 build_script:
   - npm install
