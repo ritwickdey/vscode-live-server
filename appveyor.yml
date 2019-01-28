@@ -6,10 +6,10 @@ branches:
       - master
 
 install:
-  - ps: Install-Product node 10.14.2 x64
+  - ps: Install-Product node 10.14.2
 
 platform:
-  - x64
+  - x86
 
 build_script:
   - npm install
