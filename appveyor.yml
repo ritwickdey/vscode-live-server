@@ -8,9 +8,6 @@ branches:
 install:
   - ps: Install-Product node 10.14.2
 
-platform:
-  - x86
-
 build_script:
   - npm install
   - npm run vscode:prepublish
