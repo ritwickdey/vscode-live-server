@@ -342,7 +342,7 @@
     "vsls": "^0.3.967"
   },
   "announcement": {
-    "onVersion": "5.3.1",
-    "message": "LiveServer@5.3.1: Event-Stream Package Security Update"
+    "onVersion": "5.4.0",
+    "message": "LiveServer@5.4.0: Bug fix for fsevents on Code Insiders"
   }
 }
