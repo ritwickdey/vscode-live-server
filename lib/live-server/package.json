@@ -18,7 +18,7 @@
     "url": "https://github.com/tapio/live-server/issues"
   },
   "dependencies": {
-    "chokidar": "^2.0.2",
+    "chokidar": "adesugbaa/chokidar#master",
     "colors": "^1.3.0",
     "connect": "^3.6.6",
     "cors": "^2.8.4",
