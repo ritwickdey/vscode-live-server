@@ -1,6 +1,7 @@
 # Changelog
 | Version | Date | Changelog |
 |---|---|---|
+|5.4.0| 30.01.19 | Bug fix for fsevents on Visual Code Insiders.
 |5.3.1| 28.11.18 | Event-Stream Package Security Update. 
 |5.3.0| 27.11.18 | Few Packages are upgraded. 
 |5.2.0|16.11.2018| &mdash; ***[Features]*** Live Server + Live Share = 💘. Share your live server over the internet with live reload feature! You'll be prompted to share live server using live server when you click to `Go Live`. *(Thank you so much [Alex Panov](https://github.com/alpaix) for opening PR [#232](https://github.com/ritwickdey/vscode-live-server/pull/232) )* <br> <br> &mdash; ***[Docs fixing /  update]*** #170, #185, #201, #233 *(Thanks [Shaurya Shubham](https://github.com/coolshaurya), [Benjamin Vincent](https://github.com/luxcium), [Jan Dittrich](https://github.com/jan-di),  [Karsten 7.](https://github.com/Karsten7))*
