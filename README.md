@@ -65,6 +65,9 @@ All settings are now listed here  [Settings Docs](./docs/settings.md).
 
 ## What's new ?
 
+* ### Version 5.4.0 (30.01.19)
+  * Bug fix for fsevents on Visual Code Insiders. 
+  
 * ### Version 5.3.1 (28.11.18)
   * Event-Stream Package Security Update. 
 
@@ -77,11 +80,11 @@ To check full changelog [click here](CHANGELOG.md).
 
 
 ## Special Thanks To Maintainers
-A special thanks to [Max Schmitt](https://github.com/mxschmitt)  & [Joydip Roy](https://github.com/rjoydip) for contributing their valueable time on this project.
+A special thanks to [Max Schmitt](https://github.com/mxschmitt), [Joydip Roy](https://github.com/rjoydip) & [Ayo Adesugba](https://github.com/adesugbaa) for contributing their valueable time on this project.
 
 [![Max Schmitt](https://avatars2.githubusercontent.com/u/17984549?s=64)](https://github.com/mxschmitt)
 [![Joydip Roy](https://avatars2.githubusercontent.com/u/15318294?s=64)](https://github.com/rjoydip)
-
+[![Ayo Adesugba](https://avatars2.githubusercontent.com/u/55943?s=64)](https://github.com/adesugbaa)
 
 ## LICENSE
 This extension is licensed under the [MIT License](LICENSE)
