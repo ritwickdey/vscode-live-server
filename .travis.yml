@@ -10,7 +10,6 @@ cache:
 os:
   - osx
   - linux
-  - windows
 
 addons:
    apt:
