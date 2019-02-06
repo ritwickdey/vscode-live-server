@@ -9,6 +9,7 @@ install:
   - ps: Update-NodeJsInstallation (Get-NodeJsLatestBuild 10.14)
 
 build_script:
+  - rm -fr package-lock.json
   - npm install
   - npm run vscode:prepublish
 
