@@ -19,7 +19,7 @@ export class StatusbarUi {
 
     static Init() {
         StatusbarUi.Working('loading...');
-        setTimeout(function () {
+        setTimeout(() => {
             StatusbarUi.Live();
         }, 1000);
     }

@@ -1,6 +1,6 @@
 'use strict';
 
-import { ExtensionContext, workspace, commands, window } from 'vscode';
+import { ExtensionContext, workspace, commands } from 'vscode';
 import { AppModel } from './appModel';
 import { checkNewAnnouncement } from './announcement';
 
@@ -9,23 +9,20 @@ export function activate(context: ExtensionContext) {
 
     checkNewAnnouncement(context.globalState);
     context.subscriptions.push(commands
-        .registerCommand('extension.liveServer.goOnline', (fileUri) => {
-            workspace.saveAll().then(() => {
-                appModel.Golive(fileUri ? fileUri.fsPath : null);
-            });
+        .registerCommand('extension.liveServer.goOnline', fileUri => {
+            workspace.saveAll().then(() =>
+                appModel.Golive(fileUri ? fileUri.fsPath : null));
         })
     );
 
     context.subscriptions.push(commands
-        .registerCommand('extension.liveServer.goOffline', () => {
-            appModel.GoOffline();
-        })
+        .registerCommand('extension.liveServer.goOffline', () =>
+            appModel.GoOffline())
     );
 
     context.subscriptions.push(commands
-        .registerCommand('extension.liveServer.changeWorkspace', () => {
-            appModel.changeWorkspaceRoot();
-        })
+        .registerCommand('extension.liveServer.changeWorkspace', () =>
+            appModel.changeWorkspaceRoot())
     );
 
     // context.subscriptions.push(window

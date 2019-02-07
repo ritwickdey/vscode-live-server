@@ -10,9 +10,8 @@ export class LiveServerHelper {
                 let ServerInstance = liveServer.start(params);
                 setTimeout(() => {
 
-                    if (!ServerInstance._connectionKey) {
+                    if (!ServerInstance._connectionKey)
                         return callback({});
-                    }
 
                     httpShutdown(ServerInstance);
                     return callback(ServerInstance);
@@ -24,9 +23,7 @@ export class LiveServerHelper {
                     errorMsg: err
                 });
             }
-
         }, 0);
-
     }
 
     static StopServer(LiveServerInstance, callback) {
@@ -35,6 +32,6 @@ export class LiveServerHelper {
         });
         LiveServerInstance.close();
         liveServer.shutdown();
-        setTimeout(() => { callback(); }, 1000);
+        setTimeout(() => callback(), 1000);
     }
 }

@@ -79,11 +79,9 @@ export class AppModel implements IAppModel {
 
         if (this.IsStaging) return;
 
-        let params = Helper.generateParams(pathInfos.rootPath, workspacePath, () => {
-            this.tagMissedCallback();
-        });
+        let params = Helper.generateParams(pathInfos.rootPath, workspacePath, () => this.tagMissedCallback());
 
-        LiveServerHelper.StartServer(params, (serverInstance) => {
+        LiveServerHelper.StartServer(params, serverInstance => {
             if (serverInstance && serverInstance.address) {
                 this.LiveServerInstance = serverInstance;
                 this.runningPort = serverInstance.address().port;
@@ -154,7 +152,7 @@ export class AppModel implements IAppModel {
             this.showPopUpMsg(`Server is already running from diffrent workspace.`, true);
             return false;
         }
-        else this.previousWorkspacePath = workspacePath;
+        this.previousWorkspacePath = workspacePath;
         return true;
     }
 
@@ -169,10 +167,9 @@ export class AppModel implements IAppModel {
         else if (isWarning && !Config.getDonotVerifyTags) {
             const donotShowMsg = 'I understand, Don\'t show again';
             window.showWarningMessage(msg, donotShowMsg)
-                .then(choise => {
-                    if (choise && choise === donotShowMsg) {
+                .then(choice => {
+                    if (choice && choice === donotShowMsg)
                         Config.setDonotVerifyTags(true, true);
-                    }
                 });
         }
         else if (!Config.getDonotShowInfoMsg) {
@@ -190,12 +187,10 @@ export class AppModel implements IAppModel {
 
     private ToggleStatusBar() {
         this.IsStaging = false;
-        if (!this.IsServerRunning) {
+        if (!this.IsServerRunning)
             StatusbarUi.Offline(this.runningPort || Config.getPort);
-        }
-        else {
+        else
             StatusbarUi.Live();
-        }
 
         this.IsServerRunning = !this.IsServerRunning;
     }
@@ -204,7 +199,7 @@ export class AppModel implements IAppModel {
         return new Promise<void>(resolve => {
             const globFormat = `**/*[${SUPPRORTED_EXT.join(' | ')}]`;
             workspace.findFiles(globFormat, '**/node_modules/**', 1)
-                .then(async (files) => {
+                .then(async files => {
                     if (files && files.length) return resolve();
                 });
         });
@@ -216,9 +211,8 @@ export class AppModel implements IAppModel {
 
         let params: string[] = [];
         let advanceCustomBrowserCmd = Config.getAdvancedBrowserCmdline;
-        if (path.startsWith('\\') || path.startsWith('/')) {
+        if (path.startsWith('\\') || path.startsWith('/'))
             path = path.substring(1, path.length);
-        }
         path = path.replace(/\\/gi, '/');
 
         if (advanceCustomBrowserCmd) {
@@ -290,5 +284,3 @@ export class AppModel implements IAppModel {
         StatusbarUi.dispose();
     }
 }
-
-
