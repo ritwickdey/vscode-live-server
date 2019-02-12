@@ -12,7 +12,7 @@ export const isRelativePath = (pathUrl: string) => {
     if (pathUrl.startsWith('*')) return false;
 
     return !path.isAbsolute(pathUrl);
-}
+};
 
 
 export class Helper {
