@@ -2,7 +2,7 @@
   "name": "LiveServer",
   "displayName": "Live Server",
   "description": "Launch a development local Server with live reload feature for static & dynamic pages",
-  "version": "5.4.0",
+  "version": "5.5.0",
   "publisher": "ritwickdey",
   "author": {
     "name": "Ritwick Dey",
@@ -342,7 +342,7 @@
     "vsls": "^0.3.967"
   },
   "announcement": {
-    "onVersion": "5.4.0",
-    "message": "LiveServer@5.4.0: Bug fix for fsevents on Code Insiders"
+    "onVersion": "5.5.0",
+    "message": "LiveServer@5.5.0: Fixed `ignoreFiles` settings & Attempt to fix `high cpu load`"
   }
 }
