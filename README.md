@@ -65,6 +65,10 @@ All settings are now listed here  [Settings Docs](./docs/settings.md).
 
 ## What's new ?
 
+
+* ### Version 5.5.1 (12.02.19)
+  * ***[Fixes]***  Fixed `Extension host terminated unexpectedly` for MacOS. [[#285](https://github.com/ritwickdey/vscode-live-server/issues/285)]
+  
 * ### Version 5.5.0 (12.02.19)
   * ***[Fixes]*** Fixed `ignoreFiles` settings [[#255](https://github.com/ritwickdey/vscode-live-server/issues/255)]
   * Attempt to fix `high cpu load` [[#278](https://github.com/ritwickdey/vscode-live-server/issues/278)]
@@ -72,9 +76,6 @@ All settings are now listed here  [Settings Docs](./docs/settings.md).
 * ### Version 5.4.0 (30.01.19)
   * Bug fix for fsevents on Visual Code Insiders. 
   
-* ### Version 5.3.1 (28.11.18)
-  * Event-Stream Package Security Update. 
-
 
 ## Changelog
 To check full changelog [click here](CHANGELOG.md).

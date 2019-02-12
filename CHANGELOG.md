@@ -1,6 +1,7 @@
 # Changelog
 | Version | Date | Changelog |
 |---|---|---|
+|5.5.1|12.02.19 | &mdash; ***[Fixes]***  Fixed `Extension host terminated unexpectedly` for MacOS. [[#285](https://github.com/ritwickdey/vscode-live-server/issues/285)]
 |5.5.0| 12.02.19 |  &mdash; ***[Fixes]*** Fixed `ignoreFiles` settings [[#255](https://github.com/ritwickdey/vscode-live-server/issues/255)] <br> &mdash; Attempt to fix `high cpu load` [[#278](https://github.com/ritwickdey/vscode-live-server/issues/278)]
 |5.4.0| 30.01.19 | Bug fix for fsevents on Visual Code Insiders.
 |5.3.1| 28.11.18 | Event-Stream Package Security Update. 
