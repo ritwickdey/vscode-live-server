@@ -8,6 +8,13 @@ export const SUPPRORTED_EXT: string[] = [
     '.html', '.htm', '.svg'
 ];
 
+export const isRelativePath = (pathUrl: string) => {
+    if (pathUrl.startsWith('*')) return false;
+
+    return !path.isAbsolute(pathUrl);
+}
+
+
 export class Helper {
 
 
@@ -23,7 +30,7 @@ export class Helper {
             rootPath = testPath;
         }
         else {
-            rootPath =  workSpacePath;
+            rootPath = workSpacePath;
         }
 
         if (!rootPath.endsWith(path.sep))
@@ -80,8 +87,9 @@ export class Helper {
 
         const ignoreFiles = [];
         ignorePathGlob.forEach(ignoredPath => {
-            if (!ignoredPath.startsWith('/') || !ignoredPath.startsWith('\\'))
-                ignoreFiles.push(workspacePath + path.sep + ignoredPath);
+            if (isRelativePath(ignoredPath))
+                ignoreFiles.push(path.join(workspacePath, ignoredPath));
+            else ignoreFiles.push(ignoredPath);
         });
 
         const proxy = Helper.getProxySetup();
