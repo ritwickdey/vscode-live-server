@@ -25,6 +25,10 @@ export class Config {
         return Config.configuration.get(val) as T;
     }
 
+    private static setSettings(key: string, val: number, isGlobal: boolean = false): Thenable<void> {
+        return Config.configuration.update(key, val, isGlobal);
+    }
+
     public static get getHost(): string {
         return Config.getSettings<string>('host');
     }
@@ -35,6 +39,10 @@ export class Config {
 
     public static get getPort(): number {
         return Config.getSettings<number>('port');
+    }
+
+    public static setPort(port: number): Thenable<void> {
+        return Config.setSettings('port', port);
     }
 
     public static get getRoot(): string {
