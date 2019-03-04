@@ -83,7 +83,7 @@ export class AppModel implements IAppModel {
             this.tagMissedCallback();
         });
 
-        LiveServerHelper.StartServer(params, (serverInstance) => {
+        LiveServerHelper.StartServer(params, async (serverInstance) => {
             if (serverInstance && serverInstance.address) {
                 this.LiveServerInstance = serverInstance;
                 this.runningPort = serverInstance.address().port;
@@ -100,10 +100,13 @@ export class AppModel implements IAppModel {
                 }
             }
             else {
-                if (!serverInstance.errorMsg)
-                    this.showPopUpMsg(`Error on port ${Config.getPort}. Please try to change the port through settings or report on GitHub.`, true);
-                else
+                if (!serverInstance.errorMsg) {
+                    await Config.setPort(Config.getPort + 1); // + 1 will be fine
+                    this.showPopUpMsg(`The default port : ${Config.getPort - 1} is currently taken, changing port to : ${Config.getPort}.`);
+                    this.Golive(pathUri);
+                } else {
                     this.showPopUpMsg(`Something is went wrong! Please check into Developer Console or report on GitHub.`, true);
+                }
                 this.IsServerRunning = true; // to revert status - cheat :p
                 this.ToggleStatusBar(); // reverted
             }
