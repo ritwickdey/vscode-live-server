@@ -1,6 +1,6 @@
 'use strict';
 
-import { window, workspace, Event, EventEmitter } from 'vscode';
+import { commands, window, workspace, Event, EventEmitter } from 'vscode';
 
 import { LiveServerHelper } from './LiveServerHelper';
 import { StatusbarUi } from './StatusbarUi';
@@ -220,6 +220,19 @@ export class AppModel implements IAppModel {
             path = path.substring(1, path.length);
         }
         path = path.replace(/\\/gi, '/');
+
+        let useBrowserPreview = Config.getUseBrowserPreview;
+        if (useBrowserPreview) {
+            let url = `${protocol}://${host}:${port}/${path}`;
+            let onSuccess = () => {};
+            let onError = (err) => {
+                this.showPopUpMsg(`Server is started at ${this.runningPort} but failed to open in Browser Preview. Got Browser Preview extension installed?`, true);
+                console.log('\n\nError Log to open Browser : ', err);
+                console.log('\n\n');
+            };
+            commands.executeCommand(`browser-preview.openPreview`, url).then(onSuccess, onError);
+            return;
+        }
 
         if (advanceCustomBrowserCmd) {
             advanceCustomBrowserCmd
