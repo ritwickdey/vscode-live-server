@@ -151,7 +151,7 @@ export class AppModel implements IAppModel {
             this.previousWorkspacePath &&
             this.previousWorkspacePath !== workspacePath
         ) {
-            this.showPopUpMsg(`Server is already running from diffrent workspace.`, true);
+            this.showPopUpMsg(`Server is already running from different workspace.`, true);
             return false;
         }
         else this.previousWorkspacePath = workspacePath;
