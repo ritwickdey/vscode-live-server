@@ -1,6 +1,7 @@
 # Changelog
 | Version | Date | Changelog |
 |---|---|---|
+|5.6.0 | 17.04.19 | &mdash; ***[NEW]*** Intregation of `Browser Preview` with `Live Server` *[[#352](https://github.com/ritwickdey/vscode-live-server/pull/352) - Thanks to [Kenneth Auchenberg](https://github.com/auchenberg) ]* <br><br> &mdash; ***[NEW]*** Fallback to random port If given port is busy. *[[#330](https://github.com/ritwickdey/vscode-live-server/pull/330) - Thanks to [Ali Almohaya](https://github.com/Almo7aya) ] <br><br> &mdash; ***[FIXES]****  Moved to `vscode-chokidar` lib for [#285](https://github.com/ritwickdey/vscode-live-server/issues/285). <br><br> &mdash;Doc Fixes  *[[#388](https://github.com/ritwickdey/vscode-live-server/pull/388) - Thanks to [Ted Silbernagel](https://github.com/tedsilb)]*
 |5.5.1|12.02.19 | &mdash; ***[Fixes]***  Fixed `Extension host terminated unexpectedly` for MacOS. [[#285](https://github.com/ritwickdey/vscode-live-server/issues/285)]
 |5.5.0| 12.02.19 |  &mdash; ***[Fixes]*** Fixed `ignoreFiles` settings [[#255](https://github.com/ritwickdey/vscode-live-server/issues/255)] <br> &mdash; Attempt to fix `high cpu load` [[#278](https://github.com/ritwickdey/vscode-live-server/issues/278)]
 |5.4.0| 30.01.19 | Bug fix for fsevents on Visual Code Insiders.
