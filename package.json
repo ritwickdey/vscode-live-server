@@ -349,7 +349,7 @@
     "vsls": "^0.3.967"
   },
   "announcement": {
-    "onVersion": "5.5.1",
-    "message": "LiveServer@5.5.0 & 5.5.1: Fixed `ignoreFiles` settings, Attempt to fix `high cpu load` & Fixed for macOS"
+    "onVersion": "5.6.0",
+    "message": "[NEW] LiveServer@5.6: BrowserPreview integration, auto fallback to random port & fixes."
   }
 }
