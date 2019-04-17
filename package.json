@@ -2,7 +2,7 @@
   "name": "LiveServer",
   "displayName": "Live Server",
   "description": "Launch a development local Server with live reload feature for static & dynamic pages",
-  "version": "5.6.0",
+  "version": "5.6.1",
   "publisher": "ritwickdey",
   "author": {
     "name": "Ritwick Dey",
@@ -349,7 +349,7 @@
     "vsls": "^0.3.967"
   },
   "announcement": {
-    "onVersion": "5.6.0",
+    "onVersion": "5.6.1",
     "message": "[NEW] LiveServer@5.6: BrowserPreview integration, auto fallback to random port & fixes."
   }
 }
