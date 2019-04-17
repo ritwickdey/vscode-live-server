@@ -67,7 +67,7 @@ All settings are now listed here  [Settings Docs](./docs/settings.md).
 
 
 * ### Version 5.6.1 (17.04.19)
-  * ***[NEW]*** Fixing `Extension host terminated unexpectedly` *[[#431](https://github.com/ritwickdey/vscode-live-server/issues/431)
+  * Fixed `Extension host terminated unexpectedly` *[[#431](https://github.com/ritwickdey/vscode-live-server/issues/431)]*
 
 * ### Version 5.6.0 (17.04.19)
   * ***[NEW]*** Intregation of `Browser Preview` with `Live Server` *[[#352](https://github.com/ritwickdey/vscode-live-server/pull/352) - Thanks to [Kenneth Auchenberg](https://github.com/auchenberg)]*
