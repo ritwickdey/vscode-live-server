@@ -1,4 +1,4 @@
-_[I'm sorry but I'm super busy now. If you want to be a maintainer of the project, please feel free to contact me! You've to be passionate about programming]_
+_[Wanna try [LIVE SERVER++](https://github.com/ritwickdey/vscode-live-server-plus-plus) (BETA) ? It'll enable live change without saving file.  https://github.com/ritwickdey/vscode-live-server-plus-plus]_
 
 # Live Server
 
