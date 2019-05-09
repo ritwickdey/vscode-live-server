@@ -227,7 +227,7 @@ export class AppModel implements IAppModel {
         let useBrowserPreview = Config.getUseBrowserPreview;
         if (useBrowserPreview) {
             let url = `${protocol}://${host}:${port}/${path}`;
-            let onSuccess = () => {};
+            let onSuccess = () => { };
             let onError = (err) => {
                 this.showPopUpMsg(`Server is started at ${this.runningPort} but failed to open in Browser Preview. Got Browser Preview extension installed?`, true);
                 console.log('\n\nError Log to open Browser : ', err);
@@ -257,13 +257,13 @@ export class AppModel implements IAppModel {
                 params.push(browserName);
 
                 if (browserDetails[1] && browserDetails[1] === 'PrivateMode') {
-                    if (browserName === 'chrome' || browserName === 'blisk')
+                    if (browserName === 'chrome' || browserName === 'chromium' || browserName === 'blisk')
                         params.push('--incognito');
                     else if (browserName === 'firefox')
                         params.push('--private-window');
                 }
 
-                if ((browserName === 'chrome' || browserName === 'blisk') && ChromeDebuggingAttachmentEnable) {
+                if ((browserName === 'chrome' || browserName === 'chromium' || browserName === 'blisk') && ChromeDebuggingAttachmentEnable) {
                     params.push(...[
                         '--new-window',
                         '--no-default-browser-check',
@@ -287,6 +287,21 @@ export class AppModel implements IAppModel {
                     break;
                 default:
                     params[0] = 'chrome';
+
+            }
+        } else if (params[0] && params[0] === 'chromium') {
+            switch (process.platform) {
+                case 'darwin':
+                    params[0] = 'chromium';
+                    break;
+                case 'linux':
+                    params[0] = 'chromium';
+                    break;
+                case 'win32':
+                    params[0] = 'chromium';
+                    break;
+                default:
+                    params[0] = 'chromium';
 
             }
         } else if (params[0] && params[0].startsWith('microsoft-edge')) {
