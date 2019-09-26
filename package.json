@@ -135,7 +135,7 @@
             "blisk",
             null
           ],
-          "description": "Specify custom browser settings for Live Server. \nBy Default it will open your default favorite browser."
+          "description": "Specify custom browser settings for Live Server. \nBy default it will open your default favorite browser."
         },
         "liveServer.settings.ChromeDebuggingAttachment": {
           "type": [
@@ -160,7 +160,7 @@
         "liveServer.settings.NoBrowser": {
           "type": "boolean",
           "default": false,
-          "description": "If it is true live server will start without browser opened."
+          "description": "If true, live server will start without browser opened."
         },
         "liveServer.settings.ignoreFiles": {
           "type": "array",
@@ -240,7 +240,7 @@
         "liveServer.settings.useWebExt": {
           "type": "boolean",
           "default": false,
-          "description": "You have to install a browser extension. That will be works for your dynamic pages (like PHP)."
+          "description": "You have to install a browser extension that will be used for your dynamic pages (like PHP)."
         },
         "liveServer.settings.wait": {
           "type": "number",
@@ -250,7 +250,7 @@
         "liveServer.settings.fullReload": {
           "type": "boolean",
           "default": false,
-          "description": "By Default Live Server inject CSS changes without full reloading of browser. You can change this behviour by making this setting as `true`"
+          "description": "By default, Live Server injects CSS changes without fully reloading the browser. You can change this behavior by marking this setting as true"
         },
         "liveServer.settings.https": {
           "type": "object",
@@ -299,7 +299,7 @@
         "liveServer.settings.multiRootWorkspaceName": {
           "type": "string",
           "default": null,
-          "description": "This the entry point of server when you're in multiroot workspace"
+          "description": "This the entry point of server when you're in a multiroot workspace"
         }
       }
     }

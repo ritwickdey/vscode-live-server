@@ -26,7 +26,7 @@
     
     <hr>
 
-* **`liveServer.settings.AdvanceCustomBrowserCmdLine`:**  To set your any favorite browser (Eg: Chrome Canary, Firefox Nightly) using advance Command Line. _(You can specify full path of your favorite custom browser)_.
+* **`liveServer.settings.AdvanceCustomBrowserCmdLine`:**  To set any browser (Eg: Chrome Canary, Firefox Nightly) using advance Command Line. _(You can specify the full path of your favorite custom browser)_.
 
     * _This setting will override `CustomBrowser` and `ChromeDebuggingAttachment` settings._
     * _Default Value is `null`_ 
@@ -51,7 +51,7 @@
 
 
 
-* **`liveServer.settings.NoBrowser`:** If it is true live server will start without browser opened.
+* **`liveServer.settings.NoBrowser`:** If `true`, live server will start without browser opened.
     
     * _Default Value is `false`_ 
 
@@ -128,12 +128,12 @@
 
      <hr>
 
-* **`liveServer.settings.useWebExt:`** : If it is `true`, Live Reload will be fully controled by the [Live Server Web Extension](https://github.com/ritwickdey/live-server-web-extension). And also, it does not matter if your HTML have `<body>` tag or not, Live Reload will work for every file. :smile:
+* **`liveServer.settings.useWebExt:`** : If it is `true`, Live Reload will be fully controlled by the [Live Server Web Extension](https://github.com/ritwickdey/live-server-web-extension). And also, it does not matter if your HTML has a `<body>` tag or not, Live Reload will work for every file. :smile:
     * Default is `false`
 
     <hr>
 
-* **`liveServer.settings.fullReload:`** : By Default Live Server inject CSS changes without full reloading of browser. You can change this behviour by making this setting as `true`. 
+* **`liveServer.settings.fullReload:`** : By default, Live Server injects CSS changes without fully reloading the browser. You can change this behavior by marking this setting as `true`. 
     
     * Default: `false`
 
@@ -174,7 +174,7 @@
 
     <hr>
 
-* **`liveServer.settings.multiRootWorkspaceName:`** : This the entry point of server when you're in multiroot workspace. 
+* **`liveServer.settings.multiRootWorkspaceName:`** : This the entry point of server when you're in a multiroot workspace. 
     
     * Default: `null`
 
