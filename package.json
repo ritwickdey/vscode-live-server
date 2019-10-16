@@ -299,7 +299,7 @@
         "liveServer.settings.multiRootWorkspaceName": {
           "type": "string",
           "default": null,
-          "description": "This the entry point of server when you're in a multiroot workspace"
+          "description": "This is the entry point of the server when you're in a multiroot workspace"
         }
       }
     }
