@@ -419,15 +419,15 @@
         },
         "liveServer.settings.wsServiceName": {
           "type": "string",
-          "default": "",
-          "description": "Set websocket service name"
+          "default": "/WSService",
+          "description": "Set websocket service name. default /WSService"
         },
         "liveServer.settings.maxWSMessageHistory":{
           "type": "number",
           "default": 128,
           "minimum": 1,
           "maximum": 65535,
-          "description": "Set Maximum number of history Websocket messages."
+          "description": "Set Maximum number of history Websocket messages. default 128"
         }
       }
     }
