@@ -9,9 +9,9 @@
 
 ## 截图
 
-![Live Server Demo VSCode](./images/Screenshot/vscode-live-server-animated-demo.gif)
+![Live Server Demo VSCode](https://github.com/Zhou-zhi-peng/vscode-live-server/raw/master/images/Screenshot/vscode-live-server-animated-demo.gif)
 
-![Live Server Demo VSCode](./images/Screenshot/003.png)
+![Live Server Demo VSCode](https://github.com/Zhou-zhi-peng/vscode-live-server/raw/master/images/Screenshot/003.png)
 
 ## 使用方法
 
@@ -24,18 +24,18 @@
 ws://127.0.0.1:80/WSService
  连接成功后,列表中将看到该连接。
 
-![Go Live Control Preview](./images/Screenshot/005.png)
+![Go Live Control Preview](https://github.com/Zhou-zhi-peng/vscode-live-server/raw/master/images/Screenshot/005.png)
 
 2.收发消息：
 点击该连接，将打开消息发送界面，该界面上可以查看消息收发历史和发送消息.
 
-![Explorer Window Control](./images/Screenshot/006.png).
+![Explorer Window Control](https://github.com/Zhou-zhi-peng/vscode-live-server/raw/master/images/Screenshot/006.png).
 
 ## 虚拟文件服务
 
 1. 新建虚拟文件：
 在虚拟文件栏中新建一个虚拟文件，虚拟文件可用支持 直接输入内容、通过脚本生成内容 或 链接到一个已存在的文件。
-![Explorer Window Control](./images/Screenshot/007.png).
+![Explorer Window Control](https://github.com/Zhou-zhi-peng/vscode-live-server/raw/master/images/Screenshot/007.png).
 
 2. 脚本使用方法：
 内容脚本，将在以个函数中运行，函数原型：
