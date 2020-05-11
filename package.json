@@ -1,13 +1,13 @@
 {
-  "name": "LiveServer",
-  "displayName": "Live Server",
-  "description": "Launch a development local Server with live reload feature for static & dynamic pages",
-  "version": "5.6.1",
-  "publisher": "ritwickdey",
+  "name": "LiveServerPP",
+  "displayName": "Live ServerPP",
+  "description": "Launch a development local Server with live reload feature for static & dynamic pages & websocket",
+  "version": "5.7.1",
+  "publisher": "zhouzhipeng",
   "author": {
-    "name": "Ritwick Dey",
-    "email": "ritwickdey@outlook.com",
-    "url": "http://twitter.com/Dey_Ritwick"
+    "name": "zhouzhipeng",
+    "email": "116096543@qq.com",
+    "url": "https://github.com/Zhou-zhi-peng/"
   },
   "engines": {
     "vscode": "^1.20.0"
@@ -47,6 +47,60 @@
       {
         "command": "extension.liveServer.changeWorkspace",
         "title": "Change Live Server workspace",
+        "category": "Live Server"
+      },
+      {
+        "command": "extension.liveServer.openWSManagerPage",
+        "title": "Open VFS manager",
+        "icon":"images/websocket.svg",
+        "category": "Live Server"
+      },
+      {
+        "command": "extension.liveServer.openVFSManagerPage",
+        "title": "Open Websocket manager",
+        "icon":"images/vfs.svg",
+        "category": "Live Server"
+      },
+      {
+        "command": "extension.liveServer.websocket.refresh",
+        "title": "Websocket List refresh",
+        "icon":"images/refresh.svg",
+        "category": "Live Server"
+      },
+      {
+        "command": "extension.liveServer.websocket.closeAll",
+        "title": "Close all websocket client",
+        "icon":"images/close-all.svg",
+        "category": "Live Server"
+      },
+      {
+        "command": "extension.liveServer.websocket.close",
+        "title": "Close websocket client",
+        "icon":"images/close.svg",
+        "category": "Live Server"
+      },
+      {
+        "command": "extension.liveServer.vfs.newfile",
+        "title": "New virtual file",
+        "icon":"images/new-file.svg",
+        "category": "Live Server"
+      },
+      {
+        "command": "extension.liveServer.vfs.newdir",
+        "title": "New virtual dir",
+        "icon":"images/new-dir.svg",
+        "category": "Live Server"
+      },
+      {
+        "command": "extension.liveServer.vfs.clear",
+        "title": "Clear child nodes",
+        "icon":"images/clear-all.svg",
+        "category": "Live Server"
+      },
+      {
+        "command": "extension.liveServer.vfs.remove",
+        "title": "Remove node",
+        "icon":"images/close.svg",
         "category": "Live Server"
       }
     ],
@@ -92,6 +146,68 @@
           "command": "extension.liveServer.goOnline",
           "group": "navigation@-LiveServer",
           "when": "resourceLangId == xml"
+        }
+      ],
+      "view/title":[
+        {
+					"command": "extension.liveServer.websocket.refresh",
+					"when": "view == live-server-websocket-clients",
+          "group": "navigation"
+				},
+				{
+					"command": "extension.liveServer.websocket.closeAll",
+					"when": "view == live-server-websocket-clients",
+          "group": "navigation"
+				},
+				{
+					"command": "extension.liveServer.vfs.newfile",
+					"when": "view == live-server-virtual-files",
+          "group": "navigation"
+				},
+				{
+					"command": "extension.liveServer.vfs.newdir",
+					"when": "view == live-server-virtual-files",
+          "group": "navigation"
+				},
+				{
+					"command": "extension.liveServer.vfs.clear",
+					"when": "view == live-server-virtual-files",
+          "group": "navigation"
+				}
+      ],
+      "view/item/context": [
+        {
+					"command": "extension.liveServer.websocket.close",
+					"when": "view == live-server-websocket-clients",
+					"group": "inline"
+				},
+        {
+					"command": "extension.liveServer.vfs.remove",
+					"when": "view == live-server-virtual-files",
+					"group": "inline"
+				}
+      ]
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "live-server-manager",
+          "title": "live server",
+          "icon": "images/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "live-server-manager": [
+        {
+          "id": "live-server-virtual-files",
+          "name": "Virtual files",
+          "icon":"images/vfs.svg"
+        },
+        {
+          "id": "live-server-websocket-clients",
+          "name": "Websocket Clients",
+          "icon":"images/websocket.svg"
         }
       ]
     },
@@ -300,6 +416,18 @@
           "type": "string",
           "default": null,
           "description": "This the entry point of server when you're in multiroot workspace"
+        },
+        "liveServer.settings.wsServiceName": {
+          "type": "string",
+          "default": "/WSService",
+          "description": "Set websocket service name. default /WSService"
+        },
+        "liveServer.settings.maxWSMessageHistory":{
+          "type": "number",
+          "default": 128,
+          "minimum": 1,
+          "maximum": 65535,
+          "description": "Set Maximum number of history Websocket messages. default 128"
         }
       }
     }
@@ -307,14 +435,14 @@
   "license": "MIT",
   "icon": "images/icon.png",
   "bugs": {
-    "url": "https://github.com/ritwickdey/vscode-live-server/issues",
+    "url": "https://github.com/Zhou-zhi-peng/vscode-live-server/issues",
     "email": "ritwickdey@outlook.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ritwickdey/vscode-live-server.git"
+    "url": "https://github.com/Zhou-zhi-peng/vscode-live-server.git"
   },
-  "homepage": "https://ritwickdey.github.io/vscode-live-server/",
+  "homepage": "https://github.com/Zhou-zhi-peng/vscode-live-server/",
   "scripts": {
     "vscode:prepublish": "tsc -p ./",
     "compile": "tsc -watch -p ./",
@@ -337,7 +465,7 @@
     "mocha": "^5.0.4",
     "tslint": "^5.11.0",
     "typescript": "^2.7.2",
-    "vscode": "^1.1.26",
+    "vscode": "^1.1.36",
     "webpack": "^4.30.0",
     "webpack-cli": "^3.3.0"
   },

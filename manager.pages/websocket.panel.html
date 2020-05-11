@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Message</title>
+    <style>
+        html {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        button {
+            display: inline-block;
+            margin: 0 1px;
+            padding: 0 4px;
+            height: 28px;
+            line-height: 28px;
+            border: 1px solid var(--vscode-checkbox-border);
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--vscode-button-foreground);
+            background-color: var(--vscode-button-background);
+            outline: none;
+            vertical-align: middle;
+        }
+
+        button:hover {
+            background-color: var(--vscode-button-hoverBackground);
+        }
+
+        button:active {
+            box-shadow: none;
+            background-color: var(--vscode-list-activeSelectionBackground);
+            color: var(--vscode-list-activeSelectionForeground);
+        }
+
+        .viewer {
+            display: block;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .message-history {
+            display: block;
+            width: 100%;
+            height: 80%;
+            border: none;
+            box-sizing: border-box;
+            overflow: auto;
+        }
+
+        .more-history {
+            display: block;
+            width: 100%;
+            height: 24px;
+            line-height: 24px;
+            border-bottom-style: solid;
+            border-bottom-width: 1px;
+            border-bottom-color: var(--vscode-editorWidget-border);
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .more-history>a {
+            text-decoration: none;
+            outline: none;
+        }
+
+        .message {
+            width: calc(100% - 48px);
+            box-shadow: 0px 0px 3px 1px var(--vscode-widget-shadow);
+            margin: 8px;
+            padding: 0;
+            background-color: var(--vscode-editorPane-background);
+        }
+
+        .message-client {
+            margin-left: 5px;
+            border-top-width: 0;
+            border-bottom-width: 0;
+            border-left: solid 5px #0D47A1;
+        }
+
+        .message-server {
+            margin-left: 35px;
+            border-top-width: 0;
+            border-bottom-width: 0;
+            border-right: solid 5px #4caf50;
+        }
+
+        .message>.catpion {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            padding: 3px 0 5px 0;
+            position: relative;
+            white-space: nowrap;
+            font-size: 16px;
+            line-height: 16px;
+            height: 20px;
+            border-bottom: 1px solid var(--vscode-editorWidget-border);
+            background-color: var(--vscode-titleBar-activeBackground);
+            color: var(--vscode-titleBar-activeForeground);
+        }
+
+        .message>.catpion>.title {
+            flex: 1;
+            display: inline-block;
+            vertical-align: middle;
+            box-sizing: border-box;
+            padding: 0 0 0 5px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .message>.catpion>.title>.time {
+            font-size: 12px;
+        }
+
+        .message>.catpion>.controls {
+            flex: none;
+            display: inline-block;
+            vertical-align: middle;
+            width: 190px;
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        .message-server>.catpion>.title {
+            order: 2;
+            text-align: right;
+        }
+
+        .message-server>.catpion>.controls {
+            order: 1;
+            text-align: left;
+        }
+
+        .message-client>.catpion>.title {
+            order: 1;
+            text-align: left;
+        }
+
+        .message-client>.catpion>.controls {
+            order: 2;
+            text-align: right;
+        }
+
+        .message>.catpion>.controls>.control {
+            display: inline-block;
+            margin: 0 1px;
+            padding: 2px 2px;
+            border: 1px solid var(--vscode-checkbox-border);
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--vscode-button-foreground);
+            background-color: var(--vscode-button-background);
+            outline: none;
+        }
+
+        .message>.catpion>.controls>.control:hover {
+            box-shadow: 0px 6px 9px 0px var(--vscode-widget-shadow);
+            background-color: var(--vscode-button-hoverBackground);
+        }
+
+        .message>.catpion>.controls>.control-selected,
+        .message>.catpion>.controls>.control:active {
+            box-shadow: none;
+            background-color: var(--vscode-list-activeSelectionBackground);
+            color: var(--vscode-list-activeSelectionForeground);
+        }
+
+        .message>.message-body {
+            padding: 6px;
+        }
+
+        .message-input {
+            display: block;
+            width: 100%;
+            height: 20%;
+            border: none;
+            box-sizing: border-box;
+            overflow-x: auto;
+            overflow-y: hidden;
+            margin: 0;
+            padding: 0;
+            border-top: 3px solid var(--vscode-panel-border);
+            background-color: var(--vscode-editorWidget-background);
+            box-shadow: 0px -2px 2px 0px var(--vscode-widget-shadow);
+        }
+
+        .message-input .message-options {
+            display: flex;
+            width: 100%;
+            height: 36px;
+            overflow: hidden;
+            margin: 0;
+            padding: 3px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .message-input .message-options>.input-option {
+            flex: 1;
+        }
+
+        .message-input .message-options>.history-option {
+            flex: none;
+        }
+
+        .message-input .message-options>.input-option>.options {
+            box-sizing: border-box;
+            width: 32px;
+        }
+
+        .message-input .message-options>.input-option>.options+div {
+            display: none;
+            position: absolute;
+            left: 200px;
+            top: 0;
+        }
+
+        .message-input .input-controls {
+            display: block;
+            width: 100%;
+            height: calc(100% - 38px);
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            overflow: hidden;
+            font-size: 0;
+        }
+
+        .message-input .input-controls>.text-input {
+            width: calc(100% - 80px);
+            height: 100%;
+            margin: 0;
+            padding: 5px;
+            display: inline-block;
+            vertical-align: top;
+            box-sizing: border-box;
+            font-size: 14px;
+            resize: none;
+            border: 1px solid var(--vscode-checkbox-border);
+            background: var(--vscode-input-background);
+            color: var(--vscode-input-foreground);
+            outline: none;
+        }
+
+        .message-input .input-controls>.text-input:disabled {
+            cursor: not-allowed;
+            color: var(--vscode-tab-inactiveForeground);
+            background-color: var(--vscode-tab-inactiveBackground);
+        }
+
+        .message-input .input-controls>.button-send {
+            border: 1px solid var(--vscode-checkbox-border);
+            width: 80px;
+            height: 100%;
+            margin: 0;
+            padding: 5px;
+            display: inline-block;
+            vertical-align: top;
+            box-sizing: border-box;
+            font-size: 12px;
+            background-color: var(--vscode-button-background);
+            outline: none;
+            cursor: pointer;
+            appearance: none;
+            transition-property: all;
+            transition-duration: .3s;
+        }
+
+        .message-input .input-controls>.button-send:focus,
+        .message-input .input-controls>.button-send:hover {
+            background-color: var(--vscode-button-hoverBackground);
+        }
+
+        .message-input .input-controls>.button-send:active {
+            background-color: var(--vscode-button-background);
+            color: var(--vscode-button-foreground);
+            transition-duration: 0s;
+            box-shadow: inset 0 1px 3px var(--vscode-button-background);
+        }
+
+        .message-input .input-controls>.button-send:disabled {
+            cursor: not-allowed;
+            color: var(--vscode-titleBar-inactiveForeground);
+            background-color: var(--vscode-titleBar-inactiveBackground);
+        }
+
+        .message-input .message-options .checkbox {
+            width: 120px;
+            height: 30px;
+            background: var(--vscode-checkbox-background);
+            margin: 0;
+            position: relative;
+            border: 1px solid var(--vscode-checkbox-border);
+            box-sizing: border-box;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .message-input .message-options .checkbox:before {
+            content: 'On';
+            position: absolute;
+            top: 2px;
+            left: 12px;
+            height: 2px;
+            color: var(--vscode-button-foreground);
+            font-size: 16px;
+            text-shadow: 0px 0 3px var(--vscode-button-hoverBackground);
+        }
+
+        .message-input .message-options .checkbox:after {
+            content: 'Off';
+            position: absolute;
+            top: 2px;
+            left: 84px;
+            height: 2px;
+            color: #BDBDBD;
+            font-size: 16px;
+            text-shadow: 1px 1px 0px var(--vscode-button-hoverBackground);
+        }
+
+        .message-input .message-options .checkbox label {
+            display: block;
+            width: 52px;
+            height: 24px;
+            line-height: 22px;
+            transition: all .5s ease;
+            cursor: pointer;
+            position: absolute;
+            top: 2px;
+            z-index: 1;
+            left: 2px;
+            background: grey;
+            color: var(--vscode-button-foreground);
+            text-align: center;
+            box-sizing: border-box;
+            text-shadow: 0px 0px 2px var(--vscode-button-hoverBackground);
+            border: 1px solid var(--vscode-checkbox-border);
+            box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.2);
+        }
+
+        .message-input .message-options .checkbox input[type=checkbox]:checked+label {
+            left: 63px;
+            background: linear-gradient(var(--vscode-button-background), var(--vscode-button-hoverBackground));
+            border: 1px solid var(--vscode-checkbox-border);
+        }
+
+        .message-input .message-options input[type=checkbox] {
+            visibility: hidden;
+        }
+
+        #interval-time {
+            width: 100px;
+            height: 28px;
+            box-sizing: border-box;
+            display: inline-block;
+            vertical-align: middle;
+            border: 1px solid var(--vscode-checkbox-border);
+            background-color: var(--vscode-input-background);
+            color: var(--vscode-input-foreground);
+        }
+
+        #websocket-clients {
+            width: 200px;
+            height: 28px;
+            box-sizing: border-box;
+            display: inline-block;
+            vertical-align: middle;
+            border: 1px solid var(--vscode-checkbox-border);
+            background-color: var(--vscode-input-background);
+            color: var(--vscode-input-foreground);
+        }
+    </style>
+    <style>
+        .json-viewer {
+            font-size: 13px;
+            overflow-x: auto;
+        }
+
+        .json-viewer .object-brace {
+            color: #00AA00;
+            font-weight: bold;
+        }
+
+        .json-viewer .array-brace {
+            color: #0033FF;
+            font-weight: bold;
+        }
+
+        .json-viewer .property-name {
+            color: #CC0000;
+        }
+
+        .json-viewer .property-colon {
+            color: rgb(14, 0, 204);
+            font-weight: bold;
+        }
+
+        .json-viewer .comma {
+            color: #e91e63;
+            font-weight: bold;
+        }
+
+        .json-viewer .string {
+            color: #007777;
+            font-weight: bold;
+        }
+
+        .json-viewer .control {
+            color: #FFF;
+            background-color: #303F9F;
+            font-weight: bold;
+            padding: 0 2px;
+            box-sizing: border-box;
+            border: 1px solid #FF9800;
+        }
+
+        .json-viewer .number {
+            color: #AA00AA;
+            font-weight: bold;
+        }
+
+        .json-viewer .boolean {
+            color: #0000FF;
+            font-weight: bold;
+        }
+
+        .json-viewer .null {
+            color: #0000FF;
+            font-weight: bold;
+        }
+
+        .xml-viewer {
+            font-size: 13px;
+            overflow-x: auto;
+        }
+
+        .xml-viewer .comment {
+            color: #00AA00;
+        }
+
+        .xml-viewer .declare {
+            color: rgb(255, 153, 0);
+            font-weight: bold;
+        }
+
+        .xml-viewer .tag-mark {
+            color: #2196f3;
+        }
+
+        .xml-viewer .tag-name {
+            color: #CC0000;
+        }
+
+        .xml-viewer .attribute-name {
+            color: #00acc1;
+        }
+
+        .xml-viewer .attribute-value {
+            color: #16bb00;
+            font-weight: bold;
+        }
+
+        .xml-viewer .attribute-equals {
+            color: #e91e63;
+            font-weight: bold;
+        }
+
+        .xml-viewer .text {
+            color: #0000FF;
+            font-weight: bold;
+        }
+
+        .hex-viewer {
+            white-space: nowrap;
+            font-family: monospace;
+            font-size: 14px;
+            overflow-x: auto;
+        }
+
+        .hex-viewer .header {
+            text-transform: uppercase;
+            white-space: nowrap;
+            width: 70px;
+            height: 20px;
+            line-height: 20px;
+            display: inline-block;
+            text-align: left;
+            font-weight: bold;
+            margin: 0;
+            background-color: #FF9800;
+            box-sizing: border-box;
+            border-right: 1px solid white;
+            padding: 0 0 0 3px;
+        }
+
+        .hex-viewer .ascii-header {
+            text-transform: uppercase;
+            white-space: nowrap;
+            height: 20px;
+            line-height: 20px;
+            display: inline-block;
+            text-align: left;
+            margin: 0;
+            background-color: #FF9800;
+            box-sizing: border-box;
+            border-right: 1px solid #E0E0E0;
+        }
+
+
+        .hex-viewer .offset {
+            color: #B2EBF2;
+            width: 70px;
+            text-transform: uppercase;
+            display: inline-block;
+            text-align: left;
+            margin: 0;
+            background-color: #607D8B;
+            box-sizing: border-box;
+            border-right: 1px solid #E0E0E0;
+            padding: 0 0 0 3px;
+        }
+
+        .hex-viewer .hex-value {
+            color: #000;
+            width: 70px;
+            display: inline-block;
+            white-space: nowrap;
+            border-right: 1px solid #E0E0E0;
+            padding: 0 0 0 3px;
+            box-sizing: border-box;
+        }
+
+        .hex-viewer .ascii-value {
+            color: #0000FF;
+            display: inline-block;
+            white-space: nowrap;
+            box-sizing: border-box;
+            border-right: 1px solid #E0E0E0;
+        }
+
+        .raw-text-viewer {
+            font-size: 13px;
+            overflow-x: auto;
+            white-space: pre;
+        }
+    </style>
+    <script>
+        (function ($) {
+            let _vscodeMessageHandlers = {};
+            let _vscode = acquireVsCodeApi();
+            let _state = _vscode.getState() || {};
+            let _uint6ToB64 = function (nUint6) {
+                return nUint6 < 26 ? nUint6 + 65
+                    : nUint6 < 52 ? nUint6 + 71
+                        : nUint6 < 62 ? nUint6 - 4
+                            : nUint6 === 62 ? 43
+                                : nUint6 === 63 ? 47
+                                    : 65;
+            };
+            let _b64ToUint6 = function (nChr) {
+                return nChr > 64 && nChr < 91 ?
+                    nChr - 65
+                    : nChr > 96 && nChr < 123 ?
+                        nChr - 71
+                        : nChr > 47 && nChr < 58 ?
+                            nChr + 4
+                            : nChr === 43 ?
+                                62
+                                : nChr === 47 ?
+                                    63
+                                    :
+                                    0;
+            };
+            let _timeFormat = function (fmt, date) {
+                let ret;
+                const opt = {
+                    "Y+": date.getFullYear().toString(),
+                    "m+": (date.getMonth() + 1).toString(),
+                    "d+": date.getDate().toString(),
+                    "H+": date.getHours().toString(),
+                    "M+": date.getMinutes().toString(),
+                    "S+": date.getSeconds().toString(),
+                    "X+": date.getMilliseconds().toString(),
+                };
+                for (let k in opt) {
+                    ret = new RegExp("(" + k + ")").exec(fmt);
+                    if (ret) {
+                        fmt = fmt.replace(ret[1], (ret[1].length == 1) ? (opt[k]) : (opt[k].padStart(ret[1].length, "0")))
+                    };
+                };
+                return fmt;
+            }
+
+            $.TextFormater = function (options) {
+                let indent = '&nbsp;&nbsp;&nbsp;&nbsp;';
+                let newline = '<br />';
+                let hexLineLength = 32;
+                if (options && options.indent)
+                    indent = options.indent;
+                if (options && options.newline)
+                    newline = options.newline;
+
+                if (options && options.hexLineLength) {
+                    hexLineLength = options.hexLineLength;
+                    hexLineLength = ((hexLineLength + 7) & 0xFFF0);
+                }
+
+                const control_chars = [
+                    'NUL',
+                    'SOH',
+                    'STX',
+                    'ETX',
+                    'EOT',
+                    'ENQ',
+                    'ACK',
+                    'BEL',
+                    'BS',
+                    'HT',
+                    'LF',
+                    'VT',
+                    'FF',
+                    'CR',
+                    'SO',
+                    'SI',
+                    'DLE',
+                    'DC1',
+                    'DC2',
+                    'DC3',
+                    'DC4',
+                    'NAK',
+                    'SYN',
+                    'ETB',
+                    'CAN',
+                    'EM',
+                    'SUB',
+                    'ESC',
+                    'FS',
+                    'GS',
+                    'RS',
+                    'US',
+                    'SP', //32
+                    'DEL' //127
+                ];
+
+                let replace_html_tag = function (value) {
+                    return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                };
+                let getIndent = function (count) {
+                    let output = '';
+                    for (var i = 0; i < count; ++i) {
+                        output += indent;
+                    }
+                    return output;
+                };
+
+                let prefixPad = function (s, n, pad) {
+                    if (n <= s.length)
+                        return s;
+                    if (s.length == 0)
+                        return Array(n).join(pad);
+                    if (n === 2)
+                        return pad + s;
+                    return (Array(n - s.length + 1).join(pad) + s);
+                };
+
+                let build_xml = function (list, element, level) {
+                    let t = getIndent(level);
+                    if (element.nodeName === "#comment") {
+                        t += '<span class="comment">&lt!--' + element.textContent + '--&gt</span>' + newline;
+                        list.push(t);
+                    } else {
+                        t += '<span class="tag-mark">&lt;</span><span class="tag-name">';
+                        t += element.nodeName;
+                        t += '</span>';
+                        for (let i = 0; i < element.attributes.length; ++i) {
+                            let attr = element.attributes[i];
+                            t += ' <span class="attribute-name">' + attr.nodeName + '</span>';
+                            if (attr.value) {
+                                t += '<span class="attribute-equals">=</span><span class="attribute-value">"' + attr.value + '"</span>';
+                            }
+                        }
+                        t += '</span><span class="tag-mark">&gt;</span>';
+
+                        if (element.childNodes.length <= 1) {
+                            let value = '';
+                            if (element.childNodes.length === 1) {
+                                value = element.childNodes[0].nodeValue;
+                            }
+                            value = value ? replace_html_tag(value) : '';
+                            let value_txt = '<span class="text">' + value + '</span>';
+                            t += value_txt;
+                            list.push(t);
+                        } else {
+                            list.push(t + newline);
+                            for (let i = 0; i < element.childNodes.length; i++) {
+                                const childLevel = level + 1;
+                                let childItem = element.childNodes[i];
+                                let nodeName = childItem.nodeName;
+                                if (nodeName === '#text') {
+                                    continue;
+                                }
+
+                                build_xml(list, element.childNodes[i], childLevel);
+                            }
+                            list.push(getIndent(level));
+                        }
+                        list.push('<span class="tag-mark">&lt;/</span><span class="tag-name">' + element.nodeName + '</span><span class="tag-mark">&gt;</span>' + newline);
+                    }
+                };
+
+                let buid_json_string = function (list, text, className) {
+                    let sv = replace_html_tag(text).replace(/[\u0000-\u001F\u007F]/g, function (value) {
+                        let chv = value.charCodeAt(0);
+                        if (chv < 32) {
+                            return '<span class="control">' + control_chars[chv] + '</span>';
+                        } else if (chv === 127) {
+                            return '<span class="control">' + control_chars[33] + '</span>';
+                        } else {
+                            return value;
+                        }
+                    });
+                    list.push('<span class="' + className + '">"' + sv + '"</span>');
+                };
+
+                let build_json = function (list, node, level) {
+                    let type = typeof (node);
+                    switch (type) {
+                        case 'bigint':
+                        case 'number':
+                            list.push('<span class="number">' + node.toString() + '</span>');
+                            break;
+                        case 'undefined':
+                        case 'boolean':
+                            list.push('<span class="boolean">' + (node ? 'true' : 'false') + '</span>');
+                            break;
+                        case 'object': {
+                            if (Array.isArray(node)) {
+                                list.push('<span class="array-brace">[</span>' + newline);
+                                let last = node.length - 1;
+                                for (let i = 0; i < node.length; ++i) {
+                                    list.push(getIndent(level + 1));
+                                    build_json(list, node[i], level + 1);
+                                    if (i != last)
+                                        list.push('<span class="comma">, </span>');
+                                    list.push(newline);
+                                }
+                                list.push(getIndent(level));
+                                list.push('<span class="array-brace">]</span>');
+                            } else if (node) {
+                                list.push('<span class="array-brace">{</span>' + newline);
+                                let first = true;
+                                for (let k in node) {
+                                    if (!first) {
+                                        list.push('<span class="comma">, </span>');
+                                        list.push(newline);
+                                    } else {
+                                        first = false;
+                                    }
+                                    list.push(getIndent(level + 1));
+                                    buid_json_string(list, k, 'property-name');
+                                    list.push('<span class="property-colon">: </span>');
+                                    build_json(list, node[k], level + 1);
+                                }
+                                list.push(newline);
+                                list.push('<span class="array-brace">}</span>');
+                            } else {
+                                list.push('<span class="null">null</span>');
+                            }
+                            break;
+                        }
+                        case 'symbol':
+                        case 'string': {
+                            buid_json_string(list, node, 'string');
+                            break;
+                        }
+                    }
+                };
+
+                let utf8_buffer_decode = function (buffer, offset, length) {
+                    var output = "";
+                    var utf16;
+                    var pos = 0;
+                    if (!offset) offset = 0;
+                    if (!length) length = buffer.byteLength;
+                    var input = new Uint8Array(buffer, offset, length);
+                    while (pos < length) {
+                        var byte1 = input[pos++];
+                        if (byte1 < 128)
+                            utf16 = byte1;
+                        else {
+                            var byte2 = input[pos++] - 128;
+                            if (byte2 < 0)
+                                byte2 = 0;
+                            if (byte1 < 0xE0)             // 2 byte character
+                                utf16 = 64 * (byte1 - 0xC0) + byte2;
+                            else {
+                                var byte3 = input[pos++] - 128;
+                                if (byte3 < 0)
+                                    byte3 = 0;
+                                if (byte1 < 0xF0)        // 3 byte character
+                                    utf16 = 4096 * (byte1 - 0xE0) + 64 * byte2 + byte3;
+                                else {
+                                    var byte4 = input[pos++] - 128;
+                                    if (byte4 < 0)
+                                        byte4 = 0;
+                                    if (byte1 < 0xF8)        // 4 byte character
+                                        utf16 = 262144 * (byte1 - 0xF0) + 4096 * byte2 + 64 * byte3 + byte4;
+                                    else                     // longer encodings are not supported
+                                        utf16 = '?'.charCodeAt(0);
+                                }
+                            }
+                        }
+
+                        if (utf16 > 0xFFFF)   // 4 byte character - express as a surrogate pair
+                        {
+                            utf16 -= 0x10000;
+                            output += String.fromCharCode(0xD800 + (utf16 >> 10)); // lead character
+                            utf16 = 0xDC00 + (utf16 & 0x3FF);  // trail character
+                        }
+                        output += String.fromCharCode(utf16);
+                    }
+                    return output;
+                };
+
+                let utf16_buffer_decode = function (buffer, offset, length) {
+                    var output = "";
+                    var utf16;
+                    var pos = 0;
+                    if (!offset) offset = 0;
+                    if (!length) length = buffer.byteLength;
+                    var input = new Uint16Array(buffer, offset, length);
+                    while (pos < length) {
+                        output += String.fromCharCode(input[pos++]);
+                    }
+                    return output;
+                };
+
+                this.formatXML = function (content) {
+                    let xml_doc = null;
+                    let list = [];
+                    try {
+                        xml_doc = (new DOMParser()).parseFromString(content, 'application/xml');
+                    } catch (e) {
+                        return e.message;
+                    }
+                    if (xml_doc.doctype) {
+                        list.push('<span class="declare">&lt;!DOCTYPE ' + xml_doc.doctype + '<span class="tag-mark">&gt;</span></span>' + newline);
+                    }
+                    if (content.includes("<?xml")) {
+                        list.push(`<span class=\\"declare\\">&lt;?xml version=\\"${xml_doc.xmlVersion}\\" encoding=\\"${xml_doc.xmlEncoding}\\" standalone=\\"${xml_doc.xmlStandalone ? "yes" : "no"}\\"?<span class=\\"tag-mark\\">&gt;</span></span>${newline}`);
+                    }
+                    for (let i = 0; i < xml_doc.childNodes.length; ++i) {
+                        if (xml_doc.childNodes[i].nodeName === '#text') {
+                            continue;
+                        }
+                        build_xml(list, xml_doc.childNodes[i], 0);
+                    }
+                    return list.join("");
+                };
+
+                this.formatJSON = function (content) {
+                    let data = content;
+                    if (typeof (content) === "string") {
+                        try {
+                            data = JSON.parse(content);
+                        } catch (error) {
+                            return error.message;
+                        }
+                    }
+                    let list = [];
+                    build_json(list, data, 0);
+                    return list.join('');
+                };
+
+                this.formatHEX = function (content) {
+                    let data;
+                    let list = [];
+                    if (typeof (content) === "string") {
+                        data = new Int8Array(content.length);
+                        for (let i = 0; i < content.length; ++i) {
+                            data[i] = content.charCodeAt(i);
+                        }
+                    } else if (ArrayBuffer.isView(content)) {
+                        data = content;
+                    } else {
+                        return 'not Unsupported data types [' + typeof (content) + ']';
+                    }
+
+                    list.push('<span class="header">offset</span>');
+                    for (let i = 0; i < hexLineLength; ++i) {
+                        if ((i % 4) == 0) {
+                            list.push('<span class="header">' + prefixPad(i.toString(16).toUpperCase(), 4, '0') + '</span>');
+                        }
+                    }
+                    list.push('<span class="ascii-header">' + prefixPad("-", hexLineLength, '-') + '</span><br />');
+                    let offset = 0;
+                    while (offset < data.byteLength) {
+                        list.push('<span class="offset">' + prefixPad(offset.toString(16).toUpperCase(), 8, '0') + '</span>');
+                        let asciistr = '';
+                        for (let j = 0; j < hexLineLength; j += 4) {
+                            let hexstr = '';
+                            for (let i = 0; i < 4; ++i) {
+                                if (offset < data.byteLength) {
+                                    let ch = data[offset++];
+                                    hexstr += prefixPad(ch.toString(16).toUpperCase(), 2, '0');
+                                    if (ch < 32)
+                                        asciistr += '?';
+                                    else if (ch == 32 || ch >= 127)
+                                        asciistr += '.';
+                                    else
+                                        asciistr += String.fromCharCode(ch);
+                                }
+                            }
+                            list.push('<span class="hex-value">' + hexstr + '</span>');
+                        }
+                        list.push('<span class="ascii-value">' + replace_html_tag(asciistr) + '</span><br />');
+                    }
+                    return list.join('');
+                };
+
+                this.formatUTF8 = function (content) {
+                    if (typeof (content) === "string") {
+                        return content;
+                    } else if (ArrayBuffer.isView(content)) {
+                        return utf8_buffer_decode(content);
+                    } else {
+                        return String.toString(content);
+                    }
+                };
+
+                this.formatUTF16 = function (content) {
+                    if (typeof (content) === "string") {
+                        return content;
+                    } else if (ArrayBuffer.isView(content)) {
+                        return utf16_buffer_decode(content);
+                    } else {
+                        return String.toString(content);
+                    }
+                };
+            };
+            $.hexStringToBuffer = function (hexString) {
+                var rawStr = hexString.trim().toUpperCase();
+                var len = rawStr.length;
+                var curCharCode = 0;
+                var utf8Arr = [];
+                var i = 0;
+                while (i < len) {
+                    var h = 0;
+                    while ((i < len) && ((h < 48 || h > 57) && (h < 65 || h > 70))) {
+                        h = rawStr.charCodeAt(i);
+                        i++;
+                    }
+
+                    if (i >= len)
+                        break;
+
+                    var l = 0;
+                    while ((i < len) && ((l < 48 || l > 57) && (l < 65 || l > 70))) {
+                        l = rawStr.charCodeAt(i);
+                        i++;
+                    }
+
+                    if (l >= 48 && l <= 57)
+                        l = l - 48;
+                    else if (l >= 65 && l <= 70)
+                        l = l - 65 + 10;
+                    else
+                        break;
+
+                    if (h >= 48 && h <= 57)
+                        h = h - 48;
+                    else if (h >= 65 && h <= 70)
+                        h = h - 65 + 10;
+                    else
+                        break;
+
+                    curCharCode = l + (h << 4);
+                    utf8Arr.push(curCharCode);
+                }
+                return new Uint8Array(utf8Arr);
+            };
+            $.bufferToHexString = function (buffer) {
+                if (buffer && (buffer.length || buffer.byteLength)) {
+                    var length = buffer.length || buffer.byteLength;
+                    var output = "";
+                    for (var i = 0; i < length; i++) {
+                        var tmp = buffer[i].toString(16);
+                        if (tmp.length > 1)
+                            output = output + tmp + " ";
+                        else
+                            output = output + "0" + tmp + " ";
+                    }
+                    return output;
+                }
+                return "";
+            };
+            $.bufferToBase64 = function (buffer) {
+                var length = buffer.length || buffer.byteLength;
+                var eqLen = (3 - (length % 3)) % 3, sB64Enc = "";
+                for (var nMod3, nLen = length, nUint24 = 0, nIdx = 0; nIdx < nLen; nIdx++) {
+                    nMod3 = nIdx % 3;
+                    nUint24 |= buffer[nIdx] << (16 >>> nMod3 & 24);
+                    if (nMod3 === 2 || length - nIdx === 1) {
+                        sB64Enc += String.fromCharCode(
+                            _uint6ToB64(nUint24 >>> 18 & 63),
+                            _uint6ToB64(nUint24 >>> 12 & 63),
+                            _uint6ToB64(nUint24 >>> 6 & 63),
+                            _uint6ToB64(nUint24 & 63)
+                        );
+                        nUint24 = 0;
+                    }
+                }
+                return eqLen === 0 ? sB64Enc : sB64Enc.substring(0, sB64Enc.length - eqLen) + (eqLen === 1 ? "=" : "==");
+            };
+            $.base64ToBuffer = function (base64String) {
+                let sB64Enc = base64String.replace(/[^A-Za-z0-9\+\/]/g, "");
+                let nInLen = sB64Enc.length;
+                let nOutLen = nInLen * 3 + 1 >>> 2;
+                let aBytes = new Uint8Array(nOutLen);
+
+                for (var nMod3, nMod4, nUint24 = 0, nOutIdx = 0, nInIdx = 0; nInIdx < nInLen; nInIdx++) {
+                    nMod4 = nInIdx & 3;
+                    nUint24 |= _b64ToUint6(sB64Enc.charCodeAt(nInIdx)) << 18 - 6 * nMod4;
+                    if (nMod4 === 3 || nInLen - nInIdx === 1) {
+                        for (nMod3 = 0; nMod3 < 3 && nOutIdx < nOutLen; nMod3++, nOutIdx++) {
+                            aBytes[nOutIdx] = nUint24 >>> (16 >>> nMod3 & 24) & 255;
+                        }
+                        nUint24 = 0;
+                    }
+                }
+                return aBytes;
+            }
+            $.CreateChartMessageBox = function (formater, type, titleText, message, time) {
+                let box = document.createElement('div');
+                let catpion = document.createElement('div');
+                let title = document.createElement('div');
+                let titleSpan = document.createElement('span');
+                let titleTime = document.createElement('span');
+                let controls = document.createElement('div');
+                let buttons = [
+                    document.createElement('a'),
+                    document.createElement('a'),
+                    document.createElement('a'),
+                    document.createElement('a')
+                ];
+                let body = document.createElement('div');
+                let dateTime = new Date(time || Date().toString());
+
+                titleSpan.textContent = titleText + ' - ';
+                titleTime.textContent = _timeFormat('HH:MM:SS.XXX', dateTime);
+                titleTime.className = 'time';
+
+                title.className = 'title';
+                title.append(titleSpan);
+                title.append(titleTime);
+                title.setAttribute('title', titleSpan.textContent + titleTime.textContent);
+
+                const buttonNames = ["TEXT", "JSON", "XML", "HEX"];
+                const viewerNames = ["raw-text-viewer", "json-viewer", "xml-viewer", "hex-viewer"];
+                const selectedClsN = 'control-selected';
+
+                let autoIdentify = function () {
+                    let first = true;
+                    if (typeof (message) === "string") {
+                        let len = Math.min(message.length, 1024);
+                        for (let i = 0; i < len; ++i) {
+                            let ch = message.charCodeAt(i);
+                            if (ch < 4)
+                                return 3;
+                            else if (first
+                                && ch != 10
+                                && ch != 13
+                                && ch != 9
+                                && ch != 11
+                                && ch != 12
+                            ) {
+                                first = false;
+                                if (ch === 60)
+                                    return 2;
+                                if (ch === 123 || ch === 91)
+                                    return 1;
+                            }
+                        }
+                    } else if (ArrayBuffer.isView(message)) {
+                        return 3;
+                    } else if (typeof (message) === "object") {
+                        return 1;
+                    }
+                    return 0;
+                }
+
+                let setViewer = function (index) {
+                    buttons.forEach((btn) => { btn.classList.remove(selectedClsN); });
+                    let button = buttons[index];
+                    button.classList.add(selectedClsN);
+                    let format = formater['format' + button.textContent] || function (t) { return t };
+                    body.innerHTML = format.call(formater, message);
+                    body.className = 'message-body ' + viewerNames[index];
+                }
+
+                buttons.forEach((button, i) => {
+                    button.className = "control";
+                    button.href = "javascript:void(0);";
+                    button.textContent = buttonNames[i];
+                    button.addEventListener("click", () => {
+                        if (!button.classList.contains(selectedClsN)) {
+                            setViewer(i);
+                        }
+                    });
+                });
+
+                buttons[0].classList.add(selectedClsN);
+
+                controls.className = 'controls';
+                controls.append(...buttons)
+
+                catpion.className = 'catpion';
+                catpion.append(title);
+                catpion.append(controls);
+
+                body.classList.add('message-body');
+                body.textContent = message;
+
+                box.classList.add('message', type);
+                box.append(catpion)
+                box.append(body)
+
+                setViewer(autoIdentify(message));
+                return box;
+            };
+            $.registerMessageHandler = function (name, handler) {
+                _vscodeMessageHandlers[name] = handler;
+            };
+            $.callHostHandler = function (name, ...args) {
+                _vscode.postMessage({
+                    handler: name,
+                    args: args
+                });
+            };
+            $.addEventListener('message', event => {
+                const message = event.data;
+                if (message.handler && _vscodeMessageHandlers[message.handler]) {
+                    let handler = _vscodeMessageHandlers[message.handler];
+                    handler.apply($, message.args);
+                }
+            });
+            $.setState = function (state) {
+                _vscode.setState(state);
+                _state = state;
+            }
+            $.getState = function () {
+                return _state;
+            }
+        })(window);
+    </script>
+</head>
+
+<body class="viewer">
+    <div class="message-history">
+        <div class="more-history">
+            <a href="javascript:void(0)" id="history-top-message">No more history message</a>
+        </div>
+    </div>
+    <div class="message-input">
+        <div class="message-options">
+            <div class="input-option">
+                <select id="websocket-clients"></select>
+                <div class="checkbox">
+                    <input class="state-saveable" id="send-hex-massage" type="checkbox" />
+                    <label for="send-hex-massage">HEX</label>
+                </div>
+                <button class="options" title="message options">...</button>
+            </div>
+
+            <div class="history-option">
+                <button id="clear-history">Clear history</button>
+            </div>
+        </div>
+        <div class="input-controls">
+            <textarea class="state-saveable text-input" name="send-textarea"></textarea>
+            <button class="button-send">SEND</button>
+        </div>
+    </div>
+    <script type="text/javascript">
+        (function () {
+            let formater = new TextFormater();
+            let historyBox = document.querySelector(".message-history");
+            let inputBox = document.querySelector(".text-input");
+            let hexCheckBox = document.getElementById('send-hex-massage');
+            let clientsBox = document.getElementById('websocket-clients');
+            let sendButton = document.querySelector(".button-send");
+            let historyTopMessage = document.getElementById("history-top-message");
+            let clearHistory = document.getElementById('clear-history');
+            let lastHistoryMessageIndex = 0;
+            const maxHistoryMessageCount = 128;
+            let pageState = getState();
+
+            let uiStateUpdate = function () {
+                if (clientsBox.childNodes.length == 0) {
+                    inputBox.setAttribute('disabled', 'disabled');
+                    sendButton.setAttribute('disabled', 'disabled');
+                } else {
+                    inputBox.removeAttribute('disabled');
+                    sendButton.removeAttribute('disabled');
+                }
+            };
+            let scrollTo = function (element, behavior) {
+                historyBox.scrollTo({
+                    left: 0,
+                    top: element.offsetTop + element.offsetHeight,
+                    behavior: behavior
+                });
+            };
+
+            let makeMessage = function () {
+                let data;
+                let encoding;
+                if (hexCheckBox.checked) {
+                    data = bufferToBase64(hexStringToBuffer(inputBox.value));
+                    encoding = 'BinBuffer';
+                } else {
+                    data = inputBox.value;
+                    encoding = 'Plaintext';
+                }
+                let clientId = clientsBox.value === '*' ? undefined : clientsBox.value;
+                return { clientId: clientId, data: data, encoding: encoding };
+            }
+
+            inputBox.addEventListener('keydown', function (e) {
+                if (e.keyCode == 9) {
+                    e.preventDefault();
+                    var indent = '\t';
+                    var start = this.selectionStart;
+                    var end = this.selectionEnd;
+                    var selected = window.getSelection().toString();
+                    selected = indent + selected.replace(/\n/g, '\n' + indent);
+                    this.value = this.value.substring(0, start) + selected
+                        + this.value.substring(end);
+                    this.setSelectionRange(start + indent.length, start
+                        + selected.length);
+                }
+            });
+            clientsBox.addEventListener('change', uiStateUpdate);
+
+            historyTopMessage.addEventListener('click', () => {
+                callHostHandler('websocket.message.history.load', lastHistoryMessageIndex, 6);
+            });
+
+            document.querySelectorAll('.state-saveable').forEach((element) => {
+                let name = element.getAttribute('name');
+                let isCheckbox = (element.getAttribute('type') === "checkbox");
+                if (!name || name.length == 0)
+                    name = element.getAttribute('id');
+                if (!name || name.length == 0)
+                    return;
+                let statevalue = pageState[name];
+                if (typeof (statevalue) !== "undefined") {
+                    if (isCheckbox) {
+                        element.checked = pageState[name];
+                    } else {
+                        element.value = pageState[name];
+                    }
+                }
+
+                element.addEventListener('change', () => {
+                    if (isCheckbox) {
+                        pageState[name] = element.checked;
+                    } else {
+                        pageState[name] = element.value;
+                    }
+                    setState(pageState);
+                })
+            });
+
+            sendButton.addEventListener('click', () => {
+                if (!inputBox.value || inputBox.value.length == 0)
+                    return;
+                let m = makeMessage();
+                callHostHandler('websocket.message.send', m.clientId, m.encoding, m.data);
+            });
+
+            clearHistory.addEventListener('click', () => {
+                callHostHandler('websocket.message.history.clear');
+                historyBox.innerHTML = "";
+                historyBox.append(historyTopMessage.parentElement);
+            });
+
+            document.querySelector('.options').addEventListener('click', function () {
+                let m = makeMessage();
+                callHostHandler('websocket.client.options.show', m.encoding, m.data);
+            });
+            registerMessageHandler('websocket.client.updated', function (clientIds) {
+                clientsBox.innerHTML = "";
+                if (clientIds.length > 0) {
+                    let cur = clientsBox.value;
+                    if (clientIds.length > 1) {
+                        let option = document.createElement('option');
+                        option.value = "*";
+                        option.textContent = 'All clients';
+                        clientsBox.append(option);
+                    }
+                    clientIds.forEach((id) => {
+                        let option = document.createElement('option');
+                        option.value = id;
+                        option.textContent = id;
+                        if (option.value === cur)
+                            option.selected = true;
+                        clientsBox.append(option);
+                    });
+                }
+                uiStateUpdate();
+            });
+            registerMessageHandler('websocket.message.added', function (m) {
+                let messageChart = CreateChartMessageBox(
+                    formater,
+                    m.sourceType === 0 ? 'message-server' : 'message-client',
+                    m.sourceId,
+                    m.encoding === 0 ? m.message : base64ToBuffer(m.message),
+                    m.time);
+                if (historyBox.childNodes.length > maxHistoryMessageCount) {
+                    let next = historyTopMessage.parentElement.nextElementSibling;
+                    if (next) {
+                        historyBox.removeChild(next);
+                    }
+                }
+
+                historyBox.append(messageChart);
+                scrollTo(messageChart, 'smooth');
+            });
+            registerMessageHandler('websocket.client.set', function (clientId) {
+                clientsBox.value = clientId;
+            });
+            registerMessageHandler('websocket.message.history', function (msgs, remai) {
+                let before = historyTopMessage.parentElement;
+                msgs.forEach((m) => {
+                    let chart = CreateChartMessageBox(
+                        formater,
+                        m.sourceType === 0 ? 'message-server' : 'message-client',
+                        m.sourceId,
+                        m.encoding === 0 ? m.message : base64ToBuffer(m.message),
+                        m.time);
+                    before.after(chart);
+                    before = chart;
+                });
+                if (remai <= 0) {
+                    historyTopMessage.textContent = "No more history message";
+                } else {
+                    historyTopMessage.textContent = "Click load more history message";
+                }
+                lastHistoryMessageIndex += msgs.length;
+            });
+            callHostHandler('websocket.client.list');
+            callHostHandler('websocket.message.history.load', lastHistoryMessageIndex, 2);
+            callHostHandler('page.ready');
+        })();
+    </script>
+</body>
+
+</html>

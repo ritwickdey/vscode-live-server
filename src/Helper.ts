@@ -121,7 +121,8 @@ export class Helper {
             fullReload: Config.getfullReload,
             useBrowserExtension: Config.getUseWebExt,
             onTagMissedCallback: onTagMissedCallback,
-            mount: mount
+            mount: mount,
+            wsName: Config.wsServiceName
         };
     }
 

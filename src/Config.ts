@@ -126,6 +126,21 @@ export class Config {
     }
 
     public static setMutiRootWorkspaceName(val: string) {
-       return Config.configuration.update('multiRootWorkspaceName', val, false);
+        return Config.configuration.update('multiRootWorkspaceName', val, false);
     }
+
+    public static get MaxWebsocketMessageHistory(): number {
+        let value = Config.getSettings<number>('maxWSMessageHistory');
+        if ((!value) || value < 1)
+            return 30;
+        return value;
+    }
+
+    public static get wsServiceName(): string {
+        let value = Config.getSettings<string>('wsServiceName');
+        if ((!value))
+            return '/WSService';
+        return value;
+    }
+
 }

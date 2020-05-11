@@ -26,7 +26,6 @@ export class LiveServerHelper {
             }
 
         }, 0);
-
     }
 
     static StopServer(LiveServerInstance, callback) {
