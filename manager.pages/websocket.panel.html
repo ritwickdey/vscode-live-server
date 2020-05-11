@@ -1333,7 +1333,7 @@
                     m.encoding === 0 ? m.message : base64ToBuffer(m.message),
                     m.time);
                 if (historyBox.childNodes.length > maxHistoryMessageCount) {
-                    let next = historyTopMessage.parentElement.nextElementSibling();
+                    let next = historyTopMessage.parentElement.nextElementSibling;
                     if (next) {
                         historyBox.removeChild(next);
                     }

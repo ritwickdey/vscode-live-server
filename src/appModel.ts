@@ -335,7 +335,7 @@ export class AppModel implements IAppModel {
             if (clientId) {
                 this.liveServer.WSClients.forEach((ws) => {
                     if (ws.id === clientId) {
-                        ws.close(0, 'user close');
+                        ws.close(1000, 'user close');
                     }
                 });
             } else {

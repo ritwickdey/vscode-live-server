@@ -1,13 +1,13 @@
 {
-  "name": "LiveServer",
-  "displayName": "Live Server",
-  "description": "Launch a development local Server with live reload feature for static & dynamic pages",
-  "version": "5.6.1",
-  "publisher": "ritwickdey",
+  "name": "LiveServerPP",
+  "displayName": "Live ServerPP",
+  "description": "Launch a development local Server with live reload feature for static & dynamic pages & websocket",
+  "version": "5.7.1",
+  "publisher": "zhouzhipeng",
   "author": {
-    "name": "Ritwick Dey",
-    "email": "ritwickdey@outlook.com",
-    "url": "http://twitter.com/Dey_Ritwick"
+    "name": "zhouzhipeng",
+    "email": "116096543@qq.com",
+    "url": "https://github.com/Zhou-zhi-peng/"
   },
   "engines": {
     "vscode": "^1.20.0"
