@@ -53,6 +53,8 @@ _[Wanna try [LIVE SERVER++](https://github.com/ritwickdey/vscode-live-server-plu
 * CORS Enabled
 * Multi-root workspace supported.
 * Support for any file even dynamic pages through *[Live Server Web Extension](https://github.com/ritwickdey/live-server-web-extension)*.
+* Support websocket message server, Websocket client messages can be displayed, or messages can be sent to clients automatically or manually.
+* Supports dynamic virtual file system that can be used to simulate network delays or simulate the behavior of server APIs
 
 ## Installation
 Open VSCode and type `ctrl+P`, type `ext install ritwickdey.liveserver`.
