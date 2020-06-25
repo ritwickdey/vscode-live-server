@@ -1,7 +1,7 @@
 # Settings
 
 * **`liveServer.settings.port`:** Customize Port Number of your Live Server.  If you want random port number, set it as `0`.
-    *  _Default value is `5500`._
+    *  _Default value is `3306`._
 
     <hr>
  
