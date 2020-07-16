@@ -152,7 +152,7 @@
     * Example: 
     ```js
     {
-        "liveServer.settings.mount:" [
+        "liveServer.settings.mount": [
             ["/", "/path1"],
             ["/", "/path2"],
             ["/root", "/dist"]
