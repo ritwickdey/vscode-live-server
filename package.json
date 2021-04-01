@@ -240,7 +240,7 @@
         "liveServer.settings.useWebExt": {
           "type": "boolean",
           "default": false,
-          "description": "You have to install a browser extension. That will be works for your dynamic pages (like PHP)."
+          "description": "You have to install a browser extension. That will work for your dynamic pages (like PHP)."
         },
         "liveServer.settings.wait": {
           "type": "number",
