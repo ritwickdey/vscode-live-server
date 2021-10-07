@@ -133,7 +133,7 @@
 
     <hr>
 
-* **`liveServer.settings.fullReload:`** : By Default Live Server inject CSS changes without full reloading of browser. You can change this behviour by making this setting as `true`. 
+* **`liveServer.settings.fullReload:`** : By Default Live Server inject CSS changes without full reloading of browser. You can change this behavior by making this setting as `true`. 
     
     * Default: `false`
 
