@@ -213,27 +213,35 @@
             "proxyUri": "http://127.0.0.1:80"
           },
           "properties": {
-            "enable": {
-              "type": "boolean",
-              "default": false,
-              "description": "Make it true to enable the feature."
-            },
-            "baseUri": {
-              "type": "string",
-              "default": "/",
-              "pattern": ""
-            },
-            "proxyUri": {
-              "type": "string",
-              "default": "http://127.0.0.1:80",
-              "pattern": "(^http[s]?://)(.[^(\\|\\s)]+)$"
-            }
-          },
-          "required": [
-            "enable",
-            "baseUri",
-            "proxyUri"
-          ],
+			"enable": {
+				"type": "boolean",
+				"default": false,
+				"description": "Make it true to enable the feature."
+			},
+			"proxyRules": {
+				"type": "array",
+				"items": {
+					"type": "object",
+					"properties": {
+						"baseUri": {
+							"type": "string",
+							"default": "/",
+							"pattern": ""
+						},
+						"proxyUri": {
+							"type": "string",
+							"default": "http://127.0.0.1:80",
+							"pattern": "(^http[s]?://)(.[^(\\|\\s)]+)$"
+						}
+					}
+				}
+			}
+		},
+		"required": [
+			"enable",
+			"proxyRules"
+			
+		],
           "additionalProperties": false,
           "description": "To Setup Proxy"
         },

@@ -121,8 +121,14 @@
 
      "liveServer.settings.proxy": {
         "enable": false, //set it true to enable the feature.
-        "baseUri": "/", //from where you want to proxy. 
-        "proxyUri": "http://localhost/php/" //the actual url.
+        "proxyRules":[
+            {
+                "baseUri": "/", //from where you want to proxy. 
+                "proxyUri": "http://localhost/php/" //the actual url.
+            }
+
+        ]
+  
     },
     ```
 

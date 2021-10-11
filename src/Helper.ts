@@ -143,9 +143,13 @@ export class Helper {
 
     static getProxySetup() {
         const proxySetup = Config.getProxy;
-        let proxy = [[]];
+        let proxy = [];
         if (proxySetup.enable === true) {
-            proxy[0].push(proxySetup.baseUri, proxySetup.proxyUri);
+
+            proxySetup.proxyRules.forEach(rule => {
+                proxy.push([rule.baseUri,rule.proxyUri]);
+                
+            });
         }
         else {
             proxy = null; // required to change the type [[]] to black array [].

@@ -2,10 +2,15 @@
 
 import { workspace } from 'vscode';
 
+
+export interface IPorxyRule{
+    baseUri: string;
+    proxyUri: string;
+}
 export interface IProxy {
     enable: boolean;
     baseUri: string;
-    proxyUri: string;
+    proxyRules: Array<IPorxyRule>;
 }
 
 export interface IHttps {
