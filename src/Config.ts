@@ -3,7 +3,7 @@
 import { workspace } from 'vscode';
 
 
-export interface IPorxyRule{
+export interface IPorxyRule {
     baseUri: string;
     proxyUri: string;
 }

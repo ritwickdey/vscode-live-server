@@ -146,9 +146,8 @@ export class Helper {
         let proxy = [];
         if (proxySetup.enable === true) {
 
-            proxySetup.proxyRules.forEach(rule => {
-                proxy.push([rule.baseUri,rule.proxyUri]);
-                
+            proxySetup.proxyRules.forEach (rule => {
+                proxy.push([rule.baseUri, rule.proxyUri]);
             });
         }
         else {
