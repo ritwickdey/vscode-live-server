@@ -1,7 +1,7 @@
 import { Memento, extensions, window } from 'vscode';
 import * as opn from 'opn';
 
-const SETUP_STRING = 'liveServer.setup.version';
+export const SETUP_STRING = 'liveServer.setup.version';
 
 export async function checkNewAnnouncement(memento: Memento) {
 

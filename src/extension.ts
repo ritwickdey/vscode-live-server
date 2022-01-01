@@ -2,11 +2,12 @@
 
 import { ExtensionContext, workspace, commands, window } from 'vscode';
 import { AppModel } from './appModel';
-import { checkNewAnnouncement } from './announcement';
+import { checkNewAnnouncement, SETUP_STRING } from './announcement';
 
 export function activate(context: ExtensionContext) {
     const appModel = new AppModel();
 
+    context.globalState.setKeysForSync([SETUP_STRING]);
     checkNewAnnouncement(context.globalState);
     context.subscriptions.push(commands
         .registerCommand('extension.liveServer.goOnline', async (fileUri) => {
