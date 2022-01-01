@@ -30,7 +30,7 @@
     "object-assign": "^4.1.1",
     "opn": "^5.3.0",
     "proxy-middleware": "^0.15.0",
-    "send": "^0.16.2",
+    "send": "^0.17.1",
     "serve-index": "^1.7.2"
   },
   "deprecated": false,
