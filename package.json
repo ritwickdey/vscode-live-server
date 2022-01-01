@@ -345,6 +345,7 @@
     "http-shutdown": "^1.2.0",
     "ips": "^2.1.3",
     "live-server": "file:lib\\live-server",
+    "mime": "^2.4.4",
     "opn": "^5.4.0",
     "vsls": "^0.3.967"
   },
