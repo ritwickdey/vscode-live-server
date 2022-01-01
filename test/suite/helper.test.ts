@@ -1,7 +1,7 @@
 import * as assert from 'assert';
 
 import * as vscode from 'vscode';
-import { Helper } from '../src/Helper';
+import { Helper } from '../../src/Helper';
 
 suite('Helper Tests', () => {
 
