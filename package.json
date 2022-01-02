@@ -31,7 +31,7 @@
   "activationEvents": [
     "onStartupFinished"
   ],
-  "main": "./out/src/extension",
+  "main": "./out/src/extension.js",
   "contributes": {
     "commands": [
       {
@@ -340,9 +340,7 @@
     "husky": "^1.2.1",
     "mocha": "^6.1.4",
     "tslint": "^6.1.3",
-    "typescript": "^4.5.4",
-    "webpack": "^4.30.0",
-    "webpack-cli": "^3.3.0"
+    "typescript": "^4.5.4"
   },
   "dependencies": {
     "http-shutdown": "^1.2.0",
