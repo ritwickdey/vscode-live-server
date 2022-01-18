@@ -29,7 +29,13 @@
     "theme": "dark"
   },
   "activationEvents": [
-    "onStartupFinished"
+    "onLanguage:html",
+    "onLanguage:css",
+    "onLanguage:svg",
+    "onLanguage:js",
+    "onCommand:extension.liveServer.goOnline",
+    "onCommand:extension.liveServer.goOffline",
+    "onCommand:extension.liveServer.changeWorkspace"
   ],
   "main": "./out/src/extension.js",
   "contributes": {
