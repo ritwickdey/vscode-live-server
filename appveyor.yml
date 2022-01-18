@@ -6,7 +6,7 @@ branches:
       - master
 
 install:
-  - ps: Update-NodeJsInstallation (Get-NodeJsLatestBuild 10.14)
+  - ps: Update-NodeJsInstallation (Get-NodeJsLatestBuild 14.16.0)
 
 build_script:
   - rm -fr package-lock.json
