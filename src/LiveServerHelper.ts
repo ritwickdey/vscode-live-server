@@ -1,6 +1,6 @@
 'use strict';
-import * as liveServer from 'live-server';
-import * as httpShutdown from 'http-shutdown';
+const liveServer = require('live-server');
+const httpShutdown = require('http-shutdown');
 
 export class LiveServerHelper {
 
