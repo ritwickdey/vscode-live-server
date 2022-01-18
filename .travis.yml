@@ -42,6 +42,6 @@ deploy:
   api_key: $github_token
   file: "*.vsix"
   file_glob: true
-  cleanup: false
+  skip_cleanup: true
   on:
     tags: true
