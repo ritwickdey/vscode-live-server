@@ -32,8 +32,8 @@
   "activationEvents": [
     "onLanguage:html",
     "onLanguage:css",
-    "onLanguage:svg",
-    "onLanguage:js",
+    "onLanguage:xml",
+    "onLanguage:javascript",
     "onCommand:extension.liveServer.goOnline",
     "onCommand:extension.liveServer.goOffline",
     "onCommand:extension.liveServer.changeWorkspace"
