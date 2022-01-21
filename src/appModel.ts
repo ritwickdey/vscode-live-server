@@ -191,7 +191,6 @@ export class AppModel implements IAppModel {
     }
 
     private ToggleStatusBar() {
-        this.isServerBusy = false;
         if (!this.IsServerRunning) {
             StatusbarUi.Offline(this.runningPort || Config.getPort);
         }
