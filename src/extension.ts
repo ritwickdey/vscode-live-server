@@ -4,8 +4,10 @@ import { ExtensionContext, workspace, commands, window } from 'vscode';
 import { AppModel } from './appModel';
 import { checkNewAnnouncement, SETUP_STRING } from './announcement';
 
+let appModel: AppModel;
+
 export function activate(context: ExtensionContext) {
-    const appModel = new AppModel();
+    appModel = new AppModel();
 
     context.globalState.setKeysForSync([SETUP_STRING]);
     checkNewAnnouncement(context.globalState);
@@ -42,5 +44,5 @@ export function activate(context: ExtensionContext) {
 
 
 export function deactivate() {
-
+    appModel.dispose();
 }

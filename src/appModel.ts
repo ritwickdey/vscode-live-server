@@ -16,7 +16,7 @@ import * as ips from 'ips';
 export class AppModel implements IAppModel {
 
     private IsServerRunning: boolean;
-    private IsStaging: boolean;
+    private isServerBusy: boolean;
     private LiveServerInstance;
     private localIps: any;
     private previousWorkspacePath: string;
@@ -42,9 +42,7 @@ export class AppModel implements IAppModel {
 
         this.liveShareHelper = new LiveShareHelper(this);
 
-        this.haveAnySupportedFile().then(() => {
-            StatusbarUi.Init();
-        });
+        StatusbarUi.Init();
     }
 
     public async Golive(pathUri?: string) {
@@ -77,13 +75,17 @@ export class AppModel implements IAppModel {
             this.showPopUpMsg('Invaild Path in liveServer.settings.root settings. live Server will serve from workspace root', true);
         }
 
-        if (this.IsStaging) return;
+        if (this.isServerBusy) return;
 
         let params = Helper.generateParams(pathInfos.rootPath, workspacePath, () => {
             this.tagMissedCallback();
         });
 
+        this.isServerBusy = true;
+        StatusbarUi.Working('Starting...');
+
         LiveServerHelper.StartServer(params, async (serverInstance) => {
+            this.isServerBusy = false;
             if (serverInstance && serverInstance.address) {
                 this.LiveServerInstance = serverInstance;
                 this.runningPort = serverInstance.address().port;
@@ -112,28 +114,25 @@ export class AppModel implements IAppModel {
             }
         });
 
-        this.IsStaging = true;
-        StatusbarUi.Working('Starting...');
     }
 
     public GoOffline() {
-        if (this.IsStaging) return;
+        if (this.isServerBusy) return;
         if (!this.IsServerRunning) {
             this.showPopUpMsg(`Server is not already running`);
             return;
         }
         this.goOfflineEvent.fire({ runningPort: this.runningPort });
+        this.isServerBusy = true;
+        StatusbarUi.Working('Disposing...');
         LiveServerHelper.StopServer(this.LiveServerInstance, () => {
             this.showPopUpMsg('Server is now offline.');
+            this.isServerBusy = false;
             this.ToggleStatusBar();
             this.LiveServerInstance = null;
             this.runningPort = null;
             this.previousWorkspacePath = null;
         });
-        this.IsStaging = true;
-
-        StatusbarUi.Working('Disposing...');
-
     }
 
     changeWorkspaceRoot() {
@@ -192,7 +191,7 @@ export class AppModel implements IAppModel {
     }
 
     private ToggleStatusBar() {
-        this.IsStaging = false;
+        this.isServerBusy = false;
         if (!this.IsServerRunning) {
             StatusbarUi.Offline(this.runningPort || Config.getPort);
         }
@@ -303,6 +302,7 @@ export class AppModel implements IAppModel {
     }
 
     public dispose() {
+        this.GoOffline();
         StatusbarUi.dispose();
     }
 }

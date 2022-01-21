@@ -18,10 +18,7 @@ export class StatusbarUi {
     }
 
     static Init() {
-        StatusbarUi.Working('loading...');
-        setTimeout(function () {
-            StatusbarUi.Live();
-        }, 1000);
+        StatusbarUi.Live();
     }
 
     static Working(workingMsg: string = 'Working on it...') {
