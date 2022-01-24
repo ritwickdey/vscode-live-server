@@ -3,7 +3,7 @@
   "displayName": "Live Server",
   "description": "Launch a development local Server with live reload feature for static & dynamic pages",
 
-  "version": "5.7.3",
+  "version": "5.7.4",
   "publisher": "ritwickdey",
   "author": {
     "name": "Ritwick Dey",
@@ -33,6 +33,7 @@
     "onLanguage:html",
     "onLanguage:css",
     "onLanguage:xml",
+    "onLanguage:php",
     "onLanguage:javascript",
     "onCommand:extension.liveServer.goOnline",
     "onCommand:extension.liveServer.goOffline",
@@ -357,7 +358,7 @@
     "vsls": "^0.3.967"
   },
   "announcement": {
-    "onVersion": "5.7.3",
-    "message": "[NEW] LiveServer@5.7.3: Fixed GoLive Toggle button."
+    "onVersion": "5.7.4",
+    "message": "[NEW] LiveServer@5.7.4: Extension activation fixed for PHP."
   }
 }
