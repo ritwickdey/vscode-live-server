@@ -3,7 +3,7 @@
   "displayName": "Live Server",
   "description": "Launch a development local Server with live reload feature for static & dynamic pages",
 
-  "version": "5.7.4",
+  "version": "5.7.5",
   "publisher": "ritwickdey",
   "author": {
     "name": "Ritwick Dey",
@@ -351,7 +351,7 @@
     "vsls": "^0.3.967"
   },
   "announcement": {
-    "onVersion": "5.7.4",
-    "message": "[NEW] LiveServer@5.7.4: Extension activation fixed for PHP."
+    "onVersion": "5.7.5",
+    "message": "[NEW] LiveServer@5.7.5: Changed extension activationEvents to onStartupFinished."
   }
 }
