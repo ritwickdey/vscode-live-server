@@ -30,14 +30,7 @@
     "theme": "dark"
   },
   "activationEvents": [
-    "onLanguage:html",
-    "onLanguage:css",
-    "onLanguage:xml",
-    "onLanguage:php",
-    "onLanguage:javascript",
-    "onCommand:extension.liveServer.goOnline",
-    "onCommand:extension.liveServer.goOffline",
-    "onCommand:extension.liveServer.changeWorkspace"
+    "onStartupFinished"
   ],
   "main": "./out/src/extension.js",
   "contributes": {
