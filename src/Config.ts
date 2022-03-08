@@ -33,8 +33,8 @@ export class Config {
         return Config.getSettings<string>('host');
     }
 
-    public static get getLocalIp(): string {
-        return Config.getSettings<string>('useLocalIp');
+    public static get getLocalIp(): boolean {
+        return Config.getSettings<boolean>('useLocalIp');
     }
 
     public static get getPort(): number {

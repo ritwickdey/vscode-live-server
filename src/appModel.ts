@@ -18,7 +18,6 @@ export class AppModel implements IAppModel {
     private IsServerRunning: boolean;
     private isServerBusy: boolean;
     private LiveServerInstance;
-    private localIps: any;
     private previousWorkspacePath: string;
 
     private readonly goLiveEvent = new EventEmitter<GoLiveEvent>();
@@ -35,8 +34,6 @@ export class AppModel implements IAppModel {
     }
 
     constructor() {
-        const _ips = ips();
-        this.localIps = _ips.local ? _ips.local : Config.getHost;
         this.IsServerRunning = false;
         this.runningPort = null;
 
@@ -212,7 +209,7 @@ export class AppModel implements IAppModel {
     }
 
     private openBrowser(port: number, path: string) {
-        const host = Config.getLocalIp ? this.localIps : Config.getHost;
+        const host = (Config.getLocalIp ? ips().local : Config.getHost) || '127.0.0.1';
         const protocol = Config.getHttps.enable ? 'https' : 'http';
 
         let params: string[] = [];
@@ -303,6 +300,7 @@ export class AppModel implements IAppModel {
     public dispose() {
         this.GoOffline();
         StatusbarUi.dispose();
+        this.liveShareHelper.dispose();
     }
 }
 
