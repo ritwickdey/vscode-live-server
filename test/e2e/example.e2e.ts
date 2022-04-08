@@ -8,13 +8,26 @@ describe('VSCode Live Server Extension', () => {
         browser = await remote({
             capabilities: { browserName: 'chrome' }
         });
+        const workbench = await driver.getWorkbench();
+
+        /**
+         * wait until all notifications are removed because sometimes
+         * VSCode supresses notifications if others pop up
+         */
+        await workbench.elem.waitUntil(async () => {
+            const notifications = await workbench.getNotifications();
+            for (const n of notifications) {
+                await n.dismiss();
+            }
+            return (await workbench.getNotifications).length === 0;
+        });
     });
 
     it('should click on Go Live', async () => {
         const workbench = await driver.getWorkbench();
         await workbench.elem.$('div[id="ritwickdey.LiveServer"]').click();
 
-        await browser.waitUntil(async () => {
+        await workbench.elem.waitUntil(async () => {
             const notifications = await workbench.getNotifications();
             for (const notification of notifications) {
                 const message = await notification.getMessage();
