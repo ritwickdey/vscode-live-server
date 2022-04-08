@@ -317,7 +317,7 @@
   "homepage": "https://ritwickdey.github.io/vscode-live-server/",
   "scripts": {
     "vscode:prepublish": "tsc -p ./",
-    "compile": "tsc -watch -p ./",
+    "compile": "tsc -p ./",
     "test": "run-s test:*",
     "test:lint": "tslint --project .",
     "test:unit": "node ./out/test/runTest.js",
