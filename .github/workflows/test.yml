@@ -10,7 +10,7 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [macos-latest, windows-latest]
+        os: [ubuntu-latest, macos-latest, windows-latest]
     runs-on: ${{ matrix.os }}
 
     steps:
@@ -25,5 +25,11 @@ jobs:
         run: npm run compile
       - name: Run Tests
         uses: GabrielBB/xvfb-action@v1
+        if: matrix.os != 'ubuntu-latest'
         with:
           run: npm test
+      - name: Run Tests
+        uses: GabrielBB/xvfb-action@v1
+        if: matrix.os == 'ubuntu-latest'
+        with:
+          run: ./node_modules/.bin/run-s test:lint test:unit 
