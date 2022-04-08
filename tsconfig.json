@@ -2,12 +2,14 @@
     "compilerOptions": {
         "module": "commonjs",
         "target": "es6",
+        "skipLibCheck": true,
         "outDir": "out",
         "lib": [
             "es6",
             "DOM"
         ],
         "sourceMap": true,
+        "esModuleInterop": true,
         "rootDir": ".",
         "types": [
             "node",
