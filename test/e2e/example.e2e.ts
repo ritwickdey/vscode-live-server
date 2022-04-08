@@ -24,7 +24,7 @@ describe('VSCode Live Server Extension', () => {
                 }
             }
             return false;
-        });
+        }, { timeout: 10000 });
     });
 
     it('should be able to open started server', async () => {
