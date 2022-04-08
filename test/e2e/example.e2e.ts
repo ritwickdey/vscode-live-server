@@ -12,8 +12,7 @@ describe('VSCode Live Server Extension', () => {
 
     it('should click on Go Live', async () => {
         const workbench = await driver.getWorkbench();
-        const statusBar = await workbench.getStatusBar();
-        await statusBar.elem.$('a[aria-label="broadcast  Go Live, Click to run live server"]').click();
+        await workbench.elem.$('div[id="ritwickdey.LiveServer"]').click();
 
         await browser.waitUntil(async () => {
             const notifications = await workbench.getNotifications();
