@@ -6,5 +6,6 @@
     "search.exclude": {
         "out": true // set this to false to include "out" folder in search results
     },
-    "liveServer.settings.root": "/_site"
+    "liveServer.settings.root": "/_site",
+    "liveServer.settings.port": 5501
 }

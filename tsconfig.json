@@ -4,10 +4,18 @@
         "target": "es6",
         "outDir": "out",
         "lib": [
-            "es6"
+            "es6",
+            "DOM"
         ],
         "sourceMap": true,
-        "rootDir": "."
+        "rootDir": ".",
+        "types": [
+            "node",
+            "webdriverio/async",
+            "@wdio/mocha-framework",
+            "expect-webdriverio",
+            "wdio-vscode-service"
+        ]
     },
     "exclude": [
         "node_modules",
