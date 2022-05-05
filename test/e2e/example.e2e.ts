@@ -19,7 +19,7 @@ describe('VSCode Live Server Extension', () => {
             for (const n of notifications) {
                 await n.dismiss();
             }
-            return (await workbench.getNotifications).length === 0;
+            return (await workbench.getNotifications()).length === 0;
         });
     });
 
