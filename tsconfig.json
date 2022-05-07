@@ -2,12 +2,22 @@
     "compilerOptions": {
         "module": "commonjs",
         "target": "es6",
+        "skipLibCheck": true,
         "outDir": "out",
         "lib": [
-            "es6"
+            "es6",
+            "DOM"
         ],
         "sourceMap": true,
-        "rootDir": "."
+        "esModuleInterop": true,
+        "rootDir": ".",
+        "types": [
+            "node",
+            "webdriverio/async",
+            "@wdio/mocha-framework",
+            "expect-webdriverio",
+            "wdio-vscode-service"
+        ]
     },
     "exclude": [
         "node_modules",

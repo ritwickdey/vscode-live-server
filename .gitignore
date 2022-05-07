@@ -4,3 +4,4 @@ _site
 Gemfile.lock
 **/*.vsix
 .vscode-test
+.wdio-vscode-service
