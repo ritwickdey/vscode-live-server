@@ -129,6 +129,8 @@
           "enum": [
             "chrome",
             "chrome:PrivateMode",
+            "chromium",
+            "chromium:PrivateMode",
             "firefox",
             "firefox:PrivateMode",
             "microsoft-edge",
