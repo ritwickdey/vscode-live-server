@@ -205,6 +205,11 @@
           "default": false,
           "description": "Use local IP as host"
         },
+        "liveServer.settings.cors": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable the CORS support"
+        },
         "liveServer.settings.proxy": {
           "type": "object",
           "default": {

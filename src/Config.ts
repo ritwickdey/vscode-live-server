@@ -49,6 +49,10 @@ export class Config {
         return Config.getSettings<string>('root');
     }
 
+    public static get getCors(): boolean {
+        return Config.getSettings<boolean>('cors');
+    }
+
     public static get getNoBrowser(): boolean {
         return Config.getSettings<boolean>('NoBrowser');
     }
