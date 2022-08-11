@@ -219,6 +219,10 @@ export class AppModel implements IAppModel {
         }
         path = path.replace(/\\/gi, '/');
 
+        if(path.endsWith("/index.html")){
+            path = path.slice(0,-11);
+        }
+
         let useBrowserPreview = Config.getUseBrowserPreview;
         if (useBrowserPreview) {
             let url = `${protocol}://${host}:${port}/${path}`;
