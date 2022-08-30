@@ -53,10 +53,6 @@ export class Config {
         return Config.getSettings<boolean>('NoBrowser');
     }
 
-    public static get getUseBrowserPreview(): boolean {
-        return Config.getSettings<boolean>('useBrowserPreview');
-    }
-
     public static get getAdvancedBrowserCmdline(): string {
         return Config.getSettings<string>('AdvanceCustomBrowserCmdLine');
     }

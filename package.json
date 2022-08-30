@@ -115,11 +115,6 @@
           "pattern": "/|/[^\\/]",
           "description": "Set Custom root of Live Server. \nTo change root the the server to sub folder of workspace, use '/' and relative path from workspace. \nExample: /subfolder1/subfolder2"
         },
-        "liveServer.settings.useBrowserPreview": {
-          "type": "boolean",
-          "default": false,
-          "description": "Open in Browser Preview inside VS Code, instead of default browser"
-        },
         "liveServer.settings.CustomBrowser": {
           "type": [
             "string",

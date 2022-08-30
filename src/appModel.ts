@@ -214,20 +214,8 @@ export class AppModel implements IAppModel {
         if (path.startsWith('\\') || path.startsWith('/')) {
             path = path.substring(1, path.length);
         }
-        path = path.replace(/\\/gi, '/');
 
-        let useBrowserPreview = Config.getUseBrowserPreview;
-        if (useBrowserPreview) {
-            let url = `${protocol}://${host}:${port}/${path}`;
-            let onSuccess = () => {};
-            let onError = (err) => {
-                this.showPopUpMsg(`Server is started at ${this.runningPort} but failed to open in Browser Preview. Got Browser Preview extension installed?`, true);
-                console.log('\n\nError Log to open Browser : ', err);
-                console.log('\n\n');
-            };
-            commands.executeCommand(`browser-preview.openPreview`, url).then(onSuccess, onError);
-            return;
-        }
+        path = path.replace(/\\/gi, '/');
 
         if (advanceCustomBrowserCmd) {
             advanceCustomBrowserCmd
@@ -300,5 +288,3 @@ export class AppModel implements IAppModel {
         this.liveShareHelper.dispose();
     }
 }
-
-
