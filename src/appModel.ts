@@ -158,7 +158,7 @@ export class AppModel implements IAppModel {
     }
 
     private tagMissedCallback() {
-        this.showPopUpMsg('Live Reload is not possible without body or head tag.', null, true);
+        this.showPopUpMsg('Live Reload is not possible without a head or body tag.', null, true);
     }
 
     private showPopUpMsg(msg: string, isErrorMsg: boolean = false, isWarning: boolean = false) {
