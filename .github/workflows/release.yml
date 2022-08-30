@@ -65,7 +65,7 @@ jobs:
       - name: Setup Git
         run: |
           git config --global user.name "Release Bot"
-          git config --global user.email "no-replay@github.com"
+          git config --global user.email "no-noreply@github.com"
       - name: Get Current Version Number
         run: |
           CURRENT_VERSION=$(cat package.json | jq .version | cut -d'"' -f 2)
@@ -92,20 +92,19 @@ jobs:
         run: |
           git checkout -- package.json
           npm version $RELEASE_VERSION
-          git tag -a $RELEASE_VERSION -m "$RELEASE_VERSION"
       - name: Package Extension (Edge)
         if: ${{ github.event.inputs.releaseChannel == 'edge' }}
         run: |
           node .github/scripts/updateEdgeVersion.js
-          yarn vsce package --pre-release --yarn --no-git-tag-version --no-update-package-json -o "./live-server-$RELEASE_VERSION.vsix" ${{ github.event.inputs.additionalFlags }}
+          npx vsce package --pre-release --no-git-tag-version --no-update-package-json -o "./live-server-$RELEASE_VERSION.vsix" ${{ github.event.inputs.additionalFlags }}
       - name: Package Extension (Stable)
-        run: yarn vsce package $RELEASE_VERSION --yarn --no-git-tag-version --no-update-package-json -o "./live-server-$RELEASE_VERSION.vsix" ${{ github.event.inputs.additionalFlags }}
+        run: npx vsce package $RELEASE_VERSION --no-git-tag-version --no-update-package-json -o "./live-server-$RELEASE_VERSION.vsix" ${{ github.event.inputs.additionalFlags }}
         if: ${{ github.event.inputs.releaseChannel == 'stable' }}
       - name: Publish to Visual Studio Marketplace (Edge)
-        run: yarn vsce publish --packagePath "./live-server-$RELEASE_VERSION.vsix" --pre-release --yarn --no-git-tag-version --no-update-package-json -p ${{ secrets.VSC_MKTP_PAT }} ${{ github.event.inputs.additionalFlags }}
+        run: npx vsce publish --packagePath "./live-server-$RELEASE_VERSION.vsix" --pre-release --no-git-tag-version --no-update-package-json -p ${{ secrets.VSC_MKTP_PAT }} ${{ github.event.inputs.additionalFlags }}
         if: ${{ github.event.inputs.publishMarketplace == 'yes' && github.event.inputs.releaseChannel == 'edge' }}
       - name: Publish to Visual Studio Marketplace (Stable)
-        run: yarn vsce publish --packagePath "./live-server-$RELEASE_VERSION.vsix" --yarn --no-git-tag-version --no-update-package-json -p ${{ secrets.VSC_MKTP_PAT }} ${{ github.event.inputs.additionalFlags }}
+        run: npx vsce publish --packagePath "./live-server-$RELEASE_VERSION.vsix" --no-git-tag-version --no-update-package-json -p ${{ secrets.VSC_MKTP_PAT }} ${{ github.event.inputs.additionalFlags }}
         if: ${{ github.event.inputs.publishMarketplace == 'yes' && github.event.inputs.releaseChannel == 'stable' }}
       - name: Publish to Open VSX Registry (Edge)
         uses: HaaLeo/publish-vscode-extension@v1
@@ -124,7 +123,7 @@ jobs:
       - name: Push Tags
         run: |
           git log -1 --stat
-          git push origin main --tags
+          git push origin master --tags
       - run: |
           export GIT_TAG=$(git describe --tags --abbrev=0)
           echo "GIT_TAG=$GIT_TAG" >> $GITHUB_ENV
