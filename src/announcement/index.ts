@@ -1,5 +1,4 @@
 import { Memento, extensions, window } from 'vscode';
-import * as opn from 'opn';
 
 export const SETUP_STRING = 'liveServer.setup.version';
 
@@ -19,7 +18,7 @@ export async function checkNewAnnouncement(memento: Memento) {
         const choice = await window.showInformationMessage(announcement.message, showDetails);
         if (choice === showDetails) {
             const url = announcement.url || 'https://github.com/ritwickdey/vscode-live-server';
-            opn(url);
+            require('opn')(url);
         }
 
     }

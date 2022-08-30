@@ -10,9 +10,6 @@ import { workspaceResolver, setOrChangeWorkspace } from './workspaceResolver';
 import { IAppModel, GoLiveEvent, GoOfflineEvent } from './IAppModel';
 import { LiveShareHelper } from './LiveShareHelper';
 
-import * as opn from 'opn';
-import * as ips from 'ips';
-
 export class AppModel implements IAppModel {
 
     private IsServerRunning: boolean;
@@ -209,7 +206,7 @@ export class AppModel implements IAppModel {
     }
 
     private openBrowser(port: number, path: string) {
-        const host = (Config.getLocalIp ? ips().local : Config.getHost) || '127.0.0.1';
+        const host = (Config.getLocalIp ? require('ips').local : Config.getHost) || '127.0.0.1';
         const protocol = Config.getHttps.enable ? 'https' : 'http';
 
         let params: string[] = [];
@@ -289,7 +286,7 @@ export class AppModel implements IAppModel {
         }
 
         try {
-            opn(`${protocol}://${host}:${port}/${path}`, { app: params || [''] });
+            require('opn')(`${protocol}://${host}:${port}/${path}`, { app: params || [''] });
         } catch (error) {
             this.showPopUpMsg(`Server is started at ${this.runningPort} but failed to open browser. Try to change the CustomBrowser settings.`, true);
             console.log('\n\nError Log to open Browser : ', error);
