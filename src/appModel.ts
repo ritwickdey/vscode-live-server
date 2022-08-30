@@ -276,7 +276,7 @@ export class AppModel implements IAppModel {
         try {
             require('opn')(`${protocol}://${host}:${port}/${path}`, { app: params || [''] });
         } catch (error) {
-            this.showPopUpMsg(`Server is started at ${this.runningPort} but failed to open browser. Try to change the CustomBrowser settings.`, true);
+            this.showPopUpMsg(`Server is started at ${host}:${this.runningPort} but failed to open browser. Try to change the CustomBrowser settings.`, true);
             console.log('\n\nError Log to open Browser : ', error);
             console.log('\n\n');
         }
