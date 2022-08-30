@@ -121,11 +121,11 @@ export class Config {
         return Config.getSettings<string>('file');
     }
 
-    public static get getMutiRootWorkspaceName(): string {
+    public static get getMultiRootWorkspaceName(): string {
         return Config.getSettings<string>('multiRootWorkspaceName');
     }
 
-    public static setMutiRootWorkspaceName(val: string) {
+    public static setMultiRootWorkspaceName(val: string) {
        return Config.configuration.update('multiRootWorkspaceName', val, false);
     }
 }

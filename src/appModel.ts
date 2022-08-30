@@ -5,7 +5,7 @@ import { commands, window, workspace, Event, EventEmitter } from 'vscode';
 import { LiveServerHelper } from './LiveServerHelper';
 import { StatusbarUi } from './StatusbarUi';
 import { Config } from './Config';
-import { Helper, SUPPRORTED_EXT } from './Helper';
+import { Helper, SUPPORTED_EXT } from './Helper';
 import { workspaceResolver, setOrChangeWorkspace } from './workspaceResolver';
 import { IAppModel, GoLiveEvent, GoOfflineEvent } from './IAppModel';
 import { LiveShareHelper } from './LiveShareHelper';
@@ -69,7 +69,7 @@ export class AppModel implements IAppModel {
             );
         }
         if (pathInfos.isNotOkay) {
-            this.showPopUpMsg('Invaild Path in liveServer.settings.root settings. live Server will serve from workspace root', true);
+            this.showPopUpMsg('Invalid Path in liveServer.settings.root settings. live Server will serve from workspace root', true);
         }
 
         if (this.isServerBusy) return;
@@ -134,9 +134,9 @@ export class AppModel implements IAppModel {
 
     changeWorkspaceRoot() {
         setOrChangeWorkspace()
-            .then(workspceName => {
-                if (workspceName === undefined) return;
-                window.showInformationMessage(`Success! '${workspceName}' workspace is now root of Live Server`);
+            .then(workspaceName => {
+                if (workspaceName === undefined) return;
+                window.showInformationMessage(`Success! '${workspaceName}' workspace is now root of Live Server`);
                 // If server is running, Turn off the server.
                 if (this.IsServerRunning)
                     this.GoOffline();
@@ -168,8 +168,8 @@ export class AppModel implements IAppModel {
         else if (isWarning && !Config.getDonotVerifyTags) {
             const donotShowMsg = 'I understand, Don\'t show again';
             window.showWarningMessage(msg, donotShowMsg)
-                .then(choise => {
-                    if (choise && choise === donotShowMsg) {
+                .then(choice => {
+                    if (choice && choice === donotShowMsg) {
                         Config.setDonotVerifyTags(true, true);
                     }
                 });
@@ -200,7 +200,7 @@ export class AppModel implements IAppModel {
 
     private haveAnySupportedFile() {
         return new Promise<void>(resolve => {
-            const globFormat = `**/*[${SUPPRORTED_EXT.join(' | ')}]`;
+            const globFormat = `**/*[${SUPPORTED_EXT.join(' | ')}]`;
             workspace.findFiles(globFormat, '**/node_modules/**', 1)
                 .then(async (files) => {
                     if (files && files.length) return resolve();
