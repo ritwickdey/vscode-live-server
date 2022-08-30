@@ -355,7 +355,7 @@
     "vsls": "^0.3.967"
   },
   "announcement": {
-    "onVersion": "5.7.5",
-    "message": "[NEW] LiveServer@5.7.5: Changed extension activationEvents to onStartupFinished."
+    "onVersion": "5.7.8",
+    "message": "[NEW] LiveServer@5.7.8: Improved activation load time"
   }
 }
