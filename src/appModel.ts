@@ -206,7 +206,7 @@ export class AppModel implements IAppModel {
     }
 
     private openBrowser(port: number, path: string) {
-        const host = (Config.getLocalIp ? require('ips').local : Config.getHost) || '127.0.0.1';
+        const host = (Config.getLocalIp ? require('ips')().local : Config.getHost) || '127.0.0.1';
         const protocol = Config.getHttps.enable ? 'https' : 'http';
 
         let params: string[] = [];
