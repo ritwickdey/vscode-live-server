@@ -90,8 +90,10 @@ jobs:
         if: ${{ github.event.inputs.releaseChannel == 'stable' }}
       - name: Version Package
         run: |
+          git stash 
           npm version $RELEASE_VERSION
           git tag -a $RELEASE_VERSION -m "$RELEASE_VERSION"
+          git stash pop
       - name: Package Extension (Edge)
         if: ${{ github.event.inputs.releaseChannel == 'edge' }}
         run: |
