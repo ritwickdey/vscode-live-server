@@ -2,7 +2,7 @@
   "name": "LiveServer",
   "displayName": "Live Server",
   "description": "Launch a development local Server with live reload feature for static & dynamic pages",
-  "version": "5.7.6",
+  "version": "5.7.7",
   "publisher": "ritwickdey",
   "author": {
     "name": "Ritwick Dey",
