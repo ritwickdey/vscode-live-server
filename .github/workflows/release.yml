@@ -24,7 +24,7 @@ on:
         description: "Publish on Visual Studio Marketplace?"
         required: true
         type: choice
-        default: "yes"
+        default: "no"
         options:
           - "yes"
           - "no"
@@ -32,7 +32,7 @@ on:
         description: "Publish on Open VSX Registry?"
         required: true
         type: choice
-        default: "yes"
+        default: "no"
         options:
           - "yes"
           - "no"
@@ -90,10 +90,9 @@ jobs:
         if: ${{ github.event.inputs.releaseChannel == 'stable' }}
       - name: Version Package
         run: |
-          git stash 
+          git checkout -- package.json
           npm version $RELEASE_VERSION
           git tag -a $RELEASE_VERSION -m "$RELEASE_VERSION"
-          git stash pop
       - name: Package Extension (Edge)
         if: ${{ github.event.inputs.releaseChannel == 'edge' }}
         run: |
