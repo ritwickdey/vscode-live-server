@@ -101,7 +101,7 @@ export class AppModel implements IAppModel {
                     this.showPopUpMsg(`The default port : ${Config.getPort - 1} is currently taken, changing port to : ${Config.getPort}.`);
                     this.Golive(pathUri);
                 } else {
-                    this.showPopUpMsg(`Something is went wrong! Please check into Developer Console or report on GitHub.`, true);
+                    this.showPopUpMsg(`Something went wrong! Please check into Developer Console or report on GitHub.`, true);
                 }
                 this.IsServerRunning = true; // to revert status - cheat :p
                 this.ToggleStatusBar(); // reverted
