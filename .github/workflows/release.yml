@@ -90,7 +90,7 @@ jobs:
         if: ${{ github.event.inputs.releaseChannel == 'stable' }}
       - name: Version Package
         run: |
-          git checkout -- package.json
+          git checkout .
           npm version $RELEASE_VERSION
       - name: Package Extension (Edge)
         if: ${{ github.event.inputs.releaseChannel == 'edge' }}
