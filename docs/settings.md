@@ -1,11 +1,11 @@
 # Settings
 
-* **`liveServer.settings.port`:** Customize Port Number of your Live Server.  If you want random port number, set it as `0`.
+* **`liveServer.settings.port`:** Customize the port number of your live server. If you want a random port number, set it as `0`.
     *  _Default value is `5500`._
 
     <hr>
  
-* **`liveServer.settings.root`:** To change root of server in between workspace folder structure,  use `/` and absolute path from workspace.
+* **`liveServer.settings.root`:** To change the root of the server in between workspace folder structure, use `/` and absolute path from the workspace.
     * _Example: `/sub_folder1/sub_folder2`_. Now `sub_folder2` will be root of the server.
     
     *  _Default value is "`/`".(The Workspace Root)_.
@@ -51,7 +51,7 @@
 
 
 
-* **`liveServer.settings.NoBrowser`:** If it is true live server will start without browser opened.
+* **`liveServer.settings.NoBrowser`:** If it is true, the live server will start without the browser open.
     
     * _Default Value is `false`_ 
 
@@ -73,7 +73,7 @@
 
     <hr>
 
-* **`liveServer.settings.donotShowInfoMsg`:** To turn off information pop-up messages like _"Server starts with port xxxx"_ or like that.  To turn off it, you can set the value as `true` or you can click to _"Don't show again"_ when a information message pop-up.
+* **`liveServer.settings.donotShowInfoMsg`:** To turn off information pop-up messages like _"Server starts with port xxxx"_ or like that.  To disable it,  set the value as `true` or click to _"Don't show again"_ when an information message pop-up appears.
        
     * _Default value is : `false`_
     
@@ -90,7 +90,7 @@
   
     <hr>
 
-* **`liveServer.settings.donotVerifyTags`:** To turn off prompt warning message if body or head or other supporting tag is missing in your HTML.
+* **`liveServer.settings.donotVerifyTags`:** To turn off prompt warning message if body, head, or other supporting tag is missing in your HTML.
     * _Default value if `false`_
 
     
@@ -115,8 +115,8 @@
     * *Properties :*
     ```js
     /* 
-         In easy word, it means you're shifting your real url (actual PHP url) 
-         to another url (which LiveSever will start).
+         In easy words, it means you're shifting your real URL (actual PHP URL) 
+         to another URL (which LiveSever will start).
     */
 
      "liveServer.settings.proxy": {
@@ -128,12 +128,12 @@
 
      <hr>
 
-* **`liveServer.settings.useWebExt:`** : If it is `true`, Live Reload will be fully controled by the [Live Server Web Extension](https://github.com/ritwickdey/live-server-web-extension). And also, it does not matter if your HTML have `<body>` tag or not, Live Reload will work for every file. :smile:
+* **`liveServer.settings.useWebExt:`** : If it is `true`, Live Reload will be fully controlled by the [Live Server Web Extension](https://github.com/ritwickdey/live-server-web-extension). And also, it does not matter if your HTML has a `<body>` tag or not, Live Reload will work for every file. :smile:
     * Default is `false`
 
     <hr>
 
-* **`liveServer.settings.fullReload:`** : By Default Live Server inject CSS changes without full reloading of browser. You can change this behavior by making this setting as `true`. 
+* **`liveServer.settings.fullReload:`** : By Default Live Server injects CSS changes without requiring a full browser reload. You can change this behavior by making this setting `true`. 
     
     * Default: `false`
 
@@ -180,5 +180,5 @@
 
     * You can change it using Command Palette `ctrl+shift+p` & type `Live Server: Change Live Server workspace`
     
-    * Tips: You don't need to set this setting, Live Server is smart enough, it'll eigher ask what you want or automatically set the correct workspace if open the server by right clicking any HTML file.    
+    * Tips: You don't need to set this setting. Live Server is smart enough to either ask what you want or automatically set the correct workspace if you open the server by right-clicking any HTML file.    
     <hr>
