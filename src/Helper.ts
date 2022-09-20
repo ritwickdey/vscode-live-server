@@ -83,6 +83,7 @@ export class Helper {
 
         workspacePath = workspacePath || '';
         const port = Config.getPort;
+        const cors = Config.getCors ?? true;
         const ignorePathGlob = Config.getIgnoreFiles || [];
 
         const ignoreFiles = [];
@@ -116,7 +117,7 @@ export class Helper {
             ignore: ignoreFiles,
             disableGlobbing: true,
             proxy: proxy,
-            cors: true,
+            cors: cors,
             wait: Config.getWait || 100,
             fullReload: Config.getfullReload,
             useBrowserExtension: Config.getUseWebExt,
