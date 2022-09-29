@@ -53,7 +53,7 @@
 
 * **`liveServer.settings.NoBrowser`:** If it is true live server will start without browser opened.
     
-    * _Default Value is `false`_ 
+    * _Default Value is `true`_ 
 
     
     <hr>
