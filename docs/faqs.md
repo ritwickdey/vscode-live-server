@@ -9,8 +9,9 @@
 
 ## How to configure the settings in my project?
 
-Create a `.vscode` folder in the root of project. Inside of `.vscode` folder create a json file named `settings.json`.
-Inside of the `settings.json`, type following key-value pairs. By the way you'll get intelli-sense.
+Create a `.vscode` folder in the root directory of the project. Inside `.vscode` folder, create a json file named `settings.json`. 
+
+Inside `settings.json`, type the following key-value  pairs.
 
 ```json
 {
@@ -27,7 +28,7 @@ Inside of the `settings.json`, type following key-value pairs. By the way you'll
 
 }
 ```
-_Note: Use either `CustomBrowser` or `AdvanceCustomBrowserCmdLine` setting._
+_**Note**: Use either `CustomBrowser` or `AdvanceCustomBrowserCmdLine` setting._
 
 ----------
 
@@ -47,20 +48,24 @@ _Note: Use either `CustomBrowser` or `AdvanceCustomBrowserCmdLine` setting._
 
 ## How to access the server from Mobile?
 
- First, make a sure that your PC & Mobile are connected through same network. 
+ First, make sure that your PC & Mobile are connected through the same network. 
 
-* **Windows** :  Open `CMD` and enter `ipconfig`.
-* **Linux/macOS** : Open `terminal` and enter `ifconfig`.
+* **Windows** :  Open CMD and enter `ipconfig`.
+* **Linux/macOS** : Open terminal and enter `ifconfig`.
 
-And note down the `IPv4 Address` (probably it will look like 192.168.xx.xx). This is your PC's IP address. Enter the address to your browser's URL Bar with the port number**.
+Note down the `IPv4 Address` (It will probably look like 192.168.xx.xx). This is your PC's IP address.
 
-        http://<IP Address> : <Port>
+Find the `port number` at which the live server is running. You will be able to find in the status bar (The bottom bar inside the VS Code window).
 
-** For an example, if your server running at **http:// 127.0.0.1:3500** on PC then port number is **3500**.
+Enter this IP address and port number in your mobile's browser like this:
+
+        http://<IP Address>:<Port>
+
+_**Note**: If this does not work, you will probably have to check your firewall settings. Your PC's firewall might be blocking the connection between your PC and your mobile._
 
 ----------
 
 ## Are Multi-root workspaces supported?
 
 Currently there is no support for multi-root workspaces. It's automatically the first folder in the workspace choosen.
-The current state of this issue you can track [here](https://github.com/ritwickdey/vscode-live-server/issues/43).
+The current state of this issue can be tracked [here](https://github.com/ritwickdey/vscode-live-server/issues/43).
