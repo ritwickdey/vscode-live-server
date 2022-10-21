@@ -2,7 +2,7 @@
   "name": "LiveServer",
   "displayName": "Live Server",
   "description": "Launch a development local Server with live reload feature for static & dynamic pages",
-  "version": "5.6.1",
+  "version": "5.7.9",
   "publisher": "ritwickdey",
   "author": {
     "name": "Ritwick Dey",
@@ -10,7 +10,7 @@
     "url": "http://twitter.com/Dey_Ritwick"
   },
   "engines": {
-    "vscode": "^1.20.0"
+    "vscode": "^1.51.0"
   },
   "categories": [
     "Other"
@@ -29,9 +29,9 @@
     "theme": "dark"
   },
   "activationEvents": [
-    "*"
+    "onStartupFinished"
   ],
-  "main": "./out/src/extension",
+  "main": "./out/src/extension.js",
   "contributes": {
     "commands": [
       {
@@ -114,11 +114,6 @@
           "default": "/",
           "pattern": "/|/[^\\/]",
           "description": "Set Custom root of Live Server. \nTo change root the the server to sub folder of workspace, use '/' and relative path from workspace. \nExample: /subfolder1/subfolder2"
-        },
-        "liveServer.settings.useBrowserPreview": {
-          "type": "boolean",
-          "default": false,
-          "description": "Open in Browser Preview inside VS Code, instead of default browser"
         },
         "liveServer.settings.CustomBrowser": {
           "type": [
@@ -258,7 +253,7 @@
         "liveServer.settings.fullReload": {
           "type": "boolean",
           "default": false,
-          "description": "By Default Live Server inject CSS changes without full reloading of browser. You can change this behviour by making this setting as `true`"
+          "description": "By Default Live Server inject CSS changes without full reloading of browser. You can change this behavior by making this setting as `true`"
         },
         "liveServer.settings.https": {
           "type": "object",
@@ -325,12 +320,14 @@
   "homepage": "https://ritwickdey.github.io/vscode-live-server/",
   "scripts": {
     "vscode:prepublish": "tsc -p ./",
-    "compile": "tsc -watch -p ./",
-    "postinstall": "node ./node_modules/vscode/bin/install",
-    "test": "node ./node_modules/vscode/bin/test",
-    "lint": "tslint --project .",
-    "precommit": "npm run lint",
-    "prepush": "npm run lint"
+    "compile": "tsc -p ./",
+    "test": "run-s test:*",
+    "test:lint": "tslint --project .",
+    "test:unit": "node ./out/test/runTest.js",
+    "test:e2e": "wdio run ./test/wdio.conf.ts",
+    "precommit": "npm run test:lint",
+    "prepush": "npm run test:lint",
+    "watch": "tsc -watch -p ./"
   },
   "husky": {
     "hooks": {
@@ -339,25 +336,40 @@
     }
   },
   "devDependencies": {
-    "@types/mocha": "^2.2.48",
-    "@types/node": "^9.6.40",
+    "@types/glob": "^7.1.1",
+    "@types/node": "^17.0.6",
+    "@types/vscode": "^1.51.0",
+    "@vscode/test-electron": "^2.0.1",
+    "@wdio/cli": "^7.19.3",
+    "@wdio/local-runner": "^7.19.3",
+    "@wdio/mocha-framework": "^7.19.3",
+    "@wdio/spec-reporter": "^7.19.1",
+    "glob": "^7.2.0",
     "husky": "^1.2.1",
-    "mocha": "^5.0.4",
-    "tslint": "^5.11.0",
-    "typescript": "^3.9.7",
-    "vscode": "^1.1.26",
-    "webpack": "^4.30.0",
-    "webpack-cli": "^3.3.0"
+
+    "mocha": "^9.2.2",
+    "npm-run-all": "^4.1.5",
+    "semver": "^7.3.6",
+    "ts-node": "^10.7.0",
+    "tslint": "^6.1.3",
+    "typescript": "^4.5.4",
+    "vsce": "^2.7.0",
+    "wdio-vscode-service": "^2.0.1",
+    "es5-ext": "0.10.53"
+
   },
   "dependencies": {
     "http-shutdown": "^1.2.0",
     "ips": "^2.1.3",
     "live-server": "file:lib\\live-server",
-    "opn": "^5.4.0",
+    "opn": "^6.0.0",
     "vsls": "^0.3.967"
   },
+  "overrides": {
+    "es5-ext": "0.10.53"
+  },
   "announcement": {
-    "onVersion": "5.6.1",
-    "message": "[NEW] LiveServer@5.6: BrowserPreview integration, auto fallback to random port & fixes."
+    "onVersion": "5.7.9",
+    "message": "[NEW] LiveServer@5.7.9: Activation load time improved"
   }
 }

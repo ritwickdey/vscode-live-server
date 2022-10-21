@@ -38,8 +38,8 @@ export class Config {
         return Config.getSettings<string>('host');
     }
 
-    public static get getLocalIp(): string {
-        return Config.getSettings<string>('useLocalIp');
+    public static get getLocalIp(): boolean {
+        return Config.getSettings<boolean>('useLocalIp');
     }
 
     public static get getPort(): number {
@@ -56,10 +56,6 @@ export class Config {
 
     public static get getNoBrowser(): boolean {
         return Config.getSettings<boolean>('NoBrowser');
-    }
-
-    public static get getUseBrowserPreview(): boolean {
-        return Config.getSettings<boolean>('useBrowserPreview');
     }
 
     public static get getAdvancedBrowserCmdline(): string {
@@ -126,11 +122,11 @@ export class Config {
         return Config.getSettings<string>('file');
     }
 
-    public static get getMutiRootWorkspaceName(): string {
+    public static get getMultiRootWorkspaceName(): string {
         return Config.getSettings<string>('multiRootWorkspaceName');
     }
 
-    public static setMutiRootWorkspaceName(val: string) {
+    public static setMultiRootWorkspaceName(val: string) {
        return Config.configuration.update('multiRootWorkspaceName', val, false);
     }
 }

@@ -4,7 +4,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { Config } from './Config';
 
-export const SUPPRORTED_EXT: string[] = [
+export const SUPPORTED_EXT: string[] = [
     '.html', '.htm', '.svg'
 ];
 
@@ -65,7 +65,7 @@ export class Helper {
      */
     public static IsSupportedFile(file: string): boolean {
         let ext = path.extname(file) || (file.startsWith('.') ? file : `.${file}`);
-        return SUPPRORTED_EXT.indexOf(ext.toLowerCase()) > -1;
+        return SUPPORTED_EXT.indexOf(ext.toLowerCase()) > -1;
     }
 
 

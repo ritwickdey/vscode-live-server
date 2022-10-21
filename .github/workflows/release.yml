@@ -1,0 +1,136 @@
+name: Publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      releaseType:
+        description: "Release Type"
+        required: true
+        type: choice
+        default: "patch"
+        options:
+          - patch
+          - minor
+          - major
+      releaseChannel:
+        description: "Release Channel"
+        required: true
+        type: choice
+        default: stable
+        options:
+          - stable
+          - edge
+      publishMarketplace:
+        description: "Publish on Visual Studio Marketplace?"
+        required: true
+        type: choice
+        default: "no"
+        options:
+          - "yes"
+          - "no"
+      publishOpenVSX:
+        description: "Publish on Open VSX Registry?"
+        required: true
+        type: choice
+        default: "no"
+        options:
+          - "yes"
+          - "no"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone Repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Setup Node version
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+      - name: Install dependencies
+        run: npm install
+      - name: Build Package
+        run: npm run compile
+      - name: Run Tests
+        uses: GabrielBB/xvfb-action@v1
+        with:
+          run: npm test
+          options: "-screen 0 1600x1200x24"
+      - name: Create Changelog
+        run: |
+          git log $(git describe --tags --abbrev=0)..HEAD --oneline &> ${{ github.workspace }}-CHANGELOG.txt
+          cat ${{ github.workspace }}-CHANGELOG.txt
+      - name: Setup Git
+        run: |
+          git config --global user.name "Release Bot"
+          git config --global user.email "no-noreply@github.com"
+      - name: Get Current Version Number
+        run: |
+          CURRENT_VERSION=$(cat package.json | jq .version | cut -d'"' -f 2)
+          echo "CURRENT_VERSION=$CURRENT_VERSION" >> $GITHUB_ENV
+      - name: Compile New Version (Edge)
+        run: |
+          RELEASE_VERSION=$(npx semver $CURRENT_VERSION -i pre${{ github.event.inputs.releaseType }} --preid edge)
+          echo "RELEASE_VERSION=$RELEASE_VERSION" >> $GITHUB_ENV
+          echo "Bump to $RELEASE_VERSION"
+        if: ${{ github.event.inputs.releaseChannel == 'edge' && !contains(env.CURRENT_VERSION, 'edge') }}
+      - name: Compile New Version (Edge)
+        run: |
+          RELEASE_VERSION=$(npx semver $CURRENT_VERSION -i prerelease)
+          echo "RELEASE_VERSION=$RELEASE_VERSION" >> $GITHUB_ENV
+          echo "Bump to $RELEASE_VERSION"
+        if: ${{ github.event.inputs.releaseChannel == 'edge' && contains(env.CURRENT_VERSION, 'edge') }}
+      - name: Compile New Version (Stable)
+        run: |
+          RELEASE_VERSION=$(npx semver $CURRENT_VERSION -i github.event.inputs.releaseType)
+          echo "RELEASE_VERSION=$RELEASE_VERSION" >> $GITHUB_ENV
+          echo "Bump to $RELEASE_VERSION"
+        if: ${{ github.event.inputs.releaseChannel == 'stable' }}
+      - name: Version Package
+        run: |
+          git checkout .
+          npm version $RELEASE_VERSION
+      - name: Package Extension (Edge)
+        if: ${{ github.event.inputs.releaseChannel == 'edge' }}
+        run: |
+          node .github/scripts/updateEdgeVersion.js
+          npx vsce package --pre-release --no-git-tag-version --no-update-package-json -o "./live-server-$RELEASE_VERSION.vsix" ${{ github.event.inputs.additionalFlags }}
+      - name: Package Extension (Stable)
+        run: npx vsce package $RELEASE_VERSION --no-git-tag-version --no-update-package-json -o "./live-server-$RELEASE_VERSION.vsix" ${{ github.event.inputs.additionalFlags }}
+        if: ${{ github.event.inputs.releaseChannel == 'stable' }}
+      - name: Publish to Visual Studio Marketplace (Edge)
+        run: npx vsce publish --packagePath "./live-server-$RELEASE_VERSION.vsix" --pre-release --no-git-tag-version --no-update-package-json -p ${{ secrets.VSC_MKTP_PAT }} ${{ github.event.inputs.additionalFlags }}
+        if: ${{ github.event.inputs.publishMarketplace == 'yes' && github.event.inputs.releaseChannel == 'edge' }}
+      - name: Publish to Visual Studio Marketplace (Stable)
+        run: npx vsce publish --packagePath "./live-server-$RELEASE_VERSION.vsix" --no-git-tag-version --no-update-package-json -p ${{ secrets.VSC_MKTP_PAT }} ${{ github.event.inputs.additionalFlags }}
+        if: ${{ github.event.inputs.publishMarketplace == 'yes' && github.event.inputs.releaseChannel == 'stable' }}
+      - name: Publish to Open VSX Registry (Edge)
+        uses: HaaLeo/publish-vscode-extension@v1
+        if: ${{ github.event.inputs.publishOpenVSX == 'yes' && github.event.inputs.releaseChannel == 'edge' }}
+        with:
+          preRelease: true
+          pat: ${{ secrets.OPEN_VSX_TOKEN }}
+          extensionFile: ./live-server-${{ env.RELEASE_VERSION }}.vsix
+      - name: Publish to Open VSX Registry (Stable)
+        uses: HaaLeo/publish-vscode-extension@v1
+        if: ${{ github.event.inputs.publishOpenVSX == 'yes' && github.event.inputs.releaseChannel == 'stable' }}
+        with:
+          preRelease: false
+          pat: ${{ secrets.OPEN_VSX_TOKEN }}
+          extensionFile: ./live-server-${{ env.RELEASE_VERSION }}.vsix
+      - name: Push Tags
+        run: |
+          git log -1 --stat
+          git push origin master --tags
+      - run: |
+          export GIT_TAG=$(git describe --tags --abbrev=0)
+          echo "GIT_TAG=$GIT_TAG" >> $GITHUB_ENV
+      - name: GitHub Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "./live-server-*"
+          bodyFile: ${{ github.workspace }}-CHANGELOG.txt
+          tag: ${{ env.GIT_TAG }}
+          prerelease: ${{ github.event.inputs.releaseChannel == 'edge' }}

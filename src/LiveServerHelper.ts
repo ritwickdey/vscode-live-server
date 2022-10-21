@@ -1,20 +1,18 @@
 'use strict';
-import * as liveServer from 'live-server';
-import * as httpShutdown from 'http-shutdown';
 
 export class LiveServerHelper {
 
     static StartServer(params, callback) {
         setTimeout(() => {
             try {
-                let ServerInstance = liveServer.start(params);
+                let ServerInstance = require('live-server').start(params);
                 setTimeout(() => {
 
                     if (!ServerInstance._connectionKey) {
                         return callback({});
                     }
 
-                    httpShutdown(ServerInstance);
+                    require('http-shutdown')(ServerInstance);
                     return callback(ServerInstance);
 
                 }, 1000);
@@ -34,7 +32,7 @@ export class LiveServerHelper {
             // callback(); /*only Working first time, Unknown Bug*/
         });
         LiveServerInstance.close();
-        liveServer.shutdown();
+        require('live-server').shutdown();
         setTimeout(() => { callback(); }, 1000);
     }
 }

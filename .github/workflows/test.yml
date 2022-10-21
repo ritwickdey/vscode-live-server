@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+      - name: Install Dependencies
+        run: npm install
+      - name: Build
+        run: npm run compile
+      - name: Run Tests
+        uses: GabrielBB/xvfb-action@v1
+        if: matrix.os != 'ubuntu-latest'
+        with:
+          run: npm test
+          options: "-screen 0 1600x1200x24"
+      - name: Run Tests
+        uses: GabrielBB/xvfb-action@v1
+        if: matrix.os == 'ubuntu-latest'
+        with:
+          run: ./node_modules/.bin/run-s test:lint test:unit 
