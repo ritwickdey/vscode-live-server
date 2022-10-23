@@ -208,6 +208,8 @@ export class AppModel implements IAppModel {
     private openBrowser(port: number, path: string) {
         const host = (Config.getLocalIp ? require('ips')().local : Config.getHost) || '127.0.0.1';
         const protocol = Config.getHttps.enable ? 'https' : 'http';
+        let proxyBaseUri= (Config.getProxy.enable ? Config.getProxy.baseUri : null);
+        let destination = proxyBaseUri != null ? `${proxyBaseUri}/${path}` : `:${port}/${path}`;
 
         let params: string[] = [];
         let advanceCustomBrowserCmd = Config.getAdvancedBrowserCmdline;
@@ -270,11 +272,11 @@ export class AppModel implements IAppModel {
 
             }
         } else if (params[0] && params[0].startsWith('microsoft-edge')) {
-            params[0] = `microsoft-edge:${protocol}://${host}:${port}/${path}`;
+            params[0] = `microsoft-edge:${protocol}://${host}${destination}`;
         }
 
         try {
-            require('opn')(`${protocol}://${host}:${port}/${path}`, { app: params || [''] });
+            require('opn')(`${protocol}://${host}${destination}`, { app: params || [''] });
         } catch (error) {
             this.showPopUpMsg(`Server is started at ${host}:${this.runningPort} but failed to open browser. Try to change the CustomBrowser settings.`, true);
             console.log('\n\nError Log to open Browser : ', error);
