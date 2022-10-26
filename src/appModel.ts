@@ -208,7 +208,7 @@ export class AppModel implements IAppModel {
     private openBrowser(port: number, path: string) {
         const host = (Config.getLocalIp ? require('ips')().local : Config.getHost) || '127.0.0.1';
         const protocol = Config.getHttps.enable ? 'https' : 'http';
-        let proxyBaseUri= (Config.getProxy.enable ? Config.getProxy.baseUri : null);
+        let proxyBaseUri = (Config.getProxy.enable ? Config.getProxy.baseUri : null);
         let destination = proxyBaseUri != null ? `${proxyBaseUri}/${path}` : `:${port}/${path}`;
 
         let params: string[] = [];
