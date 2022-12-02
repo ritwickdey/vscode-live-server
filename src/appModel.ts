@@ -5,13 +5,10 @@ import { commands, window, workspace, Event, EventEmitter } from 'vscode';
 import { LiveServerHelper } from './LiveServerHelper';
 import { StatusbarUi } from './StatusbarUi';
 import { Config } from './Config';
-import { Helper, SUPPRORTED_EXT } from './Helper';
+import { Helper, SUPPORTED_EXT } from './Helper';
 import { workspaceResolver, setOrChangeWorkspace } from './workspaceResolver';
 import { IAppModel, GoLiveEvent, GoOfflineEvent } from './IAppModel';
 import { LiveShareHelper } from './LiveShareHelper';
-
-import * as opn from 'opn';
-import * as ips from 'ips';
 
 export class AppModel implements IAppModel {
 
@@ -69,7 +66,7 @@ export class AppModel implements IAppModel {
             );
         }
         if (pathInfos.isNotOkay) {
-            this.showPopUpMsg('Invaild Path in liveServer.settings.root settings. live Server will serve from workspace root', true);
+            this.showPopUpMsg('Invalid Path in liveServer.settings.root settings. live Server will serve from workspace root', true);
         }
 
         if (this.isServerBusy) return;
@@ -104,7 +101,7 @@ export class AppModel implements IAppModel {
                     this.showPopUpMsg(`The default port : ${Config.getPort - 1} is currently taken, changing port to : ${Config.getPort}.`);
                     this.Golive(pathUri);
                 } else {
-                    this.showPopUpMsg(`Something is went wrong! Please check into Developer Console or report on GitHub.`, true);
+                    this.showPopUpMsg(`Something went wrong! Please check into Developer Console or report on GitHub.`, true);
                 }
                 this.IsServerRunning = true; // to revert status - cheat :p
                 this.ToggleStatusBar(); // reverted
@@ -134,9 +131,9 @@ export class AppModel implements IAppModel {
 
     changeWorkspaceRoot() {
         setOrChangeWorkspace()
-            .then(workspceName => {
-                if (workspceName === undefined) return;
-                window.showInformationMessage(`Success! '${workspceName}' workspace is now root of Live Server`);
+            .then(workspaceName => {
+                if (workspaceName === undefined) return;
+                window.showInformationMessage(`Success! '${workspaceName}' workspace is now root of Live Server`);
                 // If server is running, Turn off the server.
                 if (this.IsServerRunning)
                     this.GoOffline();
@@ -158,7 +155,7 @@ export class AppModel implements IAppModel {
     }
 
     private tagMissedCallback() {
-        this.showPopUpMsg('Live Reload is not possible without body or head tag.', null, true);
+        this.showPopUpMsg('Live Reload is not possible without a head or body tag.', null, true);
     }
 
     private showPopUpMsg(msg: string, isErrorMsg: boolean = false, isWarning: boolean = false) {
@@ -168,8 +165,8 @@ export class AppModel implements IAppModel {
         else if (isWarning && !Config.getDonotVerifyTags) {
             const donotShowMsg = 'I understand, Don\'t show again';
             window.showWarningMessage(msg, donotShowMsg)
-                .then(choise => {
-                    if (choise && choise === donotShowMsg) {
+                .then(choice => {
+                    if (choice && choice === donotShowMsg) {
                         Config.setDonotVerifyTags(true, true);
                     }
                 });
@@ -200,7 +197,7 @@ export class AppModel implements IAppModel {
 
     private haveAnySupportedFile() {
         return new Promise<void>(resolve => {
-            const globFormat = `**/*[${SUPPRORTED_EXT.join(' | ')}]`;
+            const globFormat = `**/*[${SUPPORTED_EXT.join(' | ')}]`;
             workspace.findFiles(globFormat, '**/node_modules/**', 1)
                 .then(async (files) => {
                     if (files && files.length) return resolve();
@@ -209,7 +206,7 @@ export class AppModel implements IAppModel {
     }
 
     private openBrowser(port: number, path: string) {
-        const host = (Config.getLocalIp ? ips().local : Config.getHost) || '127.0.0.1';
+        const host = (Config.getLocalIp ? require('ips')().local : Config.getHost) || '127.0.0.1';
         const protocol = Config.getHttps.enable ? 'https' : 'http';
 
         let params: string[] = [];
@@ -217,20 +214,8 @@ export class AppModel implements IAppModel {
         if (path.startsWith('\\') || path.startsWith('/')) {
             path = path.substring(1, path.length);
         }
-        path = path.replace(/\\/gi, '/');
 
-        let useBrowserPreview = Config.getUseBrowserPreview;
-        if (useBrowserPreview) {
-            let url = `${protocol}://${host}:${port}/${path}`;
-            let onSuccess = () => {};
-            let onError = (err) => {
-                this.showPopUpMsg(`Server is started at ${this.runningPort} but failed to open in Browser Preview. Got Browser Preview extension installed?`, true);
-                console.log('\n\nError Log to open Browser : ', err);
-                console.log('\n\n');
-            };
-            commands.executeCommand(`browser-preview.openPreview`, url).then(onSuccess, onError);
-            return;
-        }
+        path = path.replace(/\\/gi, '/');
 
         if (advanceCustomBrowserCmd) {
             advanceCustomBrowserCmd
@@ -289,9 +274,9 @@ export class AppModel implements IAppModel {
         }
 
         try {
-            opn(`${protocol}://${host}:${port}/${path}`, { app: params || [''] });
+            require('opn')(`${protocol}://${host}:${port}/${path}`, { app: params || [''] });
         } catch (error) {
-            this.showPopUpMsg(`Server is started at ${this.runningPort} but failed to open browser. Try to change the CustomBrowser settings.`, true);
+            this.showPopUpMsg(`Server is started at ${host}:${this.runningPort} but failed to open browser. Try to change the CustomBrowser settings.`, true);
             console.log('\n\nError Log to open Browser : ', error);
             console.log('\n\n');
         }
@@ -303,5 +288,3 @@ export class AppModel implements IAppModel {
         this.liveShareHelper.dispose();
     }
 }
-
-
