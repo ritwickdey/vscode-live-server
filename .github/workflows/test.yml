@@ -3,7 +3,7 @@ name: CI
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
 
 jobs:
@@ -28,6 +28,7 @@ jobs:
         if: matrix.os != 'ubuntu-latest'
         with:
           run: npm test
+          options: "-screen 0 1600x1200x24"
       - name: Run Tests
         uses: GabrielBB/xvfb-action@v1
         if: matrix.os == 'ubuntu-latest'

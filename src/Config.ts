@@ -53,10 +53,6 @@ export class Config {
         return Config.getSettings<boolean>('NoBrowser');
     }
 
-    public static get getUseBrowserPreview(): boolean {
-        return Config.getSettings<boolean>('useBrowserPreview');
-    }
-
     public static get getAdvancedBrowserCmdline(): string {
         return Config.getSettings<string>('AdvanceCustomBrowserCmdLine');
     }
@@ -121,11 +117,11 @@ export class Config {
         return Config.getSettings<string>('file');
     }
 
-    public static get getMutiRootWorkspaceName(): string {
+    public static get getMultiRootWorkspaceName(): string {
         return Config.getSettings<string>('multiRootWorkspaceName');
     }
 
-    public static setMutiRootWorkspaceName(val: string) {
+    public static setMultiRootWorkspaceName(val: string) {
        return Config.configuration.update('multiRootWorkspaceName', val, false);
     }
 }
