@@ -60,10 +60,13 @@ export class AppModel implements IAppModel {
         if (this.IsServerRunning) {
             const relativePath = Helper.getSubPath(pathInfos.rootPath, openedDocUri) || '';
             this.goLiveEvent.fire({ runningPort: this.runningPort, pathUri: relativePath });
-            return this.openBrowser(
-                this.runningPort,
-                relativePath
-            );
+            if (!Config.getNoBrowser) {
+              return this.openBrowser(
+                  this.runningPort,
+                  relativePath
+              );
+            }
+            return;
         }
         if (pathInfos.isNotOkay) {
             this.showPopUpMsg('Invalid Path in liveServer.settings.root settings. live Server will serve from workspace root', true);
