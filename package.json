@@ -126,6 +126,7 @@
             "chrome:PrivateMode",
             "firefox",
             "firefox:PrivateMode",
+            "Firefox Developer Edition",
             "microsoft-edge",
             "blisk",
             null
