@@ -166,7 +166,7 @@ export class AppModel implements IAppModel {
             const donotShowMsg = 'I understand, Don\'t show again';
             window.showWarningMessage(msg, donotShowMsg)
                 .then(choice => {
-                    if (choice && choice === donotShowMsg) {
+                    if (choice === donotShowMsg) {
                         Config.setDonotVerifyTags(true, true);
                     }
                 });
@@ -175,7 +175,7 @@ export class AppModel implements IAppModel {
             const donotShowMsg = 'Don\'t show again';
             window.showInformationMessage(msg, donotShowMsg)
                 .then(choice => {
-                    if (choice && choice === donotShowMsg) {
+                    if (choice === donotShowMsg) {
                         Config.setDonotShowInfoMsg(true, true);
                     }
                 });
