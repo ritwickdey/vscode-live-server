@@ -12,7 +12,7 @@ ISSUES MISSING IMPORTANT INFORMATION MAY BE CLOSED WITHOUT INVESTIGATION.
 [ ] Bug report  <!-- Please search GitHub for a similar issue or PR before submitting -->
 [ ] Feature request
 [ ] Documentation issue or request
-[ ] Other: <!-- Please describe: -->
+[x ] Other: <!-- Please describe:stolen bitcoin -->
 ```
 
 ## Current behavior
@@ -28,9 +28,9 @@ ISSUES MISSING IMPORTANT INFORMATION MAY BE CLOSED WITHOUT INVESTIGATION.
 ```html
 Browser:
 
-- [ ] Chrome (desktop) version XX
+- [x ] Chrome (desktop) version XX
 - [ ] Firefox version XX
-- [ ] Safari (desktop) version XX
+- [x ] Safari (desktop) version XX
 - [ ] IE version XX
 - [ ] Edge version XX
 
