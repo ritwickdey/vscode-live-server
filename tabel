@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Belajar membuat tabel</title>
+</head>
+<body>
+	<table border="1" cellspacing ="0" cellpadding="9">
+	
+		<thead>
+		<tr>
+			<th colspan="4">ULUL AZMI's PERSONAL WEBSITE</th><th rowspan="2">LOGO UTDI</th>
+		</tr>
+		<tr>
+			<th BGCOLOR = "red"><a href="index.html">HOME</a></th> 
+			<th BGCOLOR = "yellow"><a href="profil.html">PROFIL</a></th>
+			<th BGCOLOR = "pink"><a href="produk.html">PRODUK</a></th>  
+			<th BGCOLOR = "grey"><a href="galeri.html">GALERI</a></th>
+		</tr>
+		</thead>
+
+		<tbody>
+		<tr>
+			<td rowspan="7"></td> <td rowspan="7" align="middle" colspan="3">(Home)</td>
+			<td><a href="https://www.utdi.ac.id/">www.utdi.ac.id</a></td>
+		</tr>
+		<tr>
+			<td><a href="https://if.utdi.ac.id/wp/">if.utdi.ac.id</a></td>
+		</tr>
+		<tr>
+			<td><a href="https://acc.utdi.ac.id/">acc.akakom.ac.id</a></td>
+		</tr>
+		<tr>
+			<td><a href="ypwb.co.id">ypwb.co.id</a></td>
+		</tr>
+		<tr>
+			<td><a href="https://perpus.utdi.ac.id/">perpus.utdi.ac.id</a></td>
+		</tr>
+		<tr>
+			<td><a href="https://siakad.utdi.ac.id">siakad.utdi.ac.id</a></td>
+		</tr>
+		<tr>
+			<td><a href="https://pmb.utdi.ac.id/">pmb.utdi.ac.id</a></td>
+		</tr>
+		</tbody>
+		
+		<tfoot>
+		<tr  align="middle">
+			<td colspan="5">niceee!!</td>
+		</tr>
+		</tfoot>
+
+	</table>
+</body>
+</html>
+
