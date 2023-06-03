@@ -108,7 +108,7 @@ export class Helper {
         const file = Config.getFile;
         return {
             port: port,
-            host: '0.0.0.0',
+            host: Config.getLocalIp ? '0.0.0.0' : Config.getHost,
             root: rootPath,
             file: file,
             open: false,
