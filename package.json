@@ -128,6 +128,10 @@
             "firefox:PrivateMode",
             "microsoft-edge",
             "blisk",
+            "vivaldi",
+	    "vivaldi:PrivateMode",
+  	    "opera",
+	    "opera:PrivateMode",
             null
           ],
           "description": "Specify custom browser settings for Live Server. \nBy Default it will open your default favorite browser."
