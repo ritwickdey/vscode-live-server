@@ -21,6 +21,10 @@
         * firefox:PrivateMode
         * microsoft-edge
         * blisk
+        * vivaldi
+        * vivaldi:PrivateMode
+        * opera
+        * opera:PrivateMode
 
     _Not enough? need more? open an/a issue/pull request on github. For now, use `liveServer.settings.AdvanceCustomBrowserCmdLine` settings (see below)._
     

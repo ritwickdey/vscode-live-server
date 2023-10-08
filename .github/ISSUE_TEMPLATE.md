@@ -33,6 +33,8 @@ Browser:
 - [ ] Safari (desktop) version XX
 - [ ] IE version XX
 - [ ] Edge version XX
+- [ ] Opera version XX
+- [ ] Vivaldi version XX
 
 For Tooling issues:
 

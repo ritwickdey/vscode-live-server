@@ -237,10 +237,12 @@ export class AppModel implements IAppModel {
                 params.push(browserName);
 
                 if (browserDetails[1] && browserDetails[1] === 'PrivateMode') {
-                    if (browserName === 'chrome' || browserName === 'blisk')
+                    if (browserName === 'chrome' || browserName === 'blisk' || browserName === 'vivaldi')
                         params.push('--incognito');
                     else if (browserName === 'firefox')
                         params.push('--private-window');
+                    else if (browserName === 'opera')
+                        params.push('--private');
                 }
 
                 if ((browserName === 'chrome' || browserName === 'blisk') && ChromeDebuggingAttachmentEnable) {
