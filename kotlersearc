@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Estilos para el contenedor con fondo de pantalla */
+        #contenedor {
+            width: 100%;
+            height: 400px; /* Ajusta esta altura según tus preferencias */
+            background-image: url('/imagen/fondo de pantalla.jpg'); /* Reemplaza con la ruta correcta de tu imagen de fondo */
+            background-size: cover; /* Ajusta el tamaño del fondo */
+            background-position: center; /* Ajusta la posición del fondo */
+            color: #ffffff; /* Color del texto en el contenedor */
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kotler seach</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-image: url('/fondo\ de\ pantalla.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+    
+        header {
+            background-color: rgba(247, 147, 30, 0.9);
+            padding: 20px;
+            text-align: center;
+        }
+    
+        h1, h2 {
+            margin: 0;
+        }
+    
+        #wrapper {
+            display: flex;
+            justify-content: center;
+            background-color: #000; /* Fondo negro en sentido vertical */
+        }
+    
+        #content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px;
+            max-width: 800px; /* Ancho máximo del contenido */
+            width: 100%;
+        }
+    
+        .imagenes {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px;
+        }
+    
+        .imagen-container {
+            margin: 10px;
+        }
+    
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+    
+        .chatbot {
+            background-color: rgba(255, 102, 0, 0.9);
+            margin: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+    
+        #chat-container {
+            display: flex;
+            flex-direction: column;
+            height: 300px;
+            overflow-y: auto;
+        }
+    
+        #chat {
+            flex-grow: 1;
+        }
+    
+        #user-input {
+            margin-top: 10px;
+            padding: 8px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+        }
+    
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+    
+        #logo-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    
+        #logo {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+    </style>
+    <style>
+        body {
+            background-color: black; /* Cambia a tu color preferido */
+        }
+    </style>
+    
+</head>
+
+<body>
+    <header>
+        <div id="logo-container">
+            <img id="logo" src="imagen/logo.jpg" alt="Logo de Marketing Digital">
+        </div>
+        <h1>Marketing Digital con Philip Kotler</h1>
+        <h2>Descubre los Principios del Marketing Digital</h2>
+    </header>
+    
+
+    <div id="wrapper">
+        <div id="content">
+            <section class="imagenes">
+                <div class="imagen-container">
+                    <img src="imagen/kotler.jpg" alt="Philip Kotler" width="400">
+                </div>
+                <div class="imagen-container">
+                    <img src="imagen/marketing.jpg" alt="Marketing Digital" width="400">
+                </div>
+                <!-- Puedes agregar más divs para cada imagen según sea necesario -->
+            </section>
+            
+            <section class="chatbot">
+                <div id="chat-container">
+                    <div id="chat"></div>
+                    <input type="text" id="user-input" placeholder="Escribe aquí...">
+                </div>
+            </section>
+
+            
+        </div>
+        
+    </div>
+    <section class="imagenes">
+        <div class="imagen-container">
+            <img src="imagen/kotler marca.jpeg" alt="Philip Kotler" width="800">
+        </div>
+        <div class="imagen-container">
+            <img src="imagen/kotler marketing.jpeg" alt="Marketing Digital" width="800">
+        </div>
+        <!-- Puedes agregar más divs para cada imagen según sea necesario -->
+    </section>
+    <section class="imagenes">
+        <div class="imagen-container">
+            <img src="imagen/kotler producto.jpeg" alt="Philip Kotler" width="800">
+        </div>
+        <div class="imagen-container">
+            <img src="imagen/kotler investigacion de mercado.jpeg" alt="Marketing Digital" width="800">
+        </div>
+        <!-- Puedes agregar más divs para cada imagen según sea necesario -->
+    </section>
+    <section class="imagenes">
+        <div class="imagen-container">
+            <img src="imagen/kotler canales de distribucion.jpeg" alt="Philip Kotler" width="800">
+        </div>
+        <div class="imagen-container">
+            <img src="imagen/kotler precio.jpeg" alt="Marketing Digital" width="800">
+        </div>
+        
+        <!-- Puedes agregar más divs para cada imagen según sea necesario -->
+    </section>
+
+    <section> 
+        
+        <section>
+            <video autoplay muted style="width: 100%; height: auto; display: block; margin: auto;">
+                <source src="/VIDEO/video 2.mp4" type="video/mp4">
+                Tu navegador no soporta el elemento de video.
+            </video>
+        </section>
+        
+        
+    </section>
+    <style>
+        /* Estilos para el contenedor del video */
+        section {
+            width: 100%;
+            max-width: 1000px; /* Ajusta este valor según tus preferencias */
+            margin: auto;
+        }
+
+        /* Estilos para el video */
+        video {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin:  auto; /* Centrar el video en el contenedor */
+            aspect-ratio: 16 / 9; /* Ajusta esta proporción según tus preferencias */
+        }
+    </style>
+
+    <footer>
+        <p>&copy; 2023 Marketing Digital con Philip Kotler</p>
+    </footer>
+    
+    <script>
+        const chatContainer = document.getElementById('chat');
+        const userInput = document.getElementById('user-input');
+    
+        function appendMessage(message, sender) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add(sender);
+            messageElement.innerHTML = message;
+            chatContainer.appendChild(messageElement);
+            chatContainer.scrollTop = chatContainer.scrollHeight; // Desplazar hacia abajo para mostrar el último mensaje
+        }
+    
+        function chatBotResponse(userMessage) {
+            let response;
+    
+            switch (userMessage.toLowerCase()) {
+                case 'hola':
+                    response = "Kotler_Search: ¡Hola de nuevo! ¿Cómo puedo ayudarte en el mundo del marketing hoy? Estoy aquí para responder tus preguntas y brindarte información útil. ¡Adelante, pregúntame lo que necesites!";
+                    break;
+                case 'que es el marketing':
+                    response = "Kotler_Search: El marketing es una disciplina que se enfoca en identificar, satisfacer y crear valor para los clientes. Se trata de entender las necesidades y deseos de los consumidores y desarrollar estrategias y tácticas para promocionar y vender productos o servicios de manera efectiva. ¿Quieres saber más sobre algún aspecto específico del marketing?";
+                    break;
+                case 'que es una marca':
+                    response = "Kotler_Search: Una marca es un conjunto de elementos (nombre, logotipo, símbolo, colores, tipografía, etc.) que identifican y diferencian a un producto, servicio o empresa de los demás en el mercado. La marca representa la identidad y personalidad de una organización, creando una conexión emocional con los consumidores. ¿Te gustaría conocer más sobre la importancia de las marcas?";
+                    break;
+                case 'que es un producto':
+                    response = "Kotler_Search: Un producto es cualquier bien tangible o intangible que se ofrece en el mercado para satisfacer las necesidades o deseos de los consumidores. Puede ser un objeto físico, como un teléfono móvil, un automóvil o una prenda de vestir, o un servicio intangible, como un seguro o una consulta médica. ¿Hay algo más que te interese sobre productos?";
+                    break;
+                case 'que es un servicio':
+                    response = "Kotler_Search: Un servicio es una actividad intangible que se ofrece para satisfacer las necesidades o deseos de los consumidores. Implica una interacción directa entre el proveedor del servicio y el cliente. Algunos ejemplos comunes son un corte de cabello, una consulta médica o un vuelo de avión. ¿Te gustaría profundizar en el tema de los servicios?";
+                    break;
+                case 'que son los canales de distribucion':
+                    response = "Kotler_Search: Los canales de distribución son los medios a través de los cuales los productos o servicios llegan desde el fabricante o proveedor hasta el consumidor final. Son esenciales para la entrega eficiente y efectiva de los productos al mercado. ¿Quieres saber más sobre cómo funcionan los canales de distribución?";
+                    break;
+                case 'que es una investigacion de mercado':
+                    response = "Kotler_Search: Una investigación de mercado es un proceso sistemático y objetivo para recopilar, analizar e interpretar información relevante sobre un mercado, sus consumidores y su entorno. Su objetivo es obtener información precisa y actualizada para tomar decisiones informadas en marketing. ¿Necesitas más detalles sobre la investigación de mercado?";
+                    break;
+                default:
+                    response = `Kotler_Search: Gracias por tu mensaje "${userMessage}". ¿Hay algo más en lo que pueda ayudarte?`;
+            }
+    
+            appendMessage(response, 'bot');
+        }
+    
+        userInput.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                const userMessage = userInput.value;
+                appendMessage(`Usuario: ${userMessage}`, 'user');
+                chatBotResponse(userMessage);
+                userInput.value = '';
+            }
+        });
+    </script>
+    
+
+    
+</body>
+
+</html>
+
