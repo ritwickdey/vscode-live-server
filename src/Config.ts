@@ -3,7 +3,7 @@
 import { workspace } from 'vscode';
 
 export interface IProxy {
-    enable: boolean;
+    enable: boolean ;
     baseUri: string;
     proxyUri: string;
 }
