@@ -1,241 +1,35 @@
-PS C:\Users\Alisa\web site Gredeli> cd backend
-PS C:\Users\Alisa\web site Gredeli\backend> npm install
-npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
-npm warn deprecated npmlog@5.0.1: This package is no longer supported.
-npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
-npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
-npm warn deprecated are-we-there-yet@2.0.0: This package is no longer supported.
-npm warn deprecated gauge@3.0.2: This package is no longer supported.
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gredeli-Uber</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>مرحبًا بكم في Gredeli-Uber</h1>
+    </header>
 
-added 153 packages, and audited 154 packages in 11s
+    <main>
+        <section id="auth">
+            <h2>تسجيل الدخول</h2>
+            <input type="email" id="email" placeholder="البريد الإلكتروني">
+            <input type="password" id="password" placeholder="كلمة المرور">
+            <button onclick="login()">تسجيل الدخول</button>
+            <p id="authMessage"></p>
+        </section>
 
-17 packages are looking for funding
-  run `npm fund` for details
+        <section id="orders" style="display: none;">
+            <h2>طلباتك</h2>
+            <ul id="orderList"></ul>
+        </section>
+    </main>
 
-1 high severity vulnerability
+    <footer>
+        <p>© 2023 Gredeli-Uber. جميع الحقوق محفوظة.</p>
+    </footer>
 
-To address all issues (including breaking changes), run:
-  npm audit fix --force
-
-Run `npm audit` for details.
-PS C:\Users\Alisa\web site Gredeli\backend> npm audit fix
-
-up to date, audited 154 packages in 2s
-
-17 packages are looking for funding
-  run `npm fund` for details
-
-# npm audit report
-
-jsonwebtoken  <=8.5.1
-Severity: high
-jsonwebtoken vulnerable to signature validation bypass due to insecure default algorithm in jwt.verify() - https://github.com/advisories/GHSA-qwph-4952-7xr6
-jsonwebtoken unrestricted key type could lead to legacy keys usage  - https://github.com/advisories/GHSA-8cf7-32gw-wr33
-jsonwebtoken's insecure implementation of key retrieval function could lead to Forgeable Public/Private Tokens from RSA to HMAC - https://github.com/advisories/GHSA-hjrf-2m68-5959
-fix available via `npm audit fix --force`
-Will install jsonwebtoken@9.0.2, which is a breaking change
-node_modules/jsonwebtoken
-
-1 high severity vulnerability
-
-To address all issues (including breaking changes), run:
-  npm audit fix --force
-PS C:\Users\Alisa\web site Gredeli\backend> npm audit fix --force
-npm warn using --force Recommended protections disabled.
-npm warn audit Updating jsonwebtoken to 9.0.2, which is a SemVer major change.
-
-removed 1 package, changed 1 package, and audited 153 packages in 2s
-
-17 packages are looking for funding
-  run `npm fund` for details
-
-found 0 vulnerabilities
-PS C:\Users\Alisa\web site Gredeli\backend> npm audit
-found 0 vulnerabilities
-PS C:\Users\Alisa\web site Gredeli\backend> npm start
-
-> gredeli_uber_backend@1.0.0 start
-> node server.js
-
-الخادم يعمل على http://localhost:3000
-C:\Users\Alisa\web site Gredeli\backend\server.js:24
-    if (err) throw err;
-             ^
-
-AggregateError [ECONNREFUSED]:
-    at internalConnectMultiple (node:net:1139:18)
-    at afterConnectMultiple (node:net:1712:7)
-    --------------------
-    at Protocol._enqueue (C:\Users\Alisa\web site Gredeli\backend\node_modules\mysql\lib\protocol\Protocol.js:144:48)
-    at Protocol.handshake (C:\Users\Alisa\web site Gredeli\backend\node_modules\mysql\lib\protocol\Protocol.js:51:23)
-    at Connection.connect (C:\Users\Alisa\web site Gredeli\backend\node_modules\mysql\lib\Connection.js:116:18)   
-    at Object.<anonymous> (C:\Users\Alisa\web site Gredeli\backend\server.js:23:4)
-    at Module._compile (node:internal/modules/cjs/loader:1562:14)
-    at Object..js (node:internal/modules/cjs/loader:1699:10)
-    at Module.load (node:internal/modules/cjs/loader:1313:32)
-    at Function._load (node:internal/modules/cjs/loader:1123:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-    at wrapModuleLoad (node:internal/modules/cjs/loader:217:24) {
-  code: 'ECONNREFUSED',
-  fatal: true,
-  [errors]: [
-    Error: connect ECONNREFUSED ::1:3306
-        at createConnectionError (node:net:1675:14)
-        at afterConnectMultiple (node:net:1705:16) {
-      errno: -4078,
-      code: 'ECONNREFUSED',
-      syscall: 'connect',
-      address: '::1',
-      port: 3306
-    },
-    Error: connect ECONNREFUSED 127.0.0.1:3306
-        at createConnectionError (node:net:1675:14)
-        at afterConnectMultiple (node:net:1705:16) {
-      errno: -4078,
-      code: 'ECONNREFUSED',
-      syscall: 'connect',
-      address: '127.0.0.1',
-      port: 3306
-    }
-  ]
-}
-
-Node.js v22.13.1
-PS C:\Users\Alisa\web site Gredeli\backend> npm update
-
-up to date, audited 153 packages in 9s
-
-17 packages are looking for funding
-  run `npm fund` for details
-
-found 0 vulnerabilities
-PS C:\Users\Alisa\web site Gredeli\backend> rm -rf node_modules
->> npm install
-Remove-Item : Impossible de trouver un paramètre correspondant au nom « rf ».
-Au caractère Ligne:1 : 4
-+ rm -rf node_modules
-+    ~~~
-+    ~~~
-emove-Item], ParameterBindingException
-
-
-up to date, audited 153 packages in 1s
-
-17 packages are looking for funding
-  run `npm fund` for details
-
-found 0 vulnerabilities
-PS C:\Users\Alisa\web site Gredeli\backend> npm install
-
-up to date, audited 153 packages in 2s
-
-17 packages are looking for funding
-  run `npm fund` for details
-
-found 0 vulnerabilities
-PS C:\Users\Alisa\web site Gredeli\backend> npm start
-
-> gredeli_uber_backend@1.0.0 start
-> node server.js
-
-الخادم يعمل على http://localhost:3000
-C:\Users\Alisa\web site Gredeli\backend\server.js:24
-    if (err) throw err;
-             ^
-
-AggregateError [ECONNREFUSED]: 
-    at internalConnectMultiple (node:net:1139:18)
-    at afterConnectMultiple (node:net:1712:7)
-    --------------------
-    at Protocol._enqueue (C:\Users\Alisa\web site Gredeli\backend\node_modules\mysql\lib\protocol\Protocol.js:144:48)
-    at Protocol.handshake (C:\Users\Alisa\web site Gredeli\backend\node_modules\mysql\lib\protocol\Protocol.js:51:23)
-    at Connection.connect (C:\Users\Alisa\web site Gredeli\backend\node_modules\mysql\lib\Connection.js:116:18)
-    at Object.<anonymous> (C:\Users\Alisa\web site Gredeli\backend\server.js:23:4)
-    at Module._compile (node:internal/modules/cjs/loader:1562:14)
-    at Object..js (node:internal/modules/cjs/loader:1699:10)
-    at Module.load (node:internal/modules/cjs/loader:1313:32)
-    at Function._load (node:internal/modules/cjs/loader:1123:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-    at wrapModuleLoad (node:internal/modules/cjs/loader:217:24) {
-  code: 'ECONNREFUSED',
-  fatal: true,
-  [errors]: [
-    Error: connect ECONNREFUSED ::1:3306
-        at createConnectionError (node:net:1675:14)
-        at afterConnectMultiple (node:net:1705:16) {
-      errno: -4078,
-      code: 'ECONNREFUSED',
-      syscall: 'connect',
-      address: '::1',
-      port: 3306
-    },
-    Error: connect ECONNREFUSED 127.0.0.1:3306
-        at createConnectionError (node:net:1675:14)
-        at afterConnectMultiple (node:net:1705:16) {
-      errno: -4078,
-      code: 'ECONNREFUSED',
-      syscall: 'connect',
-      address: '127.0.0.1',
-      port: 3306
-    }
-  ]
-}
-
-Node.js v22.13.1
-PS C:\Users\Alisa\web site Gredeli\backend> npm install
-
-up to date, audited 153 packages in 1s
-
-17 packages are looking for funding
-  run `npm fund` for details
-
-found 0 vulnerabilities
-PS C:\Users\Alisa\web site Gredeli\backend> npm start
-
-> gredeli_uber_backend@1.0.0 start
-> node server.js
-
-الخادم يعمل على http://localhost:3000
-C:\Users\Alisa\web site Gredeli\backend\server.js:24
-    if (err) throw err;
-             ^
-
-AggregateError [ECONNREFUSED]:
-    at internalConnectMultiple (node:net:1139:18)
-    at afterConnectMultiple (node:net:1712:7)
-    --------------------
-    at Protocol._enqueue (C:\Users\Alisa\web site Gredeli\backend\node_modules\mysql\lib\protocol\Protocol.js:144:48)
-    at Protocol.handshake (C:\Users\Alisa\web site Gredeli\backend\node_modules\mysql\lib\protocol\Protocol.js:51:23)
-    at Connection.connect (C:\Users\Alisa\web site Gredeli\backend\node_modules\mysql\lib\Connection.js:116:18)
-    at Object.<anonymous> (C:\Users\Alisa\web site Gredeli\backend\server.js:23:4)
-    at Module._compile (node:internal/modules/cjs/loader:1562:14)      
-    at Object..js (node:internal/modules/cjs/loader:1699:10)
-    at Module.load (node:internal/modules/cjs/loader:1313:32)
-    at Function._load (node:internal/modules/cjs/loader:1123:12)       
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)      
-    at wrapModuleLoad (node:internal/modules/cjs/loader:217:24) {      
-  code: 'ECONNREFUSED',
-  fatal: true,
-  [errors]: [
-    Error: connect ECONNREFUSED ::1:3306
-        at createConnectionError (node:net:1675:14)
-        at afterConnectMultiple (node:net:1705:16) {
-      errno: -4078,
-      code: 'ECONNREFUSED',
-      syscall: 'connect',
-      address: '::1',
-      port: 3306
-    },
-    Error: connect ECONNREFUSED 127.0.0.1:3306
-        at createConnectionError (node:net:1675:14)
-        at afterConnectMultiple (node:net:1705:16) {
-      errno: -4078,
-      code: 'ECONNREFUSED',
-      syscall: 'connect',
-      address: '127.0.0.1',
-      port: 3306
-    }
-  ]
-}
-
-Node.js v22.13.1
+    <script src="script.js"></script>
+</body>
+</html>
