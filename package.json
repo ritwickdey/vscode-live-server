@@ -2,7 +2,7 @@
   "name": "LiveServer",
   "displayName": "Live Server",
   "description": "Launch a development local Server with live reload feature for static & dynamic pages",
-  "version": "5.7.5",
+  "version": "5.7.9",
   "publisher": "ritwickdey",
   "author": {
     "name": "Ritwick Dey",
@@ -114,11 +114,6 @@
           "default": "/",
           "pattern": "/|/[^\\/]",
           "description": "Set Custom root of Live Server. \nTo change root the the server to sub folder of workspace, use '/' and relative path from workspace. \nExample: /subfolder1/subfolder2"
-        },
-        "liveServer.settings.useBrowserPreview": {
-          "type": "boolean",
-          "default": false,
-          "description": "Open in Browser Preview inside VS Code, instead of default browser"
         },
         "liveServer.settings.CustomBrowser": {
           "type": [
@@ -350,7 +345,8 @@
     "tslint": "^6.1.3",
     "typescript": "^4.5.4",
     "vsce": "^2.7.0",
-    "wdio-vscode-service": "^2.0.1"
+    "wdio-vscode-service": "^2.0.1",
+    "es5-ext": "0.10.53"
   },
   "dependencies": {
     "http-shutdown": "^1.2.0",
@@ -359,8 +355,11 @@
     "opn": "^6.0.0",
     "vsls": "^0.3.967"
   },
+  "overrides": {
+    "es5-ext": "0.10.53"
+  },
   "announcement": {
-    "onVersion": "5.7.5",
-    "message": "[NEW] LiveServer@5.7.5: Changed extension activationEvents to onStartupFinished."
+    "onVersion": "5.7.9",
+    "message": "[NEW] LiveServer@5.7.9: Activation load time improved"
   }
 }

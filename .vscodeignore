@@ -1,5 +1,6 @@
 .vscode/**
 .vscode-test/**
+.wdio-vscode-service/**
 out/test/**
 test/**
 src/**

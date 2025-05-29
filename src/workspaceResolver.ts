@@ -10,7 +10,7 @@ export function setOrChangeWorkspace() {
         ignoreFocusOut: true
     }).then(workspaceName => {
         if (workspaceName) {
-            return Config.setMutiRootWorkspaceName(workspaceName).then(() => workspaceName);
+            return Config.setMultiRootWorkspaceName(workspaceName).then(() => workspaceName);
         }
     });
 }
@@ -30,20 +30,20 @@ export function workspaceResolver(fileUri?: string) {
         if (fileUri) {
             const selectedWorkspace = workspaceFolders.find(ws => fileUri.startsWith(ws.uri.fsPath));
             if (selectedWorkspace) {
-                return Config.setMutiRootWorkspaceName(selectedWorkspace.name)
+                return Config.setMultiRootWorkspaceName(selectedWorkspace.name)
                     .then(() => resolve(selectedWorkspace.uri.fsPath));
             }
         }
 
         // If workspace already set by User
-        if (Config.getMutiRootWorkspaceName) {
+        if (Config.getMultiRootWorkspaceName) {
             // A small test that the WorkspaceName (set by user) is valid
-            const targetWorkspace = workspaceFolders.find(e => e.name === Config.getMutiRootWorkspaceName);
+            const targetWorkspace = workspaceFolders.find(e => e.name === Config.getMultiRootWorkspaceName);
             if (targetWorkspace)
                 return resolve(targetWorkspace.uri.fsPath);
 
             // reset whatever user is set.
-            Config.setMutiRootWorkspaceName(null);
+            Config.setMultiRootWorkspaceName(null);
         }
 
         // Show a quick picker

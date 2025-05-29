@@ -5,3 +5,4 @@ Gemfile.lock
 **/*.vsix
 .vscode-test
 .wdio-vscode-service
+*-CHANGELOG.txt
