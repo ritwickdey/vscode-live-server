@@ -182,3 +182,19 @@
     
     * Tips: You don't need to set this setting, Live Server is smart enough, it'll eigher ask what you want or automatically set the correct workspace if open the server by right clicking any HTML file.    
     <hr>
+
+* **`liveServer.settings.headers:`** : Add additional headers.
+
+    * Default: `{}`
+
+    * Example:
+    ```js
+    {
+        "liveServer.settings.headers": {
+            "Cross-Origin-Opener-Policy": "same-origin",
+            "Cross-Origin-Embedder-Policy": "require-corp"
+        }
+    }
+    ```
+    
+    <hr>

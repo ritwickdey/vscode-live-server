@@ -83,6 +83,7 @@ export class Helper {
 
         workspacePath = workspacePath || '';
         const port = Config.getPort;
+        const headers = Config.getHeaders || {};
         const ignorePathGlob = Config.getIgnoreFiles || [];
 
         const ignoreFiles = [];
@@ -121,7 +122,8 @@ export class Helper {
             fullReload: Config.getfullReload,
             useBrowserExtension: Config.getUseWebExt,
             onTagMissedCallback: onTagMissedCallback,
-            mount: mount
+            mount: mount,
+            headers: headers
         };
     }
 

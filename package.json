@@ -295,6 +295,11 @@
           "type": "string",
           "default": null,
           "description": "This the entry point of server when you're in multiroot workspace"
+        },
+        "liveServer.settings.headers": {
+          "type": "object",
+          "default": {},
+          "description": "Add additional headers"
         }
       }
     }

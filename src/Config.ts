@@ -124,4 +124,8 @@ export class Config {
     public static setMultiRootWorkspaceName(val: string) {
        return Config.configuration.update('multiRootWorkspaceName', val, false);
     }
+
+    public static get getHeaders(): Record<string, string> | undefined {
+        return Config.getSettings<Record<string, string> | undefined>('headers');
+    }
 }
