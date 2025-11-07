@@ -109,7 +109,7 @@ export class Helper {
         const file = Config.getFile;
         return {
             port: port,
-            host: '0.0.0.0',
+            host: '',
             root: rootPath,
             file: file,
             open: false,
