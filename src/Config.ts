@@ -89,8 +89,8 @@ export class Config {
         return Config.getSettings<boolean>('useWebExt') || false;
     }
 
-    public static get getProxy(): IProxy {
-        return Config.getSettings<IProxy>('proxy');
+    public static get getProxy(): IProxy[] {
+        return Config.getSettings<IProxy[]>('proxy');
     }
 
     public static get getHttps(): IHttps {

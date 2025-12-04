@@ -201,12 +201,14 @@
           "description": "Use local IP as host"
         },
         "liveServer.settings.proxy": {
-          "type": "object",
-          "default": {
-            "enable": false,
-            "baseUri": "/",
-            "proxyUri": "http://127.0.0.1:80"
-          },
+          "type": "array",
+          "default": [
+            {
+              "enable": false,
+              "baseUri": "/",
+              "proxyUri": "http://127.0.0.1:80"
+            }
+          ],
           "properties": {
             "enable": {
               "type": "boolean",
