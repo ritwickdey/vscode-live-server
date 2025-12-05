@@ -145,10 +145,18 @@ export class Helper {
 
     static getProxySetup() {
         let proxySetup = Config.getProxy;
+
+        // Handle missing/undefined config
+        if (!proxySetup) {
+            return null;
+        }
+
+        // Backward compatibility: old single-object config
         if (!Array.isArray(proxySetup)) {
             proxySetup = [proxySetup];
         }
-        const validProxy = proxySetup.filter(item => item.enable);
+
+        const validProxy = proxySetup.filter(item => item && typeof item === 'object' && item.enable);
 
         if (!validProxy.length) {
             return null;

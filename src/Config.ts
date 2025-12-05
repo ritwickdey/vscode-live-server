@@ -90,7 +90,11 @@ export class Config {
     }
 
     public static get getProxy(): IProxy[] {
-        return Config.getSettings<IProxy[]>('proxy');
+        const val = Config.getSettings<IProxy | IProxy[]>('proxy');
+        if (!val) {
+            return [];
+        }
+        return Array.isArray(val) ? val : [val];
     }
 
     public static get getHttps(): IHttps {

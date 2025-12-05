@@ -209,29 +209,32 @@
               "proxyUri": "http://127.0.0.1:80"
             }
           ],
-          "properties": {
-            "enable": {
-              "type": "boolean",
-              "default": false,
-              "description": "Make it true to enable the feature."
+          "items": {
+            "type": "object",
+            "properties": {
+              "enable": {
+                "type": "boolean",
+                "default": false,
+                "description": "Make it true to enable the feature."
+              },
+              "baseUri": {
+                "type": "string",
+                "default": "/",
+                "pattern": ""
+              },
+              "proxyUri": {
+                "type": "string",
+                "default": "http://127.0.0.1:80",
+                "pattern": "(^http[s]?://)(.[^(\\|\\s)]+)$"
+              }
             },
-            "baseUri": {
-              "type": "string",
-              "default": "/",
-              "pattern": ""
-            },
-            "proxyUri": {
-              "type": "string",
-              "default": "http://127.0.0.1:80",
-              "pattern": "(^http[s]?://)(.[^(\\|\\s)]+)$"
-            }
+            "required": [
+              "enable",
+              "baseUri",
+              "proxyUri"
+            ],
+            "additionalProperties": false
           },
-          "required": [
-            "enable",
-            "baseUri",
-            "proxyUri"
-          ],
-          "additionalProperties": false,
           "description": "To Setup Proxy"
         },
         "liveServer.settings.useWebExt": {
