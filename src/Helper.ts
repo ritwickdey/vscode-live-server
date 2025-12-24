@@ -18,18 +18,17 @@ export const isRelativePath = (pathUrl: string) => {
 export class Helper {
 
 
-    public static testPathWithRoot(workSpacePath: string) {
+    public static testPathWithRoot(workSpacePath: string, pathUri: string) {
 
         let rootPath: string;
 
         // Test the path is actually exists or not
-        const testPath = path.join(workSpacePath, Config.getRoot);
+        let testPath = path.join(workSpacePath, pathUri);
 
         let isNotOkay = !fs.existsSync(testPath);
         if (!isNotOkay) { // means okay :)
             rootPath = testPath;
-        }
-        else {
+        } else {
             rootPath = workSpacePath;
         }
 
