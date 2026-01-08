@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gredeli-Uber</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>مرحبًا بكم في Gredeli-Uber</h1>
+    </header>
+
+    <main>
+        <section id="auth">
+            <h2>تسجيل الدخول</h2>
+            <input type="email" id="email" placeholder="البريد الإلكتروني">
+            <input type="password" id="password" placeholder="كلمة المرور">
+            <button onclick="login()">تسجيل الدخول</button>
+            <p id="authMessage"></p>
+        </section>
+
+        <section id="orders" style="display: none;">
+            <h2>طلباتك</h2>
+            <ul id="orderList"></ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2023 Gredeli-Uber. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
