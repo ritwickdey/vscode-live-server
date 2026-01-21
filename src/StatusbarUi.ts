@@ -23,7 +23,7 @@ export class StatusbarUi {
 
     static Working(workingMsg: string = 'Working on it...') {
         StatusbarUi.statusbar.text = `$(pulse) ${workingMsg}`;
-        StatusbarUi.statusbar.tooltip = 'In case if it takes long time, try to close all browser window.';
+        StatusbarUi.statusbar.tooltip = 'If the server takes a long time, try closing all browser windows.';
         StatusbarUi.statusbar.command = null;
     }
 
