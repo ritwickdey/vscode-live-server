@@ -146,14 +146,27 @@ export class Helper {
     }
 
     static getProxySetup() {
-        const proxySetup = Config.getProxy;
-        let proxy = [[]];
-        if (proxySetup.enable === true) {
-            proxy[0].push(proxySetup.baseUri, proxySetup.proxyUri);
+        let proxySetup = Config.getProxy;
+
+        // Handle missing/undefined config
+        if (!proxySetup) {
+            return null;
         }
-        else {
-            proxy = null; // required to change the type [[]] to black array [].
+
+        // Backward compatibility: old single-object config
+        if (!Array.isArray(proxySetup)) {
+            proxySetup = [proxySetup];
         }
+
+        const validProxy = proxySetup.filter(item => item && typeof item === 'object' && item.enable);
+
+        if (!validProxy.length) {
+            return null;
+        }
+
+        const proxy = validProxy.map(item => {
+            return [item.baseUri, item.proxyUri];
+        });
 
         return proxy;
     }
