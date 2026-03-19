@@ -50,7 +50,7 @@ _[Wanna try [LIVE SERVER++](https://github.com/ritwickdey/vscode-live-server-plu
 * SVG Support
 * `https` Support. 
 * Support for proxy.
-* CORS Enabled
+* CORS Enabled [(disabled by default)](https://github.com/ritwickdey/vscode-live-server/pull/3257)
 * Multi-root workspace supported.
 * Support for any file even dynamic pages through *[Live Server Web Extension](https://github.com/ritwickdey/live-server-web-extension)*.
 

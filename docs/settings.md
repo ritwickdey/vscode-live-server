@@ -4,7 +4,7 @@
     *  _Default value is `5500`._
 
     <hr>
- 
+
 * **`liveServer.settings.root`:** To change root of server in between workspace folder structure,  use `/` and absolute path from workspace.
     * _Example: `/sub_folder1/sub_folder2`_. Now `sub_folder2` will be root of the server.
     
@@ -183,6 +183,16 @@
     * Tips: You don't need to set this setting, Live Server is smart enough, it'll eigher ask what you want or automatically set the correct workspace if open the server by right clicking any HTML file.    
     <hr>
 
+ 
+* **`liveServer.settings.cors`:** Controls whether Live Server allows cross-origin requests from browser contexts.
+    * _The default value is `false` (CORS disabled)._ **(Setting this to `true` enables CORS for all websites.)**
+
+    Note: This is not the recommended approach. Use the `liveServer.settings.headers` setting instead.
+
+    Also see: https://github.com/ritwickdey/vscode-live-server/pull/3257
+    <hr>
+    
+
 * **`liveServer.settings.headers:`** : Add additional headers.
 
     * Default: `{}`
@@ -191,8 +201,11 @@
     ```js
     {
         "liveServer.settings.headers": {
-            "Cross-Origin-Opener-Policy": "same-origin",
-            "Cross-Origin-Embedder-Policy": "require-corp"
+            "Access-Control-Allow-Origin": "https://example.com",
+            "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
+            "Access-Control-Allow-Headers": "Content-Type,Authorization, X-Requested-With",
+            "Access-Control-Allow-Credentials": true,
+            "Access-Control-Max-Age": 86400
         }
     }
     ```

@@ -1,5 +1,6 @@
 'use strict';
 
+import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
 import { Config } from './Config';
@@ -84,6 +85,7 @@ export class Helper {
         workspacePath = workspacePath || '';
         const port = Config.getPort;
         const headers = Config.getHeaders || {};
+        const corsEnabled = Config.getCors || false;
         const ignorePathGlob = Config.getIgnoreFiles || [];
 
         const ignoreFiles = [];
@@ -117,7 +119,7 @@ export class Helper {
             ignore: ignoreFiles,
             disableGlobbing: true,
             proxy: proxy,
-            cors: true,
+            cors: corsEnabled,
             wait: Config.getWait || 100,
             fullReload: Config.getfullReload,
             useBrowserExtension: Config.getUseWebExt,

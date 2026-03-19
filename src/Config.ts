@@ -128,4 +128,8 @@ export class Config {
     public static get getHeaders(): Record<string, string> | undefined {
         return Config.getSettings<Record<string, string> | undefined>('headers');
     }
+
+    public static get getCors(): boolean {
+        return Config.getSettings<boolean>('cors');
+    }
 }
