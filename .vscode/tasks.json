@@ -12,27 +12,38 @@
   "tasks": [
     {
       "label": "build",
-      // the command is a shell script
       "type": "shell",
-      // show the output window only if unrecognized errors occur.
       "presentation": {
         "reveal": "silent",
         "focus": false,
-        "panel": "shared",
+        "panel": "shared"
       },
-      // we run the custom script "compile" as defined in package.json
       "command": "npm",
-      "args": ["run", "compile", "--loglevel", "silent"],
-      // The tsc compiler is started in watching mode
+      "args": [
+        "run",
+        "compile",
+        "--loglevel",
+        "silent"
+      ],
       "isBackground": true,
-      // use the standard tsc in watch mode problem matcher to find compile problems in the output.
       "problemMatcher": [
         "$tsc-watch"
       ],
       "group": {
         "kind": "build",
         "isDefault": true
-      },
+      }
+    },
+    {
+      "type": "java (build)",
+      "paths": [
+        "${workspace}"
+      ],
+      "isFullBuild": true,
+      "group": "build",
+      "problemMatcher": [],
+      "label": "java (build): Build Workspace",
+      "detail": "$(tools) Build all the Java projects in workspace."
     }
   ]
 }
