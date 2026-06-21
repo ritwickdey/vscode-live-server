@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ادعوا لإخواننا في فلسطين</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        #counter {
+            margin-top: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>ادعوا لإخواننا في فلسطين</h1>
+    <button onclick="increaseCounter()">اضغط هنا</button>
+    <div id="counter">عدد الأشخاص الذين ضغطوا: 0</div>
+
+    <script>
+        // جلب العدد من localStorage إذا كان موجودًا
+        let count = localStorage.getItem('prayerCount') ? parseInt(localStorage.getItem('prayerCount')) : 0;
+        document.getElementById('counter').textContent = 'عدد الأشخاص الذين ضغطوا: ' + count;
+
+        function increaseCounter() {
+            count++;
+            document.getElementById('counter').textContent = 'عدد الأشخاص الذين ضغطوا: ' + count;
+            // تخزين العدد المحدث في localStorage
+            localStorage.setItem('prayerCount', count);
+        }
+    </script>
+
+</body>
+</html>
+
+
+
+      
+       
+
+
+        
+        
+ 
+ 
+ 
+ 
+ 
+ <!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAX CR </title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h2>download video.mp4</h2>
+    </header>
+
+    <section id="game-area">
+         
+        
+
+
+      
+
+    </style>
+
+
+    
+
+<h2>_________________________________________________________________________________________________<h2>
+    
+
+
+
+
+
+        
+        
+        <!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقع مشاهدة وتحميل الفيديوهات</title>
+</head>
+<body>
+    <h1>مرحباً بكم في موقع مشاهدة وتحميل الفيديوهات</h1>
+
+    <h2>مشاهدة الفيديو</h2>
+    <video width="640" height="360" controls>
+        <source src="Vídeo sin título ‐ Hecho con Clipchamp.mp4" type="video/mp4">
+        المتصفح الخاص بك لا يدعم تشغيل الفيديو.
+    </video>
+
+    <h2>تحميل الفيديو</h2>
+    <a href="Vídeo sin título ‐ Hecho con Clipchamp.mp4" download>اضغط هنا لتحميل الفيديو</a>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحميل الفيديوهات</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 50px;
+        }
+        h1 {
+            color: #333;
+        }
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+        input[type="url"] {
+            width: 300px;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>تحميل الفيديوهات من إنستغرام ويوتيوب وتيك توك</h1>
+
+    <div class="container">
+        <h2>أدخل الرابط لتحميل الفيديو</h2>
+        <input type="url" id="videoUrl" placeholder="الصق الرابط هنا">
+        <br>
+        <button onclick="downloadVideo()">تحميل الفيديو</button>
+    </div>
+
+    <script>
+        function downloadVideo() {
+            var url = document.getElementById('videoUrl').value;
+            if (url) {
+                // سيحتاج إلى خادم لفعل التحميل الفعلي للفيديو
+                alert('تم إرسال الطلب لتحميل الفيديو: ' + url);
+            } else {
+                alert('يرجى إدخال رابط صالح');
+            }
+        }
+    </script>
+
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مشاهدة فيديوهات يوتيوب</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 50px;
+        }
+        h1 {
+            color: #333;
+        }
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        iframe {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>بحث عن فيديوهات يوتيوب</h1>
+
+    <input type="text" id="searchQuery" placeholder="أدخل كلمة البحث">
+    <button onclick="searchVideo()">بحث</button>
+
+    <div id="videoContainer"></div>
+
+    <script>
+        function searchVideo() {
+            var query = document.getElementById('searchQuery').value;
+            if (query) {
+                var url = 'https://www.youtube.com/embed?listType=search&list=' + encodeURIComponent(query);
+                var iframe = '<iframe width="560" height="315" src="' + url + '" frameborder="0" allowfullscreen></iframe>';
+                document.getElementById('videoContainer').innerHTML = iframe;
+            } else {
+                alert('يرجى إدخال كلمة بحث');
+            }
+        }
+    </script>
+
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مشاهدة وتحميل الفيديوهات</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .video-container {
+            margin-bottom: 30px;
+        }
+        video {
+            width: 100%;
+            max-width: 600px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        a:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>مشاهدة وتحميل الفيديوهات</h1>
+
+    <div class="video-container">
+        <h2>أغنية أبو فله الجديدة</h2>
+        <video controls>
+            <source src="/mnt/data/AboFlah Song 2020 [ Offical Music ] أغنية أبو فله الجديدة ^_^ تسجيل دخوول 2020.mp4" type="video/mp4">
+            المتصفح الخاص بك لا يدعم تشغيل الفيديو.
+        </video>
+        <br>
+        <a href="/mnt/data/AboFlah Song 2020 [ Offical Music ] أغنية أبو فله الجديدة ^_^ تسجيل دخوول 2020.mp4" download>تحميل الفيديو</a>
+    </div>
+
+    <div class="video-container">
+        <h2>أنا مش زعلان - عود</h2>
+        <video controls>
+            <source src="/mnt/data/Finestation 6 _ انا مش زعلان - عود (Really Really Haywan Original Video).mp4" type="video/mp4">
+            المتصفح الخاص بك لا يدعم تشغيل الفيديو.
+        </video>
+        <br>
+        <a href="/mnt/data/Finestation 6 _ انا مش زعلان - عود (Really Really Haywan Original Video).mp4" download>تحميل الفيديو</a>
+    </div>
+
+    <div class="video-container">
+        <h2>Will I Am - I Like To Move It</h2>
+        <video controls>
+            <source src="/mnt/data/Will I Am - I Like To Move It (Lyrics) _ i like to move it move it [TikTok Song].mp4" type="video/mp4">
+            المتصفح الخاص بك لا يدعم تشغيل الفيديو.
+        </video>
+        <br>
+        <a href="/mnt/data/Will I Am - I Like To Move It (Lyrics) _ i like to move it move it [TikTok Song].mp4" download>تحميل الفيديو</a>
+    </div>
+
+    <div class="video-container">
+        <h2>أغنية أبو فله الحماسية</h2>
+        <video controls>
+            <source src="/mnt/data/اغنية ابو فلة الحماسية التي يبحث عنها الملايين اغاني _2020.mp4" type="video/mp4">
+            المتصفح الخاص بك لا يدعم تشغيل الفيديو.
+        </video>
+        <br>
+        <a href="/mnt/data/اغنية ابو فلة الحماسية التي يبحث عنها الملايين اغاني _2020.mp4" download>تحميل الفيديو</a>
+    </div>
+
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الإستماع وتحميل الأغاني</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .song-container {
+            margin-bottom: 30px;
+        }
+        audio {
+            width: 100%;
+            max-width: 600px;
+            margin-top: 10px;
+        }
+        a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        a:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>الإستماع وتحميل الأغاني</h1>
+
+    <div class="song-container">
+        <h2>أغنية أبو فله الجديدة</h2>
+        <audio controls>
+            <source src="sandbox:/mnt/data/AboFlah_Song_2020.mp3" type="audio/mp3">
+            المتصفح الخاص بك لا يدعم تشغيل الصوت.
+        </audio>
+        <br>
+        <a href="sandbox:/mnt/data/AboFlah_Song_2020.mp3" download>تحميل الأغنية</a>
+    </div>
+
+    <div class="song-container">
+        <h2>أنا مش زعلان - عود</h2>
+        <audio controls>
+            <source src="sandbox:/mnt/data/FineStation_6_Ana_Mesh_Zaalan.mp3" type="audio/mp3">
+            المتصفح الخاص بك لا يدعم تشغيل الصوت.
+        </audio>
+        <br>
+        <a href="sandbox:/mnt/data/FineStation_6_Ana_Mesh_Zaalan.mp3" download>تحميل الأغنية</a>
+    </div>
+
+    <div class="song-container">
+        <h2>Will I Am - I Like To Move It</h2>
+        <audio controls>
+            <source src="sandbox:/mnt/data/Will_I_Am_I_Like_To_Move_It.mp3" type="audio/mp3">
+            المتصفح الخاص بك لا يدعم تشغيل الصوت.
+        </audio>
+        <br>
+        <a href="sandbox:/mnt/data/Will_I_Am_I_Like_To_Move_It.mp3" download>تحميل الأغنية</a>
+    </div>
+
+    <div class="song-container">
+        <h2>أغنية أبو فله الحماسية</h2>
+        <audio controls>
+            <source src="sandbox:/mnt/data/AboFlah_Hamasia.mp3" type="audio/mp3">
+            المتصفح الخاص بك لا يدعم تشغيل الصوت.
+        </audio>
+        <br>
+        <a href="sandbox:/mnt/data/AboFlah_Hamasia.mp3" download>تحميل الأغنية</a>
+    </div>
+
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>🌹Thakur Himanshu Singh</title>
+  </head>
+  <body>
+    <table cellspacing="20">
+      <tr>
+      <td><img src="https://scontent.fblr4-1.fna.fbcdn.net/v/t1.0-9/44513888_1946656772093205_7821965461330853888_n.jpg?_nc_cat=104&_nc_sid=09cbfe&_nc_ohc=uqQ_xgyAVroAX89BhE3&_nc_ht=scontent.fblr4-1.fna&oh=06d23d0058a61c42bc459946b80c89af&oe=5EAA2B0F" alt="Himanshu Profile Picture"></td>
+      <td><h1>Himanshu Singh</h1>
+          <p><em>Human resource Executive of <strong><a href="http://alpha-numero.tech/">ANTS GLOBAL SYSTEM PRIVATE LIMITED</a></strong></em></p>
+          <p><em>Alpha-Numero Technology Solutions, a Product Engineering Design Services Organization,<br>enables customers across multiple strategic sectors.We develop and implement leading<br>technology-based solutions for our clients to improve their productivity, efficiency,</br> and customer safety.</em></p></td>
+      </tr>
+      </table>
+    <hr>
+    <h2><u>About Us</u></h2>
+    <ul>
+      <li>We Provides services to large no of product based company</li>
+      <li>We are best in the market</li>
+      </ul>
+      <hr>
+      <h3><u>Work Experience</u></h3>
+        <table border="5">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Work</th>
+              </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2015-2019</td>
+              <td>Senior HR Executive at HR Global</td>
+              </tr>
+              <tr>
+                <td>2019-Present</td>
+                <td>HR Executive at ANTS Global System PVT LTD</td>
+          </tbody>
+        </table>
+        <hr>
+        <h3><u>Skills</u></h3>
+         <table>
+           <tr>
+             <td><Table border="3">
+                 <tr>
+                   <td>Recruitment</td>
+                   <td>★★★☆☆</td>
+               </tr>
+               <tr>
+                   <td>Payroll</td>
+                   <td>★★★★★</td>
+               </tr>
+               </table></td>
+               <td><Table border="3">
+                       <tr>
+                         <td>Recruitment</td>
+                         <td>★★★☆☆</td>
+                     </tr>
+                     <tr>
+                         <td>Payroll</td>
+                         <td>★★★★★</td>
+                     </tr>
+                     </table></td>
+           </tr>
+          </table>
+          <hr>
+      <hr size="3" noshade>
+          <a href="HOBBIES.html">My Hobbies</a>
+          <a href="Contact-me.html">My Contact</a>
+    </body>
+</html>
