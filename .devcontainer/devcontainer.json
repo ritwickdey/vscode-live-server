@@ -1,0 +1,6 @@
+{
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "features": {
+  }"ghcr.io/flexwie/devcontainer-features/op:1": {}
+}"ghcr.io/wxw-matt/devcontainer-features/script_runner:0": {}
+}"ghcr.io/devcontainers/features/aws-cli:1": {}
