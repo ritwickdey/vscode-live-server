@@ -1,0 +1,42 @@
+/* Reset default margins and paddings */
+body, h1, h2, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+/* Style header and navigation */
+header {
+    background-color: #494949;
+    color: rgb(180, 0, 0);
+    paddingrgb(248, 0, 0)
+}
+
+nav ul {
+    list-style-type: style out;
+}
+
+nav li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: rgb(124, 255, 97);
+}
+
+section {
+    padding: 2rem;
+}
+
+.project {
+    margin-bottom: 2rem;
+}
+
+footer {
+    background-color: #494949;
+    color: rgb(124, 255, 97);
+    text-align: center;
+    padding: 1rem;
+}
+
