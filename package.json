@@ -204,35 +204,40 @@
           "description": "Use local IP as host"
         },
         "liveServer.settings.proxy": {
-          "type": "object",
-          "default": {
-            "enable": false,
-            "baseUri": "/",
-            "proxyUri": "http://127.0.0.1:80"
-          },
-          "properties": {
-            "enable": {
-              "type": "boolean",
-              "default": false,
-              "description": "Make it true to enable the feature."
-            },
-            "baseUri": {
-              "type": "string",
-              "default": "/",
-              "pattern": ""
-            },
-            "proxyUri": {
-              "type": "string",
-              "default": "http://127.0.0.1:80",
-              "pattern": "(^http[s]?://)(.[^(\\|\\s)]+)$"
+          "type": "array",
+          "default": [
+            {
+              "enable": false,
+              "baseUri": "/",
+              "proxyUri": "http://127.0.0.1:80"
             }
-          },
-          "required": [
-            "enable",
-            "baseUri",
-            "proxyUri"
           ],
-          "additionalProperties": false,
+          "items": {
+            "type": "object",
+            "properties": {
+              "enable": {
+                "type": "boolean",
+                "default": false,
+                "description": "Make it true to enable the feature."
+              },
+              "baseUri": {
+                "type": "string",
+                "default": "/",
+                "pattern": ""
+              },
+              "proxyUri": {
+                "type": "string",
+                "default": "http://127.0.0.1:80",
+                "pattern": "(^http[s]?://)(.[^(\\|\\s)]+)$"
+              }
+            },
+            "required": [
+              "enable",
+              "baseUri",
+              "proxyUri"
+            ],
+            "additionalProperties": false
+          },
           "description": "To Setup Proxy"
         },
         "liveServer.settings.useWebExt": {
