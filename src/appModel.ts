@@ -16,6 +16,7 @@ export class AppModel implements IAppModel {
     private isServerBusy: boolean;
     private LiveServerInstance;
     private previousWorkspacePath: string;
+    private root: string;
 
     private readonly goLiveEvent = new EventEmitter<GoLiveEvent>();
     private readonly goOfflineEvent = new EventEmitter<GoOfflineEvent>();
@@ -40,7 +41,6 @@ export class AppModel implements IAppModel {
     }
 
     public async Golive(pathUri?: string) {
-
         // if no folder is opened.
         if (!workspace.workspaceFolders) {
             return this.showPopUpMsg(`Open a folder or workspace... (File -> Open Folder)`, true);
@@ -55,15 +55,22 @@ export class AppModel implements IAppModel {
         if (!this.isCorrectWorkspace(workspacePath)) return;
 
         const openedDocUri = pathUri || (window.activeTextEditor ? window.activeTextEditor.document.fileName : '');
-        const pathInfos = Helper.testPathWithRoot(workspacePath);
+        const pathInfos = Helper.testPathWithRoot(workspacePath, pathUri);
 
         if (this.IsServerRunning) {
+          if (this.root === pathInfos.rootPath) {
             const relativePath = Helper.getSubPath(pathInfos.rootPath, openedDocUri) || '';
             this.goLiveEvent.fire({ runningPort: this.runningPort, pathUri: relativePath });
-            return this.openBrowser(
-                this.runningPort,
-                relativePath
-            );
+            if (!Config.getNoBrowser) {
+              return this.openBrowser(
+                  this.runningPort,
+                  relativePath
+              );
+            }
+            return;
+          } else {
+            await this.GoOffline();
+          }
         }
         if (pathInfos.isNotOkay) {
             this.showPopUpMsg('Invalid Path in liveServer.settings.root settings. live Server will serve from workspace root', true);
@@ -78,11 +85,12 @@ export class AppModel implements IAppModel {
         this.isServerBusy = true;
         StatusbarUi.Working('Starting...');
 
-        LiveServerHelper.StartServer(params, async (serverInstance) => {
+        await LiveServerHelper.StartServer(params, async (serverInstance) => {
             this.isServerBusy = false;
             if (serverInstance && serverInstance.address) {
                 this.LiveServerInstance = serverInstance;
                 this.runningPort = serverInstance.address().port;
+                this.root = params.root;
                 this.ToggleStatusBar();
                 this.showPopUpMsg(`Server is Started at port : ${this.runningPort}`);
 
@@ -99,7 +107,7 @@ export class AppModel implements IAppModel {
                 if (!serverInstance.errorMsg) {
                     await Config.setPort(Config.getPort + 1); // + 1 will be fine
                     this.showPopUpMsg(`The default port : ${Config.getPort - 1} is currently taken, changing port to : ${Config.getPort}.`);
-                    this.Golive(pathUri);
+                    await this.Golive(pathUri);
                 } else {
                     this.showPopUpMsg(`Something went wrong! Please check into Developer Console or report on GitHub.`, true);
                 }
@@ -110,7 +118,7 @@ export class AppModel implements IAppModel {
 
     }
 
-    public GoOffline() {
+    public async GoOffline() {
         if (this.isServerBusy) return;
         if (!this.IsServerRunning) {
             this.showPopUpMsg(`Server is not already running`);
@@ -119,12 +127,12 @@ export class AppModel implements IAppModel {
         this.goOfflineEvent.fire({ runningPort: this.runningPort });
         this.isServerBusy = true;
         StatusbarUi.Working('Disposing...');
-        LiveServerHelper.StopServer(this.LiveServerInstance, () => {
-            this.showPopUpMsg('Server is now offline.');
+        await LiveServerHelper.StopServer(this.LiveServerInstance, () => {
             this.isServerBusy = false;
             this.ToggleStatusBar();
             this.LiveServerInstance = null;
             this.runningPort = null;
+            this.root = null;
             this.previousWorkspacePath = null;
         });
     }

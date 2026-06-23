@@ -6,3 +6,4 @@ Gemfile.lock
 .vscode-test
 .wdio-vscode-service
 *-CHANGELOG.txt
+.DS_Store

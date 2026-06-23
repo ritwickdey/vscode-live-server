@@ -12,11 +12,10 @@ export function activate(context: ExtensionContext) {
         checkNewAnnouncement(context.globalState);
     });
 
-
     context.subscriptions.push(commands
         .registerCommand('extension.liveServer.goOnline', async (fileUri) => {
             await workspace.saveAll();
-            appModel.Golive(fileUri ? fileUri.fsPath : null);
+            await appModel.Golive(fileUri ? fileUri.fsPath : null);
         })
     );
 
