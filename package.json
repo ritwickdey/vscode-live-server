@@ -170,6 +170,16 @@
           ],
           "description": "To ignore specific file changes"
         },
+        "liveServer.settings.watchPaths": {
+          "type": ["array", "null"],
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "default": null,
+          "description": "Paths to watch for live reload. Use null to watch the server root and mounts, or [] for manual refresh only. Paths are literal files or directories with no glob expansion, relative to the selected workspace folder or absolute. Explicit paths replace automatic root and mount watching. Example: [\"web\", \"shared/styles.css\"]. Restart Live Server after changing this setting."
+        },
         "liveServer.settings.mount": {
           "type": "array",
           "items": {

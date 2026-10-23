@@ -87,6 +87,7 @@ export class Helper {
         const headers = Config.getHeaders || {};
         const corsEnabled = Config.getCors || false;
         const ignorePathGlob = Config.getIgnoreFiles || [];
+        const watchPaths = Config.getWatchPaths;
 
         const ignoreFiles = [];
         ignorePathGlob.forEach(ignoredPath => {
@@ -118,6 +119,7 @@ export class Helper {
             open: false,
             https: https,
             ignore: ignoreFiles,
+            watch: watchPaths == null ? undefined : watchPaths.map(watchPath => path.resolve(workspacePath, watchPath)),
             disableGlobbing: true,
             proxy: proxy,
             cors: corsEnabled,

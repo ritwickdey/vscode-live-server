@@ -73,6 +73,27 @@
 
     <hr>
 
+* **`liveServer.settings.watchPaths`:** Limit live reload to selected files or directories in large workspaces.
+
+    * Default: `null`. Watch the server root and all mounted directories, using the existing behavior.
+    * Set an array of literal paths to watch only those paths. Directories are watched recursively; glob patterns are not supported.
+    * Relative paths resolve from the selected workspace folder, even when `liveServer.settings.root` points to a subfolder. Absolute paths are also supported.
+    * Explicit paths replace automatic root and mount watching. Include mounted directories explicitly if their changes should trigger reloads.
+    * `liveServer.settings.ignoreFiles` still applies within the selected paths.
+    * Set `[]` to disable file watching and refresh the browser manually.
+    * This setting only controls change detection. Files outside the watched paths remain available through the server and its mounts.
+    * Stop and restart Live Server after changing this setting.
+
+    For example, watch the web frontend without scanning unrelated datasets or generated outputs:
+
+    ```json
+    {
+        "liveServer.settings.watchPaths": ["web", "shared/styles.css"]
+    }
+    ```
+
+    <hr>
+
 * **`liveServer.settings.donotShowInfoMsg`:** To turn off information pop-up messages like _"Server starts with port xxxx"_ or like that.  To turn off it, you can set the value as `true` or you can click to _"Don't show again"_ when a information message pop-up.
        
     * _Default value is : `false`_
